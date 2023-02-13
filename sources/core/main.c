@@ -6,29 +6,11 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:12:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/13 19:07:17 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/13 21:02:48 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-int	init(t_mrt *mrt)
-{
-	printf("ello\n");
-	mrt->mlx = mlx_init();
-	if (!mrt->mlx)
-		return (1);
-	mrt->win = mlx_new_window(mrt->mlx, WX, WY, "MiniRT");
-	if (!mrt->win)
-		return (1);
-	mrt->img = mlx_new_image(mrt->mlx, IX, IY);
-	if (!mrt->img)
-		return (1);
-	mrt->addr = mlx_get_data_addr(mrt->img, &mrt->bpp, &mrt->sizel, &mrt->endi);
-	if (!mrt->addr)
-		return (1);
-	return (0);
-}
 
 int	end_mrt(t_mrt *mrt)
 {
@@ -61,7 +43,7 @@ int	main(int ac, char **ag)
 	if (ac == 1)
 	{
 		(void)ag;
-		if (init(&mrt))
+		if (init_minirt(&mrt))
 			return (1);
 		ft_controls(&mrt);
 		mlx_loop(mrt.mlx);

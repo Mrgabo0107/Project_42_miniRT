@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/13 18:47:09 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/13 21:02:38 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINIRT_H
 # include "mlx.h"
 # include "libft.h"
+# include "structs.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -25,15 +26,7 @@
 # define IX 500
 # define IY 500
 
-typedef struct s_mrt
-{
-	void			*mlx;
-	void			*win;
-	void			*img;
-	char			*addr;
-	int				endi;
-	int				bpp;
-	int				sizel;
-}			t_mrt;
+//init
+int	init_minirt(t_mrt *mrt);
 
 #endif

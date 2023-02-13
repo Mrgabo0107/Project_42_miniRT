@@ -6,7 +6,7 @@
 #    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/13 18:43:45 by yridgway         ###   ########.fr        #
+#    Updated: 2023/02/13 21:03:16 by yridgway         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ INCLUDES = -I $(HEADER) -I $(MLX) -I $(LIBFT)/includes
 
 ### Source Files ###
 CORE_DIR	=	core/
-CORS		=	main.c
+CORS		=	main.c init.c
 
 SOURCES		+=	$(addprefix	$(CORE_DIR),$(CORS))
 
