@@ -6,15 +6,14 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/13 21:13:56 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/13 21:35:51 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	init_minirt(t_mrt *mrt)
+int	ft_init_mlx(t_mrt *mrt)
 {
-	printf("ello\n");
 	mrt->mlx = mlx_init();
 	if (!mrt->mlx)
 		return (1);
@@ -28,5 +27,24 @@ int	init_minirt(t_mrt *mrt)
 	mrt->addr = mlx_get_data_addr(mrt->img, &mrt->bpp, &mrt->sizel, &mrt->endi);
 	if (!mrt->addr)
 		return (end_mrt(mrt), 1);
+	return (0);
+}
+
+// int	init_objects(t_mrt *mrt)
+// {
+// 	mrt->cam = NULL;
+// 	mrt->light = NULL;
+// 	mrt->sphere = NULL;
+// 	mrt->plane = NULL;
+// 	mrt->cylinder = NULL;
+// 	mrt->triangle = NULL;
+// }
+
+int	init_minirt(t_mrt *mrt)
+{
+	if (ft_init_mlx(mrt))
+		return (printf("Problem initializing minilibx\n"), 1);
+	// if (init_objects(mrt))
+	// 	return (pritnf("Problem initializing objects\n"), 1);
 	return (0);
 }

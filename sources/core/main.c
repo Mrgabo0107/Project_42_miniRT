@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:12:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/13 21:09:23 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/13 21:19:58 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	main(int ac, char **ag)
 	(void)ag;
 	if (ac != 2)
 		return (printf("Usage: ./miniRT <scene.rt>\n"), 1);
+	if (ft_check_file(ag[1]))
+		return (printf("Error\n"), 1);
 	if (init_minirt(&mrt))
 		return (1);
 	ft_controls(&mrt);
