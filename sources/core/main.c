@@ -6,20 +6,21 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:12:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/13 18:16:13 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/13 19:07:17 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "minirt.h"
 
-static int	init(t_mrt *mrt)
+int	init(t_mrt *mrt)
 {
+	printf("ello\n");
 	mrt->mlx = mlx_init();
 	if (!mrt->mlx)
-		return(1);
+		return (1);
 	mrt->win = mlx_new_window(mrt->mlx, WX, WY, "MiniRT");
 	if (!mrt->win)
-		return(1);
+		return (1);
 	mrt->img = mlx_new_image(mrt->mlx, IX, IY);
 	if (!mrt->img)
 		return (1);
@@ -29,13 +30,16 @@ static int	init(t_mrt *mrt)
 	return (0);
 }
 
-static int end_mrt(void *mrt)
+int	end_mrt(t_mrt *mrt)
 {
-	(void)mrt;
+	mlx_destroy_image(mrt->mlx, mrt->img);
+	mlx_destroy_window(mrt->mlx, mrt->win);
+	mlx_destroy_display(mrt->mlx);
+	free(mrt->mlx);
 	exit(0);
 }
 
-static int key_press(int key, void *mrt)
+int	key_press(int key, t_mrt *mrt)
 {
 	// printf("key: %d\n", key);
 	if (key == 65307)
@@ -43,17 +47,23 @@ static int key_press(int key, void *mrt)
 	return (key);
 }
 
-int main(int ac, char **ag)
+int	ft_controls(t_mrt *mrt)
+{
+	mlx_key_hook(mrt->win, &key_press, mrt);
+	mlx_hook(mrt->win, 17, 0, end_mrt, mrt);
+	return (0);
+}
+
+int	main(int ac, char **ag)
 {
 	t_mrt	mrt;
 
-	if(ac == 1)
+	if (ac == 1)
 	{
 		(void)ag;
-		if(init(&mrt))
-			return(1);
-		mlx_key_hook(mrt.win, &key_press, &mrt);
-		mlx_hook(mrt.win, 17, 0, end_mrt, &mrt);
+		if (init(&mrt))
+			return (1);
+		ft_controls(&mrt);
 		mlx_loop(mrt.mlx);
 	}
 	return (0);

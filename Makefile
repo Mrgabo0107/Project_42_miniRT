@@ -6,7 +6,7 @@
 #    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/13 18:16:18 by yridgway         ###   ########.fr        #
+#    Updated: 2023/02/13 18:43:45 by yridgway         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ HEADER = includes/
 SRC_PATH  = sources/
 MLX = libs/minilibx-linux
 LIBFT = libs/libft
+INCLUDES = -I $(HEADER) -I $(MLX) -I $(LIBFT)/includes
 
 ### Source Files ###
 CORE_DIR	=	core/
@@ -57,11 +58,11 @@ tmp:
 	@mkdir -p $(OBJ_PATH)$(CORE_DIR)
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS) -L $(LIBFT) -L $(MLX) -Ilibs/minilibx-linux -O3 -o $@ $^ -l:libft.a -lmlx -lXext -lX11 -lm 
+	$(CC) $(FLAGS) -L $(LIBFT) -L $(MLX) $(INCLUDES) -O3 -o $@ $^ -l:libft.a -lmlx -lXext -lX11 -lm 
 	@echo "$(GREEN)Project compiled succesfully$(NOC)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@$(CC) $(FLAGS) -MMD -c -o $@ $<
+	@$(CC) $(FLAGS) $(INCLUDES) -MMD -c -o $@ $<
 	@echo "$(CYAN)Creation of object file -> $(CYAN)$(notdir $@)... $(GREEN)[Done]$(NOC)"
 
 clean:
