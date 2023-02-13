@@ -6,7 +6,7 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/13 14:04:09 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/02/13 15:06:04 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ tmp:
 	@mkdir -p $(OBJ_PATH)$(CORE_DIR)
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS) -L $(LIBFT) -L $(MLX) -o $@ $^ -l:libft.a -lmlx -lXext -lX11 -lm
+	$(CC) $(FLAGS) -L $(LIBFT) -L $(MLX) -Ilibs/minilibx-linux -O3 -o $@ $^ -l:libft.a -lmlx -lXext -lX11 -lm 
 	@echo "$(GREEN)Project compiled succesfully$(NOC)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
