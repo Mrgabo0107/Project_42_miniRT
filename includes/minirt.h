@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/13 21:02:38 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/13 21:14:38 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,8 @@
 
 //init
 int	init_minirt(t_mrt *mrt);
+
+//end
+int	end_mrt(t_mrt *mrt);
 
 #endif

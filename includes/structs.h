@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/13 21:02:06 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/13 21:14:54 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ typedef struct s_lst
 	t_type			type;
 	struct s_lst	*next;
 }			t_lst;
-
 typedef struct s_mrt
 {
 	void			*mlx;
@@ -123,6 +122,5 @@ typedef struct s_mrt
 // 	t_vec			normal;
 // 	double			side;
 // }			t_square;
-
 
 #endif
