@@ -3,3 +3,6 @@
 *.gitGraph
 libs/libft/objs
 libs/minilibx-linux/test
+objs/
+minirt
+Makefile.gen
