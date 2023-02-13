@@ -6,14 +6,14 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/13 18:16:37 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/13 18:47:09 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
-# include "../libs/minilibx-linux/mlx.h"
-# include "../libs/libft/includes/libft.h"
+# include "mlx.h"
+# include "libft.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -27,10 +27,10 @@
 
 typedef struct s_mrt
 {
-    void			*mlx;
+	void			*mlx;
 	void			*win;
 	void			*img;
-    char            *addr;
+	char			*addr;
 	int				endi;
 	int				bpp;
 	int				sizel;
