@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/13 21:02:06 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/13 22:24:45 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ typedef enum e_type
 	SPHERE,
 	PLANE,
 	CYLINDER,
-	LIGHT
-	// CAMERA
+	LIGHT,
+	AMBIENT,
+	CAMERA
 	// SQUARE
 }			t_type;
 
@@ -47,12 +48,12 @@ typedef struct s_amblight
 	t_vec			color;
 }			t_amblight;
 
-typedef struct s_camera
+typedef struct s_cam
 {
 	t_vec			origin;
 	t_vec			direction;
 	double			fov;
-}			t_camera;
+}			t_cam;
 
 /*----------------------------------------------------------------------------*/
 /*									Objects									  */
@@ -104,7 +105,6 @@ typedef struct s_lst
 	t_type			type;
 	struct s_lst	*next;
 }			t_lst;
-
 typedef struct s_mrt
 {
 	void			*mlx;
@@ -123,6 +123,5 @@ typedef struct s_mrt
 // 	t_vec			normal;
 // 	double			side;
 // }			t_square;
-
 
 #endif
