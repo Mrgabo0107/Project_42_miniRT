@@ -1,0 +1,5 @@
+*.a
+*.o
+*.gitGraph
+libs/libft/objs
+libs/minilibx-linux/test

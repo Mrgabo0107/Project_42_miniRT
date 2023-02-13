@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/13 13:31:59 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/13 18:16:37 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct s_mrt
     void			*mlx;
 	void			*win;
 	void			*img;
-    char            *mot;
-	int				endian;
+    char            *addr;
+	int				endi;
 	int				bpp;
 	int				sizel;
 }			t_mrt;
