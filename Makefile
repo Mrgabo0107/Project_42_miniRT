@@ -6,7 +6,7 @@
 #    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/15 17:06:54 by yridgway         ###   ########.fr        #
+#    Updated: 2023/02/15 18:10:09 by yridgway         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,13 +29,20 @@ INCLUDES = -I $(HEADER) -I $(MLX) -I $(LIBFT)/includes
 
 ### Source Files ###
 CORE_DIR	=	core/
-CORS		=	main.c init.c
+CORS		=	main.c \
+				init.c
 
 PARSE_DIR	=	parse/
 PARSE		=	parsing.c
 
 UTIL_DIR	=	utils/
-UTILS		=	tools.c
+UTILS		=	tools.c \
+				memory.c \
+				memory_utils.c \
+				free.c
+
+# LIBFT_DIR	=	libft/
+# LIBFT		=	libft.a
 
 OBJ_DIRS	+=	$(addprefix	$(OBJ_PATH),$(CORE_DIR))
 OBJ_DIRS	+=	$(addprefix	$(OBJ_PATH),$(PARSE_DIR))

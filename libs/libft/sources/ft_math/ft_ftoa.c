@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ftoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 02:42:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2022/08/27 14:50:55 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:12:05 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../includes/libft.h"
+
+#include "../../includes/minirt.h"
 
 static char	*case_cero(char *entera)
 {

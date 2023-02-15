@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 13:12:32 by gamoreno          #+#    #+#             */
-/*   Updated: 2022/11/03 20:53:04 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:18:59 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
+# include "minirt.h"
 
 /*----------------------------------Prototipos--------------------------------*/
 size_t		ft_strlen(const char *s);

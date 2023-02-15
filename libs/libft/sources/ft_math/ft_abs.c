@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 20:04:50 by gamoreno          #+#    #+#             */
-/*   Updated: 2022/09/23 20:10:15 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:12:05 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../includes/libft.h"
+
+#include "../../includes/minirt.h"
 
 int	ft_abs(int n)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 17:34:19 by gamoreno          #+#    #+#             */
-/*   Updated: 2022/06/24 19:44:13 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:18:46 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  *
  * Devuelve:	La subcadena creada. */
 
-#include "../../includes/libft.h"
+#include "libft.h"
 
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
@@ -33,7 +33,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 		len = ft_strlen(s) - start;
 	if (start > ft_strlen(s))
 		return (ft_strdup(""));
-	substr = (char *)malloc(sizeof(char) * (len + 1));
+	substr = (char *)ft_malloc(NULL, sizeof(char) * (len + 1));
 	if (!substr)
 		return (NULL);
 	i = 0;

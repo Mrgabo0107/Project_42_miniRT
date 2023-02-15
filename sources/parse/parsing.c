@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/13 22:32:55 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:02:24 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ int	ft_check_file(char *file)
 	{
 		if (ft_check_line(line, count))
 			return (1);
-		free(line);
+		ft_free(line);
 	}
 	if (line)
-		free(line);
+		ft_free(line);
 	// printf("count: %d %d %d\n", count[0], count[1], count[2]);
 	return (0);
 }

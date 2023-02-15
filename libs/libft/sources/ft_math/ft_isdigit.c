@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:39:36 by gamoreno          #+#    #+#             */
-/*   Updated: 2022/06/30 14:39:40 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:18:46 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  *
  * Devuelve: 1 si es digito o 0 en el caso contario. */
 
-#include "../../includes/libft.h"
+#include "libft.h"
 
 int	ft_isdigit(int c)
 {

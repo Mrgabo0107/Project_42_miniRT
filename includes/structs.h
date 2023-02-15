@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/13 22:24:45 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/15 17:27:32 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,13 @@ typedef struct s_lst
 	t_type			type;
 	struct s_lst	*next;
 }			t_lst;
+
+typedef struct s_mem
+{
+	void			*ptr;
+	struct s_mem	*next;
+}	t_mem;
+
 typedef struct s_mrt
 {
 	void			*mlx;

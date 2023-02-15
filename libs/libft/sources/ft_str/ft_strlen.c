@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:42:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2022/08/17 04:30:09 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:18:46 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  *
  * Devuelve: un size_t con el numero de caracteres */
 
-#include "../../includes/libft.h"
+#include "libft.h"
 
 size_t	ft_strlen(const char *s)
 {
