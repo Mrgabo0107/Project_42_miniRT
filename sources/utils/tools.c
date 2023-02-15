@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:22:52 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/13 22:04:04 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:06:33 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ char	*ft_add_char(char *str, char c)
 	i = -1;
 	if (!str)
 		return (ft_strdup(&c));
-	tmp = malloc(sizeof(char) * (ft_strlen(str) + 2));
+	tmp = ft_malloc(NULL, sizeof(char) * (ft_strlen(str) + 2));
 	while (str[++i])
 		tmp[i] = str[i];
 	tmp[i] = c;
 	tmp[i + 1] = '\0';
-	return (free(str), tmp);
+	return (ft_free(str), tmp);
 }
 
 int	get_next_line(int fd, char **line)

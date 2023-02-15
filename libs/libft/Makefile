@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gamoreno <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/24 18:26:55 by gamoreno          #+#    #+#              #
-#    Updated: 2022/11/22 12:31:58 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/02/15 18:17:19 by yridgway         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,11 @@ NAME	=	libft.a
 ### Inculdes ###
 
 OBJ_PATH = objs/
-HEADER = includes/
+HEADER = ../../includes/
 SRC_PATH = sources/
+MLX = ../../libs/minilibx-linux
+LIBFT = ../../libs/libft
+INCLUDES = -I $(HEADER) -I $(MLX) -I $(LIBFT)/includes
 
 ### Sources ###
 
@@ -72,7 +75,7 @@ tmp:
 		@mkdir -p $(OBJ_PATH)$(FTMEM_DIR)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-		@$(CC) $(FLAGS) -MMD -c -o $@ $<
+		@$(CC) $(FLAGS) $(INCLUDES) -MMD -c -o $@ $<
 		@echo "$(CYAN)Creation of object file -> $(CYAN)$(notdir $@)... $(GREEN)[Done]$(NOC)"
 
 clean:

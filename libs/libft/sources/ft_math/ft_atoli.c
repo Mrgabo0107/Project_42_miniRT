@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoli.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 17:14:11 by gamoreno          #+#    #+#             */
-/*   Updated: 2022/09/10 02:58:45 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:18:46 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * Devuelve: el entero que este despues de los posibles whitespaces y caracter
  * '-'. */
 
-#include "../../includes/libft.h"
+#include "libft.h"
 
 long int	ft_atoli(const char *nptr)
 {

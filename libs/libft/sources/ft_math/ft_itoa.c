@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 20:54:13 by gamoreno          #+#    #+#             */
-/*   Updated: 2022/06/27 18:34:42 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:18:46 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  *
  * Devuelve:	 La cadena de caracteres con el entero representado en char. */
 
-#include "../../includes/libft.h"
+#include "libft.h"
 
 static int	num_caract(int n)
 {
@@ -88,7 +88,7 @@ char	*ft_itoa(int n)
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
 	len = num_caract(n) + 1;
-	str = (char *)malloc(sizeof(char) * (len));
+	str = (char *)ft_malloc(NULL, sizeof(char) * (len));
 	if (!str)
 		return (NULL);
 	writer(str, n);

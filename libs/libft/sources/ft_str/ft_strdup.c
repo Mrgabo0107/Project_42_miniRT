@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 17:26:52 by gamoreno          #+#    #+#             */
-/*   Updated: 2022/06/15 17:31:48 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:18:46 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  *
  * Devuelve: La copia de 's' creada. */
 
-#include "../../includes/libft.h"
+#include "libft.h"
 
 char	*ft_strdup(const char *s)
 {
@@ -26,7 +26,7 @@ char	*ft_strdup(const char *s)
 	size_t	i;
 
 	len = ft_strlen(s);
-	cpy = (char *)malloc(len + 1);
+	cpy = (char *)ft_malloc(NULL, len + 1);
 	if (!cpy)
 		return (NULL);
 	i = 0;

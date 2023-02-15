@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 17:21:27 by gamoreno          #+#    #+#             */
-/*   Updated: 2022/07/03 16:52:05 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:18:46 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  *
  * Devuelve:	un puntero al arreglo creado. */
 
-#include "../../includes/libft.h"
+#include "libft.h"
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
@@ -26,7 +26,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 
 	if (size != 0 && nmemb * size / size != nmemb)
 		return (NULL);
-	p = (void *)malloc(nmemb * size);
+	p = (void *)ft_malloc(NULL, nmemb * size);
 	if (p == NULL)
 		return (NULL);
 	ft_bzero(p, nmemb * size);

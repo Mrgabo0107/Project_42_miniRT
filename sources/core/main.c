@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:12:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/13 21:19:58 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:02:17 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	end_mrt(t_mrt *mrt)
 	mlx_destroy_image(mrt->mlx, mrt->img);
 	mlx_destroy_window(mrt->mlx, mrt->win);
 	mlx_destroy_display(mrt->mlx);
-	free(mrt->mlx);
+	ft_free(mrt->mlx);
 	exit(0);
 }
 

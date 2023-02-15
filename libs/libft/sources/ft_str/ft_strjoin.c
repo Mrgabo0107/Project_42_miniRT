@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 17:45:10 by gamoreno          #+#    #+#             */
-/*   Updated: 2022/06/15 17:48:54 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:18:46 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * Devuelve:	El arreglo creado como la cadena de caracteres resultante de la
  * 		concatenacion e 's1' y 's2' terminada en el caracter nulo. */
 
-#include "../../includes/libft.h"
+#include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -27,7 +27,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*str;
 
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
-	str = (char *)malloc(sizeof(char) * len);
+	str = (char *)ft_malloc(NULL, sizeof(char) * len);
 	if (!str)
 		return (NULL);
 	i = 0;

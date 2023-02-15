@@ -6,7 +6,7 @@
 #    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/13 21:42:48 by yridgway         ###   ########.fr        #
+#    Updated: 2023/02/15 18:10:09 by yridgway         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,17 +29,24 @@ INCLUDES = -I $(HEADER) -I $(MLX) -I $(LIBFT)/includes
 
 ### Source Files ###
 CORE_DIR	=	core/
-CORS		=	main.c init.c
+CORS		=	main.c \
+				init.c
 
 PARSE_DIR	=	parse/
 PARSE		=	parsing.c
 
 UTIL_DIR	=	utils/
-UTILS		=	tools.c
+UTILS		=	tools.c \
+				memory.c \
+				memory_utils.c \
+				free.c
 
-OBJ_DIRS		+=	$(addprefix	$(OBJ_PATH),$(CORE_DIR))
-OBJ_DIRS		+=	$(addprefix	$(OBJ_PATH),$(PARSE_DIR))
-OBJ_DIRS		+=	$(addprefix	$(OBJ_PATH),$(UTIL_DIR))
+# LIBFT_DIR	=	libft/
+# LIBFT		=	libft.a
+
+OBJ_DIRS	+=	$(addprefix	$(OBJ_PATH),$(CORE_DIR))
+OBJ_DIRS	+=	$(addprefix	$(OBJ_PATH),$(PARSE_DIR))
+OBJ_DIRS	+=	$(addprefix	$(OBJ_PATH),$(UTIL_DIR))
 
 SOURCES		+=	$(addprefix	$(CORE_DIR),$(CORS))
 SOURCES		+=	$(addprefix	$(PARSE_DIR),$(PARSE))
@@ -66,8 +73,8 @@ lib:
 	@make -C $(LIBFT)
 
 tmp:
-	@mkdir -p $(OBJ_PATH)
-	@mkdir -p $(OBJ_PATH)$(OBJ_DIRS)
+	@mkdir -p $(OBJ_DIRS)
+# @mkdir -p $(OBJ_PATH)
 
 $(NAME): $(OBJS)
 	$(CC) $(FLAGS) -L $(LIBFT) -L $(MLX) $(INCLUDES) -O3 -o $@ $^ -l:libft.a -lmlx -lXext -lX11 -lm 

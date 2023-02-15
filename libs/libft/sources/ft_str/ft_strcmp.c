@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 15:48:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2022/08/13 07:36:09 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:18:46 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * Devuelve: la resta del valor ascii correspondiente al primer caracter en el
  * que difieran 's1' y 's2', o cero si las cadenas son iguales. */
 
-#include "../../includes/libft.h"
+#include "libft.h"
 
 int	ft_strcmp(const char *ptr1, const char *ptr2)
 {
