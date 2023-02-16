@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/15 17:27:32 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/16 01:35:09 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@ typedef struct s_vec
 	double			z;
 }			t_vec;
 
+typedef struct s_base
+{
+	t_vec	bs_orig;
+	t_vec	n1;
+	t_vec	n2;
+	t_vec	n3;
+}		t_base;
+
 /*----------------------------------------------------------------------------*/
 /*									Camera									  */
 /*----------------------------------------------------------------------------*/
@@ -50,10 +58,14 @@ typedef struct s_amblight
 
 typedef struct s_cam
 {
-	t_vec			origin;
-	t_vec			direction;
-	double			fov;
-}			t_cam;
+	t_vec	pos;
+	t_vec	dir;
+	double	fov;
+	double	s_half_screen;
+	double	w_h_ratio;
+	double	step;
+	t_base	screen_base;
+}		t_cam;
 
 /*----------------------------------------------------------------------------*/
 /*									Objects									  */
@@ -121,6 +133,7 @@ typedef struct s_mrt
 	int				endi;
 	int				bpp;
 	int				sizel;
+	t_cam			cam;
 	t_lst			*scene;
 }			t_mrt;
 

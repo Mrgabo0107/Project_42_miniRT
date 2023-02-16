@@ -1,0 +1,3 @@
+- enumerate and index the objects
+- check that the entries of a cam's directions vector are equal or less than 1 and 
+    normalize the vector.

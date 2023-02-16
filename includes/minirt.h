@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/15 18:00:26 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/16 01:49:53 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,15 @@
 # include <math.h>
 # include <time.h>
 
-# define WX 500
-# define WY 500
-# define IX 500
-# define IY 500
+# define WX 4
+# define WY 3
+# define IX 4
+# define IY 3
 # define EXIT_ERROR -777
 # define ADD_TO_MEM -666
 # define EXIT_OK -555
 # define FREE_ONE -444
+# define PI 3.1415926536
 
 //init
 int		init_minirt(t_mrt *mrt);
@@ -53,4 +54,19 @@ void	clean_memory(void);
 void	ft_add_to_mem(void *thing);
 void	ft_close(int *fd);
 
+//math
+double  int_pow(double basis, int exp);
+double	vect_norm(t_vec v);
+t_vec   fill_coord(double c1, double c2, double c3);
+t_vec	normalize(t_vec v);
+t_vec   scalar_by_vector(double scalar, t_vec vector);
+t_vec   vector_sum(t_vec v1, t_vec v2);
+double  rad_and_deg(double angle, int ctrl);
+void    print_vector(t_vec v); //debug
+
+//camera
+void	set_all_cam_values(t_cam *cam);
+
+//debug
+void    print_pixels_coord(t_cam *cam);
 #endif
