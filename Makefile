@@ -6,7 +6,7 @@
 #    By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/18 18:20:23 by ionorb           ###   ########.fr        #
+#    Updated: 2023/02/18 19:13:17 by ionorb           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ UTILS		=	tools.c \
 				memory.c \
 				memory_utils.c \
 				mem_redefs.c \
-				free.c
+				free.c \
+				list_utils.c \
 
 MAT_DIR		=	math/
 MAT			=	math.c

@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/18 18:44:42 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/18 20:11:09 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,51 @@ int	ft_obj_type(char *line)
 		return (0);
 }
 
-int	ft_check_line(char *line, int count[3])
+// int	ft_check_line(char *line, int count[3])
+// {
+// 	if (ft_obj_type(line) == AMBIENT)
+// 		count[0]++;
+// 	else if (ft_obj_type(line) == CAMERA)
+// 		count[1]++;
+// 	else if (ft_obj_type(line) == LIGHT)
+// 		count[2]++;
+// 	printf("%s", line);
+// 	return (0);
+// }
+
+t_table	*ft_fill_table(char *file)
 {
-	if (ft_obj_type(line) == AMBIENT)
-		count[0]++;
-	else if (ft_obj_type(line) == CAMERA)
-		count[1]++;
-	else if (ft_obj_type(line) == LIGHT)
-		count[2]++;
-	printf("%s", line);
-	return (0);
+	int		fd;
+	char	*line;
+	t_table	*table;
+
+	table = NULL;
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (printf("Error opening %s\n", file), ft_quit(EXIT_ERROR), NULL);
+	while (get_next_line(fd, &line) > 0)
+	{
+		if (line && line[0] && line[0] != '\n')
+			table = ft_tableadd_new(table, ft_split_ws(line));
+		else
+			ft_free(line);
+	}
+	return (table);
 }
 
 int	ft_check_file(char *file)
 {
-	int		fd;
-	int		count[3];
-	char	*line;
+	t_table	*table;
+	int		i;
 
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (1);
-	while (get_next_line(fd, &line) > 0)
+	table = ft_fill_table(file);
+	while (table)
 	{
-		if (ft_check_line(line, count))
-			return (1);
-		ft_free(line);
+		i = 0;
+		while (i < 7)//table->line[i])
+			printf("[%s] ", table->line[i++]);
+		printf("\n");
+		table = table->next;
 	}
-	if (line)
-		ft_free(line);
-	// printf("count: %d %d %d\n", count[0], count[1], count[2]);
 	return (0);
 }
