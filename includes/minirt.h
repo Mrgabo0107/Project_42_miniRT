@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/19 00:42:20 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 00:46:07 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int		end_mrt(t_mrt *mrt);
 //parsing
 int		ft_parse(t_mrt *mrt, char *file);
 int		ft_strcmp_1(char *s1, char *s2);
+int		eval_obj(char *line);
+t_table	*ft_fill_table(char *file);
 
 //utils
 int		get_next_line(int fd, char **line);

@@ -6,28 +6,11 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/19 00:41:03 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 00:51:07 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-int	eval_obj(char *line)
-{
-	if (ft_strcmp_1(line, "sp") == 0)
-		return (SPHERE);
-	if (ft_strcmp_1(line, "pl") == 0)
-		return (PLANE);
-	if (ft_strcmp_1(line, "cy") == 0)
-		return (CYLINDER);
-	if (ft_strcmp_1(line, "L") == 0)
-		return (LIGHT);
-	if (ft_strcmp_1(line, "A") == 0)
-		return (AMBIENT);
-	if (ft_strcmp_1(line, "C") == 0)
-		return (CAMERA);
-	return (-1);
-}
 
 int	ft_count_objs(t_table *table)
 {
@@ -55,24 +38,28 @@ int	ft_count_objs(t_table *table)
 	return (0);
 }
 
-t_table	*ft_fill_table(char *file)
+int	ft_fill_objs(t_mrt *mrt, t_table *table)
 {
-	int		fd;
-	char	*line;
-	t_table	*table;
+	int	i;
 
-	table = NULL;
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (printf("Error\n"), ft_quit(FILE_ERROR, EXIT_ERROR), NULL);
-	while (get_next_line(fd, &line) > 0)
+	i = 0;
+	while (table)
 	{
-		if (line && line[0] && line[0] != '\n')
-			table = ft_tableadd_new(table, ft_split_ws(line));
-		else
-			ft_free(line);
+		if (eval_obj(table->line[0]) == AMBIENT)
+			mrt->ambient = ft_fill_ambient(table->line);
+		else if (eval_obj(table->line[0]) == CAMERA)
+			mrt->camera = ft_fill_camera(table->line);
+		else if (eval_obj(table->line[0]) == LIGHT)
+			mrt->light = ft_fill_light(table->line);
+		else if (eval_obj(table->line[0]) == SPHERE)
+			mrt->sphere = ft_fill_sphere(table->line);
+		else if (eval_obj(table->line[0]) == PLANE)
+			mrt->plane = ft_fill_plane(table->line);
+		else if (eval_obj(table->line[0]) == CYLINDER)
+			mrt->cylinder = ft_fill_cylinder(table->line);
+		table = table->next;
 	}
-	return (table);
+	return (0);
 }
 
 int	ft_parse(t_mrt *mrt, char *file)
@@ -80,10 +67,9 @@ int	ft_parse(t_mrt *mrt, char *file)
 	t_table	*table;
 	int		i;
 
-	(void)mrt;
 	table = ft_fill_table(file);
 	ft_count_objs(table);
-	// ft_fill_objs(table);
+	ft_fill_objs(mrt, table);
 	while (table)
 	{
 		i = 0;
