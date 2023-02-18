@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
+#    By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/16 02:21:33 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/02/18 18:20:23 by ionorb           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### Compilation ###
 
-CC      = cc
+CC      = gcc
 FLAGS  = -Wall -Wextra -Werror -g
 ### Executable ###
 
@@ -39,6 +39,7 @@ UTIL_DIR	=	utils/
 UTILS		=	tools.c \
 				memory.c \
 				memory_utils.c \
+				mem_redefs.c \
 				free.c
 
 MAT_DIR		=	math/
@@ -112,9 +113,13 @@ header:
 
 re: fclean all
 
+run: all
+	clear
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) test.rt
+
 -include $(DEPS)
 
-.PHONY: tmp, re, fclean, clean
+.PHONY: tmp, re, fclean, clean, run
 
 define HEADER_PROJECT
                   ░░░░▒▒░░                                            

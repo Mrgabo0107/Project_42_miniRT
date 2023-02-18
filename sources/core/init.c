@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/16 02:17:25 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/18 18:03:53 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	ft_init_mlx(t_mrt *mrt)
 	mrt->addr = mlx_get_data_addr(mrt->img, &mrt->bpp, &mrt->sizel, &mrt->endi);
 	if (!mrt->addr)
 		return (end_mrt(mrt), 1);
+	ft_memory(mrt, SAVE_MLX);
 	return (0);
 }
 

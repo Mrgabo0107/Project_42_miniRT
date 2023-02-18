@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:22:52 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/15 18:06:33 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/18 18:01:42 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_add_char(char *str, char c)
 	i = -1;
 	if (!str)
 		return (ft_strdup(&c));
-	tmp = ft_malloc(NULL, sizeof(char) * (ft_strlen(str) + 2));
+	tmp = ft_malloc(sizeof(char) * (ft_strlen(str) + 2));
 	while (str[++i])
 		tmp[i] = str[i];
 	tmp[i] = c;

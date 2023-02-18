@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 01:36:18 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/15 18:02:29 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/18 18:18:18 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,27 @@
 // 	printf("%d\n", i);
 // }
 
-void	ft_free(void *ptr)
+void	ft_save_mlx(void *ptr, void **mlx, void **win, void **img)
 {
-	ft_malloc(ptr, 0);
+	t_mrt	*mrt;
+
+	mrt = (t_mrt *)(ptr);
+	*mlx = mrt->mlx;
+	*win = mrt->win;
+	*img = mrt->img;
 }
 
-void	ft_quit(int status)
+void	ft_free_mlx(void **mlx, void **win, void **img)
 {
-	ft_malloc(NULL, status);
-}
-
-void	ft_add_to_mem(void *thing)
-{
-	ft_malloc(thing, ADD_TO_MEM);
+	if (*img)
+		mlx_destroy_image(*mlx, *img);
+	if (*win)
+		mlx_destroy_window(*mlx, *win);
+	if (*mlx)
+	{
+		mlx_destroy_display(*mlx);
+		free(*mlx);
+	}
 }
 
 void	ft_free_one(t_mem *mem, void *thing)
