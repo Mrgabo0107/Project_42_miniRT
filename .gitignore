@@ -6,3 +6,4 @@ libs/minilibx-linux/test
 objs/
 minirt
 Makefile.gen
+.vscode
