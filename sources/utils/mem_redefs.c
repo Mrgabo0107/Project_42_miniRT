@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:34:02 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/18 18:18:25 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 00:41:15 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ void	ft_free(void *ptr)
 	ft_memory(ptr, 0);
 }
 
-void	ft_quit(int status)
+void	ft_quit(char *msg, int status)
 {
+	if (msg)
+		ft_putstr_fd(msg, 2);
 	ft_memory(NULL, status);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:12:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/18 21:08:23 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 00:41:57 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	end_mrt(t_mrt *mrt)
 {
 	(void)mrt;
-	ft_quit(EXIT_OK);
+	ft_quit(CLEAN_EXIT, EXIT_OK);
 	return (0);
 }
 
@@ -44,7 +44,7 @@ int	main(int ac, char **ag)
 		return (printf("Usage: ./miniRT <scene.rt>\n"), 1);
 	if (init_minirt(&mrt))
 		return (1);
-	if (ft_check_file(ag[1]))
+	if (ft_parse(&mrt, ag[1]))
 		return (printf("Error\n"), 1);
 	printf("Done parsing\n");
 	// print_pixels_coord(&mrt.cam);
