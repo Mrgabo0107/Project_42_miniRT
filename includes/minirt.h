@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/16 01:49:53 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/18 17:34:54 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,12 @@
 # define ADD_TO_MEM -666
 # define EXIT_OK -555
 # define FREE_ONE -444
+# define INIT_MLX -333
 # define PI 3.1415926536
 
 //init
 int		init_minirt(t_mrt *mrt);
+int	    ft_init_mlx(t_mrt *mrt);
 
 //end
 int		end_mrt(t_mrt *mrt);

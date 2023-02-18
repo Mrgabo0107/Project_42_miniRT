@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:12:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/16 01:35:27 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/18 17:46:18 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 int	end_mrt(t_mrt *mrt)
 {
-	mlx_destroy_image(mrt->mlx, mrt->img);
-	mlx_destroy_window(mrt->mlx, mrt->win);
-	mlx_destroy_display(mrt->mlx);
-	ft_free(mrt->mlx);
-	exit(0);
+	// mlx_destroy_image(mrt->mlx, mrt->img);
+	// mlx_destroy_window(mrt->mlx, mrt->win);
+	// mlx_destroy_display(mrt->mlx);
+	// ft_free(mrt->mlx);
+	(void)mrt;
+	ft_quit(EXIT_OK);//exit(0);
+	return (0);
 }
 
 int	key_press(int key, t_mrt *mrt)
