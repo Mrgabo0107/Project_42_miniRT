@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/15 18:02:24 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/18 18:44:42 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_check_line(char *line, int count[3])
 		count[1]++;
 	else if (ft_obj_type(line) == LIGHT)
 		count[2]++;
-	printf("line: %s\n", line);
+	printf("%s", line);
 	return (0);
 }
 
