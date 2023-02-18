@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:12:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/18 17:46:18 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/18 18:14:18 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,8 @@
 
 int	end_mrt(t_mrt *mrt)
 {
-	// mlx_destroy_image(mrt->mlx, mrt->img);
-	// mlx_destroy_window(mrt->mlx, mrt->win);
-	// mlx_destroy_display(mrt->mlx);
-	// ft_free(mrt->mlx);
 	(void)mrt;
-	ft_quit(EXIT_OK);//exit(0);
+	ft_quit(EXIT_OK);
 	return (0);
 }
 
@@ -33,7 +29,8 @@ int	key_press(int key, t_mrt *mrt)
 
 int	ft_controls(t_mrt *mrt)
 {
-	mlx_key_hook(mrt->win, &key_press, mrt);
+	// mlx_key_hook(mrt->win, &key_press, mrt);
+	mlx_hook(mrt->win, 2, 1, key_press, mrt);
 	mlx_hook(mrt->win, 17, 0, end_mrt, mrt);
 	return (0);
 }

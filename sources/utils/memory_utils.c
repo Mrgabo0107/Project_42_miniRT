@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 01:36:18 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/18 17:35:29 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/18 18:04:57 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,38 +25,24 @@
 // 	printf("%d\n", i);
 // }
 
-int	ft_init_mlx(t_mrt *mrt)
+void	*ft_malloc(long long int size)
 {
-	mrt->mlx = mlx_init();
-	if (!mrt->mlx)
-		return (1);
-	mrt->win = mlx_new_window(mrt->mlx, WX, WY, "MiniRT");
-	if (!mrt->win)
-		return (mlx_destroy_display(mrt->mlx), free(mrt->mlx), 1);
-	mrt->img = mlx_new_image(mrt->mlx, IX, IY);
-	if (!mrt->img)
-		return (mlx_destroy_window(mrt->mlx, mrt->win), \
-		mlx_destroy_display(mrt->mlx), free(mrt->mlx), 1);
-	mrt->addr = mlx_get_data_addr(mrt->img, &mrt->bpp, &mrt->sizel, &mrt->endi);
-	if (!mrt->addr)
-		return (end_mrt(mrt), 1);
-	ft_malloc(mrt, INIT_MLX);
-	return (0);
+	return (ft_memory(NULL, size));
 }
 
 void	ft_free(void *ptr)
 {
-	ft_malloc(ptr, 0);
+	ft_memory(ptr, 0);
 }
 
 void	ft_quit(int status)
 {
-	ft_malloc(NULL, status);
+	ft_memory(NULL, status);
 }
 
 void	ft_add_to_mem(void *thing)
 {
-	ft_malloc(thing, ADD_TO_MEM);
+	ft_memory(thing, ADD_TO_MEM);
 }
 
 void	ft_free_one(t_mem *mem, void *thing)

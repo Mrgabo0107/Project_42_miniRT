@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/18 17:34:54 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/18 18:04:18 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define ADD_TO_MEM -666
 # define EXIT_OK -555
 # define FREE_ONE -444
-# define INIT_MLX -333
+# define SAVE_MLX -333
 # define PI 3.1415926536
 
 //init
@@ -48,7 +48,8 @@ int		ft_check_file(char *file);
 int		get_next_line(int fd, char **line);
 
 //memory
-void	*ft_malloc(void *ptr, long long int size);
+void	*ft_malloc(long long int size);
+void	*ft_memory(void *ptr, long long int size);
 void	ft_free(void *ptr);
 void	ft_free_one(t_mem *mem, void *thing);
 void	ft_quit(int status);

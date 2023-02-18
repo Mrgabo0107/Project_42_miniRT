@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:34:04 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/18 17:50:30 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/18 18:04:08 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_mem	*mem_addback(t_mem **mem, t_mem *new)
 
 	tmp = *mem;
 	if (!new)
-		return (ft_malloc(NULL, EXIT_ERROR), NULL);
+		return (ft_memory(NULL, EXIT_ERROR), NULL);
 	if (!tmp)
 		return (mem = &new, *mem);
 	while (tmp && tmp->next)
@@ -94,7 +94,7 @@ void	ft_free_mlx(void **mlx, void **win, void **img)
 	}
 }
 
-void	*ft_malloc(void *ptr, long long int size)
+void	*ft_memory(void *ptr, long long int size)
 {
 	static t_mem	*mem = NULL;
 	t_mem			*new;
@@ -109,7 +109,7 @@ void	*ft_malloc(void *ptr, long long int size)
 	if (size == EXIT_ERROR || size == EXIT_OK)
 		return (ft_free_mlx(&mlx, &win, &img),
 			mem = ft_liberate(mem, size), NULL);
-	if (ptr && size == INIT_MLX)
+	if (ptr && size == SAVE_MLX)
 		return (ft_save_mlx(ptr, &mlx, &win, &img), NULL);
 	new = mem_new(size, NULL);
 	mem = mem_addback(&mem, new);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 14:05:32 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/15 18:18:46 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/18 18:01:42 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static char	*mkline(char const *str, char c)
 	j = 0;
 	while (str[i] != c && i < ft_strlen(str))
 		i++;
-	line = (char *)ft_malloc(NULL, sizeof(char) * (1 + i));
+	line = (char *)ft_malloc(sizeof(char) * (1 + i));
 	if (!line)
 		return (NULL);
 	while (j < i)
@@ -79,7 +79,7 @@ char	**ft_split(char const *s, char c)
 	size_t		i;
 	size_t		j;
 
-	tab = (char **)ft_malloc(NULL, sizeof(char *) * (contador(s, c) + 1));
+	tab = (char **)ft_malloc(sizeof(char *) * (contador(s, c) + 1));
 	if (!tab)
 		return (NULL);
 	i = 0;

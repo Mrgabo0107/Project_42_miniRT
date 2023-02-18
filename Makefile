@@ -6,7 +6,7 @@
 #    By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/18 17:16:48 by ionorb           ###   ########.fr        #
+#    Updated: 2023/02/18 18:06:59 by ionorb           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,9 +112,13 @@ header:
 
 re: fclean all
 
+run:
+	clear
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) test.rt
+
 -include $(DEPS)
 
-.PHONY: tmp, re, fclean, clean
+.PHONY: tmp, re, fclean, clean, run
 
 define HEADER_PROJECT
                   ░░░░▒▒░░                                            
