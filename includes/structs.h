@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/16 01:35:09 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/18 20:22:29 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,15 +108,24 @@ typedef union u_obj
 	t_plane			*plane;
 	t_cylinder		*cylinder;
 	t_light			*light;
+	t_amblight		*amblight;
+	t_cam			*cam;
 	// t_square		*square;
 }			t_obj;
 
 typedef struct s_lst
 {
-	t_obj			*content;
+	char			*line;
+	t_obj			*obj;
 	t_type			type;
 	struct s_lst	*next;
 }			t_lst;
+
+typedef struct s_table
+{
+	char			*line[7];
+	struct s_table	*next;
+}			t_table;
 
 typedef struct s_mem
 {

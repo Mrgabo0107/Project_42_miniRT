@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
+#    By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/24 18:26:55 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/15 18:17:19 by yridgway         ###   ########.fr        #
+#    Updated: 2023/02/18 19:39:22 by ionorb           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ INCLUDES = -I $(HEADER) -I $(MLX) -I $(LIBFT)/includes
 
 FTSTR_DIR	=	ft_str/
 FTSTR		=	ft_strcmp.c ft_strchr.c ft_substr.c ft_strlen.c\
-				ft_strdup.c ft_strjoin.c ft_split.c
+				ft_strdup.c ft_strjoin.c ft_split.c ft_split_ws.c
 
 FTMATH_DIR	=	ft_math/
 FTMATH		=	ft_atof.c ft_isdigit.c ft_itoa.c ft_ftoa.c ft_abs.c\
