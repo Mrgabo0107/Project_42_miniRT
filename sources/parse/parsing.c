@@ -6,51 +6,55 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/18 20:11:09 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/18 21:14:51 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	ft_isspace(char c)
+int	eval_obj(char *line)
 {
-	if (c == ' ' || c == '\t' || c == '\n'
-		|| c == '\v' || c == '\f' || c == '\r')
-		return (1);
+	if (ft_strcmp_1(line, "sp") == 0)
+		return (SPHERE);
+	if (ft_strcmp_1(line, "pl") == 0)
+		return (PLANE);
+	if (ft_strcmp_1(line, "cy") == 0)
+		return (CYLINDER);
+	if (ft_strcmp_1(line, "L") == 0)
+		return (LIGHT);
+	if (ft_strcmp_1(line, "A") == 0)
+		return (AMBIENT);
+	if (ft_strcmp_1(line, "C") == 0)
+		return (CAMERA);
+	return (-1);
+}
+
+int	ft_count_objs(t_table *table)
+{
+	int	count[3];
+
+	count[0] = 0;
+	count[1] = 0;
+	count[2] = 0;
+	while (table)
+	{
+		if (eval_obj(table->line[0]) == AMBIENT)
+			count[0]++;
+		else if (eval_obj(table->line[0]) == CAMERA)
+			count[1]++;
+		else if (eval_obj(table->line[0]) == LIGHT)
+			count[2]++;
+		else if (eval_obj(table->line[0]) == -1)
+			return (printf("Error: Invalid object type: %s\n", table->line[0]),
+				ft_quit(EXIT_ERROR), 1);
+		table = table->next;
+	}
+	if (count[0] > 1 || count[1] > 1 || count[2] > 1)
+		return (printf(TOO_MANY_CAPITALS), ft_quit(EXIT_ERROR), 1);
+	if (count[0] == 0 || count[1] == 0 || count[2] == 0)
+		return (printf(MISSING_CAPITALS), ft_quit(EXIT_ERROR), 1);
 	return (0);
 }
-
-int	ft_obj_type(char *line)
-{
-	while (ft_isspace(*line))
-		line++;
-	if (*line == 'A')
-		return (AMBIENT);
-	else if (*line == 'c')
-		return (CAMERA);
-	else if (*line == 'l')
-		return (LIGHT);
-	else if (*line == 's' && *line + 1 == 'p')
-		return (SPHERE);
-	else if (*line == 'p' && *line + 1 == 'l')
-		return (PLANE);
-	else if (*line == 'c' && *line + 1 == 'y')
-		return (CYLINDER);
-	else
-		return (0);
-}
-
-// int	ft_check_line(char *line, int count[3])
-// {
-// 	if (ft_obj_type(line) == AMBIENT)
-// 		count[0]++;
-// 	else if (ft_obj_type(line) == CAMERA)
-// 		count[1]++;
-// 	else if (ft_obj_type(line) == LIGHT)
-// 		count[2]++;
-// 	printf("%s", line);
-// 	return (0);
-// }
 
 t_table	*ft_fill_table(char *file)
 {
@@ -78,10 +82,12 @@ int	ft_check_file(char *file)
 	int		i;
 
 	table = ft_fill_table(file);
+	ft_count_objs(table);
+	// ft_fill_objs(table);
 	while (table)
 	{
 		i = 0;
-		while (i < 7)//table->line[i])
+		while (i < 7) //table->line[i])
 			printf("[%s] ", table->line[i++]);
 		printf("\n");
 		table = table->next;

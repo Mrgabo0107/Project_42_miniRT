@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/18 19:38:07 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/18 21:04:53 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@
 # define SAVE_MLX -333
 # define PI 3.1415926536
 
+//error messages
+# define TOO_MANY_CAPITALS "Too many capital letters in the scene.\n"
+# define MISSING_CAPITALS "Missing capital letters in the scene.\n"
+
 //init
 int		init_minirt(t_mrt *mrt);
 int		ft_init_mlx(t_mrt *mrt);
@@ -43,6 +47,7 @@ int		end_mrt(t_mrt *mrt);
 
 //parsing
 int		ft_check_file(char *file);
+int		ft_strcmp_1(char *s1, char *s2);
 
 //utils
 int		get_next_line(int fd, char **line);

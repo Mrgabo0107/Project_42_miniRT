@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:22:52 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/18 19:59:08 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/18 21:17:17 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ int	get_next_line(int fd, char **line)
 
 	i = 0;
 	*line = NULL;
-	while (read(fd, &c, 1) > 0)
+	while (read(fd, &c, 1))
 	{
-		if ((c == '\n'))
+		if ((c == '\n' || c == '\0'))
 			return (1);
 		if (c)
 			*line = ft_add_char(*line, c);
 		i++;
 	}
-	return (0);
+	return (i);
 }

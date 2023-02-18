@@ -6,7 +6,7 @@
 #    By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/18 19:13:17 by ionorb           ###   ########.fr        #
+#    Updated: 2023/02/18 21:18:37 by ionorb           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,13 @@ INCLUDES = -I $(HEADER) -I $(MLX) -I $(LIBFT)/includes
 ### Source Files ###
 CORE_DIR	=	core/
 CORE		=	main.c \
-				init.c
+				init.c \
 
 PARSE_DIR	=	parse/
-PARSE		=	parsing.c
+PARSE		=	parsing.c \
+				check_global_objects.c \
+				check_objects.c \
+				parsing_utils.c \
 
 UTIL_DIR	=	utils/
 UTILS		=	tools.c \
@@ -44,10 +47,10 @@ UTILS		=	tools.c \
 				list_utils.c \
 
 MAT_DIR		=	math/
-MAT			=	math.c
+MAT			=	math.c \
 
 CAM_DIR		=	cam/
-CAM			=	cam.c
+CAM			=	cam.c \
 
 # LIBFT_DIR	=	libft/
 # LIBFT		=	libft.a
@@ -116,7 +119,7 @@ re: fclean all
 
 run: all
 	clear
-	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) test.rt
+	valgrind --leak-check=full --show-leak-kinds=all -s ./$(NAME) test.rt
 
 -include $(DEPS)
 
