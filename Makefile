@@ -6,7 +6,7 @@
 #    By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/18 18:06:59 by ionorb           ###   ########.fr        #
+#    Updated: 2023/02/18 18:20:23 by ionorb           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ UTIL_DIR	=	utils/
 UTILS		=	tools.c \
 				memory.c \
 				memory_utils.c \
+				mem_redefs.c \
 				free.c
 
 MAT_DIR		=	math/
@@ -112,7 +113,7 @@ header:
 
 re: fclean all
 
-run:
+run: all
 	clear
 	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) test.rt
 

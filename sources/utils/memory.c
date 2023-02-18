@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:34:04 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/18 18:04:08 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/18 18:18:08 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,29 +69,6 @@ t_mem	*mem_new(size_t size, void *thing)
 	}
 	new->next = NULL;
 	return (new);
-}
-
-void	ft_save_mlx(void *ptr, void **mlx, void **win, void **img)
-{
-	t_mrt	*mrt;
-
-	mrt = (t_mrt *)(ptr);
-	*mlx = mrt->mlx;
-	*win = mrt->win;
-	*img = mrt->img;
-}
-
-void	ft_free_mlx(void **mlx, void **win, void **img)
-{
-	if (*img)
-		mlx_destroy_image(*mlx, *img);
-	if (*win)
-		mlx_destroy_window(*mlx, *win);
-	if (*mlx)
-	{
-		mlx_destroy_display(*mlx);
-		free(*mlx);
-	}
 }
 
 void	*ft_memory(void *ptr, long long int size)

@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/18 18:04:18 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/18 18:20:42 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,23 @@ void	ft_quit(int status);
 void	clean_memory(void);
 void	ft_add_to_mem(void *thing);
 void	ft_close(int *fd);
+void	ft_save_mlx(void *ptr, void **mlx, void **win, void **img);
+void	ft_free_mlx(void **mlx, void **win, void **img);
 
 //math
-double  int_pow(double basis, int exp);
+double	int_pow(double basis, int exp);
 double	vect_norm(t_vec v);
-t_vec   fill_coord(double c1, double c2, double c3);
+t_vec	fill_coord(double c1, double c2, double c3);
 t_vec	normalize(t_vec v);
-t_vec   scalar_by_vector(double scalar, t_vec vector);
-t_vec   vector_sum(t_vec v1, t_vec v2);
-double  rad_and_deg(double angle, int ctrl);
-void    print_vector(t_vec v); //debug
+t_vec	scalar_by_vector(double scalar, t_vec vector);
+t_vec	vector_sum(t_vec v1, t_vec v2);
+double	rad_and_deg(double angle, int ctrl);
+void	print_vector(t_vec v); //debug
 
 //camera
 void	set_all_cam_values(t_cam *cam);
 
 //debug
-void    print_pixels_coord(t_cam *cam);
+void	print_pixels_coord(t_cam *cam);
+
 #endif
