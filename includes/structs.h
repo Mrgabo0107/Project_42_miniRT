@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/19 23:09:53 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/19 23:38:53 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ typedef struct s_ray
 	t_vec	direction;
 }			t_ray;
 
-typedef struct s_amblight
-{
-	double	ratio;
-	uint	color;
-}			t_amblight;
+// typedef struct s_amblight
+// {
+// 	double	ratio;
+// 	uint	color;
+// }			t_amblight;
 
 typedef struct s_cam
 {
@@ -99,6 +99,7 @@ typedef struct s_light
 	t_vec	pos;
 	double	ratio;
 	uint	color;
+	int		type;
 }			t_light;
 
 /*----------------------------------------------------------------------------*/
@@ -126,7 +127,7 @@ typedef struct s_mrt
 	int				endi;
 	int				bpp;
 	int				sizel;
-	t_amblight		amblight;
+	t_light			amblight;
 	t_cam			cam;
 	t_light			light;
 	t_sphere		*sphere;

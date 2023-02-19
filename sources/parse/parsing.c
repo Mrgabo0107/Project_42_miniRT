@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/19 22:56:05 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/19 23:49:30 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ int	*ft_count_objs(t_table *table, int count[6])
 void	ft_fill_capitals(t_mrt *mrt, char **line, int type)
 {
 	if (type == AMBIENT)
-		mrt->amblight = ft_fill_ambient(line);
+		mrt->amblight = ft_fill_light(line, 1);
 	else if (type == CAMERA)
 		mrt->cam = ft_fill_cam(line);
 	else if (type == LIGHT)
-		mrt->light = ft_fill_light(line);
+		mrt->light = ft_fill_light(line, 0);
 }
 
 int	ft_fill_objs(t_mrt *mrt, t_table *table, int count[6])
@@ -99,7 +99,7 @@ int	ft_parse(t_mrt *mrt, char *file)
 	while (table)
 	{
 		i = 0;
-		while (i < 7) //table->line[i])
+		while (i < 7)
 			ft_printf("[%s] ", table->line[i++]);
 		ft_printf("\n");
 		table = table->next;

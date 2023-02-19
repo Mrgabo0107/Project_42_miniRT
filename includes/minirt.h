@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/19 23:04:16 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/19 23:46:38 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,14 @@ void		ft_error(char *msg, char *extra);
 int			ft_check_chars(char **line, char *chars);
 double		ft_fill_ratio(char *cell);
 uint		ft_fill_rgb(char *cell);
-t_vec		ft_fill_pos(char *cell);
-t_vec		ft_fill_dir(char *cell);
-double		ft_fill_fov(char *cell);
-double		ft_fill_size(char *cell);
+t_vec		ft_fill_pos(char *cell, int dir);
+double		ft_fill_size(char *cell, int fov);
+// double		ft_fill_fov(char *cell);
 
 //fill objects
-t_amblight	ft_fill_ambient(char *line[7]);
+// t_amblight	ft_fill_ambient(char *line[7]);
 t_cam		ft_fill_cam(char *line[7]);
-t_light		ft_fill_light(char *line[7]);
+t_light		ft_fill_light(char *line[7], int amb);
 t_sphere	ft_fill_sphere(char *line[7]);
 t_plane		ft_fill_plane(char *line[7]);
 t_cylinder	ft_fill_cylinder(char *line[7]);

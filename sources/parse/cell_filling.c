@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:52:58 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/19 23:24:06 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/19 23:48:48 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,23 @@ int	check_for_chars(char *str, char *cell)
 	return (0);
 }
 
-double	ft_fill_size(char *cell)
+double	ft_fill_size(char *cell, int fov)
 {
 	double	size;
 
-	if (check_for_chars("0123456789.", cell))
+	if (fov && check_for_chars("0123456789", cell))
+		ft_error("Invalid size", cell);
+	else if (check_for_chars("0123456789.", cell))
 		ft_error("Invalid size", cell);
 	size = ft_atof(cell);
-	if (size < 0 || size > 1000)
+	if (fov && (size < 0 || size > 180))
+		ft_error("Invalid size", cell);
+	else if (size < 0 || size > 1000)
 		ft_error("Invalid size", cell);
 	return (size);
 }
 
-t_vec	ft_fill_pos(char *cell)
+t_vec	ft_fill_pos(char *cell, int dir)
 {
 	t_vec	pos;
 	char	**line;
@@ -61,49 +65,14 @@ t_vec	ft_fill_pos(char *cell)
 	pos.x = ft_atof(line[0]);
 	pos.y = ft_atof(line[1]);
 	pos.z = ft_atof(line[2]);
+	if (dir == 1)
+	{
+		if (pos.x < -1 || pos.x > 1 || pos.y < -1 || pos.y > 1 || \
+		pos.z < -1 || pos.z > 1)
+			ft_error("Invalid position", cell);
+	}
 	ft_free_array(line);
 	return (pos);
-}
-
-t_vec	ft_fill_dir(char *cell)
-{
-	t_vec	dir;
-	char	**line;
-	double	xyz[3];
-	int		i;
-
-	i = 0;
-	line = ft_split(cell, ',');
-	if (ft_arg_count(line) != 3)
-		ft_error("Invalid direction", cell);
-	if (check_for_chars("0123456789,-.", cell))
-		ft_error("Invalid direction", cell);
-	while (i < 3)
-	{
-		xyz[i] = ft_atof(line[i]);
-		if (xyz[i] < -1 || xyz[i] > 1)
-			ft_error("Invalid direction", cell);
-		i++;
-	}
-	dir.x = xyz[0];
-	dir.y = xyz[1];
-	dir.z = xyz[2];
-	ft_free_array(line);
-	return (dir);
-}
-
-double	ft_fill_fov(char *cell)
-{
-	double	fov;
-
-	if (check_for_chars("0123456789", cell))
-		return (ft_error("Invalid FOV value", cell), 1);
-	if (ft_strlen(cell) > 3)
-		return (ft_error("Invalid FOV value", cell), 1);
-	fov = ft_atoi(cell);
-	if (fov < 0 || fov > 180)
-		return (ft_error("Invalid FOV value", cell), 1);
-	return (fov);
 }
 
 uint	ft_fill_rgb(char *cell)
