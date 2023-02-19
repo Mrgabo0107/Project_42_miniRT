@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/18 18:03:53 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 22:46:50 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ int	init_minirt(t_mrt *mrt)
 	// if (init_objects(mrt))
 	// 	return (pritnf("Problem initializing objects\n"), 1);
 	/*this values has to be set in the parsing but i do manually for quickly test*/
-	mrt->cam.fov = 120;
-	mrt->cam.pos = fill_coord(0, 0, 0);
-	mrt->cam.dir = fill_coord(0, 1, 0);
-	set_all_cam_values(&mrt->cam);
+	// mrt->cam.fov = 120;
+	// mrt->cam.pos = fill_coord(0, 0, 0);
+	// mrt->cam.dir = fill_coord(0, 1, 0);
+	// set_all_cam_values(mrt->cam);
 	/*-------------------------------------------------------------*/
 	return (0);
 }

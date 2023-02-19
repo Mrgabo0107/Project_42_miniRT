@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/19 20:47:26 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/19 22:24:32 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,13 +141,12 @@ typedef struct s_mrt
 	int				endi;
 	int				bpp;
 	int				sizel;
-	t_amblight		*amblight;
-	t_cam			*cam;
-	t_light			*light;
+	t_amblight		amblight;
+	t_cam			cam;
+	t_light			light;
 	t_sphere		*sphere;
 	t_plane			*plane;
 	t_cylinder		*cylinder;
-	t_lst			*scene;
 }			t_mrt;
 
 // typedef struct s_square

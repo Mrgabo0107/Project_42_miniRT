@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:36:59 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/19 20:36:00 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/19 22:43:30 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_cam	ft_fill_cam(char *line[7])
 {
 	t_cam	cam;
 
-	// cam = (t_cam *)ft_malloc(sizeof(t_cam));
 	if (ft_arg_count(line) != 4)
 		ft_error("Wrong number of arguments for camera", NULL);
 	ft_check_chars(line + 1, "0123456789.-,");
@@ -43,7 +42,6 @@ t_light	ft_fill_light(char *line[7])
 {
 	t_light	light;
 
-	// light = (t_light *)ft_malloc(sizeof(t_light));
 	if (ft_arg_count(line) != 4)
 		ft_error("Wrong number of arguments for light", NULL);
 	ft_check_chars(line + 1, "0123456789.-,");

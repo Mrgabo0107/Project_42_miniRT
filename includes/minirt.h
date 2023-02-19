@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/19 20:36:13 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/19 22:38:40 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int			eval_obj(char *line);
 t_table		*ft_fill_table(char *file);
 int			ft_arg_count(char **line);
 void		ft_error(char *msg, char *extra);
-int			ft_check_line(char **line);
 
 //cell filling
 int			ft_check_chars(char **line, char *chars);
@@ -77,9 +76,9 @@ t_cylinder	*ft_fill_cylinder(char *line[7]);
 int			get_next_line(int fd, char **line);
 
 //list
-t_lst		*ft_lstnew(void *obj, int type);
-t_lst		*ft_lstadd_back(t_lst *lst, t_lst *new);
-t_lst		*ft_lstadd_new(t_lst *lst, void *obj, int type);
+// t_lst		*ft_lstnew(void *obj, int type);
+// t_lst		*ft_lstadd_back(t_lst *lst, t_lst *new);
+// t_lst		*ft_lstadd_new(t_lst *lst, void *obj, int type);
 t_table		*ft_tablenew(char **line);
 t_table		*ft_tableadd_back(t_table *table, t_table *new);
 t_table		*ft_tableadd_new(t_table *table, char **line);
