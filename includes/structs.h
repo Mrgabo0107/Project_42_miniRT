@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/19 13:11:34 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 18:08:25 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ typedef struct s_base
 
 typedef struct s_ray
 {
-	t_vec			origin;
-	t_vec			direction;
+	t_vec	origin;
+	t_vec	direction;
 }			t_ray;
 
 typedef struct s_amblight
 {
-	double			ratio;
-	t_vec			color;
+	double	ratio;
+	u_int	color;
 }			t_amblight;
 
 typedef struct s_cam
