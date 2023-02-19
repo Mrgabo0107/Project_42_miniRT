@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:52:58 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/19 18:58:08 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/19 19:48:39 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,26 +68,47 @@
 // 	return (0);
 // }
 
-// t_vec	*ft_fill_pos(char *cell)
-// {
-// 	t_vec	*pos;
-// 	char	**line;
+int	check_for_chars(char *str, char *cell)
+{
+	int	i;
 
-// 	line = ft_split(cell, ',');
-// 	if (ft_arg_count(line) != 3)
-// 		return (ft_error("Invalid position", cell), NULL);
-// 	while (cell && *cell)
-// 	{
-// 		if (!ft_strchr("0123456789,.-", *cell))
-// 			return (ft_error("Invalid position", cell), NULL);
-// 		cell++;
-// 	}
-// 	if (ft_check_xyz(line))
-// 		return (NULL);
-// 	pos = ft_vec(ft_atof(line[0]), ft_atof(line[1]), ft_atof(line[2]));
-// 	ft_free_arr(line);
-// 	return (pos);
-// }
+	i = 0;
+	while (cell && cell[i])
+	{
+		if ((cell[i] == '-' && cell[i + 1] == '-') || \
+		(cell[i] == ',' && cell[i + 1] == ',') || \
+		(cell[i] == '.' && cell[i + 1] == '.') || \
+		(cell[i] == '-' && cell[i + 1] == ',') || \
+		(cell[i] == '-' && cell[i + 1] == '.') || \
+		(cell[i] == ',' && cell[i + 1] == '.') || \
+		(cell[i] == '.' && cell[i + 1] == ','))
+			return (1);
+		if (!ft_strchr(str, cell[i]))
+			return (1);
+		i++;
+	}
+	if (!cell || !cell[0] || cell[0] == ',' || cell[i - 1] == ',')
+		return (ft_error("Invalid RGB value", cell), 1);
+	return (0);
+}
+
+t_vec	*ft_fill_pos(char *cell)
+{
+	t_vec	*pos;
+	char	**line;
+
+	pos = malloc(sizeof(t_vec));
+	line = ft_split(cell, ',');
+	if (ft_arg_count(line) != 3)
+		return (ft_error("Invalid position", cell), NULL);
+	if (check_for_chars("0123456789,-.", cell))
+		return (ft_error("Invalid position", cell), NULL);
+	pos->x = ft_atof(line[0]);
+	pos->y = ft_atof(line[1]);
+	pos->z = ft_atof(line[2]);
+	ft_free_array(line);
+	return (pos);
+}
 
 // t_vec	*ft_fill_dir(char *cell)
 // {
@@ -111,15 +132,10 @@
 uint	ft_fill_rgb(char *cell)
 {
 	int		i;
+	int		rgb[3];
 	char	**line;
 
-	i = 0;
-	while (cell && cell[i])
-	{
-		if (!ft_strchr("0123456789,", cell[i++]))
-			return (ft_error("Invalid RGB value", cell), 1);
-	}
-	if (!cell || !cell[0] || cell[0] == ',' || cell[i - 1] == ',')
+	if (check_for_chars("0123456789,", cell))
 		return (ft_error("Invalid RGB value", cell), 1);
 	line = ft_split(cell, ',');
 	if (ft_arg_count(line) != 3)
@@ -130,11 +146,13 @@ uint	ft_fill_rgb(char *cell)
 	i = 0;
 	while (i < 3)
 	{
-		if (ft_atoi(line[i]) < 0 || ft_atoi(line[i]) > 255)
+		rgb[i] = ft_atoi(line[i]);
+		if (rgb[i] < 0 || rgb[i] > 255)
 			return (ft_error("Invalid RGB value", cell), 1);
 		i++;
 	}
-	return (ft_atoi(line[0]) << 16 | ft_atoi(line[1]) << 8 | ft_atoi(line[2]));
+	ft_free_array(line);
+	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 }
 
 double	ft_fill_ratio(char *cell)
