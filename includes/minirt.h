@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/19 13:57:55 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 14:23:45 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int			ft_strcmp_1(char *s1, char *s2);
 int			eval_obj(char *line);
 t_table		*ft_fill_table(char *file);
 int			ft_arg_count(char **line);
-void		ft_error(char *msg, char *extra, int code);
+void		ft_error(char *msg, char *extra);
+int			ft_check_line(char **line);
 
 //fill objects
 t_amblight	*ft_fill_ambient(char *line[7]);
@@ -102,5 +103,7 @@ void		set_all_cam_values(t_cam *cam);
 
 //debug
 void		print_pixels_coord(t_cam *cam);
+
+int			ft_printf(const char *input, ...);
 
 #endif

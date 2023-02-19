@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:02:11 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/19 14:00:49 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 14:25:36 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,49 @@ int	ft_strcmp_1(char *s1, char *s2)
 	{
 		if (s1[i] != s2[i])
 			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	ft_valid_char(char c)
+{
+	if ((c >= '0' && c <= '9') || (c == '-' || c == '.' || c == ','))
+		return (1);
+	return (0);
+}
+
+int	ft_valid_str(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_valid_char(str[i]))
+			return (ft_error("Invalid char", &str[i]) ,1);
+		i++;
+	}
+	return (0);
+}
+
+int	ft_check_line(char **line)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	j = 0;
+	while (line && line[0] && line[i])
+	{
+		ft_printf("line[%d][%d]: ", i, j);
+		ft_printf("%c\n", line[i][j]);
+		while (line && line[0] && line[i][j])
+		{
+			if (!ft_valid_char(line[i][j]))
+				ft_error("Invalid char", &line[i][j]);
+			j++;
+		}
 		i++;
 	}
 	return (0);
@@ -66,7 +109,7 @@ t_table	*ft_fill_table(char *file)
 	table = NULL;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return (ft_error(FILE_ERROR, file, EXIT_ERROR), NULL);
+		return (ft_error(FILE_ERROR, file), NULL);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (line && line[0] && line[0] != '\n')
@@ -77,12 +120,12 @@ t_table	*ft_fill_table(char *file)
 	return (table);
 }
 
-void	ft_error(char *msg, char *extra, int code)
+void	ft_error(char *msg, char *extra)
 {
 	printf("Error\n");
 	if (msg && extra)
 		printf("%s: %s\n", msg, extra);
 	else if (msg)
 		printf("%s\n", msg);
-	ft_quit(code);
+	ft_quit(EXIT_ERROR);
 }

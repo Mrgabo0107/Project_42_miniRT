@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/19 13:57:36 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 14:31:18 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ int	ft_count_objs(t_table *table)
 		else if (eval_obj(table->line[0]) == LIGHT)
 			count[2]++;
 		else if (eval_obj(table->line[0]) == -1)
-			return (ft_error(INVALID_OBJECT, table->line[0], EXIT_ERROR), 1);
+			return (ft_error(INVALID_OBJECT, table->line[0]), 1);
 		table = table->next;
 	}
 	if (count[0] > 1 || count[1] > 1 || count[2] > 1)
-		return (ft_error(TOO_MANY_CAPITALS, NULL, EXIT_ERROR), 1);
+		return (ft_error(TOO_MANY_CAPITALS, NULL), 1);
 	if (count[0] == 0 || count[1] == 0 || count[2] == 0)
-		return (ft_error(MISSING_CAPITALS, NULL, EXIT_ERROR), 1);
+		return (ft_error(MISSING_CAPITALS, NULL), 1);
 	return (0);
 }
 
@@ -47,6 +47,8 @@ int	ft_fill_objs(t_mrt *mrt, t_table *table)
 	// obj = scene->obj;
 	while (table)
 	{
+		// ft_printf("[%s]\n", table->line[0]);
+		// ft_check_line(table->line);
 		if (eval_obj(table->line[0]) == AMBIENT)
 			ft_lstadd_new(scene, ft_fill_ambient(table->line), AMBIENT);
 		else if (eval_obj(table->line[0]) == CAMERA)
