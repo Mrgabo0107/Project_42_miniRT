@@ -6,19 +6,40 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:13:35 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/18 20:05:30 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 13:31:27 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_lst	*ft_lstnew(char *line, t_obj *obj, int type)
+t_obj	*ft_get_obj(void *obj, int type)
+{
+	t_obj	*new;
+
+	new = (t_obj *)ft_malloc(sizeof(t_obj));
+	if (type == SPHERE)
+		new->sphere = (t_sphere *)obj;
+	else if (type == PLANE)
+		new->plane = (t_plane *)obj;
+	else if (type == CYLINDER)
+		new->cylinder = (t_cylinder *)obj;
+	else if (type == AMBIENT)
+		new->amblight = (t_amblight *)obj;
+	else if (type == CAMERA)
+		new->cam = (t_cam *)obj;
+	else if (type == LIGHT)
+		new->light = (t_light *)obj;
+	else
+		new = NULL;
+	return (new);
+}
+
+t_lst	*ft_lstnew(void *obj, int type)
 {
 	t_lst	*new;
 
 	new = (t_lst *)ft_malloc(sizeof(t_lst));
-	new->line = line;
-	new->obj = obj;
+	new->obj = ft_get_obj(obj, type);
 	new->type = type;
 	new->next = NULL;
 	return (new);
@@ -34,6 +55,15 @@ t_lst	*ft_lstadd_back(t_lst *lst, t_lst *new)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;
+	return (lst);
+}
+
+t_lst	*ft_lstadd_new(t_lst *lst, void *obj, int type)
+{
+	t_lst	*new;
+
+	new = ft_lstnew(obj, type);
+	lst = ft_lstadd_back(lst, new);
 	return (lst);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/18 20:22:29 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 13:11:34 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ typedef union u_obj
 
 typedef struct s_lst
 {
-	char			*line;
 	t_obj			*obj;
 	t_type			type;
 	struct s_lst	*next;
