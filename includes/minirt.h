@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/19 18:25:46 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:30:57 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,10 @@ int			ft_arg_count(char **line);
 void		ft_error(char *msg, char *extra);
 int			ft_check_line(char **line);
 
-//cell checking
-int			ft_check_chars(char **line, char *chars);
-int			ft_check_ratio(char *cell);
-int			ft_check_rgb(char *cell);
-
 //cell filling
+int			ft_check_chars(char **line, char *chars);
 double		ft_fill_ratio(char *cell);
-u_int		ft_fill_rgb(char *cell);
+uint		ft_fill_rgb(char *cell);
 
 //fill objects
 t_amblight	*ft_fill_ambient(char *line[7]);

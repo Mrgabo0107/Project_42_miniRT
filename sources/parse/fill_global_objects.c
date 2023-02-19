@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:36:59 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/19 18:03:08 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:45:14 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ t_cam	*ft_fill_cam(char *line[7])
 	if (ft_arg_count(line) != 4)
 		ft_error("Wrong number of arguments for camera", NULL);
 	ft_check_chars(line + 1, "0123456789.-,");
+	// cam->pos = ft_fill_pos(line[1]);
+	// cam->dir = ft_fill_dir(line[2]);
+	// cam->fov = ft_fill_fov(line[3]);
 	return (cam);
 }
 

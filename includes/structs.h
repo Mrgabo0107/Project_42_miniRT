@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/19 18:08:25 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:37:52 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_ray
 typedef struct s_amblight
 {
 	double	ratio;
-	u_int	color;
+	uint	color;
 }			t_amblight;
 
 typedef struct s_cam
@@ -79,21 +79,21 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
-	t_vec			point;
-	t_vec			normal;
+	t_vec			pos;
+	t_vec			dir;
 }			t_plane;
 
 typedef struct s_cylinder
 {
-	t_vec			center;
-	t_vec			normal;
+	t_vec			pos;
+	t_vec			dir;
 	double			diameter;
 	double			height;
 }			t_cylinder;
 
 typedef struct s_light
 {
-	t_vec			origin;
+	t_vec			pos;
 	double			brightness;
 	t_vec			color;
 }			t_light;
