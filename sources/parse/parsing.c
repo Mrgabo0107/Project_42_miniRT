@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/19 00:51:07 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 13:41:46 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,28 @@ int	ft_count_objs(t_table *table)
 
 int	ft_fill_objs(t_mrt *mrt, t_table *table)
 {
-	int	i;
+	t_lst	*scene;
+	// t_obj	*obj;
 
-	i = 0;
+	scene = NULL;
+	// obj = scene->obj;
 	while (table)
 	{
 		if (eval_obj(table->line[0]) == AMBIENT)
-			mrt->ambient = ft_fill_ambient(table->line);
+			ft_lstadd_new(scene, ft_fill_ambient(table->line), AMBIENT);
 		else if (eval_obj(table->line[0]) == CAMERA)
-			mrt->camera = ft_fill_camera(table->line);
+			ft_lstadd_new(scene, ft_fill_cam(table->line), CAMERA);
 		else if (eval_obj(table->line[0]) == LIGHT)
-			mrt->light = ft_fill_light(table->line);
+			ft_lstadd_new(scene, ft_fill_light(table->line), LIGHT);
 		else if (eval_obj(table->line[0]) == SPHERE)
-			mrt->sphere = ft_fill_sphere(table->line);
+			ft_lstadd_new(scene, ft_fill_sphere(table->line), SPHERE);
 		else if (eval_obj(table->line[0]) == PLANE)
-			mrt->plane = ft_fill_plane(table->line);
+			ft_lstadd_new(scene, ft_fill_plane(table->line), PLANE);
 		else if (eval_obj(table->line[0]) == CYLINDER)
-			mrt->cylinder = ft_fill_cylinder(table->line);
+			ft_lstadd_new(scene, ft_fill_cylinder(table->line), CYLINDER);
 		table = table->next;
 	}
+	scene = mrt->scene;
 	return (0);
 }
 
