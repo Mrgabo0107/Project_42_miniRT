@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/19 18:37:52 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/19 20:25:02 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,17 +85,17 @@ typedef struct s_plane
 
 typedef struct s_cylinder
 {
-	t_vec			pos;
-	t_vec			dir;
-	double			diameter;
-	double			height;
+	t_vec	pos;
+	t_vec	dir;
+	double	diameter;
+	double	height;
 }			t_cylinder;
 
 typedef struct s_light
 {
-	t_vec			pos;
-	double			brightness;
-	t_vec			color;
+	t_vec	pos;
+	double	ratio;
+	uint	color;
 }			t_light;
 
 /*----------------------------------------------------------------------------*/

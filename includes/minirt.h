@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/19 19:43:49 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/19 20:04:43 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ int			ft_check_line(char **line);
 int			ft_check_chars(char **line, char *chars);
 double		ft_fill_ratio(char *cell);
 uint		ft_fill_rgb(char *cell);
+t_vec		ft_fill_pos(char *cell);
+t_vec		ft_fill_dir(char *cell);
+double		ft_fill_fov(char *cell);
 
 //fill objects
 t_amblight	*ft_fill_ambient(char *line[7]);
