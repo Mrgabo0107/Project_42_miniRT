@@ -6,67 +6,11 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:52:58 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/19 22:59:06 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/19 23:24:06 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-// int	ft_check_rgb(char *line[7])
-// {
-// 	int	i;
-
-// 	i = 1;
-// 	while (line[i])
-// 	{
-// 		if (ft_atoi(line[i]) < 0 || ft_atoi(line[i]) > 255)
-// 			return (ft_error("Invalid RGB value", line[i]), 1);
-// 		i++;
-// 	}
-// 	return (0);
-// }
-
-// int	ft_check_xyz(char *line[7])
-// {
-// 	int	i;
-
-// 	i = 1;
-// 	while (line[i])
-// 	{
-// 		if (ft_atoi(line[i]) < -1000 || ft_atoi(line[i]) > 1000)
-// 			return (ft_error("Invalid XYZ value", line[i]), 1);
-// 		i++;
-// 	}
-// 	return (0);
-// }
-
-// int	ft_check_size(char *line[7])
-// {
-// 	int	i;
-
-// 	i = 1;
-// 	while (line[i])
-// 	{
-// 		if (ft_atoi(line[i]) < 0 || ft_atoi(line[i]) > 1000)
-// 			return (ft_error("Invalid size", line[i]), 1);
-// 		i++;
-// 	}
-// 	return (0);
-// }
-
-// int	ft_check_normal(char *line[7])
-// {
-// 	int	i;
-
-// 	i = 1;
-// 	while (line[i])
-// 	{
-// 		if (ft_atoi(line[i]) < -1 || ft_atoi(line[i]) > 1)
-// 			return (ft_error("Invalid normal", line[i]), 1);
-// 		i++;
-// 	}
-// 	return (0);
-// }
 
 int	check_for_chars(char *str, char *cell)
 {
@@ -109,7 +53,6 @@ t_vec	ft_fill_pos(char *cell)
 	t_vec	pos;
 	char	**line;
 
-	// pos = malloc(sizeof(t_vec));
 	line = ft_split(cell, ',');
 	if (ft_arg_count(line) != 3)
 		ft_error("Invalid position", cell);
@@ -130,7 +73,6 @@ t_vec	ft_fill_dir(char *cell)
 	int		i;
 
 	i = 0;
-	// dir = malloc(sizeof(t_vec));
 	line = ft_split(cell, ',');
 	if (ft_arg_count(line) != 3)
 		ft_error("Invalid direction", cell);
@@ -211,23 +153,23 @@ double	ft_fill_ratio(char *cell)
 	return (ft_atof(cell));
 }
 
-int	ft_check_chars(char **line, char *chars)
-{
-	int	i;
-	int	j;
+// int	ft_check_chars(char **line, char *chars)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	j = 0;
-	while (line && line[i])
-	{
-		j = 0;
-		while (line[i][j])
-		{
-			if (!ft_strchr(chars, line[i][j]))
-				return (ft_error("Invalid char", &line[i][j]), 1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
+// 	i = 0;
+// 	j = 0;
+// 	while (line && line[i])
+// 	{
+// 		j = 0;
+// 		while (line[i][j])
+// 		{
+// 			if (!ft_strchr(chars, line[i][j]))
+// 				return (ft_error("Invalid char", &line[i][j]), 1);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	return (0);
+// }

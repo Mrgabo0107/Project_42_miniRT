@@ -6,7 +6,7 @@
 #    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/19 17:51:19 by yridgway         ###   ########.fr        #
+#    Updated: 2023/02/19 23:15:02 by yridgway         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,6 @@ PARSE		=	parsing.c \
 				fill_global_objects.c \
 				fill_objects.c \
 				parsing_utils.c \
-				cell_checking.c \
 				cell_filling.c \
 
 UTIL_DIR	=	utils/
