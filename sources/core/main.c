@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:12:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/19 00:41:57 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 14:01:23 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	end_mrt(t_mrt *mrt)
 {
 	(void)mrt;
-	ft_quit(CLEAN_EXIT, EXIT_OK);
+	printf("%s\n", CLEAN_EXIT);
+	ft_quit(EXIT_OK);
 	return (0);
 }
 

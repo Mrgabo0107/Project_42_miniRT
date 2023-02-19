@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/19 13:39:27 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 13:57:55 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@
 # define PI 3.1415926536
 
 //error messages
-# define TOO_MANY_CAPITALS "Too many capital letters in the scene.\n"
-# define MISSING_CAPITALS "Missing capital letters in the scene.\n"
-# define INVALID_OBJECT "Invalid object in the scene.\n"
-# define FILE_ERROR "Failed to open file.\n"
-# define CLEAN_EXIT "Program Exited Correctly :)\n"
+# define TOO_MANY_CAPITALS "Too many capital letters in the scene"
+# define MISSING_CAPITALS "Missing capital letters in the scene"
+# define INVALID_OBJECT "Invalid object in the scene"
+# define FILE_ERROR "Failed to open file"
+# define CLEAN_EXIT "Program Exited Correctly :)"
 
 //init
 int			init_minirt(t_mrt *mrt);
@@ -53,6 +53,8 @@ int			ft_parse(t_mrt *mrt, char *file);
 int			ft_strcmp_1(char *s1, char *s2);
 int			eval_obj(char *line);
 t_table		*ft_fill_table(char *file);
+int			ft_arg_count(char **line);
+void		ft_error(char *msg, char *extra, int code);
 
 //fill objects
 t_amblight	*ft_fill_ambient(char *line[7]);
@@ -78,7 +80,7 @@ void		*ft_malloc(long long int size);
 void		*ft_memory(void *ptr, long long int size);
 void		ft_free(void *ptr);
 void		ft_free_one(t_mem *mem, void *thing);
-void		ft_quit(char *msg, int status);
+void		ft_quit(int status);
 void		clean_memory(void);
 void		ft_add_to_mem(void *thing);
 void		ft_close(int *fd);

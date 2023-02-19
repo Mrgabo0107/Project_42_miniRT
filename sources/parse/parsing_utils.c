@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:02:11 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/19 00:45:59 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 14:00:49 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,15 @@ int	eval_obj(char *line)
 	return (-1);
 }
 
+int	ft_arg_count(char **line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+		i++;
+	return (i);
+}
 
 t_table	*ft_fill_table(char *file)
 {
@@ -57,7 +66,7 @@ t_table	*ft_fill_table(char *file)
 	table = NULL;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return (printf("Error\n"), ft_quit(FILE_ERROR, EXIT_ERROR), NULL);
+		return (ft_error(FILE_ERROR, file, EXIT_ERROR), NULL);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (line && line[0] && line[0] != '\n')
@@ -66,4 +75,14 @@ t_table	*ft_fill_table(char *file)
 			ft_free(line);
 	}
 	return (table);
+}
+
+void	ft_error(char *msg, char *extra, int code)
+{
+	printf("Error\n");
+	if (msg && extra)
+		printf("%s: %s\n", msg, extra);
+	else if (msg)
+		printf("%s\n", msg);
+	ft_quit(code);
 }

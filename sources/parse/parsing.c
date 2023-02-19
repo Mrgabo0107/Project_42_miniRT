@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/19 13:41:46 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 13:57:36 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ int	ft_count_objs(t_table *table)
 		else if (eval_obj(table->line[0]) == LIGHT)
 			count[2]++;
 		else if (eval_obj(table->line[0]) == -1)
-			return (printf("Error\n"), ft_quit(INVALID_OBJECT, EXIT_ERROR), 1);
+			return (ft_error(INVALID_OBJECT, table->line[0], EXIT_ERROR), 1);
 		table = table->next;
 	}
 	if (count[0] > 1 || count[1] > 1 || count[2] > 1)
-		return (printf("Error\n"), ft_quit(TOO_MANY_CAPITALS, EXIT_ERROR), 1);
+		return (ft_error(TOO_MANY_CAPITALS, NULL, EXIT_ERROR), 1);
 	if (count[0] == 0 || count[1] == 0 || count[2] == 0)
-		return (printf("Error\n"), ft_quit(MISSING_CAPITALS, EXIT_ERROR), 1);
+		return (ft_error(MISSING_CAPITALS, NULL, EXIT_ERROR), 1);
 	return (0);
 }
 
