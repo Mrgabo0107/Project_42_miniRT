@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:52:58 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/19 20:28:20 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/19 22:59:06 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,18 @@ int	check_for_chars(char *str, char *cell)
 	if (!cell || !cell[0] || cell[0] == ',' || cell[i - 1] == ',')
 		return (ft_error("Invalid RGB value", cell), 1);
 	return (0);
+}
+
+double	ft_fill_size(char *cell)
+{
+	double	size;
+
+	if (check_for_chars("0123456789.", cell))
+		ft_error("Invalid size", cell);
+	size = ft_atof(cell);
+	if (size < 0 || size > 1000)
+		ft_error("Invalid size", cell);
+	return (size);
 }
 
 t_vec	ft_fill_pos(char *cell)

@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/19 22:24:32 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/19 23:09:53 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,16 @@ typedef struct s_cam
 
 typedef struct s_sphere
 {
-	t_vec			center;
-	double			radius;
+	t_vec	center;
+	double	radius;
+	uint	color;
 }			t_sphere;
 
 typedef struct s_plane
 {
-	t_vec			pos;
-	t_vec			dir;
+	t_vec	pos;
+	t_vec	dir;
+	uint	color;
 }			t_plane;
 
 typedef struct s_cylinder
@@ -89,6 +91,7 @@ typedef struct s_cylinder
 	t_vec	dir;
 	double	diameter;
 	double	height;
+	uint	color;
 }			t_cylinder;
 
 typedef struct s_light
@@ -101,24 +104,6 @@ typedef struct s_light
 /*----------------------------------------------------------------------------*/
 /*									Global									  */
 /*----------------------------------------------------------------------------*/
-
-typedef union u_obj
-{
-	t_sphere		sphere;
-	t_plane			plane;
-	t_cylinder		cylinder;
-	t_light			light;
-	t_amblight		amblight;
-	t_cam			cam;
-	// t_square		*square;
-}			t_obj;
-
-typedef struct s_lst
-{
-	t_obj			obj;
-	t_type			type;
-	struct s_lst	*next;
-}			t_lst;
 
 typedef struct s_table
 {
