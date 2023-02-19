@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/19 15:00:03 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/20 00:29:20 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,27 +55,30 @@ int			eval_obj(char *line);
 t_table		*ft_fill_table(char *file);
 int			ft_arg_count(char **line);
 void		ft_error(char *msg, char *extra);
-int			ft_check_line(char **line);
 
-//cell checking
-int			ft_check_ratio(char *cell);
+//cell filling
 int			ft_check_chars(char **line, char *chars);
+double		ft_fill_ratio(char *cell);
+uint		ft_fill_rgb(char *cell);
+t_vec		ft_fill_pos(char *cell, int dir);
+double		ft_fill_size(char *cell, int fov);
+// double		ft_fill_fov(char *cell);
 
 //fill objects
-t_amblight	*ft_fill_ambient(char *line[7]);
-t_cam		*ft_fill_cam(char *line[7]);
-t_light		*ft_fill_light(char *line[7]);
-t_sphere	*ft_fill_sphere(char *line[7]);
-t_plane		*ft_fill_plane(char *line[7]);
-t_cylinder	*ft_fill_cylinder(char *line[7]);
+// t_amblight	ft_fill_ambient(char *line[7]);
+t_cam		ft_fill_cam(char *line[7]);
+t_light		ft_fill_light(char *line[7], int amb);
+t_sphere	ft_fill_sphere(char *line[7]);
+t_plane		ft_fill_plane(char *line[7]);
+t_cylinder	ft_fill_cylinder(char *line[7]);
 
 //utils
 int			get_next_line(int fd, char **line);
 
 //list
-t_lst		*ft_lstnew(void *obj, int type);
-t_lst		*ft_lstadd_back(t_lst *lst, t_lst *new);
-t_lst		*ft_lstadd_new(t_lst *lst, void *obj, int type);
+// t_lst		*ft_lstnew(void *obj, int type);
+// t_lst		*ft_lstadd_back(t_lst *lst, t_lst *new);
+// t_lst		*ft_lstadd_new(t_lst *lst, void *obj, int type);
 t_table		*ft_tablenew(char **line);
 t_table		*ft_tableadd_back(t_table *table, t_table *new);
 t_table		*ft_tableadd_new(t_table *table, char **line);
@@ -91,6 +94,9 @@ void		ft_add_to_mem(void *thing);
 void		ft_close(int *fd);
 void		ft_save_mlx(void *ptr, void **mlx, void **win, void **img);
 void		ft_free_mlx(void **mlx, void **win, void **img);
+
+//free
+void		ft_free_array(char **array);
 
 //math
 double		int_pow(double basis, int exp);
@@ -109,5 +115,6 @@ void		set_all_cam_values(t_cam *cam);
 void		print_pixels_coord(t_cam *cam);
 
 int			ft_printf(const char *input, ...);
+void		ft_printf_objects(t_mrt *mrt);
 
 #endif

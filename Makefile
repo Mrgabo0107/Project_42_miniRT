@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+         #
+#    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/19 15:19:35 by ionorb           ###   ########.fr        #
+#    Updated: 2023/02/19 23:38:33 by yridgway         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,10 +34,10 @@ CORE		=	main.c \
 
 PARSE_DIR	=	parse/
 PARSE		=	parsing.c \
-				check_global_objects.c \
-				check_objects.c \
+				print_objects.c \
+				fill_objects.c \
 				parsing_utils.c \
-				cell_checking.c \
+				cell_filling.c \
 
 UTIL_DIR	=	utils/
 UTILS		=	tools.c \

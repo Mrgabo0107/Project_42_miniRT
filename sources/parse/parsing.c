@@ -3,82 +3,103 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/19 15:22:35 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 23:49:30 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	ft_count_objs(t_table *table)
+void	ft_check_capitals(int a, int c, int l)
 {
-	int	count[3];
-
-	count[0] = 0;
-	count[1] = 0;
-	count[2] = 0;
-	while (table)
-	{
-		if (eval_obj(table->line[0]) == AMBIENT)
-			count[0]++;
-		else if (eval_obj(table->line[0]) == CAMERA)
-			count[1]++;
-		else if (eval_obj(table->line[0]) == LIGHT)
-			count[2]++;
-		else if (eval_obj(table->line[0]) == -1)
-			return (ft_error(INVALID_OBJECT, table->line[0]), 1);
-		table = table->next;
-	}
-	if (count[0] > 1 || count[1] > 1 || count[2] > 1)
-		return (ft_error(TOO_MANY_CAPITALS, NULL), 1);
-	if (count[0] == 0 || count[1] == 0 || count[2] == 0)
-		return (ft_error(MISSING_CAPITALS, NULL), 1);
-	return (0);
+	if (a > 1 || c > 1 || l > 1)
+		ft_error(TOO_MANY_CAPITALS, NULL);
+	if (a == 0 || c == 0 || l == 0)
+		ft_error(MISSING_CAPITALS, NULL);
 }
 
-int	ft_fill_objs(t_mrt *mrt, t_table *table)
+int	*ft_count_objs(t_table *table, int count[6])
 {
-	t_lst	*scene;
-	// t_obj	*obj;
+	int	i;
 
-	scene = NULL;
-	// obj = scene->obj;
+	i = 0;
+	while (i < 6)
+		count[i++] = 0;
 	while (table)
 	{
-		// ft_printf("[%s]\n", table->line[0]);
-		// ft_check_line(table->line);
 		if (eval_obj(table->line[0]) == AMBIENT)
-			ft_lstadd_new(scene, ft_fill_ambient(table->line), AMBIENT);
+			(count[0])++;
 		else if (eval_obj(table->line[0]) == CAMERA)
-			ft_lstadd_new(scene, ft_fill_cam(table->line), CAMERA);
+			(count[1])++;
 		else if (eval_obj(table->line[0]) == LIGHT)
-			ft_lstadd_new(scene, ft_fill_light(table->line), LIGHT);
+			(count[2])++;
 		else if (eval_obj(table->line[0]) == SPHERE)
-			ft_lstadd_new(scene, ft_fill_sphere(table->line), SPHERE);
+			(count[3])++;
 		else if (eval_obj(table->line[0]) == PLANE)
-			ft_lstadd_new(scene, ft_fill_plane(table->line), PLANE);
+			(count[4])++;
 		else if (eval_obj(table->line[0]) == CYLINDER)
-			ft_lstadd_new(scene, ft_fill_cylinder(table->line), CYLINDER);
+			(count[5])++;
+		else if (eval_obj(table->line[0]) == -1)
+			ft_error(INVALID_OBJECT, table->line[0]);
 		table = table->next;
 	}
-	scene = mrt->scene;
+	return (ft_check_capitals(count[0], count[1], count[2]), count);
+}
+
+void	ft_fill_capitals(t_mrt *mrt, char **line, int type)
+{
+	if (type == AMBIENT)
+		mrt->amblight = ft_fill_light(line, 1);
+	else if (type == CAMERA)
+		mrt->cam = ft_fill_cam(line);
+	else if (type == LIGHT)
+		mrt->light = ft_fill_light(line, 0);
+}
+
+int	ft_fill_objs(t_mrt *mrt, t_table *table, int count[6])
+{
+	int	type;
+	int	i;
+	int	j;
+	int	k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	mrt->sphere = ft_malloc(sizeof(t_sphere) * count[3]);
+	mrt->plane = ft_malloc(sizeof(t_plane) * count[4]);
+	mrt->cylinder = ft_malloc(sizeof(t_cylinder) * count[5]);
+	while (table)
+	{
+		type = eval_obj(table->line[0]);
+		if (type >= AMBIENT && type <= LIGHT)
+			ft_fill_capitals(mrt, table->line, type);
+		else if (eval_obj(table->line[0]) == SPHERE)
+			mrt->sphere[i++] = ft_fill_sphere(table->line);
+		else if (eval_obj(table->line[0]) == PLANE)
+			mrt->plane[j++] = ft_fill_plane(table->line);
+		else if (eval_obj(table->line[0]) == CYLINDER)
+			mrt->cylinder[k++] = ft_fill_cylinder(table->line);
+		table = table->next;
+	}
 	return (0);
 }
 
 int	ft_parse(t_mrt *mrt, char *file)
 {
 	t_table	*table;
+	int		count[6];
 	int		i;
 
 	table = ft_fill_table(file);
-	ft_count_objs(table);
-	ft_fill_objs(mrt, table);
+	ft_count_objs(table, count);
+	ft_fill_objs(mrt, table, count);
 	while (table)
 	{
 		i = 0;
-		while (i < 7) //table->line[i])
+		while (i < 7)
 			ft_printf("[%s] ", table->line[i++]);
 		ft_printf("\n");
 		table = table->next;
