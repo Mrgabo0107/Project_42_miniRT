@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:52:58 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/19 19:48:39 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/19 19:53:01 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,22 +110,33 @@ t_vec	*ft_fill_pos(char *cell)
 	return (pos);
 }
 
-// t_vec	*ft_fill_dir(char *cell)
-// {
-// 	t_vec	*dir;
-// 	char	**line;
+t_vec	*ft_fill_dir(char *cell)
+{
+	t_vec	*dir;
+	char	**line;
+	double	xyz[3];
+	int		i;
 
-// 	line = ft_split(cell, ',');
-// 	if (!line)
-// 		return (ft_error("Malloc error", NULL), NULL);
-// 	if (ft_arrlen(line) != 3)
-// 		return (ft_error("Invalid direction", cell), NULL);
-// 	if (ft_check_xyz(line))
-// 		return (NULL);
-// 	dir = ft_vec(ft_atoi(line[0]), ft_atoi(line[1]), ft_atoi(line[2]));
-// 	ft_free_arr(line);
-// 	return (dir);
-// }
+	i = 0;
+	dir = malloc(sizeof(t_vec));
+	line = ft_split(cell, ',');
+	if (ft_arg_count(line) != 3)
+		return (ft_error("Invalid direction", cell), NULL);
+	if (check_for_chars("0123456789,-.", cell))
+		return (ft_error("Invalid direction", cell), NULL);
+	while (i < 3)
+	{
+		xyz[i] = ft_atof(line[i]);
+		if (xyz[i] < -1 || xyz[i] > 1)
+			return (ft_error("Invalid direction", cell), NULL);
+		i++;
+	}
+	dir->x = xyz[0];
+	dir->y = xyz[1];
+	dir->z = xyz[2];
+	ft_free_array(line);
+	return (dir);
+}
 
 // double	ft_fill_fov
 
