@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/19 14:31:18 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 15:22:35 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ int	ft_parse(t_mrt *mrt, char *file)
 	{
 		i = 0;
 		while (i < 7) //table->line[i])
-			printf("[%s] ", table->line[i++]);
-		printf("\n");
+			ft_printf("[%s] ", table->line[i++]);
+		ft_printf("\n");
 		table = table->next;
 	}
 	return (0);

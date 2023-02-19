@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:02:11 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/19 14:25:36 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 15:00:29 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,49 +25,6 @@ int	ft_strcmp_1(char *s1, char *s2)
 	{
 		if (s1[i] != s2[i])
 			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int	ft_valid_char(char c)
-{
-	if ((c >= '0' && c <= '9') || (c == '-' || c == '.' || c == ','))
-		return (1);
-	return (0);
-}
-
-int	ft_valid_str(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (!ft_valid_char(str[i]))
-			return (ft_error("Invalid char", &str[i]) ,1);
-		i++;
-	}
-	return (0);
-}
-
-int	ft_check_line(char **line)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	j = 0;
-	while (line && line[0] && line[i])
-	{
-		ft_printf("line[%d][%d]: ", i, j);
-		ft_printf("%c\n", line[i][j]);
-		while (line && line[0] && line[i][j])
-		{
-			if (!ft_valid_char(line[i][j]))
-				ft_error("Invalid char", &line[i][j]);
-			j++;
-		}
 		i++;
 	}
 	return (0);

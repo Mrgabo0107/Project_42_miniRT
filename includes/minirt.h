@@ -6,7 +6,7 @@
 /*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/19 14:23:45 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 15:00:03 by ionorb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ t_table		*ft_fill_table(char *file);
 int			ft_arg_count(char **line);
 void		ft_error(char *msg, char *extra);
 int			ft_check_line(char **line);
+
+//cell checking
+int			ft_check_ratio(char *cell);
+int			ft_check_chars(char **line, char *chars);
 
 //fill objects
 t_amblight	*ft_fill_ambient(char *line[7]);

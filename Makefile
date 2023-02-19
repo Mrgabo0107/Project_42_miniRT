@@ -6,7 +6,7 @@
 #    By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/19 14:24:42 by ionorb           ###   ########.fr        #
+#    Updated: 2023/02/19 15:19:35 by ionorb           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ PARSE		=	parsing.c \
 				check_global_objects.c \
 				check_objects.c \
 				parsing_utils.c \
+				cell_checking.c \
 
 UTIL_DIR	=	utils/
 UTILS		=	tools.c \
