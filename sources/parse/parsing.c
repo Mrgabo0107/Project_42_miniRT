@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/19 15:22:35 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 20:41:01 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,29 @@ int	ft_count_objs(t_table *table)
 int	ft_fill_objs(t_mrt *mrt, t_table *table)
 {
 	t_lst	*scene;
-	// t_obj	*obj;
+	t_obj	*obj;
 
 	scene = NULL;
-	// obj = scene->obj;
+	obj = scene->obj;
+	obj->amblight = ft_fill_ambient(table->line);
+	obj->cam = ft_fill_cam(table->line);
+	obj->light = ft_fill_light(table->line);
 	while (table)
 	{
 		// ft_printf("[%s]\n", table->line[0]);
 		// ft_check_line(table->line);
+		// if (eval_obj(table->line[0]) == AMBIENT)
+		// 	ft_lstadd_new(scene, ft_fill_ambient(table->line), AMBIENT);
+		// else if (eval_obj(table->line[0]) == CAMERA)
+		// 	ft_lstadd_new(scene, ft_fill_cam(table->line), CAMERA);
+		// else if (eval_obj(table->line[0]) == LIGHT)
+		// 	ft_lstadd_new(scene, ft_fill_light(table->line), LIGHT);
 		if (eval_obj(table->line[0]) == AMBIENT)
-			ft_lstadd_new(scene, ft_fill_ambient(table->line), AMBIENT);
+			ft_lstadd_new(scene, &obj->amblight, AMBIENT);
 		else if (eval_obj(table->line[0]) == CAMERA)
-			ft_lstadd_new(scene, ft_fill_cam(table->line), CAMERA);
+			ft_lstadd_new(scene, &obj->cam, CAMERA);
 		else if (eval_obj(table->line[0]) == LIGHT)
-			ft_lstadd_new(scene, ft_fill_light(table->line), LIGHT);
+			ft_lstadd_new(scene, &obj->light, LIGHT);
 		else if (eval_obj(table->line[0]) == SPHERE)
 			ft_lstadd_new(scene, ft_fill_sphere(table->line), SPHERE);
 		else if (eval_obj(table->line[0]) == PLANE)

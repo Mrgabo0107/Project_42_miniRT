@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:13:35 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/19 13:31:27 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/19 20:41:58 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ t_obj	*ft_get_obj(void *obj, int type)
 
 	new = (t_obj *)ft_malloc(sizeof(t_obj));
 	if (type == SPHERE)
-		new->sphere = (t_sphere *)obj;
+		new->sphere = (t_sphere)obj;
 	else if (type == PLANE)
-		new->plane = (t_plane *)obj;
+		new->plane = (t_plane)obj;
 	else if (type == CYLINDER)
-		new->cylinder = (t_cylinder *)obj;
+		new->cylinder = (t_cylinder)obj;
 	else if (type == AMBIENT)
-		new->amblight = (t_amblight *)obj;
+		new->amblight = (t_amblight)obj;
 	else if (type == CAMERA)
-		new->cam = (t_cam *)obj;
+		new->cam = (t_cam)obj;
 	else if (type == LIGHT)
-		new->light = (t_light *)obj;
+		new->light = (t_light)obj;
 	else
 		new = NULL;
 	return (new);

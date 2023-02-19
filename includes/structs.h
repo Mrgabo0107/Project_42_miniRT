@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/19 20:25:02 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/19 20:47:26 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,18 +104,18 @@ typedef struct s_light
 
 typedef union u_obj
 {
-	t_sphere		*sphere;
-	t_plane			*plane;
-	t_cylinder		*cylinder;
-	t_light			*light;
-	t_amblight		*amblight;
-	t_cam			*cam;
+	t_sphere		sphere;
+	t_plane			plane;
+	t_cylinder		cylinder;
+	t_light			light;
+	t_amblight		amblight;
+	t_cam			cam;
 	// t_square		*square;
 }			t_obj;
 
 typedef struct s_lst
 {
-	t_obj			*obj;
+	t_obj			obj;
 	t_type			type;
 	struct s_lst	*next;
 }			t_lst;
@@ -141,7 +141,12 @@ typedef struct s_mrt
 	int				endi;
 	int				bpp;
 	int				sizel;
-	t_cam			cam;
+	t_amblight		*amblight;
+	t_cam			*cam;
+	t_light			*light;
+	t_sphere		*sphere;
+	t_plane			*plane;
+	t_cylinder		*cylinder;
 	t_lst			*scene;
 }			t_mrt;
 

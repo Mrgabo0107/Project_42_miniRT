@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/19 20:04:43 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/19 20:36:13 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ t_vec		ft_fill_dir(char *cell);
 double		ft_fill_fov(char *cell);
 
 //fill objects
-t_amblight	*ft_fill_ambient(char *line[7]);
-t_cam		*ft_fill_cam(char *line[7]);
-t_light		*ft_fill_light(char *line[7]);
+t_amblight	ft_fill_ambient(char *line[7]);
+t_cam		ft_fill_cam(char *line[7]);
+t_light		ft_fill_light(char *line[7]);
 t_sphere	*ft_fill_sphere(char *line[7]);
 t_plane		*ft_fill_plane(char *line[7]);
 t_cylinder	*ft_fill_cylinder(char *line[7]);
