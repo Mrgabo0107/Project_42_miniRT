@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:12:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/19 14:01:23 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/20 00:32:42 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	main(int ac, char **ag)
 	if (ft_parse(&mrt, ag[1]))
 		return (printf("Error\n"), 1);
 	printf("Done parsing\n");
+	// ft_printf_objects(&mrt);
 	// print_pixels_coord(&mrt.cam);
 	ft_controls(&mrt);
 	mlx_loop(mrt.mlx);

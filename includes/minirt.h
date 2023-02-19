@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/19 23:46:38 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/20 00:29:20 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ void		set_all_cam_values(t_cam *cam);
 void		print_pixels_coord(t_cam *cam);
 
 int			ft_printf(const char *input, ...);
+void		ft_printf_objects(t_mrt *mrt);
 
 #endif
