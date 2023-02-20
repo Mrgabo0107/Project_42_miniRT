@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/20 00:27:41 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/20 18:10:55 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 
 typedef enum e_type
 {
-	SPHERE,
-	PLANE,
-	CYLINDER,
-	LIGHT,
 	AMBIENT,
-	CAMERA
+	CAMERA,
+	LIGHT,
+	PLANE,
+	SPHERE,
+	CYLINDER,
 	// SQUARE
 }			t_type;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/20 00:29:20 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/20 18:10:55 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <time.h>
+# include <sys/types.h>
 
 # define WX 4
 # define WY 3

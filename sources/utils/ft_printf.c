@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:21:07 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/19 14:25:05 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/02/20 18:10:55 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int	ft_putnum(int n)
 	return (count);
 }
 
-int	ft_putnum_unsig(unsigned int n)
+int	ft_putnum_unsig(uint n)
 {
 	int		count;
 	char	*num;
@@ -160,11 +160,11 @@ int	ft_writeint(long long arg, int c)
 	else if (c == 'd' || c == 'i')
 		wordcount += ft_putnum((int)arg);
 	else if (c == 'u')
-		wordcount += ft_putnum_unsig((unsigned int)arg);
+		wordcount += ft_putnum_unsig((uint)arg);
 	else if (c == 'x')
-		wordcount += ft_puthex((unsigned int)arg, 0);
+		wordcount += ft_puthex((uint)arg, 0);
 	else if (c == 'X')
-		wordcount += ft_puthex((unsigned int)arg, 1);
+		wordcount += ft_puthex((uint)arg, 1);
 	else if (c == 'p')
 	{
 		if (arg == 0)
