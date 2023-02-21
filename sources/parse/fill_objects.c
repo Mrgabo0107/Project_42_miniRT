@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_objects.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:37:20 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/20 18:01:36 by ana              ###   ########.fr       */
+/*   Updated: 2023/02/21 18:53:04 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_cylinder	ft_fill_cylinder(char *line[7])
 		ft_error("Wrong number of arguments for cylinder", NULL);
 	cylinder.pos = ft_fill_pos(line[1], 0);
 	cylinder.dir = ft_fill_pos(line[2], 1);
-	cylinder.diameter = ft_fill_size(line[3], 0);
+	cylinder.radius = ft_fill_size(line[3], 0) / 2;
 	cylinder.height = ft_fill_size(line[4], 0);
 	cylinder.color = ft_fill_rgb(line[5]);
 	return (cylinder);

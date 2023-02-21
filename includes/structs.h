@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/20 18:10:55 by ana              ###   ########.fr       */
+/*   Updated: 2023/02/21 18:52:51 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ typedef struct s_cylinder
 {
 	t_vec	pos;
 	t_vec	dir;
-	double	diameter;
+	double	radius;
 	double	height;
 	uint	color;
 }			t_cylinder;
