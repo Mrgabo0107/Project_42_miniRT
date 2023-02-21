@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:36:59 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/20 18:09:06 by ana              ###   ########.fr       */
+/*   Updated: 2023/02/21 18:53:22 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_print_cylinder(t_cylinder cylinder)
 	printf("\nCylinder:\n");
 	printf("Center: %f, %f, %f\n", cylinder.pos.x, cylinder.pos.y, cylinder.pos.z);
 	printf("Normal: %f, %f, %f\n", cylinder.dir.x, cylinder.dir.y, cylinder.dir.z);
-	printf("Diameter: %f\n", cylinder.diameter);
+	printf("Radius: %f\n", cylinder.radius);
 	printf("Height: %f \n", cylinder.height);
 	printf("Color: %x\n", cylinder.color);
 }

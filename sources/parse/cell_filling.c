@@ -3,14 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   cell_filling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:52:58 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/20 18:10:55 by ana              ###   ########.fr       */
+/*   Updated: 2023/02/21 15:49:12 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+int	is_valid_number(char *str)
+{
+	int	i;
+	int	dot;
+	int	minus;
+
+	minus = 0;
+	dot = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '.')
+			dot++;
+		if (str[i] == '-')
+			minus++;
+		i++;
+	}
+	if (dot > 1 || minus > 1 || i > 11)
+		return (0);
+	return (1);
+}
+
+int	valid_nums(char **line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (!is_valid_number(line[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 int	check_for_chars(char *str, char *cell)
 {
@@ -19,9 +55,8 @@ int	check_for_chars(char *str, char *cell)
 	i = 0;
 	while (cell && cell[i])
 	{
-		if ((cell[i] == '-' && cell[i + 1] == '-') || \
-		(cell[i] == ',' && cell[i + 1] == ',') || \
-		(cell[i] == '.' && cell[i + 1] == '.') || \
+		if ((cell[i] == ',' && cell[i + 1] == '-') || \
+		(cell[i] == '.' && cell[i + 1] == '-') || \
 		(cell[i] == '-' && cell[i + 1] == ',') || \
 		(cell[i] == '-' && cell[i + 1] == '.') || \
 		(cell[i] == ',' && cell[i + 1] == '.') || \
@@ -31,8 +66,9 @@ int	check_for_chars(char *str, char *cell)
 			return (1);
 		i++;
 	}
-	if (!cell || !cell[0] || cell[0] == ',' || cell[i - 1] == ',')
-		return (ft_error("Invalid RGB value", cell), 1);
+	if (!cell || !cell[0] || cell[0] == ',' || cell[i - 1] == ',' \
+	|| cell[0] == '.' || cell[i - 1] == '.')
+		return (1);
 	return (0);
 }
 
@@ -43,6 +79,8 @@ double	ft_fill_size(char *cell, int fov)
 	if (fov && check_for_chars("0123456789", cell))
 		ft_error("Invalid size", cell);
 	else if (check_for_chars("0123456789.", cell))
+		ft_error("Invalid size", cell);
+	if (!is_valid_number(cell))
 		ft_error("Invalid size", cell);
 	size = ft_atof(cell);
 	if (fov && (size < 0 || size > 180))
@@ -58,9 +96,9 @@ t_vec	ft_fill_pos(char *cell, int dir)
 	char	**line;
 
 	line = ft_split(cell, ',');
-	if (ft_arg_count(line) != 3)
+	if (ft_arg_count(line) != 3 || check_for_chars("0123456789,-.", cell))
 		ft_error("Invalid position", cell);
-	if (check_for_chars("0123456789,-.", cell))
+	if (!valid_nums(line))
 		ft_error("Invalid position", cell);
 	pos.x = ft_atof(line[0]);
 	pos.y = ft_atof(line[1]);
@@ -81,10 +119,8 @@ uint	ft_fill_rgb(char *cell)
 	int		rgb[3];
 	char	**line;
 
-	if (check_for_chars("0123456789,", cell))
-		return (ft_error("Invalid RGB value", cell), 1);
 	line = ft_split(cell, ',');
-	if (ft_arg_count(line) != 3)
+	if (ft_arg_count(line) != 3 || check_for_chars("0123456789,", cell))
 		return (ft_error("Invalid RGB value", cell), 1);
 	if (ft_strlen(line[0]) > 3 || ft_strlen(line[1]) > 3 || \
 	ft_strlen(line[2]) > 3)
@@ -116,29 +152,9 @@ double	ft_fill_ratio(char *cell)
 			dotcount++;
 		i++;
 	}
-	if (!cell || !cell[0] || cell[0] == '.' || cell[i - 1] == '.' || \
-	dotcount > 1 || ft_atof(cell) < 0.0 || ft_atof(cell) > 1.0)
+	if (!cell || !cell[0] || cell[0] == '.' || cell[i - 1] == '.'
+		|| dotcount > 1 || !is_valid_number(cell)
+		|| ft_atof(cell) < 0.0 || ft_atof(cell) > 1.0)
 		return (ft_error("Invalid ratio", cell), 1);
 	return (ft_atof(cell));
 }
-
-// int	ft_check_chars(char **line, char *chars)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	j = 0;
-// 	while (line && line[i])
-// 	{
-// 		j = 0;
-// 		while (line[i][j])
-// 		{
-// 			if (!ft_strchr(chars, line[i][j]))
-// 				return (ft_error("Invalid char", &line[i][j]), 1);
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	return (0);
-// }
