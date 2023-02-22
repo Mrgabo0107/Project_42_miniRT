@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:12:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/21 18:52:24 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/22 20:12:41 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ int	main(int ac, char **ag)
 	printf("Done parsing\n");
 	ft_printf_objects(&mrt);
 	// print_pixels_coord(&mrt.cam);
+	set_all_cam_values(&mrt.cam);
+	pixel_calcul(&mrt);
+	mlx_put_image_to_window(mrt.mlx, mrt.win, mrt.img, 0, 0);
 	ft_controls(&mrt);
 	mlx_loop(mrt.mlx);
 	return (0);

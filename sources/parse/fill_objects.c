@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_objects.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:37:20 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/21 18:53:04 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/22 20:17:54 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_cam	ft_fill_cam(char *line[7])
 	if (ft_arg_count(line) != 4)
 		ft_error("Wrong number of arguments for camera", NULL);
 	cam.pos = ft_fill_pos(line[1], 0);
-	cam.dir = ft_fill_pos(line[2], 1);
+	cam.dir = normalize(ft_fill_pos(line[2], 1));
 	cam.fov = ft_fill_size(line[3], 1);
 	printf("Center: %f, %f, %f\n", cam.pos.x, cam.pos.y, cam.pos.z);
 	return (cam);

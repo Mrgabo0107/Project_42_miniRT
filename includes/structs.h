@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/22 01:03:00 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/22 20:03:29 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 typedef enum e_type
 {
+	UNDEFINED,
 	AMBIENT,
 	CAMERA,
 	LIGHT,

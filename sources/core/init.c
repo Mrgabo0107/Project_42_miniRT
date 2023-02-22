@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/22 01:26:15 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/22 20:12:08 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,23 @@ int	init_minirt(t_mrt *mrt)
 	// mrt->cam.dir = fill_coord(0, 1, 0);
 	// set_all_cam_values(mrt->cam);
 	/*-------------------------------------------------------------*/
+	// /*checking first intersections XD*/
+	// mrt->sphere = (t_sphere *)ft_malloc(sizeof(t_sphere));
+	// mrt->sphere[0].center = fill_coord(0, 0, 0);
+	// mrt->sphere[0].radius = 2.4;
+	// mrt->sphere[0].color = 0xff0000;
+	// // mrt->sphere[1].center = fill_coord(1, 1, 1);
+	// // mrt->sphere[1].radius = 3.5;
+	// // mrt->sphere[1].color = 0x00ff00;
+	// // mrt->sphere[2].center = fill_coord(-2, 3, 1);
+	// // mrt->sphere[2].radius = 1.5;
+	// // mrt->sphere[2].color = 0x0000ff;
+	// mrt->cam.pos = fill_coord(0, -20, 0);
+	// mrt->cam.dir = fill_coord(0, 1, 0);
+	// mrt->cam.fov = 90;
+	
+	
+	
+	
 	return (0);
 }
