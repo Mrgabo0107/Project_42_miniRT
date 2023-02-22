@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/22 01:11:01 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/22 20:26:45 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,14 @@
 # include <time.h>
 # include <sys/types.h>
 
-# define WX 400
-# define WY 300
-# define IX 400
-# define IY 300
+// # define WX 10
+// # define WY 5
+// # define IX 10
+// # define IY 5
+# define WX 500
+# define WY 400
+# define IX 500
+# define IY 400
 # define EXIT_ERROR -777
 # define ADD_TO_MEM -666
 # define EXIT_OK -555
