@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/22 20:03:29 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/22 20:54:33 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 # define STRUCTS_H
 # include "minirt.h"
 
+# define UNDEFINED -1
+
 typedef enum e_type
 {
-	UNDEFINED,
 	AMBIENT,
 	CAMERA,
 	LIGHT,
@@ -145,6 +146,7 @@ typedef struct s_mrt
 	int				endi;
 	int				bpp;
 	int				sizel;
+	int				obj_count[6];
 	t_light			amblight;
 	t_cam			cam;
 	t_light			light;
