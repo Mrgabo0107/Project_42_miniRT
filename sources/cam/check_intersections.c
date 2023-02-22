@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:31:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/22 01:30:43 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/22 14:53:09 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@ static t_discr get_sph_dscr(t_mrt *mrt, t_sphere *sph, t_vec dir)
 	return (ret);
 }
 
+static double	solve_sph_quad(t_discr *info)
+{
+	if (info->dscr == 0.0)
+		return (-info->b / info->a);
+	else if (info->dscr > 0.0)
+		return (min_v((-info->b + sqrt(info->dscr)) / info->a,
+				(-info->b - sqrt(info->dscr)) / info->a));
+}
+
 void	check_spheres(t_mrt *mrt, t_inter *ctrl)
 {
 	int		i;
@@ -42,8 +51,7 @@ void	check_spheres(t_mrt *mrt, t_inter *ctrl)
 		discr = get_sph_dscr(mrt, &mrt->sphere[i], dir);
 		if (discr.dscr >= 0)
 		{
-			c = min_v((-discr.b + discr.dscr) / discr.a,
-				(-discr.b - discr.dscr) / discr.a);
+			c = solve_sph_quad(&discr);
 			if (ctrl->dist == -1 || c < ctrl->dist)
 			{
 				ctrl->type = SPHERE;
