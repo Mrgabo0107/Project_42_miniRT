@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:31:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/22 17:02:15 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:16:36 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ void	check_spheres(t_mrt *mrt, t_inter *ctrl)
 
 	i = 0;
 	dir = normalize(vec_sum(ctrl->pxl, scal_vector(-1, mrt->cam.pos)));
-	while (i < 1)
+	while (i < mrt->obj_count[SPHERE])
 	{
 		discr = get_sph_dscr(mrt, &mrt->sphere[i], dir);
 		// printf("%f\n", discr.dscr);
 		if (discr.dscr >= 0)
 		{
 			c = solve_sph_quad(&discr);
-			if (ctrl->dist == -1 || c < ctrl->dist)
+			if (ctrl->dist == -1 || (c >= 0 && c < ctrl->dist))
 			{
 				ctrl->type = SPHERE;
 				ctrl->index = i;

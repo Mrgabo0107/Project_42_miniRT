@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/22 20:26:45 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/22 21:46:44 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,26 @@
 // # define WY 5
 // # define IX 10
 // # define IY 5
-# define WX 500
-# define WY 400
-# define IX 500
-# define IY 400
+# define WX 2000
+# define WY 1000
+# define IX 2000
+# define IY 1000
 # define EXIT_ERROR -777
 # define ADD_TO_MEM -666
 # define EXIT_OK -555
 # define FREE_ONE -444
 # define SAVE_MLX -333
 # define PI 3.1415926536
+
+# define ESC 65307
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define UP 65362
+# define DOWN 65364
+# define LEFT 65361
+# define RIGHT 65363
 
 //error messages
 # define TOO_MANY_CAPITALS "Too many capital letters in the scene"

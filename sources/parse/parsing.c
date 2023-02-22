@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/22 21:01:24 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/22 21:19:44 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ void	ft_fill_objs(t_mrt *mrt, t_table *table, int count[6])
 	i = 0;
 	j = 0;
 	k = 0;
-	mrt->sphere = ft_malloc(sizeof(t_sphere) * count[3]);
-	mrt->plane = ft_malloc(sizeof(t_plane) * count[4]);
-	mrt->cylinder = ft_malloc(sizeof(t_cylinder) * count[5]);
+	mrt->sphere = ft_malloc(sizeof(t_sphere) * count[SPHERE]);
+	mrt->plane = ft_malloc(sizeof(t_plane) * count[PLANE]);
+	mrt->cylinder = ft_malloc(sizeof(t_cylinder) * count[CYLINDER]);
 	while (table)
 	{
 		type = eval_obj(table->line[0]);
