@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 00:02:45 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/16 02:17:32 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/22 01:00:15 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	set_all_cam_values(t_cam *cam)
 
 	cam->s_half_screen = tan(rad_and_deg(cam->fov / 2, 1));
 	cam->step =  cam->s_half_screen / WX;
-	cam->screen_base.bs_orig = vector_sum(cam->pos, cam->dir);
+	cam->screen_base.bs_orig = vec_sum(cam->pos, cam->dir);
 	sqr_sum1 = int_pow(cam->dir.x, 2) + int_pow(cam->dir.y, 2);
 	aux_norm = sqrt(sqr_sum1);
 	cam->screen_base.n1 = fill_coord(cam->dir.y / aux_norm,
@@ -41,8 +41,8 @@ t_vec	screen_pxl_by_indx(t_cam *cam, int i, int j)
 
 	scal_i = -cam->s_half_screen + (((2 * i) - 1) * cam->step);
 	scal_j = ((-(double)WY / (double)WX) * cam->s_half_screen) + (((2 * j) - 1) * cam->step);
-	res = vector_sum(scalar_by_vector(scal_i, cam->screen_base.n1)
-		, scalar_by_vector(scal_j, cam->screen_base.n2));
+	res = vec_sum(scal_vector(scal_i, cam->screen_base.n1)
+		, scal_vector(scal_j, cam->screen_base.n2));
 	return (res);
 }
 

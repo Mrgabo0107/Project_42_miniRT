@@ -1,0 +1,62 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   paint.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
+/*   Updated: 2023/02/22 01:27:36 by gamoreno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minirt.h"
+
+static uint	get_color(t_mrt *mrt, t_inter *ctr)
+{
+	if (ctr->type != 0)
+		return (mrt->sphere[ctr->index].color);
+	return (0xffffff);
+}
+
+uint	get_pixel_color(t_mrt *mrt, int x, int y)
+{
+	t_inter	ctr_i;
+	uint	ret;
+	
+	ctr_i.type = 0;
+	ctr_i.index = 0;
+	ctr_i.dist = -1;
+	ctr_i.pxl = screen_pxl_by_indx(&mrt->cam, x, y);
+	check_spheres(mrt, &ctr_i);
+	// check_planes(mrt, ctr_i);
+	// check_cylinders(mrt, ctr_i);
+	ret = get_color(mrt, &ctr_i);
+	return (ret);
+}
+
+void	pixel_calcul(t_mrt *mrt)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < IX)
+	{
+		j = 0;
+		while (j < IY)
+		{
+			my_mlx_pixel_put(mrt, i, j, get_pixel_color(mrt, i + 1, j + 1));
+			j++;
+		}
+	i++;
+	}
+}
+
+void	my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = mrt->addr + (y * mrt->sizel + x * (mrt->bpp / 8));
+	*(unsigned int *)dst = color;
+}

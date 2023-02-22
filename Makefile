@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
+#    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/19 23:38:33 by yridgway         ###   ########.fr        #
+#    Updated: 2023/02/21 23:31:01 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,9 +50,12 @@ UTILS		=	tools.c \
 
 MAT_DIR		=	math/
 MAT			=	math.c \
+				math2.c
 
 CAM_DIR		=	cam/
 CAM			=	cam.c \
+				paint.c \
+				check_intersections.c \
 
 # LIBFT_DIR	=	libft/
 # LIBFT		=	libft.a

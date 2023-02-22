@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/21 18:52:51 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/22 01:03:00 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,23 @@ typedef struct s_cam
 	double	step;
 	t_base	screen_base;
 }		t_cam;
+
+typedef struct s_inter
+{
+	t_vec	pxl;
+	int		type;
+	int		index;
+	double	dist;
+	t_vec	inter_coor;
+}			t_inter;
+
+typedef struct s_discr
+{
+	double	b;
+	double	a;
+	double	c;
+	double	dscr;
+}		t_discr;
 
 /*----------------------------------------------------------------------------*/
 /*									Objects									  */

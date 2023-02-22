@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/21 14:58:58 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/22 01:11:01 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,13 +104,20 @@ double		int_pow(double basis, int exp);
 double		vect_norm(t_vec v);
 t_vec		fill_coord(double c1, double c2, double c3);
 t_vec		normalize(t_vec v);
-t_vec		scalar_by_vector(double scalar, t_vec vector);
-t_vec		vector_sum(t_vec v1, t_vec v2);
+t_vec		scal_vector(double scalar, t_vec vector);
+t_vec		vec_sum(t_vec v1, t_vec v2);
 double		rad_and_deg(double angle, int ctrl);
 void		print_vector(t_vec v); //debug
+double		min_v(double d1, double d2);
 
 //camera
 void		set_all_cam_values(t_cam *cam);
+t_vec		screen_pxl_by_indx(t_cam *cam, int i, int j);
+void		my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color);
+void		pixel_calcul(t_mrt *mrt);
+uint		get_pixel_color(t_mrt *mrt, int x, int y);
+void		check_spheres(t_mrt *mrt, t_inter *ctrl);
+
 
 //debug
 void		print_pixels_coord(t_cam *cam);
