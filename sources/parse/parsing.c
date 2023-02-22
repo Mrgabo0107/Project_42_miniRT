@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/20 18:03:09 by ana              ###   ########.fr       */
+/*   Updated: 2023/02/22 21:01:24 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,32 +20,33 @@ void	ft_check_capitals(int a, int c, int l)
 		ft_error(MISSING_CAPITALS, NULL);
 }
 
-int	*ft_count_objs(t_table *table, int count[6])
+int	*ft_count_objs(t_table *table, int obj_count[6])
 {
 	int	i;
 
 	i = 0;
 	while (i < 6)
-		count[i++] = 0;
+		obj_count[i++] = 0;
 	while (table)
 	{
 		if (eval_obj(table->line[0]) == AMBIENT)
-			(count[0])++;
+			(obj_count[AMBIENT])++;
 		else if (eval_obj(table->line[0]) == CAMERA)
-			(count[1])++;
+			(obj_count[CAMERA])++;
 		else if (eval_obj(table->line[0]) == LIGHT)
-			(count[2])++;
-		else if (eval_obj(table->line[0]) == SPHERE)
-			(count[3])++;
+			(obj_count[LIGHT])++;
 		else if (eval_obj(table->line[0]) == PLANE)
-			(count[4])++;
+			(obj_count[PLANE])++;
+		else if (eval_obj(table->line[0]) == SPHERE)
+			(obj_count[SPHERE])++;
 		else if (eval_obj(table->line[0]) == CYLINDER)
-			(count[5])++;
+			(obj_count[CYLINDER])++;
 		else if (eval_obj(table->line[0]) == -1)
 			ft_error(INVALID_OBJECT, table->line[0]);
 		table = table->next;
 	}
-	return (ft_check_capitals(count[0], count[1], count[2]), count);
+	return (ft_check_capitals(obj_count[AMBIENT], obj_count[CAMERA],
+			obj_count[LIGHT]), obj_count);
 }
 
 void	ft_fill_capitals(t_mrt *mrt, char **line, int type)
@@ -58,7 +59,7 @@ void	ft_fill_capitals(t_mrt *mrt, char **line, int type)
 		mrt->light = ft_fill_light(line, 0);
 }
 
-int	ft_fill_objs(t_mrt *mrt, t_table *table, int count[6])
+void	ft_fill_objs(t_mrt *mrt, t_table *table, int count[6])
 {
 	int	type;
 	int	i;
@@ -84,18 +85,16 @@ int	ft_fill_objs(t_mrt *mrt, t_table *table, int count[6])
 			mrt->cylinder[k++] = ft_fill_cylinder(table->line);
 		table = table->next;
 	}
-	return (0);
 }
 
 int	ft_parse(t_mrt *mrt, char *file)
 {
 	t_table	*table;
-	int		count[6];
 	int		i;
 
 	table = ft_fill_table(file);
-	ft_count_objs(table, count);
-	ft_fill_objs(mrt, table, count);
+	ft_count_objs(table, mrt->obj_count);
+	ft_fill_objs(mrt, table, mrt->obj_count);
 	while (table)
 	{
 		i = 0;

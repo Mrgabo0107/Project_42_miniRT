@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cell_filling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:52:58 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/22 20:18:24 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/22 20:44:26 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ int	check_for_chars(char *str, char *cell)
 	i = 0;
 	while (cell && cell[i])
 	{
-		if ((cell[i] == ',' && cell[i + 1] == '-') || \
-		(cell[i] == '.' && cell[i + 1] == '-') || \
+		if ((cell[i] == '.' && cell[i + 1] == '-') || \
 		(cell[i] == '-' && cell[i + 1] == ',') || \
 		(cell[i] == '-' && cell[i + 1] == '.') || \
 		(cell[i] == ',' && cell[i + 1] == '.') || \
@@ -96,8 +95,8 @@ t_vec	ft_fill_pos(char *cell, int dir)
 	char	**line;
 
 	line = ft_split(cell, ',');
-	// if (ft_arg_count(line) != 3 || check_for_chars("0123456789,-.", cell))
-	// 	ft_error("Invalid position", cell);
+	if (ft_arg_count(line) != 3 || check_for_chars("0123456789,-.", cell))
+		ft_error("Invalid position", cell);
 	if (!valid_nums(line))
 		ft_error("Invalid position", cell);
 	pos.x = ft_atof(line[0]);
