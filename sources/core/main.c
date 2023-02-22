@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:12:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/22 20:12:41 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/22 21:58:09 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,30 @@ int	end_mrt(t_mrt *mrt)
 
 int	key_press(int key, t_mrt *mrt)
 {
-	// printf("key: %d\n", key);
-	if (key == 65307)
+	printf("\n\nkey: %d\n\n", key);
+	// ft_putnum_fd(1, key);
+	if (key == ESC)
 		end_mrt(mrt);
+	if (key == W)
+		mrt->cam.pos.y++;
+	if (key == S)
+		mrt->cam.pos.y--;
+	if (key == A)
+		mrt->cam.pos.x--;
+	if (key == D)
+		mrt->cam.pos.x++;
+	if (key == UP)
+		mrt->cam.dir.z += 0.1;
+	if (key == DOWN)
+		mrt->cam.dir.z -= 0.1;
+	if (key == LEFT)
+		mrt->cam.dir.x -= 0.1;
+	if (key == RIGHT)
+		mrt->cam.dir.x += 0.1;
+	normalize(mrt->cam.dir);
+	set_all_cam_values(&mrt->cam);
+	pixel_calcul(mrt);
+	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
 	return (key);
 }
 
