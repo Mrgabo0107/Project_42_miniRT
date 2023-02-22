@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:31:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/22 14:53:09 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/22 14:58:06 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static double	solve_sph_quad(t_discr *info)
 		return (-info->b / info->a);
 	else if (info->dscr > 0.0)
 		return (min_v((-info->b + sqrt(info->dscr)) / info->a,
-				(-info->b - sqrt(info->dscr)) / info->a));
+			(-info->b - sqrt(info->dscr)) / info->a));
 }
 
 void	check_spheres(t_mrt *mrt, t_inter *ctrl)
