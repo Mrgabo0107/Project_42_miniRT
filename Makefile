@@ -6,7 +6,7 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/22 22:04:30 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/02/23 05:14:02 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,13 +50,16 @@ UTILS		=	tools.c \
 
 MAT_DIR		=	math/
 MAT			=	math.c \
-				math2.c
+				math2.c \
+				math3.c
 
 CAM_DIR		=	cam/
 CAM			=	cam.c \
 				paint.c \
-				check_intersections.c \
-
+				check_sphere_inter.c \
+				check_cylinder_inter.c \
+				check_cylinder_inter2.c
+				
 # LIBFT_DIR	=	libft/
 # LIBFT		=	libft.a
 

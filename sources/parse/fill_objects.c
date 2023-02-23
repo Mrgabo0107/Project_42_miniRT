@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:37:20 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/22 20:17:54 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/23 04:46:39 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_plane	ft_fill_plane(char *line[7])
 	if (ft_arg_count(line) != 4)
 		ft_error("Wrong number of arguments for plane", NULL);
 	plane.pos = ft_fill_pos(line[1], 0);
-	plane.dir = ft_fill_pos(line[2], 1);
+	plane.dir = normalize(ft_fill_pos(line[2], 1));
 	plane.color = ft_fill_rgb(line[3]);
 	return (plane);
 }
@@ -46,7 +46,7 @@ t_cylinder	ft_fill_cylinder(char *line[7])
 	if (ft_arg_count(line) != 6)
 		ft_error("Wrong number of arguments for cylinder", NULL);
 	cylinder.pos = ft_fill_pos(line[1], 0);
-	cylinder.dir = ft_fill_pos(line[2], 1);
+	cylinder.dir = normalize(ft_fill_pos(line[2], 1));
 	cylinder.radius = ft_fill_size(line[3], 0) / 2;
 	cylinder.height = ft_fill_size(line[4], 0);
 	cylinder.color = ft_fill_rgb(line[5]);

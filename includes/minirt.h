@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/22 21:46:44 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/23 05:14:57 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@
 # define A 97
 # define S 115
 # define D 100
+# define Q 113
+# define E 101
 # define UP 65362
 # define DOWN 65364
 # define LEFT 65361
@@ -123,6 +125,10 @@ t_vec		vec_sum(t_vec v1, t_vec v2);
 double		rad_and_deg(double angle, int ctrl);
 void		print_vector(t_vec v); //debug
 double		min_v(double d1, double d2);
+double		max_v(double d1, double d2);
+double      v_abs(double x);
+double      pnt_prod(t_vec v1, t_vec v2);
+t_vec       vec_rest(t_vec v1, t_vec v2);
 
 //camera
 void		set_all_cam_values(t_cam *cam);
@@ -131,6 +137,8 @@ void		my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color);
 void		pixel_calcul(t_mrt *mrt);
 uint		get_pixel_color(t_mrt *mrt, int x, int y);
 void		check_spheres(t_mrt *mrt, t_inter *ctrl);
+void		check_cylinders(t_mrt *mrt, t_inter *ctrl);
+void		check_cyl_body(t_mrt *mrt, t_inter *ctrl, int i, t_vec *dir);
 
 
 //debug
