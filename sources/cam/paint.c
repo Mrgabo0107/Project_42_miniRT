@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/22 20:26:28 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/23 06:55:00 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,13 @@
 static uint	get_color(t_mrt *mrt, t_inter *ctr)
 {
 	if (ctr->dist != -1)
-		return (mrt->sphere[ctr->index].color);
-	return (0xffffff);
+	{
+		if (ctr->type == SPHERE)
+			return (mrt->sphere[ctr->index].color);
+		if (ctr->type == CYLINDER)
+			return (mrt->cylinder[ctr->index].color);
+	}
+	return (0x000000);
 }
 
 uint	get_pixel_color(t_mrt *mrt, int x, int y)
@@ -29,8 +34,8 @@ uint	get_pixel_color(t_mrt *mrt, int x, int y)
 	ctr_i.dist = -1;
 	ctr_i.pxl = screen_pxl_by_indx(&mrt->cam, x, y);
 	check_spheres(mrt, &ctr_i);
+	check_cylinders(mrt, &ctr_i);
 	// check_planes(mrt, ctr_i);
-	// check_cylinders(mrt, ctr_i);
 	ret = get_color(mrt, &ctr_i);
 	return (ret);
 }

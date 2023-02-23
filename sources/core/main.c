@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:12:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/22 21:58:09 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/23 00:25:14 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,25 @@ int	key_press(int key, t_mrt *mrt)
 	if (key == ESC)
 		end_mrt(mrt);
 	if (key == W)
-		mrt->cam.pos.y++;
+		mrt->cam.pos = vec_sum(mrt->cam.pos, scal_vector(0.5, mrt->cam.screen_base.n3));
 	if (key == S)
-		mrt->cam.pos.y--;
+		mrt->cam.pos = vec_sum(mrt->cam.pos, scal_vector(-0.5, mrt->cam.screen_base.n3));
 	if (key == A)
-		mrt->cam.pos.x--;
+		mrt->cam.pos = vec_sum(mrt->cam.pos, scal_vector(-0.5, mrt->cam.screen_base.n1));
 	if (key == D)
-		mrt->cam.pos.x++;
+		mrt->cam.pos = vec_sum(mrt->cam.pos, scal_vector(0.5, mrt->cam.screen_base.n1));
+	if (key == Q)
+		mrt->cam.pos = vec_sum(mrt->cam.pos, scal_vector(0.5, mrt->cam.screen_base.n2));
+	if (key == E)
+		mrt->cam.pos = vec_sum(mrt->cam.pos, scal_vector(-0.5, mrt->cam.screen_base.n2));
 	if (key == UP)
-		mrt->cam.dir.z += 0.1;
+		mrt->cam.dir = vec_sum(mrt->cam.dir, scal_vector(0.2, mrt->cam.screen_base.n2));
 	if (key == DOWN)
-		mrt->cam.dir.z -= 0.1;
+		mrt->cam.dir = vec_sum(mrt->cam.dir, scal_vector(-0.2, mrt->cam.screen_base.n2));
 	if (key == LEFT)
-		mrt->cam.dir.x -= 0.1;
+		mrt->cam.dir = vec_sum(mrt->cam.dir, scal_vector(-0.2, mrt->cam.screen_base.n1));
 	if (key == RIGHT)
-		mrt->cam.dir.x += 0.1;
+		mrt->cam.dir = vec_sum(mrt->cam.dir, scal_vector(0.2, mrt->cam.screen_base.n1));
 	normalize(mrt->cam.dir);
 	set_all_cam_values(&mrt->cam);
 	pixel_calcul(mrt);

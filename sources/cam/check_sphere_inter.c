@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_intersections.c                              :+:      :+:    :+:   */
+/*   check_sphere_inter.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:31:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/22 22:16:36 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/23 07:02:17 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,18 @@ static t_discr get_sph_dscr(t_mrt *mrt, t_sphere *sph, t_vec dir)
 
 static double	solve_sph_quad(t_discr *info)
 {
+	double	op1;
+	double	op2;
+	double	ret;
+	
 	if (info->dscr == 0.0)
 		return (-info->b / info->a);
-	return (min_v((-info->b + sqrt(info->dscr)) / info->a,
-		(-info->b - sqrt(info->dscr)) / info->a));
+	op1 = (-info->b + sqrt(info->dscr)) / info->a;
+	op2 = (-info->b - sqrt(info->dscr)) / info->a;
+	ret = min_v(op1, op2);
+	if (ret < 0)
+		return (max_v(op1, op2));
+	return (ret);
 }
 
 void	check_spheres(t_mrt *mrt, t_inter *ctrl)
@@ -48,11 +56,10 @@ void	check_spheres(t_mrt *mrt, t_inter *ctrl)
 	while (i < mrt->obj_count[SPHERE])
 	{
 		discr = get_sph_dscr(mrt, &mrt->sphere[i], dir);
-		// printf("%f\n", discr.dscr);
 		if (discr.dscr >= 0)
 		{
 			c = solve_sph_quad(&discr);
-			if (ctrl->dist == -1 || (c >= 0 && c < ctrl->dist))
+			if (c >= 0 && (ctrl->dist == -1 || c < ctrl->dist))
 			{
 				ctrl->type = SPHERE;
 				ctrl->index = i;

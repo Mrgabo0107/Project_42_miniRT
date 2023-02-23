@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:28:00 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/22 01:00:29 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/22 23:42:30 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,19 @@ double  min_v(double d1, double d2)
     if (d1 >= d2)
         return (d2);
     return (d1);    
+}
+
+double	v_abs(double x)
+{
+	if (x < 0)
+		return (-x);
+	else
+		return (x);
+}
+
+double	pnt_prod(t_vec v1, t_vec v2)
+{
+	return ((v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z));
 }
 
 /*for debug*/

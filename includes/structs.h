@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/22 20:54:33 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/23 05:34:31 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ typedef struct s_base
 /*									Camera									  */
 /*----------------------------------------------------------------------------*/
 
-typedef struct s_ray
-{
-	t_vec	origin;
-	t_vec	direction;
-}			t_ray;
+// typedef struct s_ray
+// {
+// 	t_vec	origin;
+// 	t_vec	direction;
+// }			t_ray;
 
 // typedef struct s_amblight
 // {
@@ -86,6 +86,15 @@ typedef struct s_discr
 	double	dscr;
 }		t_discr;
 
+typedef struct s_cylval
+{
+	double	Ax;
+	double	Ay;
+	double	Az;
+	double	Bx;
+	double	By;
+	double	Bz;
+}		t_cylval;
 /*----------------------------------------------------------------------------*/
 /*									Objects									  */
 /*----------------------------------------------------------------------------*/
