@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/23 05:14:57 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:13:20 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ void		pixel_calcul(t_mrt *mrt);
 uint		get_pixel_color(t_mrt *mrt, int x, int y);
 void		check_spheres(t_mrt *mrt, t_inter *ctrl);
 void		check_cylinders(t_mrt *mrt, t_inter *ctrl);
+void		check_planes(t_mrt *mrt, t_inter *ctrl);
 void		check_cyl_body(t_mrt *mrt, t_inter *ctrl, int i, t_vec *dir);
 
 
