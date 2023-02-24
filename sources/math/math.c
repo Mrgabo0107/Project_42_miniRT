@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:53:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/21 22:28:33 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/24 20:56:42 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ double	rad_and_deg(double angle, int ctrl)
 
 double	int_pow(double basis, int exp)
 {
-	int i;
+	int		i;
 	double	res;
 
 	res = 1;
 	i = 0;
-	while(i < exp)
+	while (i < exp)
 	{
 		res *= basis;
 		i++;
@@ -49,7 +49,7 @@ t_vec	fill_coord(double c1, double c2, double c3)
 
 double	vect_norm(t_vec v)
 {
-	double sum_sqr;
+	double	sum_sqr;
 
 	sum_sqr = int_pow(v.x, 2) + int_pow(v.y, 2) + int_pow(v.z, 2);
 	return (sqrt(sum_sqr));
@@ -57,8 +57,8 @@ double	vect_norm(t_vec v)
 
 t_vec	normalize(t_vec v)
 {
-	t_vec ret;
-	double norm;
+	t_vec	ret;
+	double	norm;
 
 	norm = vect_norm(v);
 	ret.x = v.x / norm;

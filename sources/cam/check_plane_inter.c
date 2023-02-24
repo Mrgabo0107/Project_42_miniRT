@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_plane_inter.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:07:15 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/24 06:37:23 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/24 21:14:28 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ double	distance_to_plane(t_mrt *mrt, t_plane plane, t_vec dir)
 // 	n1 = plane.dir.x;
 // 	n2 = plane.dir.y;
 // 	n3 = plane.dir.z;
-// 	t = (n1 * (plane.pos.x - mrt->cam.pos.x) + n2 * \
-// 	(plane.pos.y - mrt->cam.pos.y) + n3 * (plane.pos.z - mrt->cam.pos.z)) \
+// 	t = (n1 * (plane.pos.x - mrt->cam.pos.x) + n2 * 
+// 	(plane.pos.y - mrt->cam.pos.y) + n3 * (plane.pos.z - mrt->cam.pos.z)) 
 // 	/ (n1 * dir.x + n2 * dir.y + n3 * dir.z);
 // 	inter_coor.x = mrt->cam.pos.x + dir.x * t;
 // 	inter_coor.y = mrt->cam.pos.y + dir.y * t;
@@ -57,8 +57,7 @@ void	check_planes(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 			ctrl->type = PLANE;
 			ctrl->index = i;
 			ctrl->dist = c;
-			ctrl->inter_coor = vec_sum(mrt->cam.pos, scal_vec(c, dir));//plane_inter_coord(mrt, mrt->plane[i], dir);
-			// printf("plane inter coor: %f, %f, %f\n", ctrl->inter_coor.x, ctrl->inter_coor.y, ctrl->inter_coor.z);
+			ctrl->inter_coor = vec_sum(mrt->cam.pos, scal_vec(c, dir));
 		}
 		i++;
 	}
