@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/23 05:34:31 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/24 06:46:24 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,14 @@ typedef struct s_base
 	t_vec	n2;
 	t_vec	n3;
 }		t_base;
+
+typedef	struct s_mtrx
+{
+	t_vec	r1;
+	t_vec	r2;
+	t_vec	r3;
+}	t_mtrx;
+
 
 /*----------------------------------------------------------------------------*/
 /*									Camera									  */
@@ -86,15 +94,6 @@ typedef struct s_discr
 	double	dscr;
 }		t_discr;
 
-typedef struct s_cylval
-{
-	double	Ax;
-	double	Ay;
-	double	Az;
-	double	Bx;
-	double	By;
-	double	Bz;
-}		t_cylval;
 /*----------------------------------------------------------------------------*/
 /*									Objects									  */
 /*----------------------------------------------------------------------------*/
@@ -120,6 +119,7 @@ typedef struct s_cylinder
 	double	radius;
 	double	height;
 	uint	color;
+	t_base	base;
 }			t_cylinder;
 
 typedef struct s_light

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_sphere_inter.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:31:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/23 18:58:18 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/24 06:39:02 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,9 @@ static t_discr get_sph_dscr(t_mrt *mrt, t_sphere *sph, t_vec dir)
 {
 	t_discr	ret;
 
-	ret.b = dir.x * (mrt->cam.pos.x - sph->center.x)
-		+ dir.y * (mrt->cam.pos.y - sph->center.y)
-		+ dir.z * (mrt->cam.pos.z - sph->center.z);
-	ret.a = int_pow(dir.x, 2) + int_pow(dir.y, 2) + int_pow(dir.z, 2);
-	ret.c = int_pow(mrt->cam.pos.x - sph->center.x, 2)
-		+ int_pow(mrt->cam.pos.y - sph->center.y, 2)
-		+ int_pow(mrt->cam.pos.z - sph->center.z, 2)
+	ret.b = dot_prod(dir, vec_rest(mrt->cam.pos, sph->center));
+	ret.a = norm_raised_2(dir);
+	ret.c = norm_raised_2(vec_rest(mrt->cam.pos, sph->center))
 		- int_pow(sph->radius, 2);
 	ret.dscr = 4 * (int_pow(ret.b, 2) - (ret.a * ret.c));
 	return (ret);
@@ -44,15 +40,13 @@ static double	solve_sph_quad(t_discr *info)
 	return (ret);
 }
 
-void	check_spheres(t_mrt *mrt, t_inter *ctrl)
+void	check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 {
 	int		i;
-	t_vec	dir;
 	t_discr	discr;
 	double	c;
 
 	i = 0;
-	dir = normalize(vec_sum(ctrl->pxl, scal_vector(-1, mrt->cam.pos)));
 	while (i < mrt->obj_count[SPHERE])
 	{
 		discr = get_sph_dscr(mrt, &mrt->sphere[i], dir);
@@ -64,8 +58,7 @@ void	check_spheres(t_mrt *mrt, t_inter *ctrl)
 				ctrl->type = SPHERE;
 				ctrl->index = i;
 				ctrl->dist = c;
-				ctrl->inter_coor = vec_sum(mrt->cam.pos, scal_vector(c, dir));
-				// printf("plane inter coor: %f, %f, %f\n", ctrl->inter_coor.x, ctrl->inter_coor.y, ctrl->inter_coor.z);
+				ctrl->inter_coor = vec_sum(mrt->cam.pos, scal_vec(c, dir));
 			}
 		}
 		i++;

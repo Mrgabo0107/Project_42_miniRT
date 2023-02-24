@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
+#    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/23 19:07:56 by yridgway         ###   ########.fr        #
+#    Updated: 2023/02/24 07:13:57 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,9 @@ UTILS		=	tools.c \
 MAT_DIR		=	math/
 MAT			=	math.c \
 				math2.c \
-				math3.c
+				math3.c \
+				math4.c \
+				math_cyl.c
 
 CAM_DIR		=	cam/
 CAM			=	cam.c \

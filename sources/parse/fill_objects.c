@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:37:20 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/23 04:46:39 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/24 04:36:27 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_cylinder	ft_fill_cylinder(char *line[7])
 	cylinder.radius = ft_fill_size(line[3], 0) / 2;
 	cylinder.height = ft_fill_size(line[4], 0);
 	cylinder.color = ft_fill_rgb(line[5]);
+	cylinder.base = get_cyl_base(cylinder.dir);
 	return (cylinder);
 }
 

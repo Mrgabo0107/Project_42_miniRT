@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_plane_inter.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:07:15 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/23 19:24:19 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/24 06:37:23 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ double	distance_to_plane(t_mrt *mrt, t_plane plane, t_vec dir)
 	t_vec	plane_to_cam;
 
 	plane_to_cam = vec_rest(plane.pos, mrt->cam.pos);
-	c = pnt_prod(plane.dir, plane_to_cam) / pnt_prod(plane.dir, dir);
+	c = dot_prod(plane.dir, plane_to_cam) / dot_prod(plane.dir, dir);
 	return (c);
 }
 
@@ -42,14 +42,12 @@ double	distance_to_plane(t_mrt *mrt, t_plane plane, t_vec dir)
 // 	return (inter_coor);
 // }
 
-void	check_planes(t_mrt *mrt, t_inter *ctrl)
+void	check_planes(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 {
 	int		i;
 	double	c;
-	t_vec	dir;
 
 	i = 0;
-	dir = normalize(vec_sum(ctrl->pxl, scal_vector(-1, mrt->cam.pos)));
 	while (i < mrt->obj_count[PLANE])
 	{
 		// printf("plane index: %d\n", i);
@@ -59,7 +57,7 @@ void	check_planes(t_mrt *mrt, t_inter *ctrl)
 			ctrl->type = PLANE;
 			ctrl->index = i;
 			ctrl->dist = c;
-			ctrl->inter_coor = vec_sum(mrt->cam.pos, scal_vector(c, dir));//plane_inter_coord(mrt, mrt->plane[i], dir);
+			ctrl->inter_coor = vec_sum(mrt->cam.pos, scal_vec(c, dir));//plane_inter_coord(mrt, mrt->plane[i], dir);
 			// printf("plane inter coor: %f, %f, %f\n", ctrl->inter_coor.x, ctrl->inter_coor.y, ctrl->inter_coor.z);
 		}
 		i++;
