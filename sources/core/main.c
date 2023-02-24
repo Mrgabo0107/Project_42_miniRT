@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:12:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/23 16:56:59 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/24 05:31:31 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,25 @@ int	key_press(int key, t_mrt *mrt)
 	if (key == ESC)
 		end_mrt(mrt);
 	if (key == W)
-		mrt->cam.pos = vec_sum(mrt->cam.pos, scal_vector(0.5, mrt->cam.screen_base.n3));
+		mrt->cam.pos = vec_sum(mrt->cam.pos, scal_vec(0.5, mrt->cam.screen_base.n3));
 	if (key == S)
-		mrt->cam.pos = vec_sum(mrt->cam.pos, scal_vector(-0.5, mrt->cam.screen_base.n3));
+		mrt->cam.pos = vec_sum(mrt->cam.pos, scal_vec(-0.5, mrt->cam.screen_base.n3));
 	if (key == A)
-		mrt->cam.pos = vec_sum(mrt->cam.pos, scal_vector(-0.5, mrt->cam.screen_base.n1));
+		mrt->cam.pos = vec_sum(mrt->cam.pos, scal_vec(-0.5, mrt->cam.screen_base.n1));
 	if (key == D)
-		mrt->cam.pos = vec_sum(mrt->cam.pos, scal_vector(0.5, mrt->cam.screen_base.n1));
+		mrt->cam.pos = vec_sum(mrt->cam.pos, scal_vec(0.5, mrt->cam.screen_base.n1));
 	if (key == Q)
-		mrt->cam.pos = vec_sum(mrt->cam.pos, scal_vector(0.5, mrt->cam.screen_base.n2));
+		mrt->cam.pos = vec_sum(mrt->cam.pos, scal_vec(0.5, mrt->cam.screen_base.n2));
 	if (key == E)
-		mrt->cam.pos = vec_sum(mrt->cam.pos, scal_vector(-0.5, mrt->cam.screen_base.n2));
+		mrt->cam.pos = vec_sum(mrt->cam.pos, scal_vec(-0.5, mrt->cam.screen_base.n2));
 	if (key == UP)
-		mrt->cam.dir = vec_sum(mrt->cam.dir, scal_vector(-0.2, mrt->cam.screen_base.n2));
+		mrt->cam.dir = vec_sum(mrt->cam.dir, scal_vec(-0.2, mrt->cam.screen_base.n2));
 	if (key == DOWN)
-		mrt->cam.dir = vec_sum(mrt->cam.dir, scal_vector(0.2, mrt->cam.screen_base.n2));
+		mrt->cam.dir = vec_sum(mrt->cam.dir, scal_vec(0.2, mrt->cam.screen_base.n2));
 	if (key == LEFT)
-		mrt->cam.dir = vec_sum(mrt->cam.dir, scal_vector(-0.2, mrt->cam.screen_base.n1));
+		mrt->cam.dir = vec_sum(mrt->cam.dir, scal_vec(-0.2, mrt->cam.screen_base.n1));
 	if (key == RIGHT)
-		mrt->cam.dir = vec_sum(mrt->cam.dir, scal_vector(0.2, mrt->cam.screen_base.n1));
+		mrt->cam.dir = vec_sum(mrt->cam.dir, scal_vec(0.2, mrt->cam.screen_base.n1));
 	normalize(mrt->cam.dir);
 	set_all_cam_values(&mrt->cam);
 	pixel_calcul(mrt);

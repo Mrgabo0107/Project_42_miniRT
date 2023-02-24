@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/23 17:13:20 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/24 07:42:17 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,15 +120,20 @@ double		int_pow(double basis, int exp);
 double		vect_norm(t_vec v);
 t_vec		fill_coord(double c1, double c2, double c3);
 t_vec		normalize(t_vec v);
-t_vec		scal_vector(double scalar, t_vec vector);
+t_vec		scal_vec(double scalar, t_vec vector);
 t_vec		vec_sum(t_vec v1, t_vec v2);
 double		rad_and_deg(double angle, int ctrl);
 void		print_vector(t_vec v); //debug
 double		min_v(double d1, double d2);
 double		max_v(double d1, double d2);
 double      v_abs(double x);
-double      pnt_prod(t_vec v1, t_vec v2);
+double      dot_prod(t_vec v1, t_vec v2);
 t_vec       vec_rest(t_vec v1, t_vec v2);
+double      norm_raised_2(t_vec v);
+t_base      get_cyl_base(t_vec	dir);
+t_vec       mtrx_by_vec(t_mtrx m, t_vec v);
+double      mtrx_det(t_mtrx m);
+t_mtrx      mtrx_trsp(t_mtrx m);
 
 //camera
 void		set_all_cam_values(t_cam *cam);
@@ -136,10 +141,9 @@ t_vec		screen_pxl_by_indx(t_cam *cam, int i, int j);
 void		my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color);
 void		pixel_calcul(t_mrt *mrt);
 uint		get_pixel_color(t_mrt *mrt, int x, int y);
-void		check_spheres(t_mrt *mrt, t_inter *ctrl);
-void		check_cylinders(t_mrt *mrt, t_inter *ctrl);
-void		check_planes(t_mrt *mrt, t_inter *ctrl);
-void		check_cyl_body(t_mrt *mrt, t_inter *ctrl, int i, t_vec *dir);
+void		check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec dir);
+void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir);
+void		check_planes(t_mrt *mrt, t_inter *ctrl, t_vec dir);
 
 
 //debug

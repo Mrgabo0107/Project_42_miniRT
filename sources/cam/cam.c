@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 00:02:45 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/22 20:57:54 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/24 05:31:11 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ t_vec	screen_pxl_by_indx(t_cam *cam, int i, int j)
 
 	scal_i = -cam->s_half_screen + (((2 * i) - 1) * cam->step);
 	scal_j = ((-(double)WY / (double)WX) * cam->s_half_screen) + (((2 * j) - 1) * cam->step);
-	res = vec_sum(cam->screen_base.bs_orig, vec_sum(scal_vector(scal_i, cam->screen_base.n1)
-		, scal_vector(scal_j, cam->screen_base.n2)));
+	res = vec_sum(cam->screen_base.bs_orig, vec_sum(scal_vec(scal_i, cam->screen_base.n1)
+		, scal_vec(scal_j, cam->screen_base.n2)));
 	return (res);
 }
 
