@@ -3,22 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   math2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:28:00 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/24 05:31:36 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/24 21:29:02 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_vec   vec_sum(t_vec v1, t_vec v2)
+t_vec	vec_sum(t_vec v1, t_vec v2)
 {
-	t_vec   res;
+	t_vec	res;
 
 	res.x = v1.x + v2.x;
 	res.y = v1.y + v2.y;
 	res.z = v1.z + v2.z;
+	return (res);
+}
+
+t_vec	vec_sub(t_vec v1, t_vec v2)
+{
+	t_vec	res;
+
+	res.x = v1.x - v2.x;
+	res.y = v1.y - v2.y;
+	res.z = v1.z - v2.z;
 	return (res);
 }
 
@@ -32,11 +42,11 @@ t_vec	scal_vec(double scalar, t_vec vector)
 	return (ret);
 }
 
-double  min_v(double d1, double d2)
+double	min_v(double d1, double d2)
 {
-    if (d1 >= d2)
-        return (d2);
-    return (d1);    
+	if (d1 >= d2)
+		return (d2);
+	return (d1);
 }
 
 double	v_abs(double x)
