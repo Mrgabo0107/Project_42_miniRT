@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/24 22:28:00 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/25 01:47:00 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,22 @@ double	vec_len(t_vec v)
 // 	return (c);
 // }
 
+double	ft_cap(t_mrt *mrt, t_cylinder cylinder, t_vec dir, t_vec pos)
+{
+	double	c;
+	t_vec	circle_to_cam;
+	t_vec	intersection;
+
+	// (void)pos;
+	circle_to_cam = vec_sub(pos, mrt->cam.pos);
+	c = dot_prod(cylinder.dir, circle_to_cam) / dot_prod(cylinder.dir, dir);
+	intersection = vec_sum(mrt->cam.pos, scal_vec(c, dir));
+	if (vec_len(vec_sub(intersection, pos)) > cylinder.radius)
+		return (-1);
+	// printf("c = %f\n", c);
+	return (c);
+}
+
 double	distance_to_cylinder(t_mrt *mrt, t_cylinder cylinder, t_vec dir)
 {
 	t_vec	h;
@@ -51,14 +67,16 @@ double	distance_to_cylinder(t_mrt *mrt, t_cylinder cylinder, t_vec dir)
 	discr.dscr = pow(discr.b, 2) - 4 * discr.a * discr.c;
 	if (discr.dscr <= 0)
 		return (-1);
-	// else if (discr.dscr == 0)
-		// c = -discr.b / (2 * discr.a);
 	c = min_v(((-discr.b - sqrt(discr.dscr)) / (2 * discr.a)), \
 	((-discr.b + sqrt(discr.dscr)) / (2 * discr.a)));
 	l = dot_prod(vec_sum(mrt->cam.pos, scal_vec(c, dir)), h);
-	if (l < 0 || l > vec_len(vec_sub(cylinder.top, cylinder.pos)))
-		return (-1);
-	return (c);
+	if (l >= 0 && l <= vec_len(vec_sub(cylinder.top, cylinder.pos)))
+		return (c);
+	if (l < 0)
+		return (ft_cap(mrt, cylinder, dir, cylinder.pos));
+	if (l > vec_len(vec_sub(cylinder.top, cylinder.pos)))
+		return (ft_cap(mrt, cylinder, dir, cylinder.top));
+	return (-1);
 }
 
 void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
@@ -71,6 +89,8 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 	{
 		mrt->cylinder[i].top = vec_sum(mrt->cylinder[i].pos, \
 		scal_vec(mrt->cylinder[i].height, mrt->cylinder[i].dir));
+		// mrt->cylinder[i].bottom = vec_sum(mrt->cylinder[i].pos, 
+		// scal_vec(-mrt->cylinder[i].height / 2, mrt->cylinder[i].dir));
 		c = distance_to_cylinder(mrt, mrt->cylinder[i], dir);
 		// if (c > 0)
 			// printf("cylinder index: %f\n", c);
