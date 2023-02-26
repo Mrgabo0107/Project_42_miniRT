@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/26 18:41:06 by ana              ###   ########.fr       */
+/*   Updated: 2023/02/26 19:13:41 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ double	ft_cap(t_mrt *mrt, t_cylinder cylinder, t_vec dir, t_vec pos)
 	t_vec	circle_to_cam;
 	t_vec	intersection;
 
-	circle_to_cam = vec_sub(pos, mrt->cam.pos);
+	circle_to_cam = vec_rest(pos, mrt->cam.pos);
 	c = dot_prod(cylinder.dir, circle_to_cam) / dot_prod(cylinder.dir, dir);
 	intersection = vec_sum(mrt->cam.pos, scal_vec(c, dir));
-	if (vec_len(vec_sub(intersection, pos)) > cylinder.radius)
+	if (vec_len(vec_rest(intersection, pos)) > cylinder.radius)
 		return (-1);
 	return (c);
 }
@@ -45,7 +45,7 @@ double	distance_to_cylinder(t_mrt *mrt, t_cylinder cylinder, t_vec dir)
 	double	l[2];
 	double	t[2];
 
-	w = vec_sub(mrt->cam.pos, cylinder.pos);
+	w = vec_rest(mrt->cam.pos, cylinder.pos);
 	discr.a = dot_prod(dir, dir) - pow(dot_prod(dir, cylinder.dir), 2);
 	discr.b = 2 * (dot_prod(dir, w) - dot_prod(dir, cylinder.dir) \
 	* dot_prod(w, cylinder.dir));
@@ -75,10 +75,6 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 	int		type;
 
 	i = 0;
-	mrt->cylinder[i].top = vec_sum(mrt->cylinder[i].pos, \
-	scal_vec(mrt->cylinder[i].height / 2, mrt->cylinder[i].dir));
-	mrt->cylinder[i].bottom = vec_sum(mrt->cylinder[i].pos, \
-	scal_vec(-mrt->cylinder[i].height / 2, mrt->cylinder[i].dir));
 	while (i < mrt->obj_count[CYLINDER])
 	{
 		l[0] = distance_to_cylinder(mrt, mrt->cylinder[i], dir);

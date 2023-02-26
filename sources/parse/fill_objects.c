@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_objects.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:37:20 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/24 04:36:27 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/26 18:48:32 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ t_cylinder	ft_fill_cylinder(char *line[7])
 	cylinder.height = ft_fill_size(line[4], 0);
 	cylinder.color = ft_fill_rgb(line[5]);
 	cylinder.base = get_cyl_base(cylinder.dir);
+	cylinder.top = vec_sum(cylinder.pos, \
+	scal_vec(cylinder.height / 2, cylinder.dir));
+	cylinder.bottom = vec_sum(cylinder.pos, \
+	scal_vec(-cylinder.height / 2, cylinder.dir));
 	return (cylinder);
 }
 
