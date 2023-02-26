@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/24 21:28:23 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/26 18:13:17 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,12 +129,18 @@ double		min_v(double d1, double d2);
 double		max_v(double d1, double d2);
 double		v_abs(double x);
 double		dot_prod(t_vec v1, t_vec v2);
+t_vec		cross_prod(t_vec v1, t_vec v2);
+double		vec_len(t_vec v);
 t_vec		vec_rest(t_vec v1, t_vec v2);
 double		norm_raised_2(t_vec v);
 t_base		get_cyl_base(t_vec	dir);
 t_vec		mtrx_by_vec(t_mtrx m, t_vec v);
 double		mtrx_det(t_mtrx m);
 t_mtrx		mtrx_trsp(t_mtrx m);
+
+//plane
+// double		distance_to_plane(t_vec point, t_vec pos, t_vec dir, t_vec ray);
+double		perp_to_plane(t_vec point, t_vec plane_pos, t_vec plane_norm);
 
 //camera
 void		set_all_cam_values(t_cam *cam);

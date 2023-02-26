@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:28:00 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/24 21:29:02 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/26 18:12:53 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,32 @@ double	v_abs(double x)
 double	dot_prod(t_vec v1, t_vec v2)
 {
 	return ((v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z));
+}
+
+t_vec	cross_prod(t_vec v1, t_vec v2)
+{
+	t_vec	ret;
+
+	ret.x = v1.y * v2.z - v1.z * v2.y;
+	ret.y = v1.z * v2.x - v1.x * v2.z;
+	ret.z = v1.x * v2.y - v1.y * v2.x;
+	return (ret);
+}
+
+double	vec_len(t_vec v)
+{
+	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
+}
+
+double	perp_to_plane(t_vec point, t_vec plane_point, t_vec plane_norm)
+{
+	double		distance;
+	t_vec		plane_to_point;
+
+	plane_to_point = vec_rest(point, plane_point);
+	distance = v_abs(dot_prod(plane_to_point, plane_norm)
+			/ vect_norm(plane_norm));
+	return (distance);
 }
 
 /*for debug*/
