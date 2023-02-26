@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paint.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/24 06:38:33 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/26 18:30:36 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@ static uint	get_color(t_mrt *mrt, t_inter *ctr)
 			return (mrt->plane[ctr->index].color);
 	}
 	return (0x000000);
+}
+
+t_inter	fill_ctrl(t_mrt *mrt, int type, int index, double dist)
+{
+	t_inter	ret;
+
+	ret.type = type;
+	ret.index = index;
+	ret.dist = dist;
+	ret.inter_coor = vec_sum(mrt->cam.pos, scal_vec(dist, mrt->cam.dir));
+	return (ret);
 }
 
 uint	get_pixel_color(t_mrt *mrt, int x, int y)

@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/26 18:16:21 by ana              ###   ########.fr       */
+/*   Updated: 2023/02/26 18:41:06 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,8 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 		else
 			type = CYLINDER;
 		if (c >= 0 && (ctrl->dist == -1 || c < ctrl->dist))
-		{
-			ctrl->type = type;
-			ctrl->index = i;
-			ctrl->dist = c;
-			ctrl->inter_coor = vec_sum(mrt->cam.pos, scal_vec(c, dir));
-		}
+			*ctrl = (t_inter){ctrl->pxl, type, i, c, \
+			vec_sum(mrt->cam.pos, scal_vec(c, dir))};
 		i++;
 	}
 }
@@ -136,7 +132,8 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 
 // 	discr.a = pow(vec_len(dir), 2) - pow(dot_prod(dir, cylinder.dir), 2);
 // 	discr.b = 2 * (dot_prod(dir, vec_sub(mrt->cam.pos, cylinder.pos)) - 
-// 		dot_prod(dir, cylinder.dir) * dot_prod(vec_sub(mrt->cam.pos, cylinder.pos), cylinder.dir));
+// 		dot_prod(dir, cylinder.dir) * dot_prod(vec_sub(mrt->cam.pos, 
+//cylinder.pos), cylinder.dir));
 // 	discr.c = pow(vec_len(vec_sub(mrt->cam.pos, cylinder.pos)), 2) - 
 // 		pow(dot_prod(vec_sub(mrt->cam.pos, cylinder.pos), cylinder.dir), 2) - 
 // 		pow(cylinder.radius, 2);

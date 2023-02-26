@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/26 18:13:17 by ana              ###   ########.fr       */
+/*   Updated: 2023/02/26 18:31:23 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ uint		get_pixel_color(t_mrt *mrt, int x, int y);
 void		check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec dir);
 void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir);
 void		check_planes(t_mrt *mrt, t_inter *ctrl, t_vec dir);
+t_inter 	fill_ctrl(t_mrt *mrt, int type, int index, double dist);
 
 
 //debug
