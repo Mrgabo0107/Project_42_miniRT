@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:28:00 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/26 18:12:53 by ana              ###   ########.fr       */
+/*   Updated: 2023/02/27 13:00:43 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,6 @@ t_vec	vec_sum(t_vec v1, t_vec v2)
 	res.x = v1.x + v2.x;
 	res.y = v1.y + v2.y;
 	res.z = v1.z + v2.z;
-	return (res);
-}
-
-t_vec	vec_sub(t_vec v1, t_vec v2)
-{
-	t_vec	res;
-
-	res.x = v1.x - v2.x;
-	res.y = v1.y - v2.y;
-	res.z = v1.z - v2.z;
 	return (res);
 }
 
@@ -70,11 +60,6 @@ t_vec	cross_prod(t_vec v1, t_vec v2)
 	ret.y = v1.z * v2.x - v1.x * v2.z;
 	ret.z = v1.x * v2.y - v1.y * v2.x;
 	return (ret);
-}
-
-double	vec_len(t_vec v)
-{
-	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
 }
 
 double	perp_to_plane(t_vec point, t_vec plane_point, t_vec plane_norm)
