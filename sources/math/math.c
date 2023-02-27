@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:53:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/24 20:56:42 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:54:38 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,7 @@ t_vec	fill_coord(double c1, double c2, double c3)
 
 double	vect_norm(t_vec v)
 {
-	double	sum_sqr;
-
-	sum_sqr = int_pow(v.x, 2) + int_pow(v.y, 2) + int_pow(v.z, 2);
-	return (sqrt(sum_sqr));
+	return (sqrt(norm_raised_2(v)));
 }
 
 t_vec	normalize(t_vec v)

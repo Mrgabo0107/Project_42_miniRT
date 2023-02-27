@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paint.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/26 18:30:36 by ana              ###   ########.fr       */
+/*   Updated: 2023/02/27 16:59:54 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,6 @@ static uint	get_color(t_mrt *mrt, t_inter *ctr)
 	return (0x000000);
 }
 
-t_inter	fill_ctrl(t_mrt *mrt, int type, int index, double dist)
-{
-	t_inter	ret;
-
-	ret.type = type;
-	ret.index = index;
-	ret.dist = dist;
-	ret.inter_coor = vec_sum(mrt->cam.pos, scal_vec(dist, mrt->cam.dir));
-	return (ret);
-}
-
 uint	get_pixel_color(t_mrt *mrt, int x, int y)
 {
 	t_inter	ctr_i;
@@ -49,6 +38,7 @@ uint	get_pixel_color(t_mrt *mrt, int x, int y)
 	ctr_i.pxl = screen_pxl_by_indx(&mrt->cam, x, y);
 	dir = normalize(vec_sum(ctr_i.pxl, scal_vec(-1, mrt->cam.pos)));
 	check_planes(mrt, &ctr_i, dir);
+	print_vector(ctr_i.norm_vec);
 	check_spheres(mrt, &ctr_i, dir);
 	check_cylinders(mrt, &ctr_i, dir);
 	// printf("dist: %f\n", ctr_i.dist);

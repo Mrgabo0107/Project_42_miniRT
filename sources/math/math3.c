@@ -42,13 +42,14 @@ t_vec	mtrx_by_vec(t_mtrx m, t_vec v)
 	return (ret);
 }
 
-// t_mtrx	invert_mtrx(t_mtrx m)
-// {
-// 	double	coef;
-// 	t_mtrx	ret;
+t_mtrx	invert_mtrx(t_mtrx m)
+{
+	double	coef;
+	t_mtrx	ret;
 
-// 	coef = 1 / mtrx_det(m);
-// 	ret = mtrx_trsp(m);
-
-// 	return (ret);
-// }
+	coef = 1 / mtrx_det(m);
+	ret = mtrx_trsp(m);
+	ret = mtrx_adj(ret);
+	ret = scal_mtrx(coef, ret);
+	return (ret);
+}

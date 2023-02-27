@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/27 16:46:40 by ana              ###   ########.fr       */
+/*   Updated: 2023/02/27 17:29:58 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ double	ft_cap(t_mrt *mrt, t_cylinder cylinder, t_vec dir, t_vec pos)
 	circle_to_cam = vec_rest(pos, mrt->cam.pos);
 	c = dot_prod(cylinder.dir, circle_to_cam) / dot_prod(cylinder.dir, dir);
 	intersection = vec_sum(mrt->cam.pos, scal_vec(c, dir));
-	if (vec_len(vec_rest(intersection, pos)) > cylinder.radius)
+	if (vect_norm(vec_rest(intersection, pos)) > cylinder.radius)
 		return (-1);
 	return (c);
 }
@@ -82,6 +82,7 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 			c = min_v(l[0], l[1]);
 		else
 			c = max_v(l[0], l[1]);
+		type = CYLINDER;
 		if (c >= 0 && (ctrl->dist == -1 || c < ctrl->dist))
 			*ctrl = (t_inter){ctrl->pxl, CYLINDER, i, c, \
 			vec_sum(mrt->cam.pos, scal_vec(c, dir))};
@@ -100,7 +101,7 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 // 	cylinder_to_cam = vec_rest(cylinder.pos, mrt->cam.pos);
 // 	proj = scal_vec(dot_prod(cylinder.dir, cylinder_to_cam), cylinder.dir);
 // 	proj_to_cam = vec_rest(cylinder_to_cam, proj);
-// 	proj_len = vec_len(proj);
+// 	proj_len = vect_norm(proj);
 // 	c = dot_prod(cylinder.dir, proj_to_cam) / dot_prod(cylinder.dir, dir);
 // 	if (c > 0)
 // 		printf("proj_len = %f, c = %f\n", proj_len, c);
@@ -111,7 +112,7 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 // {
 // 	double	c;
 
-// 	c = vec_len(cross_prod(dir, cylinder.dir)) / vec_len(cylinder.dir);
+// 	c = vect_norm(cross_prod(dir, cylinder.dir)) / vect_norm(cylinder.dir);
 // 	return (c);
 // }
 // {
@@ -119,14 +120,14 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 // 	double	l;
 // 	double		t[2];
 // 	t_discr	discr;
-// 	// c = -dot_prod() / pow(vec_len(vec_sub(cylinder.top, )), 2);
+// 	// c = -dot_prod() / pow(vect_norm(vec_rest(cylinder.top, )), 2);
 
-// 	discr.a = pow(vec_len(dir), 2) - pow(dot_prod(dir, cylinder.dir), 2);
-// 	discr.b = 2 * (dot_prod(dir, vec_sub(mrt->cam.pos, cylinder.pos)) - 
-// 		dot_prod(dir, cylinder.dir) * dot_prod(vec_sub(mrt->cam.pos, 
+// 	discr.a = pow(vect_norm(dir), 2) - pow(dot_prod(dir, cylinder.dir), 2);
+// 	discr.b = 2 * (dot_prod(dir, vec_rest(mrt->cam.pos, cylinder.pos)) - 
+// 		dot_prod(dir, cylinder.dir) * dot_prod(vec_rest(mrt->cam.pos, 
 //cylinder.pos), cylinder.dir));
-// 	discr.c = pow(vec_len(vec_sub(mrt->cam.pos, cylinder.pos)), 2) - 
-// 		pow(dot_prod(vec_sub(mrt->cam.pos, cylinder.pos), cylinder.dir), 2) - 
+// 	discr.c = pow(vect_norm(vec_rest(mrt->cam.pos, cylinder.pos)), 2) - 
+// 		pow(dot_prod(vec_rest(mrt->cam.pos, cylinder.pos), cylinder.dir), 2) - 
 // 		pow(cylinder.radius, 2);
 // 	discr.dscr = pow(discr.b, 2) - 4 * discr.a * discr.c;
 // 	if (discr.dscr < 0)
@@ -150,11 +151,11 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 // 	// else if (t[1] > 0)
 // 	// 	c = t[1];
 // 	l = dot_prod(vec_sum(mrt->cam.pos, scal_vec(c, dir)), cylinder.dir);
-// 	if (l >= 0 && l <= vec_len(vec_sub(cylinder.top, cylinder.pos)))
+// 	if (l >= 0 && l <= vect_norm(vec_rest(cylinder.top, cylinder.pos)))
 // 		return (c);
 // 	if (l < 0)
 // 		return (ft_cap(mrt, cylinder, dir, cylinder.pos));
-// 	if (l > vec_len(vec_sub(cylinder.top, cylinder.pos)))
+// 	if (l > vect_norm(vec_rest(cylinder.top, cylinder.pos)))
 // 		return (ft_cap(mrt, cylinder, dir, cylinder.top));
 // 	return (-1);
 // }

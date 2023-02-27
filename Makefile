@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
+#    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/24 22:00:52 by yridgway         ###   ########.fr        #
+#    Updated: 2023/02/27 13:54:48 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### Compilation ###
 
 CC      = cc
-FLAGS  = -Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
+FLAGS  = -Ofast -flto -g #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
 ### Executable ###
 
 NAME   = minirt
@@ -60,7 +60,6 @@ CAM			=	cam.c \
 				paint.c \
 				check_sphere_inter.c \
 				check_cylinder_inter.c \
-				check_cylinder_inter2.c \
 				check_plane_inter.c \
 				
 # LIBFT_DIR	=	libft/
