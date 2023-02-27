@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/27 17:29:58 by ana              ###   ########.fr       */
+/*   Updated: 2023/02/27 17:33:41 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 			c = min_v(l[0], l[1]);
 		else
 			c = max_v(l[0], l[1]);
-		type = CYLINDER;
 		if (c >= 0 && (ctrl->dist == -1 || c < ctrl->dist))
 			*ctrl = (t_inter){ctrl->pxl, CYLINDER, i, c, \
 			vec_sum(mrt->cam.pos, scal_vec(c, dir))};
