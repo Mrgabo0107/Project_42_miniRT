@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paint.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/27 16:59:54 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:41:48 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ uint	get_pixel_color(t_mrt *mrt, int x, int y)
 	ctr_i.pxl = screen_pxl_by_indx(&mrt->cam, x, y);
 	dir = normalize(vec_sum(ctr_i.pxl, scal_vec(-1, mrt->cam.pos)));
 	check_planes(mrt, &ctr_i, dir);
-	print_vector(ctr_i.norm_vec);
+	// print_vector(ctr_i.norm_vec);
 	check_spheres(mrt, &ctr_i, dir);
 	check_cylinders(mrt, &ctr_i, dir);
 	// printf("dist: %f\n", ctr_i.dist);

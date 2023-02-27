@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cell_filling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:52:58 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/22 20:44:26 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:51:11 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ t_vec	ft_fill_pos(char *cell, int dir)
 	{
 		if (pos.x < -1 || pos.x > 1 || pos.y < -1 || pos.y > 1 || \
 		pos.z < -1 || pos.z > 1)
+			ft_error("Invalid position", cell);
+		if (pos.x == 0 && pos.y == 0 && pos.z == 0)
 			ft_error("Invalid position", cell);
 	}
 	ft_free_array(line);
