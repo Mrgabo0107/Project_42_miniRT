@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/27 19:19:00 by ana              ###   ########.fr       */
+/*   Updated: 2023/02/27 19:53:52 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ float	get_angle_between(t_vec v1, t_vec v2)
 {
 	float	angle;
 
+	if (vect_norm(v1) == 0 || vect_norm(v2) == 0)
+		return (printf("hello\n"), 0);
 	angle = acos(dot_prod(v1, v2) / (vect_norm(v1) * vect_norm(v2)));
 	return (angle);
 }
@@ -44,18 +46,20 @@ uint	diminish_color(uint color, t_vec vec1, t_vec vec2)
 
 static uint	get_color(t_mrt *mrt, t_inter *ctr)
 {
-	int	color;
+	int		color;
+	t_vec	light_direction;
 
 	color = 0x000000;
 	if (ctr->dist != -1)
 	{
+		light_direction = vec_rest(mrt->light.pos, ctr->inter_coor);
 		if (ctr->type == SPHERE)
 			color = mrt->sphere[ctr->index].color;
 		if (ctr->type == CYLINDER)
 			color = mrt->cylinder[ctr->index].color;
 		if (ctr->type == PLANE)
 			color = mrt->plane[ctr->index].color;
-		color = diminish_color(color, ctr->norm_vec, vec_rest(mrt->light.pos, ctr->inter_coor));
+		color = diminish_color(color, ctr->norm_vec, light_direction);
 	}
 	// if (color > 0)
 		// printf("color: %d\n", color);

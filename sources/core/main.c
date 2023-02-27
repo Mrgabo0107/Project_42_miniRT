@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/02/27 17:28:55 by ana              ###   ########.fr       */
+/*   Updated: 2023/02/27 19:25:33 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	key_press(int key, t_mrt *mrt)
 	pixel_calcul(mrt);
 	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
 	printf("cam pos: %f %f %f\n", mrt->cam.pos.x, mrt->cam.pos.y, mrt->cam.pos.z);
+	printf("cam dir: %f %f %f\n", mrt->cam.dir.x, mrt->cam.dir.y, mrt->cam.dir.z);
 	return (key);
 }
 

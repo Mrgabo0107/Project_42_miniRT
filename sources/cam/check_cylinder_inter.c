@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/27 17:33:41 by ana              ###   ########.fr       */
+/*   Updated: 2023/02/27 19:56:23 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,23 @@ double	distance_to_cylinder(t_mrt *mrt, t_cylinder cylinder, t_vec dir)
 	return (-1);
 }
 
+t_vec	norm_cylinder(t_cylinder cylinder, t_vec inter)
+{
+	t_vec	norm;
+	t_vec	circle_to_inter;
+
+	circle_to_inter = vec_rest(inter, cylinder.pos);
+	norm = vec_rest(circle_to_inter, scal_vec(dot_prod(cylinder.dir, \
+	circle_to_inter), cylinder.dir));
+	return (norm);
+}
+
 void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 {
 	int		i;
 	double	l[2];
 	double	c;
+	t_vec	norm;
 
 	i = 0;
 	while (i < mrt->obj_count[CYLINDER])
@@ -82,9 +94,13 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 			c = min_v(l[0], l[1]);
 		else
 			c = max_v(l[0], l[1]);
+		norm = mrt->cylinder[i].dir;
+		if (c == l[0])
+			norm = norm_cylinder(mrt->cylinder[i], \
+			vec_sum(mrt->cam.pos, scal_vec(c, dir)));
 		if (c >= 0 && (ctrl->dist == -1 || c < ctrl->dist))
 			*ctrl = (t_inter){ctrl->pxl, CYLINDER, i, c, \
-			vec_sum(mrt->cam.pos, scal_vec(c, dir))};
+			vec_sum(mrt->cam.pos, scal_vec(c, dir)), norm};
 		i++;
 	}
 }
