@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_plane_inter.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:07:15 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/27 16:57:55 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:59:00 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,11 @@ void	check_planes(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 		if (c >= 0 && (ctrl->dist == -1 || c < ctrl->dist))
 		{
 			inter_coor = vec_sum(mrt->cam.pos, scal_vec(c, dir));
-			if (dot_prod(mrt->plane[i].dir, vec_rest(mrt->cam.pos, inter_coor)) < 0)
-			{
+			if (dot_prod(mrt->plane[i].dir, \
+			vec_rest(mrt->cam.pos, inter_coor)) < 0)
 				norm = scal_vec(-1, mrt->plane[i].dir);
-			}
 			else
-			{
 				norm = mrt->plane[i].dir;
-			}
 			*ctrl = (t_inter){ctrl->pxl, PLANE, i, c, \
 			inter_coor, norm};
 		}
