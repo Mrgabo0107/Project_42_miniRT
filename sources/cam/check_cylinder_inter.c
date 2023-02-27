@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/26 19:13:41 by ana              ###   ########.fr       */
+/*   Updated: 2023/02/27 16:46:40 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 	int		i;
 	double	l[2];
 	double	c;
-	int		type;
 
 	i = 0;
 	while (i < mrt->obj_count[CYLINDER])
@@ -83,12 +82,8 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 			c = min_v(l[0], l[1]);
 		else
 			c = max_v(l[0], l[1]);
-		if (c == l[1])
-			type = SPHERE;
-		else
-			type = CYLINDER;
 		if (c >= 0 && (ctrl->dist == -1 || c < ctrl->dist))
-			*ctrl = (t_inter){ctrl->pxl, type, i, c, \
+			*ctrl = (t_inter){ctrl->pxl, CYLINDER, i, c, \
 			vec_sum(mrt->cam.pos, scal_vec(c, dir))};
 		i++;
 	}
