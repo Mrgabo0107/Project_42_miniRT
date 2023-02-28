@@ -17,14 +17,14 @@ t_vec	vec_rest(t_vec v1, t_vec v2)
 	return (vec_sum(v1, scal_vec(-1, v2)));
 }
 
-double  max_v(double d1, double d2)
+double	max_v(double d1, double d2)
 {
-    if (d1 >= d2)
-        return (d1);
-    return (d2);    
+	if (d1 >= d2)
+		return (d1);
+	return (d2);
 }
 
-double  norm_raised_2(t_vec v)
+double	norm_raised_2(t_vec v)
 {
 	double	ret;
 

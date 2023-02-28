@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/28 02:01:44 by yoel             ###   ########.fr       */
+/*   Updated: 2023/02/28 17:00:27 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ double	ft_cap(t_mrt *mrt, t_cylinder cylinder, t_vec dir, t_vec pos)
 	t_vec	intersection;
 
 	circle_to_cam = vec_rest(pos, mrt->cam.pos);
-	c = dot_prod(cylinder.dir, circle_to_cam) / dot_prod(cylinder.dir, dir);
+	c = v_abs(dot_prod(cylinder.dir, circle_to_cam) / dot_prod(cylinder.dir, dir));
 	intersection = vec_sum(mrt->cam.pos, scal_vec(c, dir));
 	if (vect_norm(vec_rest(intersection, pos)) > cylinder.radius)
 		return (-1);
