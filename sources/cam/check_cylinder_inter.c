@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/27 21:52:23 by yoel             ###   ########.fr       */
+/*   Updated: 2023/02/28 02:01:44 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,13 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 	while (i < mrt->obj_count[CYLINDER])
 	{
 		c = distance_to_cylinder(mrt, mrt->cylinder[i], dir);
-		norm = norm_cylinder(mrt->cylinder[i], \
-		vec_sum(mrt->cam.pos, scal_vec(c, dir)));
 		if (c >= 0 && (ctrl->dist == -1 || c < ctrl->dist))
+		{
+			norm = norm_cylinder(mrt->cylinder[i], \
+			vec_sum(mrt->cam.pos, scal_vec(c, dir)));
 			*ctrl = (t_inter){ctrl->pxl, CYLINDER, i, c, \
 			vec_sum(mrt->cam.pos, scal_vec(c, dir)), norm};
+		}
 		i++;
 	}
 }
