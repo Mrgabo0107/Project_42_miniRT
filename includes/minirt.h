@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/27 12:58:24 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/28 18:39:53 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <math.h>
 # include <time.h>
 # include <sys/types.h>
+# include <limits.h>
 
 // # define WX 10
 // # define WY 5
@@ -136,12 +137,13 @@ t_base		get_cyl_base(t_vec	dir);
 t_vec		mtrx_by_vec(t_mtrx m, t_vec v);
 double		mtrx_det(t_mtrx m);
 t_mtrx		mtrx_trsp(t_mtrx m);
-t_mtrx      mtrx_adj(t_mtrx m);
-t_mtrx      scal_mtrx(double s, t_mtrx m);
-t_mtrx      invert_mtrx(t_mtrx m);
+t_mtrx		mtrx_adj(t_mtrx m);
+t_mtrx		scal_mtrx(double s, t_mtrx m);
+t_mtrx		invert_mtrx(t_mtrx m);
 
 //plane
-// double		distance_to_plane(t_vec point, t_vec pos, t_vec dir, t_vec ray);
+double		distance_to_plane(t_vec start_point, t_vec plane_pos,
+				t_vec plane_dir, t_vec ray);
 double		perp_to_plane(t_vec point, t_vec plane_pos, t_vec plane_norm);
 
 //camera
@@ -151,9 +153,10 @@ void		my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color);
 void		pixel_calcul(t_mrt *mrt);
 uint		get_pixel_color(t_mrt *mrt, int x, int y);
 void		check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec dir);
+double distance_to_cap(t_vec start_pos, t_cylinder cylinder, t_vec ray);
 void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir);
 void		check_planes(t_mrt *mrt, t_inter *ctrl, t_vec dir);
-t_inter 	fill_ctrl(t_mrt *mrt, int type, int index, double dist);
+t_inter		fill_ctrl(t_mrt *mrt, int type, int index, double dist);
 
 
 //debug
@@ -161,6 +164,6 @@ void		print_pixels_coord(t_cam *cam);
 
 int			ft_printf(const char *input, ...);
 void		ft_printf_objects(t_mrt *mrt);
-void        print_mtrx(t_mtrx m);
+void		print_mtrx(t_mtrx m);
 
 #endif
