@@ -6,25 +6,11 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:07:15 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/28 17:21:32 by yoel             ###   ########.fr       */
+/*   Updated: 2023/02/28 17:22:59 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-// double	distance_to_plane(t_vec point, t_vec pos, t_vec dir, t_vec ray)
-// {
-// 	double	c;
-// 	t_vec	plane_to_point;
-// 	// double	den;
-
-// 	// den = dot_prod(dir, ray);
-// 	// if (den == 0.0)
-// 	// 	return (-1);
-// 	plane_to_point = vec_rest(pos, point);
-// 	c = v_abs(dot_prod(dir, plane_to_point));// / den;
-// 	return (c);
-// }
 
 double	distance_to_plane(t_vec start_point, t_vec plane_pos,
 		t_vec plane_dir, t_vec ray)
