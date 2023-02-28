@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_sphere_inter.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:31:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/24 06:39:02 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:01:21 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,10 @@ void	check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 		{
 			c = solve_sph_quad(&discr);
 			if (c >= 0 && (ctrl->dist == -1 || c < ctrl->dist))
-			{
-				ctrl->type = SPHERE;
-				ctrl->index = i;
-				ctrl->dist = c;
-				ctrl->inter_coor = vec_sum(mrt->cam.pos, scal_vec(c, dir));
-			}
+				*ctrl = (t_inter){ctrl->pxl, SPHERE, i, c, \
+				vec_sum(mrt->cam.pos, scal_vec(c, dir)), \
+				vec_rest(vec_sum(mrt->cam.pos, scal_vec(c, dir)), \
+				mrt->sphere[i].center)};
 		}
 		i++;
 	}

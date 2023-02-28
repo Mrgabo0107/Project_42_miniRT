@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cylinder_inter.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/27 17:32:23 by ana              ###   ########.fr       */
+/*   Updated: 2023/02/27 21:52:23 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,15 @@ double	distance_to_cylinder(t_mrt *mrt, t_cylinder cylinder, t_vec dir)
 	t_discr	discr;
 	double	l[2];
 	double	t[2];
+	double	c;
 
 	w = vec_rest(mrt->cam.pos, cylinder.pos);
-	discr.a = dot_prod(dir, dir) - pow(dot_prod(dir, cylinder.dir), 2);
+	discr.a = dot_prod(dir, dir) - int_pow(dot_prod(dir, cylinder.dir), 2);
 	discr.b = 2 * (dot_prod(dir, w) - dot_prod(dir, cylinder.dir) \
 	* dot_prod(w, cylinder.dir));
-	discr.c = dot_prod(w, w) - pow(dot_prod(w, cylinder.dir), 2) \
-	- pow(cylinder.radius, 2);
-	discr.dscr = pow(discr.b, 2) - 4 * discr.a * discr.c;
+	discr.c = dot_prod(w, w) - int_pow(dot_prod(w, cylinder.dir), 2) \
+	- int_pow(cylinder.radius, 2);
+	discr.dscr = int_pow(discr.b, 2) - 4 * discr.a * discr.c;
 	if (discr.dscr <= 0)
 		return (-1);
 	t[0] = (-discr.b - sqrt(discr.dscr)) / (2 * discr.a);
@@ -61,35 +62,50 @@ double	distance_to_cylinder(t_mrt *mrt, t_cylinder cylinder, t_vec dir)
 	l[1] = perp_to_plane(vec_sum(mrt->cam.pos, scal_vec(t[1], dir)), \
 	cylinder.pos, cylinder.dir);
 	if (l[0] >= 0 && l[0] <= cylinder.height / 2)
-		return (t[0]);
+	{
+		c = distance_to_cap(mrt, cylinder, dir);
+		if (c >= 0 && t[0] >= 0)
+			return (min_v(t[0], c));
+		return (max_v(t[0], c));
+		// return (t[0]);
+	}
 	if (l[1] >= 0 && l[1] <= cylinder.height / 2)
-		return (t[1]);
+	{
+		c = distance_to_cap(mrt, cylinder, dir);
+		if (c >= 0 && t[1] >= 0)
+			return (min_v(t[1], c));
+		return (max_v(t[1], c));
+		// return (t[1]);
+	}
 	return (-1);
+}
+
+t_vec	norm_cylinder(t_cylinder cylinder, t_vec inter)
+{
+	t_vec	norm;
+	t_vec	circle_to_inter;
+
+	circle_to_inter = vec_rest(inter, cylinder.pos);
+	norm = vec_rest(circle_to_inter, scal_vec(dot_prod(cylinder.dir, \
+	circle_to_inter), cylinder.dir));
+	return (norm);
 }
 
 void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 {
 	int		i;
-	double	l[2];
 	double	c;
-	int		type;
+	t_vec	norm;
 
 	i = 0;
-	mrt->cylinder[i].top = vec_sum(mrt->cylinder[i].pos, \
-	scal_vec(mrt->cylinder[i].height / 2, mrt->cylinder[i].dir));
-	mrt->cylinder[i].bottom = vec_sum(mrt->cylinder[i].pos, \
-	scal_vec(-mrt->cylinder[i].height / 2, mrt->cylinder[i].dir));
 	while (i < mrt->obj_count[CYLINDER])
 	{
-		l[0] = distance_to_cylinder(mrt, mrt->cylinder[i], dir);
-		l[1] = distance_to_cap(mrt, mrt->cylinder[i], dir);
-		if (l[0] >= 0 && l[1] >= 0)
-			c = min_v(l[0], l[1]);
-		else
-			c = max_v(l[0], l[1]);
+		c = distance_to_cylinder(mrt, mrt->cylinder[i], dir);
+		norm = norm_cylinder(mrt->cylinder[i], \
+		vec_sum(mrt->cam.pos, scal_vec(c, dir)));
 		if (c >= 0 && (ctrl->dist == -1 || c < ctrl->dist))
 			*ctrl = (t_inter){ctrl->pxl, CYLINDER, i, c, \
-			vec_sum(mrt->cam.pos, scal_vec(c, dir))};
+			vec_sum(mrt->cam.pos, scal_vec(c, dir)), norm};
 		i++;
 	}
 }

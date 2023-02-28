@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 12:12:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/27 12:33:10 by gamoreno         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/02/28 01:10:26 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "minirt.h"
 
@@ -50,6 +51,8 @@ int	key_press(int key, t_mrt *mrt)
 	set_all_cam_values(&mrt->cam);
 	pixel_calcul(mrt);
 	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
+	printf("cam pos: %f %f %f\n", mrt->cam.pos.x, mrt->cam.pos.y, mrt->cam.pos.z);
+	printf("cam dir: %f %f %f\n", mrt->cam.dir.x, mrt->cam.dir.y, mrt->cam.dir.z);
 	return (key);
 }
 
@@ -73,7 +76,7 @@ int	main(int ac, char **ag)
 	if (ft_parse(&mrt, ag[1]))
 		return (printf("Error\n"), 1);
 	printf("Done parsing\n");
-	ft_printf_objects(&mrt);
+	// ft_printf_objects(&mrt);
 	// print_pixels_coord(&mrt.cam);
 	set_all_cam_values(&mrt.cam);
 	pixel_calcul(&mrt);
