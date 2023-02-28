@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/28 18:39:53 by yoel             ###   ########.fr       */
+/*   Updated: 2023/02/28 20:47:48 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,12 +152,11 @@ t_vec		screen_pxl_by_indx(t_cam *cam, int i, int j);
 void		my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color);
 void		pixel_calcul(t_mrt *mrt);
 uint		get_pixel_color(t_mrt *mrt, int x, int y);
-void		check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec dir);
-double distance_to_cap(t_vec start_pos, t_cylinder cylinder, t_vec ray);
+void		check_spheres(t_mrt *mrt, t_vec point, t_inter *ctrl, t_vec dir);
+double		distance_to_cap(t_vec start_pos, t_cylinder cylinder, t_vec ray);
 void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir);
 void		check_planes(t_mrt *mrt, t_inter *ctrl, t_vec dir);
 t_inter		fill_ctrl(t_mrt *mrt, int type, int index, double dist);
-
 
 //debug
 void		print_pixels_coord(t_cam *cam);
