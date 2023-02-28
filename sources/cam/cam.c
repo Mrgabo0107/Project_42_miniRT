@@ -60,7 +60,7 @@ void print_pixels_coord(t_cam *cam)
 		while (i <= WX)
 		{
 			aux = screen_pxl_by_indx(cam, i, j);
-			// print_vector(aux);
+			print_vector(aux);
 			i++;
 		}
 		printf("\n");

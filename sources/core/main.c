@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/02/27 19:25:33 by ana              ###   ########.fr       */
+/*   Updated: 2023/02/28 01:10:26 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	main(int ac, char **ag)
 	if (ft_parse(&mrt, ag[1]))
 		return (printf("Error\n"), 1);
 	printf("Done parsing\n");
-	ft_printf_objects(&mrt);
+	// ft_printf_objects(&mrt);
 	// print_pixels_coord(&mrt.cam);
 	set_all_cam_values(&mrt.cam);
 	pixel_calcul(&mrt);
