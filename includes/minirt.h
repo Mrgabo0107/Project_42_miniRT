@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/01 20:16:33 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/01 20:48:38 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@
 // # define WY 5
 // # define IX 10
 // # define IY 5
-// # define WX 801
-// # define WY 401
-// # define IX 801
-// # define IY 401
-# define WX 2000
-# define WY 1000
-# define IX 2000
-# define IY 1000
+# define WX 801
+# define WY 401
+# define IX 801
+# define IY 401
+// # define WX 2000
+// # define WY 1000
+// # define IX 2000
+// # define IY 1000
 # define EXIT_ERROR -777
 # define ADD_TO_MEM -666
 # define EXIT_OK -555
@@ -160,6 +160,7 @@ void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir);
 
 
 //camera
+t_inter		check_intersections(t_mrt *mrt, t_vec point, t_vec dir);
 void		set_all_cam_values(t_cam *cam);
 t_vec		screen_pxl_by_indx(t_cam *cam, int i, int j);
 void		my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color);
