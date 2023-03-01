@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/03/01 06:20:30 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/01 22:18:53 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	key_press(int key, t_mrt *mrt)
 	set_all_cam_values(&mrt->cam);
 	pixel_calcul(mrt);
 	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
-	// printf("cam pos: %f %f %f\n", mrt->cam.pos.x, mrt->cam.pos.y, mrt->cam.pos.z);
+	printf("cam pos: %f %f %f\n", mrt->cam.pos.x, mrt->cam.pos.y, mrt->cam.pos.z);
 	// printf("cam dir: %f %f %f\n", mrt->cam.dir.x, mrt->cam.dir.y, mrt->cam.dir.z);
 	return (key);
 }
