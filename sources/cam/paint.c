@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/01 07:53:42 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/01 19:21:58 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_inter	check_intersections(t_mrt *mrt, t_vec point, t_vec dir)
 	ret.dist = -1;
 	check_planes(mrt, &ret, point, dir);
 	check_spheres(mrt, &ret, point, dir);
-	check_cylinders(mrt, &ret, dir);
+	check_cylinders(mrt, &ret, point, dir);
 	return (ret);
 }
 

@@ -6,7 +6,7 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/01 07:59:24 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/03/01 19:43:33 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ MAT			=	math1.c \
 				math2.c \
 				math3.c \
 				math4.c \
-				math_cyl.c
+				math5.c \
 
 CAM_DIR		=	cam/
 CAM			=	cam.c \
@@ -72,6 +72,7 @@ SPHERE		=	sphere.c \
 
 CYLIN_DIR	=	cylinder/
 CYLIN		=	cylinder.c \
+				math_cyl.c \
 
 # LIBFT_DIR	=	libft/
 # LIBFT		=	libft.a

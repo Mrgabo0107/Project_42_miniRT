@@ -116,8 +116,6 @@ typedef struct s_cylinder
 {
 	t_vec	pos;
 	t_vec	dir;
-	t_vec	top;
-	t_vec	bottom;
 	double	radius;
 	double	height;
 	uint	color;

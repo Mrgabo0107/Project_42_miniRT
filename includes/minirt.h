@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/01 07:25:24 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/01 19:47:46 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ t_mtrx		mtrx_adj(t_mtrx m);
 t_mtrx		scal_mtrx(double s, t_mtrx m);
 t_mtrx		invert_mtrx(t_mtrx m);
 double		perp_to_plane(t_vec point, t_vec plane_pos, t_vec plane_norm);
+t_mtrx		fill_mtrx(t_vec v1, t_vec v2, t_vec v3);
 
 //plane
 t_vec		get_normal_plane(t_mrt *mrt, t_inter inter);
@@ -150,14 +151,17 @@ void		check_planes(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 t_vec		get_normal_sphere(t_mrt *mrt, t_inter inter);
 void		check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 
+//cylinder
+t_vec		get_normal_cylinder(t_mtr, *mrt, t_inter inter);
+void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
+
+
 //camera
 void		set_all_cam_values(t_cam *cam);
 t_vec		screen_pxl_by_indx(t_cam *cam, int i, int j);
 void		my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color);
 void		pixel_calcul(t_mrt *mrt);
 uint		get_pixel_color(t_mrt *mrt, int x, int y);
-double		distance_to_cap(t_vec start_pos, t_cylinder cylinder, t_vec ray);
-void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir);
 t_inter		fill_ctrl(t_mrt *mrt, int type, int index, double dist);
 
 
