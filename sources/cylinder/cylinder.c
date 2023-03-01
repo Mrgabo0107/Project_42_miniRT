@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_cylinder_inter.c                             :+:      :+:    :+:   */
+/*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/28 18:43:37 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/01 07:59:08 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,9 @@ double	distance_to_cylinder(t_mrt *mrt, t_cylinder cyl, t_vec dir)
 {
 	t_vec	w;
 	t_discr	discr;
-	double	t;
-	double	l;
-	double	c;
+	// double	t;
+	// double	l;
+	// double	c;
 
 	w = vec_rest(mrt->cam.pos, cyl.pos);
 	discr.a = dot_prod(dir, dir) - int_pow(dot_prod(dir, cyl.dir), 2);
@@ -135,8 +135,8 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 		{
 			norm = norm_cylinder(mrt->cylinder[i], \
 			vec_sum(mrt->cam.pos, scal_vec(c, dir)));
-			*ctrl = (t_inter){ctrl->pxl, CYLINDER, i, c, \
-			vec_sum(mrt->cam.pos, scal_vec(c, dir)), norm};
+			*ctrl = (t_inter){CYLINDER, i, c, \
+			vec_sum(mrt->cam.pos, scal_vec(c, dir)), fill_coord(0, 0, 0)};
 		}
 		i++;
 	}

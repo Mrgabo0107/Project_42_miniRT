@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/22 21:19:44 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/01 04:53:23 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,18 +90,18 @@ void	ft_fill_objs(t_mrt *mrt, t_table *table, int count[6])
 int	ft_parse(t_mrt *mrt, char *file)
 {
 	t_table	*table;
-	int		i;
+	// int		i;
 
 	table = ft_fill_table(file);
 	ft_count_objs(table, mrt->obj_count);
 	ft_fill_objs(mrt, table, mrt->obj_count);
-	while (table)
-	{
-		i = 0;
-		while (i < 7)
-			ft_printf("[%s] ", table->line[i++]);
-		ft_printf("\n");
-		table = table->next;
-	}
+	// while (table)
+	// {
+	// 	i = 0;
+	// 	while (i < 7)
+	// 		ft_printf("[%s] ", table->line[i++]);
+	// 	ft_printf("\n");
+	// 	table = table->next;
+	// }
 	return (0);
 }

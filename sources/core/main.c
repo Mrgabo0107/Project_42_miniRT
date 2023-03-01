@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/02/28 01:10:26 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/01 06:20:30 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int	key_press(int key, t_mrt *mrt)
 	set_all_cam_values(&mrt->cam);
 	pixel_calcul(mrt);
 	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
-	printf("cam pos: %f %f %f\n", mrt->cam.pos.x, mrt->cam.pos.y, mrt->cam.pos.z);
-	printf("cam dir: %f %f %f\n", mrt->cam.dir.x, mrt->cam.dir.y, mrt->cam.dir.z);
+	// printf("cam pos: %f %f %f\n", mrt->cam.pos.x, mrt->cam.pos.y, mrt->cam.pos.z);
+	// printf("cam dir: %f %f %f\n", mrt->cam.dir.x, mrt->cam.dir.y, mrt->cam.dir.z);
 	return (key);
 }
 
@@ -75,7 +75,7 @@ int	main(int ac, char **ag)
 		return (1);
 	if (ft_parse(&mrt, ag[1]))
 		return (printf("Error\n"), 1);
-	printf("Done parsing\n");
+	// printf("Done parsing\n");
 	// ft_printf_objects(&mrt);
 	// print_pixels_coord(&mrt.cam);
 	set_all_cam_values(&mrt.cam);

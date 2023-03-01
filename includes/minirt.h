@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/28 20:47:48 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/01 19:49:05 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@
 // # define WY 5
 // # define IX 10
 // # define IY 5
-# define WX 2000
-# define WY 1000
-# define IX 2000
-# define IY 1000
+# define WX 801
+# define WY 401
+# define IX 801
+# define IY 401
 # define EXIT_ERROR -777
 # define ADD_TO_MEM -666
 # define EXIT_OK -555
@@ -140,11 +140,15 @@ t_mtrx		mtrx_trsp(t_mtrx m);
 t_mtrx		mtrx_adj(t_mtrx m);
 t_mtrx		scal_mtrx(double s, t_mtrx m);
 t_mtrx		invert_mtrx(t_mtrx m);
+double		perp_to_plane(t_vec point, t_vec plane_pos, t_vec plane_norm);
 
 //plane
-double		distance_to_plane(t_vec start_point, t_vec plane_pos,
-				t_vec plane_dir, t_vec ray);
-double		perp_to_plane(t_vec point, t_vec plane_pos, t_vec plane_norm);
+t_vec		get_normal_plane(t_mrt *mrt, t_inter inter);
+void		check_planes(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
+
+//sphere
+t_vec		get_normal_sphere(t_mrt *mrt, t_inter inter);
+void		check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 
 //camera
 void		set_all_cam_values(t_cam *cam);
@@ -152,10 +156,8 @@ t_vec		screen_pxl_by_indx(t_cam *cam, int i, int j);
 void		my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color);
 void		pixel_calcul(t_mrt *mrt);
 uint		get_pixel_color(t_mrt *mrt, int x, int y);
-void		check_spheres(t_mrt *mrt, t_vec point, t_inter *ctrl, t_vec dir);
 double		distance_to_cap(t_vec start_pos, t_cylinder cylinder, t_vec ray);
 void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir);
-void		check_planes(t_mrt *mrt, t_inter *ctrl, t_vec dir);
 t_inter		fill_ctrl(t_mrt *mrt, int type, int index, double dist);
 
 //debug
@@ -164,5 +166,8 @@ void		print_pixels_coord(t_cam *cam);
 int			ft_printf(const char *input, ...);
 void		ft_printf_objects(t_mrt *mrt);
 void		print_mtrx(t_mtrx m);
+
+//color
+uint		get_color(t_mrt *mrt, t_inter *ctr);
 
 #endif
