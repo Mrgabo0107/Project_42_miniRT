@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_plane_inter.c                                :+:      :+:    :+:   */
+/*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:07:15 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/28 17:22:59 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/01 07:38:34 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+t_vec	get_normal_plane(t_mrt *mrt, t_inter inter)
+{
+	if (dot_prod(vec_rest(mrt->cam.pos, mrt->plane[inter.index].pos),
+			mrt->plane[inter.index].dir) < 0.0)
+		return (scal_vec(-1, mrt->plane[inter.index].dir));
+	return (mrt->plane[inter.index].dir);
+}
 
 double	distance_to_plane(t_vec start_point, t_vec plane_pos,
 		t_vec plane_dir, t_vec ray)
@@ -27,29 +35,28 @@ double	distance_to_plane(t_vec start_point, t_vec plane_pos,
 	return (-1);
 }
 
-void	check_planes(t_mrt *mrt, t_inter *ctrl, t_vec dir)
+void	check_planes(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 {
 	int		i;
 	double	c;
-	t_vec	norm;
 	t_vec	inter_coor;
 
 	i = 0;
 	while (i < mrt->obj_count[PLANE])
 	{
-		c = distance_to_plane(mrt->cam.pos, mrt->plane[i].pos,
-				mrt->plane[i].dir, dir);
-		if (c >= 0 && (ctrl->dist == -1 || c < ctrl->dist))
+		if (v_abs(dot_prod(mrt->plane[i].dir, vec_rest(dir, point))) < 0.0001)
+			i++;
+		else
 		{
-			inter_coor = vec_sum(mrt->cam.pos, scal_vec(c, dir));
-			// if (dot_prod(mrt->plane[i].dir, 
-			// vec_rest(mrt->cam.pos, inter_coor)) < 0)
-			// 	norm = scal_vec(-1, mrt->plane[i].dir);
-			// else
-			norm = mrt->plane[i].dir;
-			*ctrl = (t_inter){ctrl->pxl, PLANE, i, c, \
-			inter_coor, norm};
+			c = distance_to_plane(point, mrt->plane[i].pos,
+					mrt->plane[i].dir, dir);
+			if (c > 0 && (ctrl->dist == -1 || c < ctrl->dist))
+			{
+				inter_coor = vec_sum(point, scal_vec(c, dir));
+				*ctrl = (t_inter){PLANE, i, c, inter_coor, \
+				fill_coord(0, 0, 0)};
+			}
+			i++;
 		}
-		i++;
 	}
 }
