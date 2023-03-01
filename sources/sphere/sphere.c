@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:31:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/01 07:39:12 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/01 22:10:56 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_vec	get_normal_sphere(t_mrt *mrt, t_inter inter)
 	mrt->sphere[inter.index].center)));
 }
 
-static t_discr	get_sph_dscr(t_vec ncam, t_vec dir, double square_rad)
+t_discr	get_sph_dscr(t_vec ncam, t_vec dir, double square_rad)
 {
 	t_discr	ret;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:02:11 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/19 23:18:21 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/01 22:52:08 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	eval_obj(char *line)
 		return (AMBIENT);
 	if (ft_strcmp_1(line, "C") == 0)
 		return (CAMERA);
+	if (line[0] == '#')
+		return (COMMENT);
 	return (-1);
 }
 
