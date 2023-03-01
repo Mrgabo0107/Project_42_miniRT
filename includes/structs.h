@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/27 14:35:06 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/0 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,11 @@ typedef struct s_cam
 
 typedef struct s_inter
 {
-	t_vec	pxl;
 	int		type;
 	int		index;
 	double	dist;
 	t_vec	inter_coor;
-	t_vec	norm_vec;
+	t_vec	norm;
 }			t_inter;
 
 typedef struct s_discr

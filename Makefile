@@ -3,18 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+         #
+#    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/28 16:40:08 by yoel             ###   ########.fr        #
+#    Updated: 2023/03/01 07:59:24 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### Compilation ###
 
 CC      = cc
-FLAGS  = #-Wall -Werror -Wextra -g #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
-FLAGS  = -Ofast -flto
+# FLAGS  = #-Wall -Werror -Wextra -g #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
+FLAGS  = -Wall -Werror -Wextra -Ofast -flto
+# FLAGS  = -Ofast -flto
 ### Executable ###
 #-Ofast -flto 
 NAME   = minirt
@@ -50,7 +51,7 @@ UTILS		=	tools.c \
 				ft_printf.c \
 
 MAT_DIR		=	math/
-MAT			=	math.c \
+MAT			=	math1.c \
 				math2.c \
 				math3.c \
 				math4.c \
@@ -59,10 +60,19 @@ MAT			=	math.c \
 CAM_DIR		=	cam/
 CAM			=	cam.c \
 				paint.c \
-				check_sphere_inter.c \
-				check_cylinder_inter.c \
-				check_plane_inter.c \
 				
+COLOR_DIR	=	color/
+COLOR		=	color1.c \
+
+PLANE_DIR	=	plane/
+PLANE		=	plane.c \
+				
+SPHERE_DIR	=	sphere/
+SPHERE		=	sphere.c \
+
+CYLIN_DIR	=	cylinder/
+CYLIN		=	cylinder.c \
+
 # LIBFT_DIR	=	libft/
 # LIBFT		=	libft.a
 
@@ -71,12 +81,20 @@ OBJ_DIRS	+=	$(addprefix	$(OBJ_PATH),$(PARSE_DIR))
 OBJ_DIRS	+=	$(addprefix	$(OBJ_PATH),$(UTIL_DIR))
 OBJ_DIRS	+=	$(addprefix	$(OBJ_PATH),$(MAT_DIR))
 OBJ_DIRS	+=	$(addprefix	$(OBJ_PATH),$(CAM_DIR))
+OBJ_DIRS	+=	$(addprefix	$(OBJ_PATH),$(COLOR_DIR))
+OBJ_DIRS	+=	$(addprefix	$(OBJ_PATH),$(PLANE_DIR))
+OBJ_DIRS	+=	$(addprefix	$(OBJ_PATH),$(SPHERE_DIR))
+OBJ_DIRS	+=	$(addprefix	$(OBJ_PATH),$(CYLIN_DIR))
 
 SOURCES		+=	$(addprefix	$(CORE_DIR),$(CORE))
 SOURCES		+=	$(addprefix	$(PARSE_DIR),$(PARSE))
 SOURCES		+=	$(addprefix	$(UTIL_DIR),$(UTILS))
 SOURCES		+=	$(addprefix	$(MAT_DIR),$(MAT))
 SOURCES		+=	$(addprefix	$(CAM_DIR),$(CAM))
+SOURCES		+=	$(addprefix	$(COLOR_DIR),$(COLOR))
+SOURCES		+=	$(addprefix	$(PLANE_DIR),$(PLANE))
+SOURCES		+=	$(addprefix	$(SPHERE_DIR),$(SPHERE))
+SOURCES		+=	$(addprefix	$(CYLIN_DIR),$(CYLIN))
 
 ### Objects ###
 
