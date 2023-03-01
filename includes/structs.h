@@ -122,6 +122,13 @@ typedef struct s_cylinder
 	t_base	base;
 }			t_cylinder;
 
+typedef struct s_new_bas
+{
+	t_vec	new_cam;
+	t_vec	new_dirc;
+	t_mtrx	chg_base;
+}	t_new_bas;
+
 typedef struct s_light
 {
 	t_vec	pos;
