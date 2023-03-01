@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/01 19:49:05 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/01 20:16:33 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,14 @@
 // # define WY 5
 // # define IX 10
 // # define IY 5
-# define WX 801
-# define WY 401
-# define IX 801
-# define IY 401
+// # define WX 801
+// # define WY 401
+// # define IX 801
+// # define IY 401
+# define WX 2000
+# define WY 1000
+# define IX 2000
+# define IY 1000
 # define EXIT_ERROR -777
 # define ADD_TO_MEM -666
 # define EXIT_OK -555
@@ -150,6 +154,11 @@ void		check_planes(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 t_vec		get_normal_sphere(t_mrt *mrt, t_inter inter);
 void		check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 
+//cylinder
+t_vec		get_normal_cylinder(t_mrt *mrt, t_inter inter);
+void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir);
+
+
 //camera
 void		set_all_cam_values(t_cam *cam);
 t_vec		screen_pxl_by_indx(t_cam *cam, int i, int j);
@@ -157,7 +166,6 @@ void		my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color);
 void		pixel_calcul(t_mrt *mrt);
 uint		get_pixel_color(t_mrt *mrt, int x, int y);
 double		distance_to_cap(t_vec start_pos, t_cylinder cylinder, t_vec ray);
-void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir);
 t_inter		fill_ctrl(t_mrt *mrt, int type, int index, double dist);
 
 //debug

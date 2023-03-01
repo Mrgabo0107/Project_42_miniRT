@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/01 07:59:08 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/01 20:16:14 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,14 +110,14 @@ double	distance_to_cylinder(t_mrt *mrt, t_cylinder cyl, t_vec dir)
 	return (check_limits(mrt, cyl, dir, discr));
 }
 
-t_vec	norm_cylinder(t_cylinder cylinder, t_vec inter)
+t_vec	get_normal_cylinder(t_mrt *mrt, t_inter inter)
 {
 	t_vec	norm;
 	t_vec	circle_to_inter;
 
-	circle_to_inter = vec_rest(inter, cylinder.pos);
-	norm = vec_rest(circle_to_inter, scal_vec(dot_prod(cylinder.dir, \
-	circle_to_inter), cylinder.dir));
+	circle_to_inter = vec_rest(inter.inter_coor, mrt->cylinder[inter.index].pos);
+	norm = vec_rest(circle_to_inter, scal_vec(dot_prod(mrt->cylinder[inter.index].dir, \
+	circle_to_inter), mrt->cylinder[inter.index].dir));
 	return (norm);
 }
 
@@ -125,7 +125,7 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 {
 	int		i;
 	double	c;
-	t_vec	norm;
+	// t_vec	norm;
 
 	i = 0;
 	while (i < mrt->obj_count[CYLINDER])
@@ -133,7 +133,7 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir)
 		c = distance_to_cylinder(mrt, mrt->cylinder[i], dir);
 		if (c >= 0 && (ctrl->dist == -1 || c < ctrl->dist))
 		{
-			norm = norm_cylinder(mrt->cylinder[i], \
+			// norm = norm_cylinder(mrt->cylinder[i], \
 			vec_sum(mrt->cam.pos, scal_vec(c, dir)));
 			*ctrl = (t_inter){CYLINDER, i, c, \
 			vec_sum(mrt->cam.pos, scal_vec(c, dir)), fill_coord(0, 0, 0)};
