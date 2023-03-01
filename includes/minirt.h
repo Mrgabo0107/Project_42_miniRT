@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/01 22:10:43 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/01 22:52:35 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@
 # define DOWN 65364
 # define LEFT 65361
 # define RIGHT 65363
+# define COMMENT 123
 
 //error messages
 # define TOO_MANY_CAPITALS "Too many capital letters in the scene"
