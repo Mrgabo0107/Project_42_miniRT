@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/01 20:48:38 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/01 22:10:43 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@
 // # define WY 5
 // # define IX 10
 // # define IY 5
-# define WX 801
-# define WY 401
-# define IX 801
-# define IY 401
-// # define WX 2000
-// # define WY 1000
-// # define IX 2000
-// # define IY 1000
+// # define WX 801
+// # define WY 401
+// # define IX 801
+// # define IY 401
+# define WX 2000
+# define WY 1000
+# define IX 2000
+# define IY 1000
 # define EXIT_ERROR -777
 # define ADD_TO_MEM -666
 # define EXIT_OK -555
@@ -153,10 +153,11 @@ void		check_planes(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 //sphere
 t_vec		get_normal_sphere(t_mrt *mrt, t_inter inter);
 void		check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
+t_discr		get_sph_dscr(t_vec ncam, t_vec dir, double square_rad);
 
 //cylinder
 t_vec		get_normal_cylinder(t_mrt *mrt, t_inter inter);
-void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec dir);
+void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 
 
 //camera
@@ -177,6 +178,6 @@ void		ft_printf_objects(t_mrt *mrt);
 void		print_mtrx(t_mtrx m);
 
 //color
-uint		get_color(t_mrt *mrt, t_inter *ctr);
+uint		get_color(t_mrt *mrt, t_inter *ctr, t_vec dir);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/01 21:33:12 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/01 22:13:03 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,13 @@ t_vec	vec_mult(t_vec vec, float mult)
 	return (vec);
 }
 
-uint	get_color(t_mrt *mrt, t_inter *ctr)
+uint	get_color(t_mrt *mrt, t_inter *ctr, t_vec dir)
 {
 	int		color;
 	t_vec	light_direction;
 	t_inter	linter;
 	t_vec	start;
+	// t_discr	discr;
 
 	color = 0x00000;
 	if (ctr->dist != -1)
@@ -78,6 +79,10 @@ uint	get_color(t_mrt *mrt, t_inter *ctr)
 		else
 			color = 0x000000;
 	}
+	// new_cam = vec_rest(point, mrt->sphere[i].center);
+	// discr = get_sph_dscr(vec_rest(mrt->cam.pos, mrt->light.pos), dir, int_pow(3, 2));
+	if (((t_discr)(get_sph_dscr(vec_rest(mrt->cam.pos, mrt->light.pos), dir, int_pow(0.2, 2)))).dscr >= 0.0)
+		color = 0xFFFFFF;
 	// if (color > 0)
 		// printf("color: %d\n", color);
 	return (color);

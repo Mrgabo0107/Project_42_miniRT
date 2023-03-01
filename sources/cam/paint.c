@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/01 20:49:42 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/01 22:06:15 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_inter	check_intersections(t_mrt *mrt, t_vec point, t_vec dir)
 	ret.dist = -1;
 	check_planes(mrt, &ret, point, dir);
 	check_spheres(mrt, &ret, point, dir);
-	// check_cylinders(mrt, &ret, dir);
+	check_cylinders(mrt, &ret, point, dir);
 	return (ret);
 }
 
@@ -50,7 +50,7 @@ uint	get_pixel_color(t_mrt *mrt, int x, int y)
 	inter = check_intersections(mrt, mrt->cam.pos, dir);
 	if (inter.dist != -1)
 		inter.norm = get_normal_at_point(mrt, inter);
-	ret = get_color(mrt, &inter);
+	ret = get_color(mrt, &inter, dir);
 	return (ret);
 }
 
