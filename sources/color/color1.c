@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/02 21:09:46 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/02 21:37:41 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ float	get_angle_between(t_vec v1, t_vec v2)
 	return (angle);
 }
 
-t_rgb	diminish_color(t_rgb color, t_vec vec1, t_vec vec2, double ambient)
+t_rgb	diminish_color(t_rgb color, t_vec vec1, t_vec vec2, t_light ambient)
 {
 	float	angle;
 	float	ratio;
@@ -40,10 +40,16 @@ t_rgb	diminish_color(t_rgb color, t_vec vec1, t_vec vec2, double ambient)
 	angle = get_angle_between(vec1, vec2);
 	if (angle > PI / 2)
 		angle = PI / 2;
-	ratio = angle / (PI / 2);// + (1 - ambient);
-	color.r -= color.r * ratio;
-	color.g -= color.g * ratio;
-	color.b -= color.b * ratio;
+	ratio = angle / (PI / 2);;
+	color.r = color.r - (color.r * ratio) + (ambient.color.r * ambient.ratio);
+	color.g = color.g - (color.g * ratio) + (ambient.color.g * ambient.ratio);
+	color.b = color.b - (color.b * ratio) + (ambient.color.b * ambient.ratio);
+	if (color.r > 255)
+		color.r = 255;
+	if (color.g > 255)
+		color.g = 255;
+	if (color.b > 255)
+		color.b = 255;
 	return (color);
 }
 
@@ -95,6 +101,16 @@ t_inter	check_shaddow(t_mrt *mrt, t_vec point, t_vec dir, double len)
 // 	return ((r << 16) | (g << 8) | b);
 // }
 
+t_rgb	ft_get_ambient(t_light amb)
+{
+	t_rgb	color;
+
+	color.r = amb.color.r * amb.ratio;
+	color.g = amb.color.g * amb.ratio;
+	color.b = amb.color.b * amb.ratio;
+	return (color);
+}
+
 t_rgb	get_color(t_mrt *mrt, t_inter *ctr, t_vec dir)
 {
 	t_rgb	color;
@@ -119,9 +135,9 @@ t_rgb	get_color(t_mrt *mrt, t_inter *ctr, t_vec dir)
 		linter = check_shaddow(mrt, start, normalize(coor_to_light), vect_norm(coor_to_light));
 		if ((linter.dist < 0 || linter.dist > vect_norm(coor_to_light)))
 			color = diminish_color(color, ctr->norm, coor_to_light, \
-			mrt->amblight.ratio);
+			mrt->amblight);
 		else
-			color = ft_make_rgb(0, 0, 0);
+			color = ft_get_ambient(mrt->amblight);
 			// color = color = diminish_color(color, ctr->norm, ctr->norm, \
 			// mrt->amblight.ratio);
 	}
