@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/02 04:46:15 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/02 08:27:56 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_cyl_ctrl	check_cyl_body(t_cyl_ctrl *curr, t_cylinder cyl, t_vec nc, t_vec nd)
 	return (ret);
 }
 
-t_cyl_ctrl	get_dist_to_cyl(t_cylinder cyl, t_vec new_cam, t_vec new_dirc)
+t_cyl_ctrl	get_dist_to_cyl(t_cylinder cyl, t_vec new_cam, t_vec new_dirc, int x, int y)
 {
 	double		curr;
 	t_cyl_ctrl	ret;
@@ -67,6 +67,11 @@ t_cyl_ctrl	get_dist_to_cyl(t_cylinder cyl, t_vec new_cam, t_vec new_dirc)
 				- (new_cam.z / new_dirc.z));
 		if (curr > 0 && is_in_cap(curr, cyl, new_cam, new_dirc))
 		{
+			if (x == 801 && y == 401)
+			{
+				printf("curr 1 %f\n", curr);
+				printf("\n %d \n", is_in_cap(curr, cyl, new_cam, new_dirc));
+			}
 			ret.c = curr;
 			ret.cap_ctrl = 1;
 		}
@@ -75,15 +80,21 @@ t_cyl_ctrl	get_dist_to_cyl(t_cylinder cyl, t_vec new_cam, t_vec new_dirc)
 		if (curr > 0 && is_in_cap(curr, cyl, new_cam, new_cam)
 			&& (ret.c == -1 || curr < ret.c))
 		{
+			if (x == 801 && y == 401)
+			{
+				printf("curr 2 %f\n", curr);
+				printf("\n %d \n", is_in_cap(curr, cyl, new_cam, new_dirc));
+			}
 			ret.c = curr;
 			ret.cap_ctrl = 2;
 		}
 	}
+	printf("ctrl cap temp = %d\n", ret.cap_ctrl);
 	ret = check_cyl_body(&ret, cyl, new_cam, new_dirc);
 	return (ret);
 }
 
-void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
+void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir, int x, int y)
 {
 	int				i;
 	t_cyl_ctrl		ctr;
@@ -96,24 +107,26 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 	{
 		new_cam = vec_rest(point, mrt->cylinder[i].pos);
 		mrt->cylinder[i].base = get_cyl_base(mrt->cylinder[i].dir);
-		printf("created basis\n");
-		print_vector(mrt->cylinder[i].base.n1);
-		print_vector(mrt->cylinder[i].base.n2);
-		print_vector(mrt->cylinder[i].base.n3);
-		chg_base = init_base_mtrx(&mrt->cylinder[i].base);
-		printf("first vector\n");
-		// print_mtrx(info.chg_base);
-		print_vector(chg_base.r1);
-		printf("\n");
-		chg_base = invert_mtrx(chg_base);
+		chg_base = fill_mtrx(mrt->cylinder[i].base.n1,
+				mrt->cylinder[i].base.bs_orig,
+				mrt->cylinder[i].base.n3);
 		new_cam = mtrx_by_vec(chg_base, new_cam);
 		new_dirc = mtrx_by_vec(chg_base, dir);
-		ctr = get_dist_to_cyl(mrt->cylinder[i], new_cam, new_dirc);
+		
+		if (x == 801 && y == 401)
+		{
+			printf("n cam\n");
+			print_vector(new_cam);
+			printf("n dir\n");
+			print_vector(new_dirc);
+			printf("\n");
+		}
+		ctr = get_dist_to_cyl(mrt->cylinder[i], new_cam, new_dirc, x, y);
+		printf("final distance = %f, final ctrl = %d\n", ctr.c, ctr.cap_ctrl);
 		if (ctr.c > 0 && (ctrl->dist == -1 || ctr.c < ctrl->dist))
 		{
-			*ctrl = (t_inter){CYLINDER, i, ctr.c, \
-			vec_sum(point, scal_vec(ctr.c, dir)), fill_coord(0, 0, 0), \
-			ctr.cap_ctrl};
+			*ctrl = (t_inter){CYLINDER, i, ctr.c, vec_sum(point, \
+			scal_vec(ctr.c, dir)), fill_coord(0, 0, 0), ctr.cap_ctrl};
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:43:53 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/02 04:25:13 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/02 04:50:50 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,6 @@ t_mtrx	init_base_mtrx(t_base *base)
 	t_mtrx	ret;
 	t_vec	curr;
 
-	printf("in function\n");
-	print_vector(base->n1);
-	print_vector(base->n2);
-	print_vector(base->n3);
 	curr = fill_coord(base->n1.x, base->n2.x, base->n3.x);
 	ret.r1 = curr;
 	curr = fill_coord(base->n1.y, base->n2.y, base->n3.y);

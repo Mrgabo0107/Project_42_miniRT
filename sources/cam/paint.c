@@ -6,13 +6,13 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/02 03:19:52 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/02 06:02:32 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_inter	check_intersections(t_mrt *mrt, t_vec point, t_vec dir)
+t_inter	check_intersections(t_mrt *mrt, t_vec point, t_vec dir, int x, int y)
 {
 	t_inter	ret;
 
@@ -21,7 +21,7 @@ t_inter	check_intersections(t_mrt *mrt, t_vec point, t_vec dir)
 	ret.dist = -1;
 	check_planes(mrt, &ret, point, dir);
 	check_spheres(mrt, &ret, point, dir);
-	check_cylinders(mrt, &ret, point, dir);
+	check_cylinders(mrt, &ret, point, dir, x, y);
 	return (ret);
 }
 
@@ -47,7 +47,7 @@ uint	get_pixel_color(t_mrt *mrt, int x, int y)
 
 	dir = normalize(vec_rest(screen_pxl_by_indx(&mrt->cam, x, y),
 				mrt->cam.pos));
-	inter = check_intersections(mrt, mrt->cam.pos, dir);
+	inter = check_intersections(mrt, mrt->cam.pos, dir, x, y);
 	if (inter.dist != -1)
 		inter.norm = get_normal_at_point(mrt, inter);
 	ret = get_color(mrt, &inter);

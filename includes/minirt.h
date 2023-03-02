@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/02 04:21:37 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/02 06:00:55 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 // # define WY 5
 // # define IX 10
 // # define IY 5
-# define WX 1600
-# define WY 800
+# define WX 1601
+# define WY 801
 # define IX 1600
 # define IY 800
 # define EXIT_ERROR -777
@@ -155,7 +155,7 @@ void		check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 
 //cylinder
 t_vec		get_normal_cylinder(t_mrt *mrt, t_inter inter);
-void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
+void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir, int x, int y);
 
 //camera
 void		set_all_cam_values(t_cam *cam);

@@ -48,6 +48,7 @@ t_mtrx	invert_mtrx(t_mtrx m)
 	t_mtrx	ret;
 
 	coef = 1 / mtrx_det(m);
+	printf("1 /det = %f\n", coef);
 	ret = mtrx_trsp(m);
 	ret = mtrx_adj(ret);
 	ret = scal_mtrx(coef, ret);

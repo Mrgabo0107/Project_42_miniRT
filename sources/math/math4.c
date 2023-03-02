@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 07:14:15 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/02 03:42:21 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/02 05:19:00 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ double	mtrx_det(t_mtrx m)
 {
 	double	ret;
 
-	ret = (m.r1.x * m.r2.y * m.r3.z) + (m.r2.x * m.r3.y * m.r1.z)
-		+ (m.r3.x * m.r1.y * m.r2.z) - (m.r1.z * m.r2.y * m.r3.x)
-		- (m.r2.z * m.r3.y * m.r1.x) - (m.r3.z * m.r1.y * m.r2.z);
+	ret = m.r1.x * ((m.r2.y * m.r3.z) - (m.r2.z * m.r3.y))
+		- m.r1.y * ((m.r2.x * m.r3.z) - (m.r2.z * m.r3.x))
+		+ m.r1.z * ((m.r2.x * m.r3.y) - (m.r2.z * m.r3.x));
 	return (ret);
 }
 
