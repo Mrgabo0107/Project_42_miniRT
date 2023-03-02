@@ -77,6 +77,12 @@ typedef struct s_cam
 	t_base	screen_base;
 }		t_cam;
 
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}			t_rgb;
 typedef struct s_inter
 {
 	int		type;
@@ -84,6 +90,7 @@ typedef struct s_inter
 	double	dist;
 	t_vec	inter_coor;
 	t_vec	norm;
+	t_rgb	color;
 }			t_inter;
 
 typedef struct s_discr
@@ -93,13 +100,6 @@ typedef struct s_discr
 	double	c;
 	double	dscr;
 }		t_discr;
-
-typedef struct s_rgb
-{
-	int	r;
-	int	g;
-	int	b;
-}			t_rgb;
 
 /*----------------------------------------------------------------------------*/
 /*									Objects									  */

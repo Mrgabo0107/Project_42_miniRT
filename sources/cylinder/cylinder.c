@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/02 19:26:44 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/02 23:43:56 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,8 +141,8 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 		{
 			// norm = norm_cylinder(mrt->cylinder[i],
 			//vec_sum(mrt->cam.pos, scal_vec(c, dir)));
-			*ctrl = (t_inter){CYLINDER, i, c, \
-			vec_sum(mrt->cam.pos, scal_vec(c, dir)), fill_coord(0, 0, 0)};
+			*ctrl = (t_inter){CYLINDER, i, c, vec_sum(mrt->cam.pos, \
+			scal_vec(c, dir)), fill_coord(0, 0, 0), mrt->cylinder[i].color};
 		}
 		i++;
 	}
