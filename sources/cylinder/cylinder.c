@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/01 21:55:27 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/02 23:43:56 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,10 @@ t_vec	get_normal_cylinder(t_mrt *mrt, t_inter inter)
 
 	circle_to_inter = vec_rest(inter.inter_coor, \
 	mrt->cylinder[inter.index].pos);
+	if (vect_norm((vec_rest(inter.inter_coor, mrt->cylinder[inter.index].top))) \
+	< mrt->cylinder[inter.index].radius || vect_norm(vec_rest(inter.inter_coor, \
+	mrt->cylinder[inter.index].bottom)) < mrt->cylinder[inter.index].radius)
+		return (mrt->cylinder[inter.index].dir);
 	norm = vec_rest(circle_to_inter, \
 	scal_vec(dot_prod(mrt->cylinder[inter.index].dir, \
 	circle_to_inter), mrt->cylinder[inter.index].dir));
@@ -137,8 +141,8 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 		{
 			// norm = norm_cylinder(mrt->cylinder[i],
 			//vec_sum(mrt->cam.pos, scal_vec(c, dir)));
-			*ctrl = (t_inter){CYLINDER, i, c, \
-			vec_sum(mrt->cam.pos, scal_vec(c, dir)), fill_coord(0, 0, 0)};
+			*ctrl = (t_inter){CYLINDER, i, c, vec_sum(mrt->cam.pos, \
+			scal_vec(c, dir)), fill_coord(0, 0, 0), mrt->cylinder[i].color};
 		}
 		i++;
 	}

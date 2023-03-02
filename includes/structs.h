@@ -77,6 +77,12 @@ typedef struct s_cam
 	t_base	screen_base;
 }		t_cam;
 
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}			t_rgb;
 typedef struct s_inter
 {
 	int		type;
@@ -84,6 +90,7 @@ typedef struct s_inter
 	double	dist;
 	t_vec	inter_coor;
 	t_vec	norm;
+	t_rgb	color;
 }			t_inter;
 
 typedef struct s_discr
@@ -102,14 +109,14 @@ typedef struct s_sphere
 {
 	t_vec	center;
 	double	radius;
-	uint	color;
+	t_rgb	color;
 }			t_sphere;
 
 typedef struct s_plane
 {
 	t_vec	pos;
 	t_vec	dir;
-	uint	color;
+	t_rgb	color;
 }			t_plane;
 
 typedef struct s_cylinder
@@ -120,7 +127,7 @@ typedef struct s_cylinder
 	t_vec	bottom;
 	double	radius;
 	double	height;
-	uint	color;
+	t_rgb	color;
 	t_base	base;
 }			t_cylinder;
 
@@ -128,7 +135,7 @@ typedef struct s_light
 {
 	t_vec	pos;
 	double	ratio;
-	uint	color;
+	t_rgb	color;
 	int		type;
 }			t_light;
 
