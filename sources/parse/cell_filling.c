@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:52:58 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/27 17:51:11 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/02 21:05:51 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ t_vec	ft_fill_pos(char *cell, int dir)
 	return (pos);
 }
 
-uint	ft_fill_rgb(char *cell)
+t_rgb	ft_fill_rgb(char *cell)
 {
 	int		i;
 	int		rgb[3];
@@ -122,20 +122,20 @@ uint	ft_fill_rgb(char *cell)
 
 	line = ft_split(cell, ',');
 	if (ft_arg_count(line) != 3 || check_for_chars("0123456789,", cell))
-		return (ft_error("Invalid RGB value", cell), 1);
+		ft_error("Invalid RGB value", cell);
 	if (ft_strlen(line[0]) > 3 || ft_strlen(line[1]) > 3 || \
 	ft_strlen(line[2]) > 3)
-		return (ft_error("Invalid RGB value", cell), 1);
+		ft_error("Invalid RGB value", cell);
 	i = 0;
 	while (i < 3)
 	{
 		rgb[i] = ft_atoi(line[i]);
 		if (rgb[i] < 0 || rgb[i] > 255)
-			return (ft_error("Invalid RGB value", cell), 1);
+			ft_error("Invalid RGB value", cell);
 		i++;
 	}
 	ft_free_array(line);
-	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
+	return (ft_make_rgb(rgb[0], rgb[1], rgb[2]));
 }
 
 double	ft_fill_ratio(char *cell)

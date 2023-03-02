@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/01 22:06:15 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/02 21:07:00 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ t_vec	get_normal_at_point(t_mrt *mrt, t_inter inter)
 	return (ret);
 }
 
-uint	get_pixel_color(t_mrt *mrt, int x, int y)
+int	get_pixel_color(t_mrt *mrt, int x, int y)
 {
 	t_inter	inter;
-	uint	ret;
+	t_rgb	color;
 	t_vec	dir;
 
 	dir = normalize(vec_rest(screen_pxl_by_indx(&mrt->cam, x, y),
@@ -50,8 +50,8 @@ uint	get_pixel_color(t_mrt *mrt, int x, int y)
 	inter = check_intersections(mrt, mrt->cam.pos, dir);
 	if (inter.dist != -1)
 		inter.norm = get_normal_at_point(mrt, inter);
-	ret = get_color(mrt, &inter, dir);
-	return (ret);
+	color = get_color(mrt, &inter, dir);
+	return (color.r << 16 | color.g << 8 | color.b);
 }
 
 void	pixel_calcul(t_mrt *mrt)

@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/01 22:52:35 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/02 21:09:00 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void		ft_error(char *msg, char *extra);
 //cell filling
 int			ft_check_chars(char **line, char *chars);
 double		ft_fill_ratio(char *cell);
-uint		ft_fill_rgb(char *cell);
+t_rgb		ft_fill_rgb(char *cell);
 t_vec		ft_fill_pos(char *cell, int dir);
 double		ft_fill_size(char *cell, int fov);
 // double		ft_fill_fov(char *cell);
@@ -167,7 +167,7 @@ void		set_all_cam_values(t_cam *cam);
 t_vec		screen_pxl_by_indx(t_cam *cam, int i, int j);
 void		my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color);
 void		pixel_calcul(t_mrt *mrt);
-uint		get_pixel_color(t_mrt *mrt, int x, int y);
+int			get_pixel_color(t_mrt *mrt, int x, int y);
 double		distance_to_cap(t_vec start_pos, t_cylinder cylinder, t_vec ray);
 t_inter		fill_ctrl(t_mrt *mrt, int type, int index, double dist);
 
@@ -179,6 +179,7 @@ void		ft_printf_objects(t_mrt *mrt);
 void		print_mtrx(t_mtrx m);
 
 //color
-uint		get_color(t_mrt *mrt, t_inter *ctr, t_vec dir);
+t_rgb		get_color(t_mrt *mrt, t_inter *ctr, t_vec dir);
+t_rgb		ft_make_rgb(int r, int g, int b);
 
 #endif

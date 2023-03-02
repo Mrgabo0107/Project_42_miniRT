@@ -94,6 +94,13 @@ typedef struct s_discr
 	double	dscr;
 }		t_discr;
 
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}			t_rgb;
+
 /*----------------------------------------------------------------------------*/
 /*									Objects									  */
 /*----------------------------------------------------------------------------*/
@@ -102,14 +109,14 @@ typedef struct s_sphere
 {
 	t_vec	center;
 	double	radius;
-	uint	color;
+	t_rgb	color;
 }			t_sphere;
 
 typedef struct s_plane
 {
 	t_vec	pos;
 	t_vec	dir;
-	uint	color;
+	t_rgb	color;
 }			t_plane;
 
 typedef struct s_cylinder
@@ -120,7 +127,7 @@ typedef struct s_cylinder
 	t_vec	bottom;
 	double	radius;
 	double	height;
-	uint	color;
+	t_rgb	color;
 	t_base	base;
 }			t_cylinder;
 
@@ -128,7 +135,7 @@ typedef struct s_light
 {
 	t_vec	pos;
 	double	ratio;
-	uint	color;
+	t_rgb	color;
 	int		type;
 }			t_light;
 
