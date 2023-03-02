@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/01 19:47:46 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/02 04:21:37 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@
 // # define WY 5
 // # define IX 10
 // # define IY 5
-# define WX 801
-# define WY 401
-# define IX 801
-# define IY 401
+# define WX 1600
+# define WY 800
+# define IX 1600
+# define IY 800
 # define EXIT_ERROR -777
 # define ADD_TO_MEM -666
 # define EXIT_OK -555
@@ -142,6 +142,8 @@ t_mtrx		scal_mtrx(double s, t_mtrx m);
 t_mtrx		invert_mtrx(t_mtrx m);
 double		perp_to_plane(t_vec point, t_vec plane_pos, t_vec plane_norm);
 t_mtrx		fill_mtrx(t_vec v1, t_vec v2, t_vec v3);
+t_mtrx		init_base_mtrx(t_base *base);
+double		solve_quad(t_discr *info);
 
 //plane
 t_vec		get_normal_plane(t_mrt *mrt, t_inter inter);
@@ -152,9 +154,8 @@ t_vec		get_normal_sphere(t_mrt *mrt, t_inter inter);
 void		check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 
 //cylinder
-t_vec		get_normal_cylinder(t_mtr, *mrt, t_inter inter);
+t_vec		get_normal_cylinder(t_mrt *mrt, t_inter inter);
 void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
-
 
 //camera
 void		set_all_cam_values(t_cam *cam);
@@ -163,7 +164,6 @@ void		my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color);
 void		pixel_calcul(t_mrt *mrt);
 uint		get_pixel_color(t_mrt *mrt, int x, int y);
 t_inter		fill_ctrl(t_mrt *mrt, int type, int index, double dist);
-
 
 //debug
 void		print_pixels_coord(t_cam *cam);

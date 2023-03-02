@@ -42,13 +42,12 @@ typedef struct s_base
 	t_vec	n3;
 }		t_base;
 
-typedef	struct s_mtrx
+typedef	struct	s_mtrx
 {
 	t_vec	r1;
 	t_vec	r2;
 	t_vec	r3;
-}	t_mtrx;
-
+}			t_mtrx;
 
 /*----------------------------------------------------------------------------*/
 /*									Camera									  */
@@ -84,6 +83,7 @@ typedef struct s_inter
 	double	dist;
 	t_vec	inter_coor;
 	t_vec	norm;
+	int		cyl_ctrl;
 }			t_inter;
 
 typedef struct s_discr
@@ -93,6 +93,12 @@ typedef struct s_discr
 	double	c;
 	double	dscr;
 }		t_discr;
+
+typedef struct s_cyl_ctrl
+{
+	double	c;
+	int		cap_ctrl;
+}			t_cyl_ctrl;
 
 /*----------------------------------------------------------------------------*/
 /*									Objects									  */
@@ -121,13 +127,6 @@ typedef struct s_cylinder
 	uint	color;
 	t_base	base;
 }			t_cylinder;
-
-typedef struct s_new_bas
-{
-	t_vec	new_cam;
-	t_vec	new_dirc;
-	t_mtrx	chg_base;
-}	t_new_bas;
 
 typedef struct s_light
 {

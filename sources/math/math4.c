@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 07:14:15 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/27 11:28:31 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/02 03:42:21 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ t_mtrx	scal_mtrx(double s, t_mtrx m)
 {
 	t_mtrx	ret;
 
-	ret.r1 = scal_vec(s, m.r1);	
-	ret.r2 = scal_vec(s, m.r2);	
+	ret.r1 = scal_vec(s, m.r1);
+	ret.r2 = scal_vec(s, m.r2);
 	ret.r3 = scal_vec(s, m.r3);
 	return (ret);
 }
@@ -61,7 +61,7 @@ t_mtrx	scal_mtrx(double s, t_mtrx m)
 /*for debug*/
 void	print_mtrx(t_mtrx m)
 {
-	print_vector(m.r1);	
-	print_vector(m.r2);	
-	print_vector(m.r3);	
+	print_vector(m.r1);
+	print_vector(m.r2);
+	print_vector(m.r3);
 }

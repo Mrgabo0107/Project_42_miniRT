@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/01 19:21:58 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/02 03:19:52 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ t_vec	get_normal_at_point(t_mrt *mrt, t_inter inter)
 		ret = get_normal_plane(mrt, inter);
 	else if (inter.type == SPHERE)
 		ret = get_normal_sphere(mrt, inter);
-	// else if (inter.type == CYLINDER)
-	// 	ret = get_normal_cylinder(mrt, inter);
+	else if (inter.type == CYLINDER)
+		ret = get_normal_cylinder(mrt, inter);
 	return (ret);
 }
 

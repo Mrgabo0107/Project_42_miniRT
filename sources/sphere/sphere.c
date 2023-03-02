@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:31:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/01 07:39:12 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/02 01:48:25 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,6 @@ static t_discr	get_sph_dscr(t_vec ncam, t_vec dir, double square_rad)
 	return (ret);
 }
 
-static double	solve_sph_quad(t_discr *info)
-{
-	double	op1;
-	double	op2;
-	double	ret;
-
-	if (info->dscr < 0.00001)
-		return (-info->b / (2 * info->a));
-	op1 = (-info->b + sqrt(info->dscr)) / (2 * info->a);
-	op2 = (-info->b - sqrt(info->dscr)) / (2 * info->a);
-	ret = min_v(op1, op2);
-	if (ret < 0)
-		return (max_v(op1, op2));
-	return (ret);
-}
-
 void	check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 {
 	int		i;
@@ -59,10 +43,11 @@ void	check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 		discr = get_sph_dscr(new_cam, dir, int_pow(mrt->sphere[i].radius, 2));
 		if (discr.dscr >= 0.0)
 		{
-			c = solve_sph_quad(&discr);
+			c = solve_quad(&discr);
 			if (c > 0 && (ctrl->dist == -1 || c < ctrl->dist))
 				*ctrl = (t_inter){SPHERE, i, c, vec_sum(vec_sum(new_cam, \
-				scal_vec(c, dir)), mrt->sphere[i].center), fill_coord(0, 0, 0)};
+				scal_vec(c, dir)), mrt->sphere[i].center), \
+				fill_coord(0, 0, 0), 0};
 		}
 		i++;
 	}
