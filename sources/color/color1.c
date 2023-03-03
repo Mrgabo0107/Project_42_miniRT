@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/03 15:34:01 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/03 17:52:49 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ t_rgb	diminish_color(t_inter *ctr, t_vec to_light, t_light light)
 	angle = get_angle_between(ctr->norm, to_light);
 	if (angle > PI / 2)
 		angle = PI / 2;
-	// ratio = ft_make_rgb_ratio(ctr->color, 1 - angle / (PI / 2));
-	color.r = light.color.r * light.ratio + ctr->color.r * (1 - angle / (PI / 2));
-	color.g = light.color.g * light.ratio + ctr->color.g * (1 - angle / (PI / 2));
-	color.b = light.color.b * light.ratio + ctr->color.b * (1 - angle / (PI / 2));
+	ratio = ft_make_rgb_ratio(ctr->color, 1 - angle / (PI / 2));
+	color.r = light.color.r * light.ratio * ratio.r;//light.ratio + ctr->color.r * (angle / (PI / 2));
+	color.g = light.color.g * light.ratio * ratio.g;//light.ratio + ctr->color.g * (angle / (PI / 2));
+	color.b = light.color.b * light.ratio * ratio.b;//light.ratio + ctr->color.b * (angle / (PI / 2));
 	return (color);
 }
 
@@ -103,7 +103,7 @@ double	mult_max(double a, double b, double c)
 	return (max);
 }
 
-t_rgb	add_ambient(t_rgb color, t_light amb)
+t_rgb	add_ambient(t_rgb color, t_rgb ctr, t_light amb)
 {
 	double	max;
 
@@ -113,12 +113,12 @@ t_rgb	add_ambient(t_rgb color, t_light amb)
 	max = mult_max(color.r, color.g, color.b);
 	if (max > 255)
 	{
+		// printf("1: %f %f %f\n", color.r, color.g, color.b);
 		color.r *= 255 / max;
 		color.g *= 255 / max;
 		color.b *= 255 / max;
+		// printf("2: %f %f %f\n", color.r, color.g, color.b);
 	}
-	// if (color.r > 255 || color.g > 255 || color.b > 255)
-	// 		printf("color: %f %f %f\n", color.r, color.g, color.b);
 	return (color);
 }
 
@@ -136,9 +136,7 @@ t_rgb	get_color(t_mrt *mrt, t_inter *ctr, t_vec dir)
 		vect_norm(coor_to_light));
 		if ((linter.dist < 0 || linter.dist > vect_norm(coor_to_light)))
 			color = diminish_color(ctr, coor_to_light, mrt->light);
-		color = add_ambient(color, mrt->amblight);
-		if (color.r > 255 || color.g > 255 || color.b > 255)
-			printf("color: %f %f %f\n", color.r, color.g, color.b);
+		color = add_ambient(color, ctr->color, mrt->amblight);
 	}
 	if (((t_discr)(get_sph_dscr(vec_rest(mrt->cam.pos, mrt->light.pos), \
 	dir, int_pow(0.2, 2)))).dscr >= 0.0)
