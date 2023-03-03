@@ -6,7 +6,7 @@
 #    By: ana <ana@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/01 19:50:56 by ana              ###   ########.fr        #
+#    Updated: 2023/03/03 18:58:41 by ana              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,8 @@ CAM			=	cam.c \
 				paint.c \
 				
 COLOR_DIR	=	color/
-COLOR		=	color1.c \
+COLOR		=	color.c \
+				color_utils.c \
 
 PLANE_DIR	=	plane/
 PLANE		=	plane.c \

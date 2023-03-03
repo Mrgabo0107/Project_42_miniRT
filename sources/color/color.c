@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color1.c                                           :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/03 18:27:32 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/03 19:01:33 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-t_rgb	ft_make_rgb(int r, int g, int b)
-{
-	t_rgb	color;
-
-	color.r = r;
-	color.g = g;
-	color.b = b;
-	return (color);
-}
 
 float	get_angle_between(t_vec v1, t_vec v2)
 {
@@ -32,20 +22,12 @@ float	get_angle_between(t_vec v1, t_vec v2)
 	return (angle);
 }
 
-t_vec	vec_mult(t_vec vec, float mult)
-{
-	vec.x *= mult;
-	vec.y *= mult;
-	vec.z *= mult;
-	return (vec);
-}
-
 t_inter	check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len)
 {
 	t_inter	ret;
 	t_vec	point;
 
-	point = vec_sum(ctr->inter_coor, vec_mult(ctr->norm, 0.0000001));
+	point = vec_sum(ctr->inter_coor, scal_vec(0.0000001, ctr->norm));
 	ret.type = UNDEFINED;
 	ret.index = 0;
 	ret.dist = -1;
@@ -59,23 +41,20 @@ t_inter	check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len)
 	return (ret);
 }
 
-// t_rgb	add_ambient(t_rgb color, t_light amb)
-// {
-// 	color.r += amb.color.r * amb.ratio;
-// 	color.g += amb.color.g * amb.ratio;
-// 	color.b += amb.color.b * amb.ratio;
-// 	return (color);
-// }
-
-t_rgb	ft_make_rgb_ratio(t_rgb color)
+t_rgb	add_ambient(t_rgb color, t_rgb ctr, t_light amb)
 {
-	color.r = color.r / 255;
-	color.g = color.g / 255;
-	color.b = color.b / 255;
+	double	max;
+	t_rgb	ratio;
+
+	ratio = ft_make_rgb_ratio(ctr);
+	color.r += amb.color.r * amb.ratio * ratio.r;
+	color.g += amb.color.g * amb.ratio * ratio.g;
+	color.b += amb.color.b * amb.ratio * ratio.b;
+	color = normalize_color(color);
 	return (color);
 }
 
-t_rgb	diminish_color(t_inter *ctr, t_vec to_light, t_light light)
+t_rgb	add_color(t_inter *ctr, t_vec to_light, t_light light)
 {
 	double	angle;
 	t_rgb	color;
@@ -92,37 +71,6 @@ t_rgb	diminish_color(t_inter *ctr, t_vec to_light, t_light light)
 	return (color);
 }
 
-double	mult_max(double a, double b, double c)
-{
-	double	max;
-
-	max = a;
-	if (b > max)
-		max = b;
-	if (c > max)
-		max = c;
-	return (max);
-}
-
-t_rgb	add_ambient(t_rgb color, t_rgb ctr, t_light amb)
-{
-	double	max;
-	t_rgb	ratio;
-
-	ratio = ft_make_rgb_ratio(ctr);
-	color.r += amb.color.r * amb.ratio * ratio.r;
-	color.g += amb.color.g * amb.ratio * ratio.g;
-	color.b += amb.color.b * amb.ratio * ratio.b;
-	max = mult_max(color.r, color.g, color.b);
-	if (max > 255)
-	{
-		color.r *= 255 / max;
-		color.g *= 255 / max;
-		color.b *= 255 / max;
-	}
-	return (color);
-}
-
 t_rgb	get_color(t_mrt *mrt, t_inter *ctr, t_vec dir)
 {
 	t_rgb	color;
@@ -136,11 +84,11 @@ t_rgb	get_color(t_mrt *mrt, t_inter *ctr, t_vec dir)
 		linter = check_shaddow(mrt, ctr, normalize(coor_to_light), \
 		vect_norm(coor_to_light));
 		if ((linter.dist < 0 || linter.dist > vect_norm(coor_to_light)))
-			color = diminish_color(ctr, coor_to_light, mrt->light);
+			color = add_color(ctr, coor_to_light, mrt->light);
 		color = add_ambient(color, ctr->color, mrt->amblight);
 	}
 	if (((t_discr)(get_sph_dscr(vec_rest(mrt->cam.pos, mrt->light.pos), \
 	dir, int_pow(0.2, 2)))).dscr >= 0.0)
-		color = ft_make_rgb(255, 255, 255);
+		color = mrt->light.color;
 	return (color);
 }
