@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/01 04:53:23 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/03 19:28:09 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	ft_check_capitals(int a, int c, int l)
 {
 	if (a > 1 || c > 1 || l > 1)
-		ft_error(TOO_MANY_CAPITALS, NULL);
+		ft_error(TOO_MANY_CAPITALS, CAPITAL_INSTRUCTIONS);
 	if (a == 0 || c == 0 || l == 0)
-		ft_error(MISSING_CAPITALS, NULL);
+		ft_error(MISSING_CAPITALS, CAPITAL_INSTRUCTIONS);
 }
 
 int	*ft_count_objs(t_table *table, int obj_count[6])
@@ -90,18 +90,9 @@ void	ft_fill_objs(t_mrt *mrt, t_table *table, int count[6])
 int	ft_parse(t_mrt *mrt, char *file)
 {
 	t_table	*table;
-	// int		i;
 
 	table = ft_fill_table(file);
 	ft_count_objs(table, mrt->obj_count);
 	ft_fill_objs(mrt, table, mrt->obj_count);
-	// while (table)
-	// {
-	// 	i = 0;
-	// 	while (i < 7)
-	// 		ft_printf("[%s] ", table->line[i++]);
-	// 	ft_printf("\n");
-	// 	table = table->next;
-	// }
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/03 18:56:58 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/03 20:39:09 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,32 @@
 //error messages
 # define TOO_MANY_CAPITALS "Too many capital letters in the scene"
 # define MISSING_CAPITALS "Missing capital letters in the scene"
+# define CAPITAL_INSTRUCTIONS "\
+Add one (L)ight, one (C)amera and one (A)mbient light in the scene"
+# define CYLINDER_INSTRUCTIONS "\
+(cy)linder: cy pos: (x,y,z), dir: (a,b,c) diameter height color: (r,g,b) \
+\ne.g. cy 0,0,0 0,1,0 3 8 255,0,0"
+# define SPHERE_INSTRUCTIONS "\
+(sp)here: sp pos: (x,y,z) diameter color: (r,g,b) \
+\ne.g. sp 0,0,0 3 255,0,0"
+# define PLANE_INSTRUCTIONS "\
+(pl)ane: pl pos: (x,y,z) dir: (a,b,c) color: (r,g,b) \
+\ne.g. pl 0,0,0 0,1,0 255,0,0"
+# define LIGHT_INSTRUCTIONS "\
+(l)ight: l pos: (x,y,z) brightness color: (r,g,b) \
+\ne.g. l 0,0,0 0.5 255,0,0"
+# define CAMERA_INSTRUCTIONS "\
+(c)amera: c pos: (x,y,z) dir: (a,b,c) fov \
+\ne.g. c 0,0,0 0,1,0 90"
+# define AMBIENT_INSTRUCTIONS "\
+(a)mbient: a brightness color: (r,g,b) \
+\ne.g. a 0.5 255,0,0"
 # define INVALID_OBJECT "Invalid object in the scene"
 # define FILE_ERROR "Failed to open file"
 # define CLEAN_EXIT "Program Exited Correctly :)"
+# define INT_RANGE "Integer must be between INT_MAX (-2147483648) and \
+INT_MIN (2147483647)"
+# define DOUBLE_RANGE "Double must have a precision of less than 15 digits"
 
 //init
 int			init_minirt(t_mrt *mrt);

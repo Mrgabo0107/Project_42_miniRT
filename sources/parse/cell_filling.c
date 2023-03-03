@@ -6,31 +6,64 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:52:58 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/02 21:05:51 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/03 20:39:23 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	is_valid_number(char *str)
+void	ft_check_dots_and_minus(char *str, int i)
 {
-	int	i;
 	int	dot;
 	int	minus;
 
-	minus = 0;
 	dot = 0;
-	i = 0;
+	minus = 0;
 	while (str[i])
 	{
 		if (str[i] == '.')
 			dot++;
 		if (str[i] == '-')
 			minus++;
+		if (i > 0 && str[i] == '-' && str[i - 1] != ' ')
+			ft_error("Minus(-) in value", str);
+		if (i > 0 && str[i] == '.' && str[i - 1] != ' ')
+			ft_error("Dot(.) in value", str);
+		if (dot > 1)
+			ft_error("Multiple dots(.) in value", str);
+		if (minus > 1)
+			ft_error("Multiple minuses(-) in value", str);
 		i++;
 	}
-	if (dot > 1 || minus > 1 || i > 11)
-		return (0);
+}
+
+int	is_valid_number(char *str)
+{
+	int	i;
+	int	j;
+	int	count;
+	int	minus;
+
+	count = 0;
+	i = 0;
+	while (str[j] == '0')
+		i++;
+	ft_check_dots_and_minus(str, i);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		count++;
+		i++;
+		if (count > 10)
+			return (ft_error(INT_RANGE, str), 0);
+	}
+	if (str[i++] == '.')
+	{
+		count = 0;
+		while (str[i + count] >= '0' && str[i + count] <= '9' && count < 15)
+			count++;
+	}
+	if (count >= 15)
+		return (ft_error(DOUBLE_RANGE, str), 0);
 	return (1);
 }
 
@@ -76,11 +109,11 @@ double	ft_fill_size(char *cell, int fov)
 	double	size;
 
 	if (fov && check_for_chars("0123456789", cell))
-		ft_error("Invalid size", cell);
+		ft_error("Invalid char in size value", cell);
 	else if (check_for_chars("0123456789.", cell))
-		ft_error("Invalid size", cell);
+		ft_error("Invalid char in size value", cell);
 	if (!is_valid_number(cell))
-		ft_error("Invalid size", cell);
+		ft_error("Invalid size value", cell);
 	size = ft_atof(cell);
 	if (fov && (size < 0 || size > 180))
 		ft_error("Invalid size", cell);
