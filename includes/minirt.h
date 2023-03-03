@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/03 20:39:09 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/03 21:01:35 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,14 @@ Add one (L)ight, one (C)amera and one (A)mbient light in the scene"
 # define INVALID_OBJECT "Invalid object in the scene"
 # define FILE_ERROR "Failed to open file"
 # define CLEAN_EXIT "Program Exited Correctly :)"
-# define INT_RANGE "Integer must be between INT_MAX (-2147483648) and \
+# define INT_RANGE "All values must be between INT_MAX (-2147483648) and \
 INT_MIN (2147483647)"
 # define DOUBLE_RANGE "Double must have a precision of less than 15 digits"
-
+# define NORMAL_RANGE "Normal must be between -1 and 1"
+# define RGB_RANGE "RGB must be between 0 and 255"
+# define FOV_RANGE "FOV must be between 0 and 180"
+# define RATIO_RANGE "Ratio must be between 0 and 1"
+# define POS_RANGE "Position must be between -1000 and 1000"
 //init
 int			init_minirt(t_mrt *mrt);
 int			ft_init_mlx(t_mrt *mrt);
