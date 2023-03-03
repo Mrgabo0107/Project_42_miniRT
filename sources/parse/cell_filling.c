@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:52:58 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/03 21:03:56 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/04 00:25:47 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ double	ft_fill_size(char *cell, int fov)
 	return (size);
 }
 
-int	ft_out_of_range(double num, double min, double max)
+int	out_of_range(double num, double min, double max)
 {
 	if (num < min || num > max)
 		return (1);
@@ -127,13 +127,15 @@ t_vec	ft_fill_pos(char *cell, int dir)
 	char	**line;
 
 	line = ft_split(cell, ',');
-	if (ft_arg_count(line) != 3 || check_for_chars("0123456789,-.", cell))
+	if (ft_arg_count(line) != 3)
+		ft_error("Invalid position", cell);
+	if (check_for_chars("0123456789,-.", cell))
 		ft_error("Invalid position", cell);
 	valid_nums(line);
 	pos.x = ft_atof(line[0]);
 	pos.y = ft_atof(line[1]);
 	pos.z = ft_atof(line[2]);
-	if (dir == 0 && (out_range(pos.x, -1000, 1000) \
+	if (dir == 0 && (out_of_range(pos.x, -1000, 1000) \
 	|| out_of_range(pos.y, -1000, 1000) || out_of_range(pos.z, -1000, 1000)))
 		ft_error(POS_RANGE, cell);
 	if (dir == 1 && (out_of_range(pos.x, -1, 1) \
@@ -184,9 +186,9 @@ double	ft_fill_ratio(char *cell)
 			dotcount++;
 		i++;
 	}
+	check_valid_number(cell);
 	if (!cell || !cell[0] || cell[0] == '.' || cell[i - 1] == '.'
-		|| dotcount > 1 || !is_valid_number(cell)
-		|| ft_atof(cell) < 0.0 || ft_atof(cell) > 1.0)
+		|| dotcount > 1 || ft_atof(cell) < 0.0 || ft_atof(cell) > 1.0)
 		return (ft_error("Invalid ratio", cell), 1);
 	return (ft_atof(cell));
 }

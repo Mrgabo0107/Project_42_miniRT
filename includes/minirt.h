@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/03 21:01:35 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/04 00:26:29 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,25 +61,43 @@
 # define TOO_MANY_CAPITALS "Too many capital letters in the scene"
 # define MISSING_CAPITALS "Missing capital letters in the scene"
 # define CAPITAL_INSTRUCTIONS "\
-Add one (L)ight, one (C)amera and one (A)mbient light in the scene"
+\nAdd one (L)ight, one (C)amera and one (A)mbient light in the scene"
 # define CYLINDER_INSTRUCTIONS "\
-(cy)linder: cy pos: (x,y,z), dir: (a,b,c) diameter height color: (r,g,b) \
+\n(cy)linder: [name: 'cy', pos: (x,y,z), dir: (a,b,c), diameter, height, color: (r,g,b)] \
 \ne.g. cy 0,0,0 0,1,0 3 8 255,0,0"
 # define SPHERE_INSTRUCTIONS "\
-(sp)here: sp pos: (x,y,z) diameter color: (r,g,b) \
+\n(sp)here: [name: 'sp', pos: (x,y,z), diameter [-1000,1000], color: (r,g,b)] \
 \ne.g. sp 0,0,0 3 255,0,0"
 # define PLANE_INSTRUCTIONS "\
-(pl)ane: pl pos: (x,y,z) dir: (a,b,c) color: (r,g,b) \
+\n(pl)ane: [name: 'pl', pos: (x,y,z), dir: (a,b,c), color: (r,g,b)] \
 \ne.g. pl 0,0,0 0,1,0 255,0,0"
 # define LIGHT_INSTRUCTIONS "\
-(l)ight: l pos: (x,y,z) brightness color: (r,g,b) \
+\n(L)ight: [name: 'L', pos: (x,y,z), brightness: [0.0,1.0], color: (r,g,b)] \
 \ne.g. l 0,0,0 0.5 255,0,0"
 # define CAMERA_INSTRUCTIONS "\
-(c)amera: c pos: (x,y,z) dir: (a,b,c) fov \
+\n(C)amera: [name: 'C', pos: (x,y,z), dir: (a,b,c), fov: [0-180]] \
 \ne.g. c 0,0,0 0,1,0 90"
 # define AMBIENT_INSTRUCTIONS "\
-(a)mbient: a brightness color: (r,g,b) \
+\n(A)mbient: [name: 'A' brightness: [0.0,1.0], color: (r,g,b)] \
 \ne.g. a 0.5 255,0,0"
+# define RGB_INSTRUCTIONS "RGB must be three integers between 0 and 255 and \
+separated by commas: (r,g,b)\ne.g. 255,0,0"
+# define RATIO_INSTRUCTIONS "Ratio must be a floating point integer \
+between 0 and 1\ne.g. 0.5"
+# define FOV_INSTRUCTIONS "FOV must be an integer between 0 and 180\ne.g. 90"
+# define POS_INSTRUCTIONS "Position must be three floating point integers \
+between -1000 and 1000 seperated by commas\ne.g. -24.5,15.433,20"
+# define SIZE_INSTRUCTIONS "Size must be a floating point integer \
+between 0 and 1000\ne.g. 3.5"
+# define NORMAL_INSTRUCTIONS "Normal must be three floating point integers \
+between -1 and 1 seperated by commas\ne.g. 0,1,-0.5"
+# define OBJECT_INSTRUCTIONS "Valid objects include one of:\n \
+(C)amera \
+(L)ight \
+(A)mbient light \
+(sp)here \
+(pl)ane \
+(cy)linder \\n"
 # define INVALID_OBJECT "Invalid object in the scene"
 # define FILE_ERROR "Failed to open file"
 # define CLEAN_EXIT "Program Exited Correctly :)"
