@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/02 21:42:09 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/03 12:58:36 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	get_pixel_color(t_mrt *mrt, int x, int y)
 	if (inter.dist != -1)
 		inter.norm = get_normal_at_point(mrt, inter);
 	color = get_color(mrt, &inter, dir);
-	return (color.r << 16 | color.g << 8 | color.b);
+	return ((int)color.r << 16 | (int)color.g << 8 | (int)color.b);
 }
 
 void	pixel_calcul(t_mrt *mrt)

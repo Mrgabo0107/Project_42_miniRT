@@ -79,9 +79,9 @@ typedef struct s_cam
 
 typedef struct s_rgb
 {
-	int	r;
-	int	g;
-	int	b;
+	double	r;
+	double	g;
+	double	b;
 }			t_rgb;
 typedef struct s_inter
 {

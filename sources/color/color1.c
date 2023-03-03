@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/02 23:48:57 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/03 15:34:01 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,61 +59,66 @@ t_inter	check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len)
 	return (ret);
 }
 
-t_rgb	add_ambient(t_rgb color, t_rgb amb, double ratio)
+// t_rgb	add_ambient(t_rgb color, t_light amb)
+// {
+// 	color.r += amb.color.r * amb.ratio;
+// 	color.g += amb.color.g * amb.ratio;
+// 	color.b += amb.color.b * amb.ratio;
+// 	return (color);
+// }
+
+t_rgb	ft_make_rgb_ratio(t_rgb color, float ratio)
 {
-	color.r -= amb.r * ratio;
-	color.g -= amb.g * ratio;
-	color.b -= amb.b * ratio;
-	if (color.r < 0 || color.g < 0 || color.b < 0)
-		printf("r: %d, g: %d, b: %d\n", color.r, color.g, color.b);
-	if (color.r < 0)
-		color.r = 0;
-	if (color.g < 0)
-		color.g = 0;
-	if (color.b < 0)
-		color.b = 0;
+	color.r = color.r / 255 * ratio;
+	color.g = color.g / 255 * ratio;
+	color.b = color.b / 255 * ratio;
 	return (color);
 }
 
-t_rgb	diminish_color(t_rgb color, t_vec vec1, t_vec vec2, t_light amb)
+t_rgb	diminish_color(t_inter *ctr, t_vec to_light, t_light light)
 {
 	double	angle;
-	double	ratio;
-	t_rgb	new_color;
+	t_rgb	color;
+	t_rgb	ratio;
 
-	angle = get_angle_between(vec1, vec2);
+	angle = get_angle_between(ctr->norm, to_light);
 	if (angle > PI / 2)
 		angle = PI / 2;
-	ratio = angle / (PI / 2);
-	new_color.r = color.r - color.r * ratio;// + amb.r;
-	new_color.g = color.g - color.g * ratio;// + amb.g;
-	new_color.b = color.b - color.b * ratio;// + amb.b;
-	// if (new_color.r > 255)
-	// 	new_color.r = 255;
-	// if (new_color.g > 255)
-	// 	new_color.g = 255;
-	// if (new_color.b > 255)
-	// 	new_color.b = 255;
-	// if (new_color.r < amb.color.r * (1 - amb.ratio) && \
-	// 	new_color.g < amb.color.g * (1 - amb.ratio) && \
-	// 	new_color.b < amb.color.b * (1 - amb.ratio))
-	// 	new_color = add_ambient(color, amb.color, 1 - amb.ratio);
-	// if (new_color.r < amb.color.r * amb.ratio)
-	// 	new_color.r = color.r - amb.color.r * (1 - amb.ratio);
-	// if (new_color.g < amb.color.g * amb.ratio)
-	// 	new_color.g = color.g - amb.color.g * (1 - amb.ratio);
-	// if (new_color.b < amb.color.b * amb.ratio)
-	// 	new_color.b = color.b - amb.color.b * (1 - amb.ratio);
-	return (new_color);
+	// ratio = ft_make_rgb_ratio(ctr->color, 1 - angle / (PI / 2));
+	color.r = light.color.r * light.ratio + ctr->color.r * (1 - angle / (PI / 2));
+	color.g = light.color.g * light.ratio + ctr->color.g * (1 - angle / (PI / 2));
+	color.b = light.color.b * light.ratio + ctr->color.b * (1 - angle / (PI / 2));
+	return (color);
 }
 
-t_rgb	ft_get_ambient(t_light amb)
+double	mult_max(double a, double b, double c)
 {
-	t_rgb	color;
+	double	max;
 
-	color.r = amb.color.r * amb.ratio;
-	color.g = amb.color.g * amb.ratio;
-	color.b = amb.color.b * amb.ratio;
+	max = a;
+	if (b > max)
+		max = b;
+	if (c > max)
+		max = c;
+	return (max);
+}
+
+t_rgb	add_ambient(t_rgb color, t_light amb)
+{
+	double	max;
+
+	color.r += amb.color.r * amb.ratio;
+	color.g += amb.color.g * amb.ratio;
+	color.b += amb.color.b * amb.ratio;
+	max = mult_max(color.r, color.g, color.b);
+	if (max > 255)
+	{
+		color.r *= 255 / max;
+		color.g *= 255 / max;
+		color.b *= 255 / max;
+	}
+	// if (color.r > 255 || color.g > 255 || color.b > 255)
+	// 		printf("color: %f %f %f\n", color.r, color.g, color.b);
 	return (color);
 }
 
@@ -127,13 +132,13 @@ t_rgb	get_color(t_mrt *mrt, t_inter *ctr, t_vec dir)
 	if (ctr->dist != -1)
 	{
 		coor_to_light = vec_rest(mrt->light.pos, ctr->inter_coor);
-		// color = add_ambient(mrt->amblight, color);
-		// linter = check_intersections(mrt, start, normalize(coor_to_light));
-		linter = check_shaddow(mrt, ctr, normalize(coor_to_light), vect_norm(coor_to_light));
+		linter = check_shaddow(mrt, ctr, normalize(coor_to_light), \
+		vect_norm(coor_to_light));
 		if ((linter.dist < 0 || linter.dist > vect_norm(coor_to_light)))
-			color = diminish_color(ctr->color, ctr->norm, coor_to_light, mrt->amblight);
-		else
-			color = ft_make_rgb(0, 0, 0);//add_ambient(color, mrt->amblight.color, 1 - mrt->amblight.ratio);
+			color = diminish_color(ctr, coor_to_light, mrt->light);
+		color = add_ambient(color, mrt->amblight);
+		if (color.r > 255 || color.g > 255 || color.b > 255)
+			printf("color: %f %f %f\n", color.r, color.g, color.b);
 	}
 	if (((t_discr)(get_sph_dscr(vec_rest(mrt->cam.pos, mrt->light.pos), \
 	dir, int_pow(0.2, 2)))).dscr >= 0.0)
