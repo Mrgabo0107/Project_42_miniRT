@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/02 21:09:00 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/03 18:56:58 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,6 @@ t_discr		get_sph_dscr(t_vec ncam, t_vec dir, double square_rad);
 t_vec		get_normal_cylinder(t_mrt *mrt, t_inter inter);
 void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 
-
 //camera
 t_inter		check_intersections(t_mrt *mrt, t_vec point, t_vec dir);
 void		set_all_cam_values(t_cam *cam);
@@ -173,7 +172,6 @@ t_inter		fill_ctrl(t_mrt *mrt, int type, int index, double dist);
 
 //debug
 void		print_pixels_coord(t_cam *cam);
-
 int			ft_printf(const char *input, ...);
 void		ft_printf_objects(t_mrt *mrt);
 void		print_mtrx(t_mtrx m);
@@ -181,5 +179,7 @@ void		print_mtrx(t_mtrx m);
 //color
 t_rgb		get_color(t_mrt *mrt, t_inter *ctr, t_vec dir);
 t_rgb		ft_make_rgb(int r, int g, int b);
+t_rgb		ft_make_rgb_ratio(t_rgb color);
+t_rgb		normalize_color(t_rgb color);
 
 #endif
