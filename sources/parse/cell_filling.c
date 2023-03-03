@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:52:58 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/03 20:39:23 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/03 20:46:07 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	ft_check_dots_and_minus(char *str, int i)
 			dot++;
 		if (str[i] == '-')
 			minus++;
-		if (i > 0 && str[i] == '-' && str[i - 1] != ' ')
-			ft_error("Minus(-) in value", str);
-		if (i > 0 && str[i] == '.' && str[i - 1] != ' ')
-			ft_error("Dot(.) in value", str);
 		if (dot > 1)
 			ft_error("Multiple dots(.) in value", str);
 		if (minus > 1)
 			ft_error("Multiple minuses(-) in value", str);
+		if (i > 0 && str[i] == '-' && str[i - 1] != ' ')
+			ft_error("Minus(-) in value", str);
+		if (str[i] == '.' && !str[i + 1])
+			ft_error("Dot(.) in value", str);
 		i++;
 	}
 }
@@ -40,13 +40,12 @@ void	ft_check_dots_and_minus(char *str, int i)
 int	is_valid_number(char *str)
 {
 	int	i;
-	int	j;
 	int	count;
 	int	minus;
 
 	count = 0;
 	i = 0;
-	while (str[j] == '0')
+	while (str[i] == '0')
 		i++;
 	ft_check_dots_and_minus(str, i);
 	while (str[i] >= '0' && str[i] <= '9')
