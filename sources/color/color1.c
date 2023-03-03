@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/03 17:52:49 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/03 18:27:32 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ t_inter	check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len)
 // 	return (color);
 // }
 
-t_rgb	ft_make_rgb_ratio(t_rgb color, float ratio)
+t_rgb	ft_make_rgb_ratio(t_rgb color)
 {
-	color.r = color.r / 255 * ratio;
-	color.g = color.g / 255 * ratio;
-	color.b = color.b / 255 * ratio;
+	color.r = color.r / 255;
+	color.g = color.g / 255;
+	color.b = color.b / 255;
 	return (color);
 }
 
@@ -84,10 +84,11 @@ t_rgb	diminish_color(t_inter *ctr, t_vec to_light, t_light light)
 	angle = get_angle_between(ctr->norm, to_light);
 	if (angle > PI / 2)
 		angle = PI / 2;
-	ratio = ft_make_rgb_ratio(ctr->color, 1 - angle / (PI / 2));
-	color.r = light.color.r * light.ratio * ratio.r;//light.ratio + ctr->color.r * (angle / (PI / 2));
-	color.g = light.color.g * light.ratio * ratio.g;//light.ratio + ctr->color.g * (angle / (PI / 2));
-	color.b = light.color.b * light.ratio * ratio.b;//light.ratio + ctr->color.b * (angle / (PI / 2));
+	angle = 1 - angle / (PI / 2);
+	ratio = ft_make_rgb_ratio(ctr->color);
+	color.r = light.color.r * light.ratio * ratio.r * angle;
+	color.g = light.color.g * light.ratio * ratio.g * angle;
+	color.b = light.color.b * light.ratio * ratio.b * angle;
 	return (color);
 }
 
@@ -106,18 +107,18 @@ double	mult_max(double a, double b, double c)
 t_rgb	add_ambient(t_rgb color, t_rgb ctr, t_light amb)
 {
 	double	max;
+	t_rgb	ratio;
 
-	color.r += amb.color.r * amb.ratio;
-	color.g += amb.color.g * amb.ratio;
-	color.b += amb.color.b * amb.ratio;
+	ratio = ft_make_rgb_ratio(ctr);
+	color.r += amb.color.r * amb.ratio * ratio.r;
+	color.g += amb.color.g * amb.ratio * ratio.g;
+	color.b += amb.color.b * amb.ratio * ratio.b;
 	max = mult_max(color.r, color.g, color.b);
 	if (max > 255)
 	{
-		// printf("1: %f %f %f\n", color.r, color.g, color.b);
 		color.r *= 255 / max;
 		color.g *= 255 / max;
 		color.b *= 255 / max;
-		// printf("2: %f %f %f\n", color.r, color.g, color.b);
 	}
 	return (color);
 }
