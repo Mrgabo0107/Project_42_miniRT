@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/03 19:01:33 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/04 14:40:29 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ t_inter	check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len)
 
 t_rgb	add_ambient(t_rgb color, t_rgb ctr, t_light amb)
 {
-	double	max;
 	t_rgb	ratio;
 
 	ratio = ft_make_rgb_ratio(ctr);
