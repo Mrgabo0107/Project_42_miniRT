@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/04 00:26:29 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/04 01:12:07 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,15 @@ between -1000 and 1000 seperated by commas\ne.g. -24.5,15.433,20"
 # define SIZE_INSTRUCTIONS "Size must be a floating point integer \
 between 0 and 1000\ne.g. 3.5"
 # define NORMAL_INSTRUCTIONS "Normal must be three floating point integers \
-between -1 and 1 seperated by commas\ne.g. 0,1,-0.5"
+between -1 and 1 seperated by commas, at least one value should be non-zero \
+\ne.g. 0,1,-0.5"
 # define OBJECT_INSTRUCTIONS "Valid objects include one of:\n \
 (C)amera \
 (L)ight \
 (A)mbient light \
 (sp)here \
 (pl)ane \
-(cy)linder \\n"
+(cy)linder "
 # define INVALID_OBJECT "Invalid object in the scene"
 # define FILE_ERROR "Failed to open file"
 # define CLEAN_EXIT "Program Exited Correctly :)"
@@ -109,6 +110,7 @@ INT_MIN (2147483647)"
 # define FOV_RANGE "FOV must be between 0 and 180"
 # define RATIO_RANGE "Ratio must be between 0 and 1"
 # define POS_RANGE "Position must be between -1000 and 1000"
+# define SIZE_RANGE "Size must be between 0 and 1000"
 //init
 int			init_minirt(t_mrt *mrt);
 int			ft_init_mlx(t_mrt *mrt);
@@ -122,15 +124,18 @@ int			ft_strcmp_1(char *s1, char *s2);
 int			eval_obj(char *line);
 t_table		*ft_fill_table(char *file);
 int			ft_arg_count(char **line);
-void		ft_error(char *msg, char *extra);
+void		ft_error(char *msg, char *extra, char *extra2);
 
 //cell filling
-int			ft_check_chars(char **line, char *chars);
 double		ft_fill_ratio(char *cell);
 t_rgb		ft_fill_rgb(char *cell);
 t_vec		ft_fill_pos(char *cell, int dir);
 double		ft_fill_size(char *cell, int fov);
-// double		ft_fill_fov(char *cell);
+void		ft_check_dots_and_minus(char *str);
+int			check_valid_number(char *str);
+void		valid_nums(char **line);
+int			check_for_chars(char *str, char *cell);
+int			out_of_range(double num, double min, double max);
 
 //fill objects
 // t_amblight	ft_fill_ambient(char *line[7]);

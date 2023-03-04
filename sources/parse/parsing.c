@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/03 19:28:09 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/04 00:47:32 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	ft_check_capitals(int a, int c, int l)
 {
 	if (a > 1 || c > 1 || l > 1)
-		ft_error(TOO_MANY_CAPITALS, CAPITAL_INSTRUCTIONS);
+		ft_error(TOO_MANY_CAPITALS, CAPITAL_INSTRUCTIONS, NULL);
 	if (a == 0 || c == 0 || l == 0)
-		ft_error(MISSING_CAPITALS, CAPITAL_INSTRUCTIONS);
+		ft_error(MISSING_CAPITALS, CAPITAL_INSTRUCTIONS, NULL);
 }
 
 int	*ft_count_objs(t_table *table, int obj_count[6])
@@ -42,7 +42,7 @@ int	*ft_count_objs(t_table *table, int obj_count[6])
 		else if (eval_obj(table->line[0]) == CYLINDER)
 			(obj_count[CYLINDER])++;
 		else if (eval_obj(table->line[0]) == -1)
-			ft_error(INVALID_OBJECT, table->line[0]);
+			ft_error(INVALID_OBJECT, table->line[0], NULL);
 		table = table->next;
 	}
 	return (ft_check_capitals(obj_count[AMBIENT], obj_count[CAMERA],
