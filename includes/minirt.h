@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/03 18:56:58 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/04 01:12:07 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,57 @@
 //error messages
 # define TOO_MANY_CAPITALS "Too many capital letters in the scene"
 # define MISSING_CAPITALS "Missing capital letters in the scene"
+# define CAPITAL_INSTRUCTIONS "\
+\nAdd one (L)ight, one (C)amera and one (A)mbient light in the scene"
+# define CYLINDER_INSTRUCTIONS "\
+\n(cy)linder: [name: 'cy', pos: (x,y,z), dir: (a,b,c), diameter, height, color: (r,g,b)] \
+\ne.g. cy 0,0,0 0,1,0 3 8 255,0,0"
+# define SPHERE_INSTRUCTIONS "\
+\n(sp)here: [name: 'sp', pos: (x,y,z), diameter [-1000,1000], color: (r,g,b)] \
+\ne.g. sp 0,0,0 3 255,0,0"
+# define PLANE_INSTRUCTIONS "\
+\n(pl)ane: [name: 'pl', pos: (x,y,z), dir: (a,b,c), color: (r,g,b)] \
+\ne.g. pl 0,0,0 0,1,0 255,0,0"
+# define LIGHT_INSTRUCTIONS "\
+\n(L)ight: [name: 'L', pos: (x,y,z), brightness: [0.0,1.0], color: (r,g,b)] \
+\ne.g. l 0,0,0 0.5 255,0,0"
+# define CAMERA_INSTRUCTIONS "\
+\n(C)amera: [name: 'C', pos: (x,y,z), dir: (a,b,c), fov: [0-180]] \
+\ne.g. c 0,0,0 0,1,0 90"
+# define AMBIENT_INSTRUCTIONS "\
+\n(A)mbient: [name: 'A' brightness: [0.0,1.0], color: (r,g,b)] \
+\ne.g. a 0.5 255,0,0"
+# define RGB_INSTRUCTIONS "RGB must be three integers between 0 and 255 and \
+separated by commas: (r,g,b)\ne.g. 255,0,0"
+# define RATIO_INSTRUCTIONS "Ratio must be a floating point integer \
+between 0 and 1\ne.g. 0.5"
+# define FOV_INSTRUCTIONS "FOV must be an integer between 0 and 180\ne.g. 90"
+# define POS_INSTRUCTIONS "Position must be three floating point integers \
+between -1000 and 1000 seperated by commas\ne.g. -24.5,15.433,20"
+# define SIZE_INSTRUCTIONS "Size must be a floating point integer \
+between 0 and 1000\ne.g. 3.5"
+# define NORMAL_INSTRUCTIONS "Normal must be three floating point integers \
+between -1 and 1 seperated by commas, at least one value should be non-zero \
+\ne.g. 0,1,-0.5"
+# define OBJECT_INSTRUCTIONS "Valid objects include one of:\n \
+(C)amera \
+(L)ight \
+(A)mbient light \
+(sp)here \
+(pl)ane \
+(cy)linder "
 # define INVALID_OBJECT "Invalid object in the scene"
 # define FILE_ERROR "Failed to open file"
 # define CLEAN_EXIT "Program Exited Correctly :)"
-
+# define INT_RANGE "All values must be between INT_MAX (-2147483648) and \
+INT_MIN (2147483647)"
+# define DOUBLE_RANGE "Double must have a precision of less than 15 digits"
+# define NORMAL_RANGE "Normal must be between -1 and 1"
+# define RGB_RANGE "RGB must be between 0 and 255"
+# define FOV_RANGE "FOV must be between 0 and 180"
+# define RATIO_RANGE "Ratio must be between 0 and 1"
+# define POS_RANGE "Position must be between -1000 and 1000"
+# define SIZE_RANGE "Size must be between 0 and 1000"
 //init
 int			init_minirt(t_mrt *mrt);
 int			ft_init_mlx(t_mrt *mrt);
@@ -77,15 +124,18 @@ int			ft_strcmp_1(char *s1, char *s2);
 int			eval_obj(char *line);
 t_table		*ft_fill_table(char *file);
 int			ft_arg_count(char **line);
-void		ft_error(char *msg, char *extra);
+void		ft_error(char *msg, char *extra, char *extra2);
 
 //cell filling
-int			ft_check_chars(char **line, char *chars);
 double		ft_fill_ratio(char *cell);
 t_rgb		ft_fill_rgb(char *cell);
 t_vec		ft_fill_pos(char *cell, int dir);
 double		ft_fill_size(char *cell, int fov);
-// double		ft_fill_fov(char *cell);
+void		ft_check_dots_and_minus(char *str);
+int			check_valid_number(char *str);
+void		valid_nums(char **line);
+int			check_for_chars(char *str, char *cell);
+int			out_of_range(double num, double min, double max);
 
 //fill objects
 // t_amblight	ft_fill_ambient(char *line[7]);

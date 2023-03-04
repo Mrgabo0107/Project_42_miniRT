@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:02:11 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/01 22:52:08 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/04 00:47:18 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_table	*ft_fill_table(char *file)
 	table = NULL;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return (ft_error(FILE_ERROR, file), NULL);
+		return (ft_error(FILE_ERROR, file, NULL), NULL);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (line && line[0] && line[0] != '\n')
@@ -79,11 +79,13 @@ t_table	*ft_fill_table(char *file)
 	return (table);
 }
 
-void	ft_error(char *msg, char *extra)
+void	ft_error(char *msg, char *extra, char *extra2)
 {
 	printf("Error\n");
 	if (msg && extra)
 		printf("%s: %s\n", msg, extra);
+	else if (msg && extra && extra2)
+		printf("%s: %s\n %s\n", msg, extra, extra2);
 	else if (msg)
 		printf("%s\n", msg);
 	ft_quit(EXIT_ERROR);

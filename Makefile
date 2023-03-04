@@ -6,7 +6,7 @@
 #    By: ana <ana@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/03 18:58:41 by ana              ###   ########.fr        #
+#    Updated: 2023/03/04 01:12:37 by ana              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ PARSE		=	parsing.c \
 				fill_objects.c \
 				parsing_utils.c \
 				cell_filling.c \
+				cell_filling_utils.c \
 
 UTIL_DIR	=	utils/
 UTILS		=	tools.c \

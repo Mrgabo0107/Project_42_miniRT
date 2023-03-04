@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_objects.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:37:20 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/01 02:46:01 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/04 00:47:04 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ t_sphere	ft_fill_sphere(char *line[7])
 
 	// printf("filling sphere\n");
 	if (ft_arg_count(line) != 4)
-		ft_error("Wrong number of arguments for sphere", NULL);
+		ft_error("Wrong number of arguments for sphere", \
+		SPHERE_INSTRUCTIONS, NULL);
 	sphere.center = ft_fill_pos(line[1], 0);
 	sphere.radius = ft_fill_size(line[2], 0) / 2;
 	sphere.color = ft_fill_rgb(line[3]);
@@ -31,7 +32,8 @@ t_plane	ft_fill_plane(char *line[7])
 
 	// printf("filling plane\n");
 	if (ft_arg_count(line) != 4)
-		ft_error("Wrong number of arguments for plane", NULL);
+		ft_error("Wrong number of arguments for plane", \
+		PLANE_INSTRUCTIONS, NULL);
 	plane.pos = ft_fill_pos(line[1], 0);
 	plane.dir = normalize(ft_fill_pos(line[2], 1));
 	plane.color = ft_fill_rgb(line[3]);
@@ -44,7 +46,8 @@ t_cylinder	ft_fill_cylinder(char *line[7])
 
 	// printf("filling cylinder\n");
 	if (ft_arg_count(line) != 6)
-		ft_error("Wrong number of arguments for cylinder", NULL);
+		ft_error("Wrong number of arguments for cylinder", \
+		CYLINDER_INSTRUCTIONS, NULL);
 	cylinder.pos = ft_fill_pos(line[1], 0);
 	cylinder.dir = normalize(ft_fill_pos(line[2], 1));
 	cylinder.radius = ft_fill_size(line[3], 0) / 2;
@@ -64,14 +67,11 @@ t_cam	ft_fill_cam(char *line[7])
 
 	// printf("filling camera\n");
 	if (ft_arg_count(line) != 4)
-		ft_error("Wrong number of arguments for camera", NULL);
+		ft_error("Wrong number of arguments for camera", \
+		CAMERA_INSTRUCTIONS, NULL);
 	cam.pos = ft_fill_pos(line[1], 0);
 	cam.dir = normalize(ft_fill_pos(line[2], 1));
 	cam.fov = ft_fill_size(line[3], 1);
-	// printf("camera normal-> ");
-	// print_vector(cam.dir);
-	// printf("\n");
-	// printf("Center: %f, %f, %f\n", cam.pos.x, cam.pos.y, cam.pos.z);
 	return (cam);
 }
 
@@ -83,7 +83,8 @@ t_light	ft_fill_light(char *line[7], int amb)
 	// printf("filling light %s\n", line[0]);
 	i = 1;
 	if (ft_arg_count(line) != (4 - amb))
-		ft_error("Wrong number of arguments for light", NULL);
+		ft_error("Wrong number of arguments for light", \
+		LIGHT_INSTRUCTIONS, NULL);
 	if (!amb)
 		light.pos = ft_fill_pos(line[i++], 0);
 	light.ratio = ft_fill_ratio(line[i++]);
