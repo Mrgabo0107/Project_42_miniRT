@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:37:20 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/04 00:47:04 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/04 01:37:18 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_sphere	ft_fill_sphere(char *line[7])
 {
 	t_sphere	sphere;
 
-	// printf("filling sphere\n");
 	if (ft_arg_count(line) != 4)
 		ft_error("Wrong number of arguments for sphere", \
 		SPHERE_INSTRUCTIONS, NULL);
@@ -30,7 +29,6 @@ t_plane	ft_fill_plane(char *line[7])
 {
 	t_plane	plane;
 
-	// printf("filling plane\n");
 	if (ft_arg_count(line) != 4)
 		ft_error("Wrong number of arguments for plane", \
 		PLANE_INSTRUCTIONS, NULL);
@@ -44,7 +42,6 @@ t_cylinder	ft_fill_cylinder(char *line[7])
 {
 	t_cylinder	cylinder;
 
-	// printf("filling cylinder\n");
 	if (ft_arg_count(line) != 6)
 		ft_error("Wrong number of arguments for cylinder", \
 		CYLINDER_INSTRUCTIONS, NULL);
@@ -65,7 +62,6 @@ t_cam	ft_fill_cam(char *line[7])
 {
 	t_cam	cam;
 
-	// printf("filling camera\n");
 	if (ft_arg_count(line) != 4)
 		ft_error("Wrong number of arguments for camera", \
 		CAMERA_INSTRUCTIONS, NULL);
@@ -80,7 +76,6 @@ t_light	ft_fill_light(char *line[7], int amb)
 	t_light		light;
 	int			i;
 
-	// printf("filling light %s\n", line[0]);
 	i = 1;
 	if (ft_arg_count(line) != (4 - amb))
 		ft_error("Wrong number of arguments for light", \

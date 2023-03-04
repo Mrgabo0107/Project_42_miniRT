@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/22 20:12:08 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/04 02:16:04 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,45 +31,41 @@ int	ft_init_mlx(t_mrt *mrt)
 	return (0);
 }
 
-// int	init_objects(t_mrt *mrt)
-// {
-// 	mrt->cam = NULL;
-// 	mrt->light = NULL;
-// 	mrt->sphere = NULL;
-// 	mrt->plane = NULL;
-// 	mrt->cylinder = NULL;
-// 	mrt->triangle = NULL;
-// }
-
-int	init_minirt(t_mrt *mrt)
+int	valid_rt_file(char *file)
 {
+	int	size;
+
+	if (!file || !*file)
+		return (0);
+	size = ft_strlen(file);
+	if (size < 3)
+		return (0);
+	if (file[size - 1] != 't' || file[size - 2] != 'r' || file[size - 3] != '.')
+		return (0);
+	return (1);
+}
+
+void	ft_set_zero(t_mrt *mrt)
+{
+	mrt->mlx = NULL;
+	mrt->win = NULL;
+	mrt->img = NULL;
+	mrt->addr = NULL;
+	mrt->sphere = NULL;
+	mrt->plane = NULL;
+	mrt->cylinder = NULL;
+}
+
+int	init_minirt(t_mrt *mrt, char *file)
+{
+	int	fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0 || !valid_rt_file(file))
+		ft_error(FILE_ERROR, file, FILE_INSTRUCTIONS);
+	ft_set_zero(mrt);
+	ft_parse(mrt, fd);
 	if (ft_init_mlx(mrt))
 		return (printf("Problem initializing minilibx\n"), 1);
-	// if (init_objects(mrt))
-	// 	return (pritnf("Problem initializing objects\n"), 1);
-	/*this values has to be set in the parsing but i do manually for quickly test*/
-	// mrt->cam.fov = 120;
-	// mrt->cam.pos = fill_coord(0, 0, 0);
-	// mrt->cam.dir = fill_coord(0, 1, 0);
-	// set_all_cam_values(mrt->cam);
-	/*-------------------------------------------------------------*/
-	// /*checking first intersections XD*/
-	// mrt->sphere = (t_sphere *)ft_malloc(sizeof(t_sphere));
-	// mrt->sphere[0].center = fill_coord(0, 0, 0);
-	// mrt->sphere[0].radius = 2.4;
-	// mrt->sphere[0].color = 0xff0000;
-	// // mrt->sphere[1].center = fill_coord(1, 1, 1);
-	// // mrt->sphere[1].radius = 3.5;
-	// // mrt->sphere[1].color = 0x00ff00;
-	// // mrt->sphere[2].center = fill_coord(-2, 3, 1);
-	// // mrt->sphere[2].radius = 1.5;
-	// // mrt->sphere[2].color = 0x0000ff;
-	// mrt->cam.pos = fill_coord(0, -20, 0);
-	// mrt->cam.dir = fill_coord(0, 1, 0);
-	// mrt->cam.fov = 90;
-	
-	
-	
-	
 	return (0);
 }
