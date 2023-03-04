@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:02:11 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/04 00:47:18 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/04 01:57:00 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,12 @@ int	ft_arg_count(char **line)
 	return (i);
 }
 
-t_table	*ft_fill_table(char *file)
+t_table	*ft_fill_table(int fd)
 {
-	int		fd;
 	char	*line;
 	t_table	*table;
 
 	table = NULL;
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (ft_error(FILE_ERROR, file, NULL), NULL);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (line && line[0] && line[0] != '\n')

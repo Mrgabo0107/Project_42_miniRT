@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/04 01:12:07 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/04 02:09:54 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ between -1 and 1 seperated by commas, at least one value should be non-zero \
 (sp)here \
 (pl)ane \
 (cy)linder "
+# define FILE_INSTRUCTIONS "Please provide a valid .rt file as an argument"
 # define INVALID_OBJECT "Invalid object in the scene"
 # define FILE_ERROR "Failed to open file"
 # define CLEAN_EXIT "Program Exited Correctly :)"
@@ -112,17 +113,17 @@ INT_MIN (2147483647)"
 # define POS_RANGE "Position must be between -1000 and 1000"
 # define SIZE_RANGE "Size must be between 0 and 1000"
 //init
-int			init_minirt(t_mrt *mrt);
+int			init_minirt(t_mrt *mrt, char *file);
 int			ft_init_mlx(t_mrt *mrt);
 
 //end
 int			end_mrt(t_mrt *mrt);
 
 //parsing
-int			ft_parse(t_mrt *mrt, char *file);
+int			ft_parse(t_mrt *mrt, int fd);
 int			ft_strcmp_1(char *s1, char *s2);
 int			eval_obj(char *line);
-t_table		*ft_fill_table(char *file);
+t_table		*ft_fill_table(int fd);
 int			ft_arg_count(char **line);
 void		ft_error(char *msg, char *extra, char *extra2);
 
