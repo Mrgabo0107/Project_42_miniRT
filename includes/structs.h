@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/0 by gamoreno         ###   ########.fr       */
+/*   Created: 2023/03/05 21:12:53 by ana               #+#    #+#             */
+/*   Updated: 2023/03/05 21:13:16 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef enum e_type
 	PLANE,
 	SPHERE,
 	CYLINDER,
-	// SQUARE
 }			t_type;
 
 typedef struct s_vec
@@ -42,13 +41,12 @@ typedef struct s_base
 	t_vec	n3;
 }		t_base;
 
-typedef	struct s_mtrx
+typedef struct s_mtrx
 {
 	t_vec	r1;
 	t_vec	r2;
 	t_vec	r3;
 }	t_mtrx;
-
 
 /*----------------------------------------------------------------------------*/
 /*									Camera									  */

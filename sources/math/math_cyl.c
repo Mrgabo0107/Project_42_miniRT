@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_cyl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 05:07:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/24 06:33:06 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/05 21:34:47 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,11 @@ t_base	get_cyl_base(t_vec	dir)
 	ret = first_rotation(dir, can);
 	ret = second_rotation(dir, ret);
 	return (ret);
+}
+
+double	ft_max_valid(double a, double b)
+{
+	if (a < 0 || b < 0)
+		return (max_v(a, b));
+	return (min_v(a, b));
 }

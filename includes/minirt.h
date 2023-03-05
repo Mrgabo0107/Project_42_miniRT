@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/05 20:48:19 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/05 21:36:12 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ INT_MIN (2147483647)"
 # define RATIO_RANGE "Ratio must be between 0 and 1"
 # define POS_RANGE "Position must be between -1000 and 1000"
 # define SIZE_RANGE "Size must be between 0 and 1000"
+
 //init
 int			init_minirt(t_mrt *mrt, char *file);
 int			ft_init_mlx(t_mrt *mrt);
@@ -161,7 +162,6 @@ int			check_for_chars(char *str, char *cell);
 int			out_of_range(double num, double min, double max);
 
 //fill objects
-// t_amblight	ft_fill_ambient(char *line[7]);
 t_cam		ft_fill_cam(char *line[7]);
 t_light		ft_fill_light(char *line[7], int amb);
 t_sphere	ft_fill_sphere(char *line[7]);
@@ -221,6 +221,7 @@ t_mtrx		mtrx_adj(t_mtrx m);
 t_mtrx		scal_mtrx(double s, t_mtrx m);
 t_mtrx		invert_mtrx(t_mtrx m);
 double		perp_to_plane(t_vec point, t_vec plane_pos, t_vec plane_norm);
+double		ft_max_valid(double a, double b);
 
 //plane
 t_vec		get_normal_plane(t_mrt *mrt, t_inter inter);
@@ -245,16 +246,12 @@ int			get_pixel_color(t_mrt *mrt, int x, int y);
 double		distance_to_cap(t_vec start_pos, t_cylinder cylinder, t_vec ray);
 t_inter		fill_ctrl(t_mrt *mrt, int type, int index, double dist);
 
-//debug
-void		print_pixels_coord(t_cam *cam);
-int			ft_printf(const char *input, ...);
-void		ft_printf_objects(t_mrt *mrt);
-void		print_mtrx(t_mtrx m);
-
 //color
 t_rgb		get_color(t_mrt *mrt, t_inter *ctr, t_vec dir);
 t_rgb		ft_make_rgb(int r, int g, int b);
 t_rgb		ft_make_rgb_ratio(t_rgb color);
 t_rgb		normalize_color(t_rgb color);
+
+int			key_press(int key, t_mrt *mrt);
 
 #endif

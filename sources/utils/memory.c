@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:34:04 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/05 17:38:54 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/05 21:19:12 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	*ft_liberate(t_mem *mem, int type)
 {
 	t_mem	*prev;
 
-	/*free linked lists here*/
 	while (mem)
 	{
 		if (mem->ptr)

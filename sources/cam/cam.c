@@ -54,25 +54,3 @@ t_vec	screen_pxl_by_indx(t_cam *cam, int i, int j)
 				scal_vec(scal_j, cam->screen_base.n2)));
 	return (res);
 }
-
-/*for debugging*/
-void	print_pixels_coord(t_cam *cam)
-{
-	int		i;
-	int		j;
-	t_vec	aux;
-
-	j = 1;
-	while (j <= WY)
-	{
-		i = 1;
-		while (i <= WX)
-		{
-			aux = screen_pxl_by_indx(cam, i, j);
-			print_vector(aux);
-			i++;
-		}
-		printf("\n");
-		j++;
-	}
-}
