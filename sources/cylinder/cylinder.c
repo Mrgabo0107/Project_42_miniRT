@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/02 23:43:56 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/04 14:46:06 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ double	distance_to_cap(t_vec start_pos, t_cylinder cyl, t_vec ray)
 		if (vect_norm(vec_rest(intersect, cyl.top)) <= cyl.radius && c > 0)
 			cas[1] = c;
 	}
+	else
+		return (-1);
 	if (cas[0] < 0 || cas[1] < 0)
 		return (max_v(cas[0], cas[1]));
 	return (min_v(cas[0], cas[1]));

@@ -161,6 +161,8 @@ typedef struct s_mrt
 	void			*win;
 	void			*img;
 	char			*addr;
+	char			*scene_path;
+	int				fd;
 	int				endi;
 	int				bpp;
 	int				sizel;

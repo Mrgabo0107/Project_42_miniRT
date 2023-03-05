@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/04 02:09:54 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/05 20:48:19 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <time.h>
 # include <sys/types.h>
 # include <limits.h>
+# include <errno.h>
+# include <string.h>
 
 // # define WX 10
 // # define WY 5
@@ -42,7 +44,9 @@
 # define EXIT_OK -555
 # define FREE_ONE -444
 # define SAVE_MLX -333
+# define SAVE_FD -222
 # define PI 3.1415926536
+# define BUFFER_SIZE 10000
 
 # define ESC 65307
 # define W 119
@@ -55,7 +59,15 @@
 # define DOWN 65364
 # define LEFT 65361
 # define RIGHT 65363
-# define COMMENT 123
+# define PLUS 65451
+# define MINUS 65453
+# define SPACE 32
+# define SHIFT 65505
+# define CTRL 65507
+# define R 114
+# define T 116
+# define ENTER 65293
+// # define COMMENT 123
 
 //error messages
 # define TOO_MANY_CAPITALS "Too many capital letters in the scene"
@@ -63,7 +75,8 @@
 # define CAPITAL_INSTRUCTIONS "\
 \nAdd one (L)ight, one (C)amera and one (A)mbient light in the scene"
 # define CYLINDER_INSTRUCTIONS "\
-\n(cy)linder: [name: 'cy', pos: (x,y,z), dir: (a,b,c), diameter, height, color: (r,g,b)] \
+\n(cy)linder: [name: 'cy', pos: (x,y,z), dir: (a,b,c), diameter, height, \
+color: (r,g,b)] \
 \ne.g. cy 0,0,0 0,1,0 3 8 255,0,0"
 # define SPHERE_INSTRUCTIONS "\
 \n(sp)here: [name: 'sp', pos: (x,y,z), diameter [-1000,1000], color: (r,g,b)] \
@@ -80,26 +93,33 @@
 # define AMBIENT_INSTRUCTIONS "\
 \n(A)mbient: [name: 'A' brightness: [0.0,1.0], color: (r,g,b)] \
 \ne.g. a 0.5 255,0,0"
-# define RGB_INSTRUCTIONS "RGB must be three integers between 0 and 255 and \
+# define RGB_INSTRUCTIONS "\
+\nRGB must be three integers between 0 and 255 and \
 separated by commas: (r,g,b)\ne.g. 255,0,0"
-# define RATIO_INSTRUCTIONS "Ratio must be a floating point integer \
-between 0 and 1\ne.g. 0.5"
-# define FOV_INSTRUCTIONS "FOV must be an integer between 0 and 180\ne.g. 90"
-# define POS_INSTRUCTIONS "Position must be three floating point integers \
-between -1000 and 1000 seperated by commas\ne.g. -24.5,15.433,20"
-# define SIZE_INSTRUCTIONS "Size must be a floating point integer \
-between 0 and 1000\ne.g. 3.5"
-# define NORMAL_INSTRUCTIONS "Normal must be three floating point integers \
-between -1 and 1 seperated by commas, at least one value should be non-zero \
+# define RATIO_INSTRUCTIONS "\
+\nRatio must be a floating point integer between 0 and 1 \
+\ne.g. 0.5"
+# define FOV_INSTRUCTIONS "\
+\nFOV must be an integer between 0 and 180 \
+\ne.g. 90"
+# define POS_INSTRUCTIONS "\
+\nPosition must be three floating point integers between -1000 and 1000 \
+seperated by commas \
+\ne.g. -24.5,15.433,20"
+# define SIZE_INSTRUCTIONS "\
+\nSize must be a floating point integer between 0 and 1000 \
+\ne.g. 3.5"
+# define NORMAL_INSTRUCTIONS "\
+\nNormal must be three floating point integers between -1 and 1 seperated by \
+commas, at least one value should be non-zero \
 \ne.g. 0,1,-0.5"
-# define OBJECT_INSTRUCTIONS "Valid objects include one of:\n \
-(C)amera \
-(L)ight \
-(A)mbient light \
-(sp)here \
-(pl)ane \
-(cy)linder "
-# define FILE_INSTRUCTIONS "Please provide a valid .rt file as an argument"
+# define OBJECT_INSTRUCTIONS "\
+\nValid objects include: \
+\n(C)amera, (L)ight, (A)mbient light, (sp)here, (pl)ane and (cy)linder"
+# define INVALID_FILE "Invalid file"
+# define FILE_INSTRUCTIONS "\
+\nPlease provide an existing file path, with the correct \
+permissions and ending in '.rt'"
 # define INVALID_OBJECT "Invalid object in the scene"
 # define FILE_ERROR "Failed to open file"
 # define CLEAN_EXIT "Program Exited Correctly :)"
@@ -115,12 +135,14 @@ INT_MIN (2147483647)"
 //init
 int			init_minirt(t_mrt *mrt, char *file);
 int			ft_init_mlx(t_mrt *mrt);
+void		ft_reinit(t_mrt *mrt);
+int			valid_rt_file(char *file, int fd);
 
 //end
 int			end_mrt(t_mrt *mrt);
 
 //parsing
-int			ft_parse(t_mrt *mrt, int fd);
+int			ft_parse(t_mrt *mrt);
 int			ft_strcmp_1(char *s1, char *s2);
 int			eval_obj(char *line);
 t_table		*ft_fill_table(int fd);
@@ -147,7 +169,7 @@ t_plane		ft_fill_plane(char *line[7]);
 t_cylinder	ft_fill_cylinder(char *line[7]);
 
 //utils
-int			get_next_line(int fd, char **line);
+char		*get_next_line(int fd);
 
 //list
 // t_lst		*ft_lstnew(void *obj, int type);
@@ -165,12 +187,14 @@ void		ft_free_one(t_mem *mem, void *thing);
 void		ft_quit(int status);
 void		clean_memory(void);
 void		ft_add_to_mem(void *thing);
-void		ft_close(int *fd);
+void		ft_close(int fd);
+void		ft_close_fd(int *fd);
 void		ft_save_mlx(void *ptr, void **mlx, void **win, void **img);
 void		ft_free_mlx(void **mlx, void **win, void **img);
 
 //free
 void		ft_free_array(char **array);
+void		ft_free_table(t_table *table);
 
 //math
 double		int_pow(double basis, int exp);

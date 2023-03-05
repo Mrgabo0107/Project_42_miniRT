@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/04 02:16:04 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/05 20:40:25 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_init_mlx(t_mrt *mrt)
 	return (0);
 }
 
-int	valid_rt_file(char *file)
+int	valid_rt_file(char *file, int fd)
 {
 	int	size;
 
@@ -42,10 +42,12 @@ int	valid_rt_file(char *file)
 		return (0);
 	if (file[size - 1] != 't' || file[size - 2] != 'r' || file[size - 3] != '.')
 		return (0);
+	if (read(fd, NULL, 0) < 0)
+		ft_error("Failed to read file", file, strerror(errno));
 	return (1);
 }
 
-void	ft_set_zero(t_mrt *mrt)
+void	ft_set_mrt(t_mrt *mrt, char *file)
 {
 	mrt->mlx = NULL;
 	mrt->win = NULL;
@@ -54,17 +56,24 @@ void	ft_set_zero(t_mrt *mrt)
 	mrt->sphere = NULL;
 	mrt->plane = NULL;
 	mrt->cylinder = NULL;
+	mrt->scene_path = file;
+}
+
+void	ft_reinit(t_mrt *mrt)
+{
+	ft_free(mrt->sphere);
+	mrt->sphere = NULL;
+	ft_free(mrt->plane);
+	mrt->plane = NULL;
+	ft_free(mrt->cylinder);
+	mrt->cylinder = NULL;
+	ft_parse(mrt);
 }
 
 int	init_minirt(t_mrt *mrt, char *file)
 {
-	int	fd;
-
-	fd = open(file, O_RDONLY);
-	if (fd < 0 || !valid_rt_file(file))
-		ft_error(FILE_ERROR, file, FILE_INSTRUCTIONS);
-	ft_set_zero(mrt);
-	ft_parse(mrt, fd);
+	ft_set_mrt(mrt, file);
+	ft_parse(mrt);
 	if (ft_init_mlx(mrt))
 		return (printf("Problem initializing minilibx\n"), 1);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:52:58 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/04 01:10:53 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/04 14:39:44 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,6 @@ t_rgb	ft_fill_rgb(char *cell)
 
 double	ft_fill_ratio(char *cell)
 {
-	int	i;
-	int	dotcount;
-
-	i = 0;
-	dotcount = 0;
 	if (check_for_chars("0123456789.", cell))
 		ft_error("Invalid char in ratio", cell, RATIO_INSTRUCTIONS);
 	check_valid_number(cell);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:36:59 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/21 18:53:22 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/04 14:39:25 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_print_sphere(t_sphere sphere)
 	printf("\nSphere:\n");
 	printf("Center: %f, %f, %f\n", sphere.center.x, sphere.center.y, sphere.center.z);
 	printf("Radius: %f\n", sphere.radius);
-	printf("Color: %x\n", sphere.color);
+	printf("Color: (%f,%f,%f)\n", sphere.color.r, sphere.color.g, sphere.color.b);
 }
 
 void	ft_print_plane(t_plane plane)
@@ -25,7 +25,7 @@ void	ft_print_plane(t_plane plane)
 	printf("\nPlane:\n");
 	printf("Center: %f, %f, %f\n", plane.pos.x, plane.pos.y, plane.pos.z);
 	printf("Normal: %f, %f, %f\n", plane.dir.x, plane.dir.y, plane.dir.z);
-	printf("Color: %x\n", plane.color);
+	printf("Color: (%f,%f,%f)\n", plane.color.r, plane.color.g, plane.color.b);
 }
 
 void	ft_print_cylinder(t_cylinder cylinder)
@@ -35,7 +35,7 @@ void	ft_print_cylinder(t_cylinder cylinder)
 	printf("Normal: %f, %f, %f\n", cylinder.dir.x, cylinder.dir.y, cylinder.dir.z);
 	printf("Radius: %f\n", cylinder.radius);
 	printf("Height: %f \n", cylinder.height);
-	printf("Color: %x\n", cylinder.color);
+	printf("Color: (%f,%f,%f)\n", cylinder.color.r, cylinder.color.g, cylinder.color.b);
 }
 
 void	ft_print_camera(t_cam cam)
@@ -51,14 +51,14 @@ void	ft_print_light(t_light light)
 	printf("\nLight:\n");
 	printf("Center: %f, %f, %f\n", light.pos.x, light.pos.y, light.pos.z);
 	printf("Brightness: %f\n", light.ratio);
-	printf("Color: %x\n", light.color);
+	printf("Color: (%f,%f,%f)\n", light.color.r, light.color.g, light.color.b);
 }
 
 void	ft_print_ambient(t_light ambient)
 {
 	printf("\nAmbient:\n");
 	printf("Brightness: %f\n", ambient.ratio);
-	printf("Color: %x\n", ambient.color);
+	printf("Color: (%f,%f,%f)\n", ambient.color.r, ambient.color.g, ambient.color.b);
 }
 
 void	ft_printf_objects(t_mrt *mrt)

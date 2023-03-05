@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/03/04 01:45:54 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/05 20:11:32 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	end_mrt(t_mrt *mrt)
 
 int	key_press(int key, t_mrt *mrt)
 {
-	// printf("\n\nkey: %d\n\n", key);
+	printf("\n\nkey: %d\n\n", key);
 	if (key == ESC)
 		end_mrt(mrt);
 	if (key == W)
@@ -56,6 +56,8 @@ int	key_press(int key, t_mrt *mrt)
 	if (key == RIGHT)
 		mrt->cam.dir = vec_sum(mrt->cam.dir, \
 		scal_vec(0.2, mrt->cam.screen_base.n1));
+	if (key == ENTER)
+		ft_reinit(mrt);
 	normalize(mrt->cam.dir);
 	set_all_cam_values(&mrt->cam);
 	pixel_calcul(mrt);

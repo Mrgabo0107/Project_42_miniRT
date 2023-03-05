@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:34:04 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/18 18:18:08 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/03/05 17:38:54 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,23 +71,34 @@ t_mem	*mem_new(size_t size, void *thing)
 	return (new);
 }
 
+void	ft_close_fd(int *fd)
+{
+	if (*fd > 2)
+	{
+		close(*fd);
+		*fd = -2;
+	}
+	ft_memory(fd, SAVE_FD);
+}
+
 void	*ft_memory(void *ptr, long long int size)
 {
 	static t_mem	*mem = NULL;
 	t_mem			*new;
-	static void		*mlx;
-	static void		*win;
-	static void		*img;
+	static void		*mlx[3];
+	static int		fd;
 
 	if (ptr && size == ADD_TO_MEM)
 		return (mem = mem_addback(&mem, mem_new(0, ptr)));
 	if (ptr && size == FREE_ONE)
 		return (ft_free_one(mem, ptr), NULL);
 	if (size == EXIT_ERROR || size == EXIT_OK)
-		return (ft_free_mlx(&mlx, &win, &img),
+		return (ft_close_fd(&fd), ft_free_mlx(&mlx[0], &mlx[1], &mlx[2]),
 			mem = ft_liberate(mem, size), NULL);
 	if (ptr && size == SAVE_MLX)
-		return (ft_save_mlx(ptr, &mlx, &win, &img), NULL);
+		return (ft_save_mlx(ptr, &mlx[0], &mlx[1], &mlx[2]), NULL);
+	if (ptr && size == SAVE_FD)
+		return (fd = *(int *)ptr, NULL);
 	new = mem_new(size, NULL);
 	mem = mem_addback(&mem, new);
 	return (new->ptr);
