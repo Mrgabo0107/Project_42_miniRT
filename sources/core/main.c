@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/03/05 17:07:05 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/05 20:11:32 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	key_press(int key, t_mrt *mrt)
 		mrt->cam.dir = vec_sum(mrt->cam.dir, \
 		scal_vec(0.2, mrt->cam.screen_base.n1));
 	if (key == ENTER)
-		init_minirt(mrt, mrt->scene_path);
+		ft_reinit(mrt);
 	normalize(mrt->cam.dir);
 	set_all_cam_values(&mrt->cam);
 	pixel_calcul(mrt);

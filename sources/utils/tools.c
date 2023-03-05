@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:22:52 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/05 19:59:43 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/05 20:16:47 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ char	*get_next_line(int fd)
 
 	i = 0;
 	size = 10000;
+	while (i < size)
+		line[i++] = '\0';
 	i = 0;
 	copy = line;
 	while (read(fd, copy, 1) > 0)

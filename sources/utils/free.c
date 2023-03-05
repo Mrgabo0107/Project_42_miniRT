@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:34:02 by yridgway          #+#    #+#             */
-/*   Updated: 2023/02/19 19:47:55 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/05 20:10:02 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,17 @@ void	ft_free_array(char **array)
 		i++;
 	}
 	ft_free(array);
+}
+
+void	ft_free_table(t_table *table)
+{
+	t_table	*tmp;
+
+	while (table)
+	{
+		tmp = table;
+		table = table->next;
+		ft_free(tmp->line);
+		ft_free(tmp);
+	}
 }
