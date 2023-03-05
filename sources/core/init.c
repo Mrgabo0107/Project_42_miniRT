@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/04 02:16:04 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/05 19:54:33 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_init_mlx(t_mrt *mrt)
 	return (0);
 }
 
-int	valid_rt_file(char *file)
+int	valid_rt_file(char *file, int fd)
 {
 	int	size;
 
@@ -42,6 +42,8 @@ int	valid_rt_file(char *file)
 		return (0);
 	if (file[size - 1] != 't' || file[size - 2] != 'r' || file[size - 3] != '.')
 		return (0);
+	if (read(fd, NULL, 0) < 0)
+		ft_error("Failed to read file", file, FILE_INSTRUCTIONS);
 	return (1);
 }
 
@@ -61,10 +63,14 @@ int	init_minirt(t_mrt *mrt, char *file)
 	int	fd;
 
 	fd = open(file, O_RDONLY);
-	if (fd < 0 || !valid_rt_file(file))
+	if (fd < 0)
 		ft_error(FILE_ERROR, file, FILE_INSTRUCTIONS);
+	ft_memory(&fd, SAVE_FD);
+	if (!valid_rt_file(file, fd))
+		ft_error(INVALID_FILE, file, FILE_INSTRUCTIONS);
 	ft_set_zero(mrt);
 	ft_parse(mrt, fd);
+	ft_close_fd(&fd);
 	if (ft_init_mlx(mrt))
 		return (printf("Problem initializing minilibx\n"), 1);
 	return (0);

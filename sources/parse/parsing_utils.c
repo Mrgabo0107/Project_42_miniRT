@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:02:11 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/04 01:57:00 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/05 19:59:37 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ int	eval_obj(char *line)
 		return (AMBIENT);
 	if (ft_strcmp_1(line, "C") == 0)
 		return (CAMERA);
-	if (line[0] == '#')
-		return (COMMENT);
 	return (-1);
 }
 
@@ -65,12 +63,14 @@ t_table	*ft_fill_table(int fd)
 	t_table	*table;
 
 	table = NULL;
-	while (get_next_line(fd, &line) > 0)
+	line = ft_strdup("#");
+	while (line)
 	{
-		if (line && line[0] && line[0] != '\n')
+		if (line && line[0] && line[0] != '\n' && line[0] != '#')
 			table = ft_tableadd_new(table, ft_split_ws(line));
 		else
 			ft_free(line);
+		line = get_next_line(fd);
 	}
 	return (table);
 }
@@ -78,10 +78,10 @@ t_table	*ft_fill_table(int fd)
 void	ft_error(char *msg, char *extra, char *extra2)
 {
 	printf("Error\n");
-	if (msg && extra)
+	if (msg && extra && !extra2)
 		printf("%s: %s\n", msg, extra);
 	else if (msg && extra && extra2)
-		printf("%s: %s\n %s\n", msg, extra, extra2);
+		printf("%s: %s\n%s\n", msg, extra, extra2);
 	else if (msg)
 		printf("%s\n", msg);
 	ft_quit(EXIT_ERROR);

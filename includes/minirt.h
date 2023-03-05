@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/04 02:09:54 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/05 19:54:55 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define EXIT_OK -555
 # define FREE_ONE -444
 # define SAVE_MLX -333
+# define SAVE_FD -222
 # define PI 3.1415926536
 
 # define ESC 65307
@@ -55,7 +56,15 @@
 # define DOWN 65364
 # define LEFT 65361
 # define RIGHT 65363
-# define COMMENT 123
+# define PLUS 65451
+# define MINUS 65453
+# define SPACE 32
+# define SHIFT 65505
+# define CTRL 65507
+# define R 114
+# define T 116
+# define ENTER 65293
+// # define COMMENT 123
 
 //error messages
 # define TOO_MANY_CAPITALS "Too many capital letters in the scene"
@@ -99,7 +108,9 @@ between -1 and 1 seperated by commas, at least one value should be non-zero \
 (sp)here \
 (pl)ane \
 (cy)linder "
-# define FILE_INSTRUCTIONS "Please provide a valid .rt file as an argument"
+# define INVALID_FILE "Invalid file"
+# define FILE_INSTRUCTIONS "Please provide an existing file path, with the correct \
+permissions and ending in '.rt'"
 # define INVALID_OBJECT "Invalid object in the scene"
 # define FILE_ERROR "Failed to open file"
 # define CLEAN_EXIT "Program Exited Correctly :)"
@@ -147,7 +158,7 @@ t_plane		ft_fill_plane(char *line[7]);
 t_cylinder	ft_fill_cylinder(char *line[7]);
 
 //utils
-int			get_next_line(int fd, char **line);
+char		*get_next_line(int fd);
 
 //list
 // t_lst		*ft_lstnew(void *obj, int type);
@@ -165,7 +176,8 @@ void		ft_free_one(t_mem *mem, void *thing);
 void		ft_quit(int status);
 void		clean_memory(void);
 void		ft_add_to_mem(void *thing);
-void		ft_close(int *fd);
+void		ft_close(int fd);
+void	 	ft_close_fd(int *fd);
 void		ft_save_mlx(void *ptr, void **mlx, void **win, void **img);
 void		ft_free_mlx(void **mlx, void **win, void **img);
 
