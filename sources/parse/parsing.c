@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/04 02:08:56 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/05 20:09:50 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,21 @@ void	ft_fill_objs(t_mrt *mrt, t_table *table, int count[6])
 	}
 }
 
-int	ft_parse(t_mrt *mrt, int fd)
+int	ft_parse(t_mrt *mrt)
 {
+	int		fd;
 	t_table	*table;
 
+	fd = open(mrt->scene_path, O_RDONLY);
+	if (fd < 0)
+		ft_error(FILE_ERROR, mrt->scene_path, FILE_INSTRUCTIONS);
+	ft_memory(&fd, SAVE_FD);
+	if (!valid_rt_file(mrt->scene_path, fd))
+		ft_error(INVALID_FILE, mrt->scene_path, FILE_INSTRUCTIONS);
 	table = ft_fill_table(fd);
+	ft_close_fd(&fd);
 	ft_count_objs(table, mrt->obj_count);
 	ft_fill_objs(mrt, table, mrt->obj_count);
+	ft_free_table(table);
 	return (0);
 }

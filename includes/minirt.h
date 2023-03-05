@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/05 19:54:55 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/05 20:13:45 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,12 +126,14 @@ INT_MIN (2147483647)"
 //init
 int			init_minirt(t_mrt *mrt, char *file);
 int			ft_init_mlx(t_mrt *mrt);
+void		ft_reinit(t_mrt *mrt);
+int			valid_rt_file(char *file, int fd);
 
 //end
 int			end_mrt(t_mrt *mrt);
 
 //parsing
-int			ft_parse(t_mrt *mrt, int fd);
+int			ft_parse(t_mrt *mrt);
 int			ft_strcmp_1(char *s1, char *s2);
 int			eval_obj(char *line);
 t_table		*ft_fill_table(int fd);
@@ -177,12 +179,13 @@ void		ft_quit(int status);
 void		clean_memory(void);
 void		ft_add_to_mem(void *thing);
 void		ft_close(int fd);
-void	 	ft_close_fd(int *fd);
+void		ft_close_fd(int *fd);
 void		ft_save_mlx(void *ptr, void **mlx, void **win, void **img);
 void		ft_free_mlx(void **mlx, void **win, void **img);
 
 //free
 void		ft_free_array(char **array);
+void		ft_free_table(t_table *table);
 
 //math
 double		int_pow(double basis, int exp);
