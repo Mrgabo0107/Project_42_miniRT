@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/05 20:46:12 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/05 20:48:19 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,8 @@ commas, at least one value should be non-zero \
 \nValid objects include: \
 \n(C)amera, (L)ight, (A)mbient light, (sp)here, (pl)ane and (cy)linder"
 # define INVALID_FILE "Invalid file"
-# define FILE_INSTRUCTIONS "Please provide an existing file path, with the correct \
+# define FILE_INSTRUCTIONS "\
+\nPlease provide an existing file path, with the correct \
 permissions and ending in '.rt'"
 # define INVALID_OBJECT "Invalid object in the scene"
 # define FILE_ERROR "Failed to open file"
