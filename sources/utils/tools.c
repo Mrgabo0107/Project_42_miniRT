@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:22:52 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/05 20:16:47 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/05 20:39:37 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,12 @@ void	*ft_realloc(void *ptr, size_t size, size_t new_size)
 
 char	*get_next_line(int fd)
 {
-	char	line[10000];
+	char	line[BUFFER_SIZE + 1];
 	char	*copy;
 	int		i;
-	int		size;
 
 	i = 0;
-	size = 10000;
-	while (i < size)
+	while (i <= BUFFER_SIZE)
 		line[i++] = '\0';
 	i = 0;
 	copy = line;
@@ -81,7 +79,7 @@ char	*get_next_line(int fd)
 		if (*copy++ == '\n')
 			break ;
 		i++;
-		if (i == size)
+		if (i == BUFFER_SIZE)
 			ft_error("Line too long", \
 			"Please keep lines under 10000 characters", NULL);
 	}
@@ -91,7 +89,5 @@ char	*get_next_line(int fd)
 			line[i] = '\0';
 		return (ft_strdup(line));
 	}
-	else
-		return (NULL);
 	return (NULL);
 }

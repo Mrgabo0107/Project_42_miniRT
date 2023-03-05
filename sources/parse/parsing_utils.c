@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:02:11 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/05 19:59:37 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/05 20:41:20 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_error(char *msg, char *extra, char *extra2)
 	if (msg && extra && !extra2)
 		printf("%s: %s\n", msg, extra);
 	else if (msg && extra && extra2)
-		printf("%s: %s\n%s\n", msg, extra, extra2);
+		printf("%s: %s: %s\n", msg, extra, extra2);
 	else if (msg)
 		printf("%s\n", msg);
 	ft_quit(EXIT_ERROR);

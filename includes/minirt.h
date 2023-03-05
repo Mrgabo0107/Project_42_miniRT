@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/05 20:13:45 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/05 20:46:12 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <time.h>
 # include <sys/types.h>
 # include <limits.h>
+# include <errno.h>
+# include <string.h>
 
 // # define WX 10
 // # define WY 5
@@ -44,6 +46,7 @@
 # define SAVE_MLX -333
 # define SAVE_FD -222
 # define PI 3.1415926536
+# define BUFFER_SIZE 10000
 
 # define ESC 65307
 # define W 119
@@ -72,7 +75,8 @@
 # define CAPITAL_INSTRUCTIONS "\
 \nAdd one (L)ight, one (C)amera and one (A)mbient light in the scene"
 # define CYLINDER_INSTRUCTIONS "\
-\n(cy)linder: [name: 'cy', pos: (x,y,z), dir: (a,b,c), diameter, height, color: (r,g,b)] \
+\n(cy)linder: [name: 'cy', pos: (x,y,z), dir: (a,b,c), diameter, height, \
+color: (r,g,b)] \
 \ne.g. cy 0,0,0 0,1,0 3 8 255,0,0"
 # define SPHERE_INSTRUCTIONS "\
 \n(sp)here: [name: 'sp', pos: (x,y,z), diameter [-1000,1000], color: (r,g,b)] \
@@ -89,25 +93,29 @@
 # define AMBIENT_INSTRUCTIONS "\
 \n(A)mbient: [name: 'A' brightness: [0.0,1.0], color: (r,g,b)] \
 \ne.g. a 0.5 255,0,0"
-# define RGB_INSTRUCTIONS "RGB must be three integers between 0 and 255 and \
+# define RGB_INSTRUCTIONS "\
+\nRGB must be three integers between 0 and 255 and \
 separated by commas: (r,g,b)\ne.g. 255,0,0"
-# define RATIO_INSTRUCTIONS "Ratio must be a floating point integer \
-between 0 and 1\ne.g. 0.5"
-# define FOV_INSTRUCTIONS "FOV must be an integer between 0 and 180\ne.g. 90"
-# define POS_INSTRUCTIONS "Position must be three floating point integers \
-between -1000 and 1000 seperated by commas\ne.g. -24.5,15.433,20"
-# define SIZE_INSTRUCTIONS "Size must be a floating point integer \
-between 0 and 1000\ne.g. 3.5"
-# define NORMAL_INSTRUCTIONS "Normal must be three floating point integers \
-between -1 and 1 seperated by commas, at least one value should be non-zero \
+# define RATIO_INSTRUCTIONS "\
+\nRatio must be a floating point integer between 0 and 1 \
+\ne.g. 0.5"
+# define FOV_INSTRUCTIONS "\
+\nFOV must be an integer between 0 and 180 \
+\ne.g. 90"
+# define POS_INSTRUCTIONS "\
+\nPosition must be three floating point integers between -1000 and 1000 \
+seperated by commas \
+\ne.g. -24.5,15.433,20"
+# define SIZE_INSTRUCTIONS "\
+\nSize must be a floating point integer between 0 and 1000 \
+\ne.g. 3.5"
+# define NORMAL_INSTRUCTIONS "\
+\nNormal must be three floating point integers between -1 and 1 seperated by \
+commas, at least one value should be non-zero \
 \ne.g. 0,1,-0.5"
-# define OBJECT_INSTRUCTIONS "Valid objects include one of:\n \
-(C)amera \
-(L)ight \
-(A)mbient light \
-(sp)here \
-(pl)ane \
-(cy)linder "
+# define OBJECT_INSTRUCTIONS "\
+\nValid objects include: \
+\n(C)amera, (L)ight, (A)mbient light, (sp)here, (pl)ane and (cy)linder"
 # define INVALID_FILE "Invalid file"
 # define FILE_INSTRUCTIONS "Please provide an existing file path, with the correct \
 permissions and ending in '.rt'"

@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/05 20:10:53 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/05 20:40:25 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	valid_rt_file(char *file, int fd)
 	if (file[size - 1] != 't' || file[size - 2] != 'r' || file[size - 3] != '.')
 		return (0);
 	if (read(fd, NULL, 0) < 0)
-		ft_error("Failed to read file", file, FILE_INSTRUCTIONS);
+		ft_error("Failed to read file", file, strerror(errno));
 	return (1);
 }
 

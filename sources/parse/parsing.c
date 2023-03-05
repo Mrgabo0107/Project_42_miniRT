@@ -6,7 +6,7 @@
 /*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/05 20:09:50 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/05 20:36:49 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	ft_parse(t_mrt *mrt)
 
 	fd = open(mrt->scene_path, O_RDONLY);
 	if (fd < 0)
-		ft_error(FILE_ERROR, mrt->scene_path, FILE_INSTRUCTIONS);
+		ft_error(FILE_ERROR, mrt->scene_path, strerror(errno));
 	ft_memory(&fd, SAVE_FD);
 	if (!valid_rt_file(mrt->scene_path, fd))
 		ft_error(INVALID_FILE, mrt->scene_path, FILE_INSTRUCTIONS);
