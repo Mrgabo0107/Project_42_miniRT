@@ -70,6 +70,13 @@ t_base	get_cyl_base(t_vec	dir)
 	can.n1 = fill_coord(1, 0, 0);
 	can.n2 = fill_coord(0, 1, 0);
 	can.n3 = fill_coord(0, 0, 1);
+	if (v_abs(dir.x) < 0.00001 && v_abs(dir.z) < 0.00001)
+	{
+		ret.n1 = can.n3;
+		ret.n2 = can.n1;
+		ret.n3 = can.n2;
+		return (ret);
+	}
 	ret = first_rotation(dir, can);
 	ret = second_rotation(dir, ret);
 	return (ret);

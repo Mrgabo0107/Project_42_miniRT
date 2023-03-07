@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:07:15 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/02 01:22:32 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:59:36 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	check_planes(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 			{
 				inter_coor = vec_sum(point, scal_vec(c, dir));
 				*ctrl = (t_inter){PLANE, i, c, inter_coor, \
-				fill_coord(0, 0, 0), 0};
+				fill_coord(0, 0, 0), mrt->plane[i].color, 0};
 			}
 			i++;
 		}

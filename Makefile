@@ -6,15 +6,15 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/01 19:43:33 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/03/07 23:05:04 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### Compilation ###
 
 CC      = cc
-# FLAGS  = #-Wall -Werror -Wextra -g #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
-FLAGS  = -Wall -Werror -Wextra -Ofast -flto
+FLAGS  = -Wall -Werror -Wextra #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
+# FLAGS  = -Wall -Werror -Wextra -Ofast -flto
 # FLAGS  = -Ofast -flto
 ### Executable ###
 #-Ofast -flto 
@@ -33,13 +33,14 @@ INCLUDES = -I $(HEADER) -I $(MLX) -I $(LIBFT)/includes
 CORE_DIR	=	core/
 CORE		=	main.c \
 				init.c \
+				keypress.c \
 
 PARSE_DIR	=	parse/
 PARSE		=	parsing.c \
-				print_objects.c \
 				fill_objects.c \
 				parsing_utils.c \
 				cell_filling.c \
+				cell_filling_utils.c \
 
 UTIL_DIR	=	utils/
 UTILS		=	tools.c \
@@ -48,7 +49,6 @@ UTILS		=	tools.c \
 				mem_redefs.c \
 				free.c \
 				list_utils.c \
-				ft_printf.c \
 
 MAT_DIR		=	math/
 MAT			=	math1.c \
@@ -62,7 +62,8 @@ CAM			=	cam.c \
 				paint.c \
 				
 COLOR_DIR	=	color/
-COLOR		=	color1.c \
+COLOR		=	color.c \
+				color_utils.c \
 
 PLANE_DIR	=	plane/
 PLANE		=	plane.c \
@@ -72,7 +73,7 @@ SPHERE		=	sphere.c \
 
 CYLIN_DIR	=	cylinder/
 CYLIN		=	cylinder.c \
-				math_cyl.c \
+				math_cyl.c
 
 # LIBFT_DIR	=	libft/
 # LIBFT		=	libft.a

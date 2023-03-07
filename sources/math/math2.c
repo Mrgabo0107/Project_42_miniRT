@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:28:00 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/01 19:44:17 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/05 21:21:23 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,4 @@ double	v_abs(double x)
 double	dot_prod(t_vec v1, t_vec v2)
 {
 	return ((v1.x * v2.x) + (v1.y * v2.y) + (v1.z * v2.z));
-}
-
-
-
-/*for debug*/
-void	print_vector(t_vec v)
-{
-	printf("[%lf, %lf, %lf] ", v.x, v.y, v.z);
 }

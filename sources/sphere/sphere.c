@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:31:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/02 01:48:25 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:59:20 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_vec	get_normal_sphere(t_mrt *mrt, t_inter inter)
 	mrt->sphere[inter.index].center)));
 }
 
-static t_discr	get_sph_dscr(t_vec ncam, t_vec dir, double square_rad)
+t_discr	get_sph_dscr(t_vec ncam, t_vec dir, double square_rad)
 {
 	t_discr	ret;
 
@@ -46,8 +46,8 @@ void	check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 			c = solve_quad(&discr);
 			if (c > 0 && (ctrl->dist == -1 || c < ctrl->dist))
 				*ctrl = (t_inter){SPHERE, i, c, vec_sum(vec_sum(new_cam, \
-				scal_vec(c, dir)), mrt->sphere[i].center), \
-				fill_coord(0, 0, 0), 0};
+				scal_vec(c, dir)), mrt->sphere[i].center), fill_coord(0, 0, 0) \
+				, mrt->sphere[i].color, 0};
 		}
 		i++;
 	}

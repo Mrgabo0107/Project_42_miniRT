@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/0 by gamoreno         ###   ########.fr       */
+/*   Created: 2023/03/05 21:12:53 by ana               #+#    #+#             */
+/*   Updated: 2023/03/07 22:54:55 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef enum e_type
 	PLANE,
 	SPHERE,
 	CYLINDER,
-	// SQUARE
 }			t_type;
 
 typedef struct s_vec
@@ -42,12 +41,12 @@ typedef struct s_base
 	t_vec	n3;
 }		t_base;
 
-typedef	struct	s_mtrx
+typedef struct s_mtrx
 {
 	t_vec	r1;
 	t_vec	r2;
 	t_vec	r3;
-}			t_mtrx;
+}	t_mtrx;
 
 /*----------------------------------------------------------------------------*/
 /*									Camera									  */
@@ -76,6 +75,13 @@ typedef struct s_cam
 	t_base	screen_base;
 }		t_cam;
 
+typedef struct s_rgb
+{
+	double	r;
+	double	g;
+	double	b;
+}			t_rgb;
+
 typedef struct s_inter
 {
 	int		type;
@@ -83,6 +89,7 @@ typedef struct s_inter
 	double	dist;
 	t_vec	inter_coor;
 	t_vec	norm;
+	t_rgb	color;
 	int		cyl_ctrl;
 }			t_inter;
 
@@ -108,23 +115,25 @@ typedef struct s_sphere
 {
 	t_vec	center;
 	double	radius;
-	uint	color;
+	t_rgb	color;
 }			t_sphere;
 
 typedef struct s_plane
 {
 	t_vec	pos;
 	t_vec	dir;
-	uint	color;
+	t_rgb	color;
 }			t_plane;
 
 typedef struct s_cylinder
 {
 	t_vec	pos;
 	t_vec	dir;
+	t_vec	top;
+	t_vec	bottom;
 	double	radius;
 	double	height;
-	uint	color;
+	t_rgb	color;
 	t_base	base;
 }			t_cylinder;
 
@@ -132,7 +141,7 @@ typedef struct s_light
 {
 	t_vec	pos;
 	double	ratio;
-	uint	color;
+	t_rgb	color;
 	int		type;
 }			t_light;
 
@@ -158,6 +167,8 @@ typedef struct s_mrt
 	void			*win;
 	void			*img;
 	char			*addr;
+	char			*scene_path;
+	int				fd;
 	int				endi;
 	int				bpp;
 	int				sizel;

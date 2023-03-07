@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:02:11 by ionorb            #+#    #+#             */
-/*   Updated: 2023/02/19 23:18:21 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/05 20:51:44 by ana              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,30 +57,30 @@ int	ft_arg_count(char **line)
 	return (i);
 }
 
-t_table	*ft_fill_table(char *file)
+t_table	*ft_fill_table(int fd)
 {
-	int		fd;
 	char	*line;
 	t_table	*table;
 
 	table = NULL;
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (ft_error(FILE_ERROR, file), NULL);
-	while (get_next_line(fd, &line) > 0)
+	line = ft_strdup("#");
+	while (line)
 	{
-		if (line && line[0] && line[0] != '\n')
+		if (line && line[0] && line[0] != '\n' && line[0] != '#')
 			table = ft_tableadd_new(table, ft_split_ws(line));
 		else
 			ft_free(line);
+		line = get_next_line(fd);
 	}
 	return (table);
 }
 
-void	ft_error(char *msg, char *extra)
+void	ft_error(char *msg, char *extra, char *extra2)
 {
 	printf("Error\n");
-	if (msg && extra)
+	if (msg && extra && extra2)
+		printf("%s: %s: %s\n", msg, extra, extra2);
+	else if (msg && extra)
 		printf("%s: %s\n", msg, extra);
 	else if (msg)
 		printf("%s\n", msg);
