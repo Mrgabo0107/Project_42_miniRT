@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_cyl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 05:07:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/05 21:34:47 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/02 04:04:13 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_base	second_rotation(t_vec dir, t_base ret)
 	t_mtrx	chng_base;
 
 	cos_an = dot_prod(dir, ret.n3);
-	sin_an = sqrt(1 - int_pow(cos_an, 2));
+	sin_an = -sqrt(1 - int_pow(cos_an, 2));
 	if (dir.y < 0)
 		sin_an *= -1;
 	chng_base.r1 = fill_coord(cos_an + (int_pow(ret.n1.x, 2) * (1 - cos_an)),
@@ -70,14 +70,33 @@ t_base	get_cyl_base(t_vec	dir)
 	can.n1 = fill_coord(1, 0, 0);
 	can.n2 = fill_coord(0, 1, 0);
 	can.n3 = fill_coord(0, 0, 1);
+	if (v_abs(dir.x) < 0.00001 && v_abs(dir.z) < 0.00001)
+	{
+		ret.n1 = can.n3;
+		ret.n2 = can.n1;
+		ret.n3 = can.n2;
+		return (ret);
+	}
 	ret = first_rotation(dir, can);
 	ret = second_rotation(dir, ret);
 	return (ret);
 }
 
-double	ft_max_valid(double a, double b)
+t_vec	get_normal_cylinder(t_mrt *mrt, t_inter inter)
 {
-	if (a < 0 || b < 0)
-		return (max_v(a, b));
-	return (min_v(a, b));
+	t_vec	ret;
+
+	ret = fill_coord(0, 0, 0);
+	if (inter.cyl_ctrl == 1)
+		return (mrt->cylinder[inter.index].dir);
+	else if (inter.cyl_ctrl == 2)
+		return (scal_vec(-1, mrt->cylinder[inter.index].dir));
+	else if (inter.cyl_ctrl == 3)
+		return (vec_rest(inter.inter_coor,
+				vec_sum(mrt->cylinder[inter.index].pos,
+					scal_vec(dot_prod(vec_rest(inter.inter_coor,
+								mrt->cylinder[inter.index].pos),
+							mrt->cylinder[inter.index].dir),
+						mrt->cylinder[inter.index].dir))));
+	return (ret);
 }
