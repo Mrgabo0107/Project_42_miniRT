@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 20:50:16 by yridgway          #+#    #+#             */
-/*   Updated: 2023/0 by gamoreno         ###   ########.fr       */
+/*   Created: 2023/03/05 21:12:53 by ana               #+#    #+#             */
+/*   Updated: 2023/03/07 22:54:55 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef enum e_type
 	PLANE,
 	SPHERE,
 	CYLINDER,
-	// SQUARE
 }			t_type;
 
 typedef struct s_vec
@@ -42,13 +41,12 @@ typedef struct s_base
 	t_vec	n3;
 }		t_base;
 
-typedef	struct s_mtrx
+typedef struct s_mtrx
 {
 	t_vec	r1;
 	t_vec	r2;
 	t_vec	r3;
 }	t_mtrx;
-
 
 /*----------------------------------------------------------------------------*/
 /*									Camera									  */
@@ -83,6 +81,7 @@ typedef struct s_rgb
 	double	g;
 	double	b;
 }			t_rgb;
+
 typedef struct s_inter
 {
 	int		type;
@@ -91,6 +90,7 @@ typedef struct s_inter
 	t_vec	inter_coor;
 	t_vec	norm;
 	t_rgb	color;
+	int		cyl_ctrl;
 }			t_inter;
 
 typedef struct s_discr
@@ -100,6 +100,12 @@ typedef struct s_discr
 	double	c;
 	double	dscr;
 }		t_discr;
+
+typedef struct s_cyl_ctrl
+{
+	double	c;
+	int		cap_ctrl;
+}			t_cyl_ctrl;
 
 /*----------------------------------------------------------------------------*/
 /*									Objects									  */
