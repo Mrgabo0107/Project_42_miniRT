@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/05 20:36:49 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/12 21:47:29 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,16 @@
 
 void	ft_check_capitals(int a, int c, int l)
 {
-	if (a > 1 || c > 1 || l > 1)
-		ft_error(TOO_MANY_CAPITALS, CAPITAL_INSTRUCTIONS, NULL);
-	if (a == 0 || c == 0 || l == 0)
-		ft_error(MISSING_CAPITALS, CAPITAL_INSTRUCTIONS, NULL);
+	if (a > 1)
+		ft_error(TOO_MANY_AMBIENTS, AMBIENT_INSTRUCTIONS, NULL);
+	if (c > 1)
+		ft_error(TOO_MANY_CAMERAS, CAMERA_INSTRUCTIONS, NULL);
+	if (a == 0)
+		ft_error(MISSING_AMBIENT, AMBIENT_INSTRUCTIONS, NULL);
+	if (c == 0)
+		ft_error(MISSING_CAMERA, CAMERA_INSTRUCTIONS, NULL);
+	if (l == 0)
+		ft_error(MISSING_LIGHT, LIGHT_INSTRUCTIONS, NULL);
 }
 
 int	*ft_count_objs(t_table *table, int obj_count[6])
@@ -55,34 +61,34 @@ void	ft_fill_capitals(t_mrt *mrt, char **line, int type)
 		mrt->amblight = ft_fill_light(line, 1);
 	else if (type == CAMERA)
 		mrt->cam = ft_fill_cam(line);
-	else if (type == LIGHT)
-		mrt->light = ft_fill_light(line, 0);
 }
 
 void	ft_fill_objs(t_mrt *mrt, t_table *table, int count[6])
 {
 	int	type;
+	int	num[6];
 	int	i;
-	int	j;
-	int	k;
 
-	i = 0;
-	j = 0;
-	k = 0;
+	i = -1;
+	while (++i < 6)
+		num[i] = count[i];
+	mrt->light = ft_malloc(sizeof(t_light) * count[LIGHT]);
 	mrt->sphere = ft_malloc(sizeof(t_sphere) * count[SPHERE]);
 	mrt->plane = ft_malloc(sizeof(t_plane) * count[PLANE]);
 	mrt->cylinder = ft_malloc(sizeof(t_cylinder) * count[CYLINDER]);
 	while (table)
 	{
 		type = eval_obj(table->line[0]);
-		if (type >= AMBIENT && type <= LIGHT)
+		if (type == AMBIENT || type == CAMERA)
 			ft_fill_capitals(mrt, table->line, type);
+		else if (eval_obj(table->line[0]) == LIGHT)
+			mrt->light[--num[LIGHT]] = ft_fill_light(table->line, 0);
 		else if (eval_obj(table->line[0]) == SPHERE)
-			mrt->sphere[i++] = ft_fill_sphere(table->line);
+			mrt->sphere[--num[SPHERE]] = ft_fill_sphere(table->line);
 		else if (eval_obj(table->line[0]) == PLANE)
-			mrt->plane[j++] = ft_fill_plane(table->line);
+			mrt->plane[--num[PLANE]] = ft_fill_plane(table->line);
 		else if (eval_obj(table->line[0]) == CYLINDER)
-			mrt->cylinder[k++] = ft_fill_cylinder(table->line);
+			mrt->cylinder[--num[CYLINDER]] = ft_fill_cylinder(table->line);
 		table = table->next;
 	}
 }

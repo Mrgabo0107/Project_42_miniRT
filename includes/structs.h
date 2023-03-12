@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by ana               #+#    #+#             */
-/*   Updated: 2023/03/07 22:54:55 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/12 21:26:06 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ typedef struct s_mrt
 	int				obj_count[6];
 	t_light			amblight;
 	t_cam			cam;
-	t_light			light;
+	t_light			*light;
 	t_sphere		*sphere;
 	t_plane			*plane;
 	t_cylinder		*cylinder;
