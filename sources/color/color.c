@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/12 21:56:25 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/12 22:13:44 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,6 @@ t_rgb	add_color(t_inter *ctr, t_rgb color, t_vec to_light, t_light light)
 	color.r += light.color.r * light.ratio * ratio.r * angle;
 	color.g += light.color.g * light.ratio * ratio.g * angle;
 	color.b += light.color.b * light.ratio * ratio.b * angle;
-	return (color);
-}
-
-t_rgb	show_light_sources(t_mrt *mrt, t_rgb color, t_vec dir)
-{
-	int		i;
-
-	i = -1;
-	while (++i < mrt->obj_count[LIGHT])
-	{
-		if (((t_discr)(get_sph_dscr(vec_rest(mrt->cam.pos, mrt->light[i].pos), \
-		dir, int_pow(0.2, 2)))).dscr >= 0.0)
-			color = mrt->light[i].color;
-	}
 	return (color);
 }
 

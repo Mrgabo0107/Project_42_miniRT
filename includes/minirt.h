@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/12 21:25:01 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/12 22:14:02 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,6 +259,7 @@ t_rgb		get_color(t_mrt *mrt, t_inter *ctr, t_vec dir);
 t_rgb		ft_make_rgb(int r, int g, int b);
 t_rgb		ft_make_rgb_ratio(t_rgb color);
 t_rgb		normalize_color(t_rgb color);
+t_rgb		show_light_sources(t_mrt *mrt, t_rgb color, t_vec dir);
 
 int			key_press(int key, t_mrt *mrt);
 

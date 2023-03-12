@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/12 21:47:29 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/12 22:13:02 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,7 @@ void	ft_fill_capitals(t_mrt *mrt, char **line, int type)
 void	ft_fill_objs(t_mrt *mrt, t_table *table, int count[6])
 {
 	int	type;
-	int	num[6];
-	int	i;
 
-	i = -1;
-	while (++i < 6)
-		num[i] = count[i];
 	mrt->light = ft_malloc(sizeof(t_light) * count[LIGHT]);
 	mrt->sphere = ft_malloc(sizeof(t_sphere) * count[SPHERE]);
 	mrt->plane = ft_malloc(sizeof(t_plane) * count[PLANE]);
@@ -82,13 +77,13 @@ void	ft_fill_objs(t_mrt *mrt, t_table *table, int count[6])
 		if (type == AMBIENT || type == CAMERA)
 			ft_fill_capitals(mrt, table->line, type);
 		else if (eval_obj(table->line[0]) == LIGHT)
-			mrt->light[--num[LIGHT]] = ft_fill_light(table->line, 0);
+			mrt->light[--count[LIGHT]] = ft_fill_light(table->line, 0);
 		else if (eval_obj(table->line[0]) == SPHERE)
-			mrt->sphere[--num[SPHERE]] = ft_fill_sphere(table->line);
+			mrt->sphere[--count[SPHERE]] = ft_fill_sphere(table->line);
 		else if (eval_obj(table->line[0]) == PLANE)
-			mrt->plane[--num[PLANE]] = ft_fill_plane(table->line);
+			mrt->plane[--count[PLANE]] = ft_fill_plane(table->line);
 		else if (eval_obj(table->line[0]) == CYLINDER)
-			mrt->cylinder[--num[CYLINDER]] = ft_fill_cylinder(table->line);
+			mrt->cylinder[--count[CYLINDER]] = ft_fill_cylinder(table->line);
 		table = table->next;
 	}
 }
@@ -107,7 +102,8 @@ int	ft_parse(t_mrt *mrt)
 	table = ft_fill_table(fd);
 	ft_close_fd(&fd);
 	ft_count_objs(table, mrt->obj_count);
-	ft_fill_objs(mrt, table, mrt->obj_count);
+	ft_fill_objs(mrt, table, (int *)ft_memcpy((void *)mrt->obj_count, \
+	sizeof(int) * 6));
 	ft_free_table(table);
 	return (0);
 }
