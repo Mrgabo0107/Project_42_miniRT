@@ -3,111 +3,109 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/05 21:32:07 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/07 23:00:49 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-double	distance_to_cap(t_vec start_pos, t_cylinder cyl, t_vec ray)
+t_discr	get_cyl_disc(t_cylinder cyl, t_vec new_cam, t_vec new_dirc)
 {
-	double	cas[2];
-	t_vec	plane_to_point;
-	t_vec	intersect;
-	double	den;
-	double	c;
+	t_discr	ret;
 
-	den = dot_prod(cyl.dir, ray);
-	if (v_abs(den) > 0.001)
+	ret.a = int_pow(new_dirc.x, 2) + int_pow(new_dirc.y, 2);
+	ret.b = 2 * ((new_cam.x * new_dirc.x)
+			+ (new_cam.y * new_dirc.y));
+	ret.c = int_pow(new_cam.x, 2) + int_pow(new_cam.y, 2)
+		- int_pow(cyl.radius, 2);
+	ret.dscr = int_pow(ret.b, 2) - (4 * (ret.a * ret.c));
+	return (ret);
+}
+
+int	is_in_cap(double curr, t_cylinder cyl, t_vec new_cam, t_vec new_dirc)
+{
+	if (int_pow(new_cam.x + (curr * new_dirc.x), 2)
+		+ int_pow(new_cam.y + (curr * new_dirc.y), 2)
+		<= int_pow(cyl.radius, 2))
+		return (1);
+	return (0);
+}
+
+t_cyl_ctrl	check_cyl_body(t_cyl_ctrl *curr, t_cylinder cyl, t_vec nc, t_vec nd)
+{
+	t_cyl_ctrl	ret;
+	t_discr		discr;
+	double		curre;
+
+	ret = *curr;
+	discr = get_cyl_disc(cyl, nc, nd);
+	if (discr.dscr >= 0.0)
 	{
-		plane_to_point = vec_rest(cyl.bottom, start_pos);
-		c = dot_prod(cyl.dir, plane_to_point) / den;
-		intersect = vec_sum(start_pos, scal_vec(c, ray));
-		cas[0] = -1;
-		if (vect_norm(vec_rest(intersect, cyl.bottom)) <= cyl.radius && c > 0)
-			cas[0] = c;
-		plane_to_point = vec_rest(cyl.top, start_pos);
-		c = dot_prod(cyl.dir, plane_to_point) / den;
-		intersect = vec_sum(start_pos, scal_vec(c, ray));
-		cas[1] = -1;
-		if (vect_norm(vec_rest(intersect, cyl.top)) <= cyl.radius && c > 0)
-			cas[1] = c;
+		curre = solve_quad(&discr);
+		if (curre > 0 && (ret.c == -1 || curre < ret.c)
+			&& v_abs(vec_sum(nc, scal_vec(curre, nd)).z) <= cyl.height / 2)
+		{
+			ret.c = curre;
+			ret.cap_ctrl = 3;
+		}
 	}
-	else
-		return (-1);
-	return (ft_max_valid(cas[0], cas[1]));
+	return (ret);
 }
 
-double	check_limits(t_vec point, t_cylinder cylinder, t_vec dir, t_discr discr)
+t_cyl_ctrl	get_dist_to_cyl(t_cylinder cyl, t_vec new_cam, t_vec new_dirc)
 {
-	double	limit;
-	double	dist;
-	double	cap;
+	double		curr;
+	t_cyl_ctrl	ret;
 
-	cap = distance_to_cap(point, cylinder, dir);
-	dist = (-discr.b - sqrt(discr.dscr)) / (2 * discr.a);
-	limit = perp_to_plane(vec_sum(point, scal_vec(dist, dir)), \
-	cylinder.pos, cylinder.dir);
-	if (limit >= 0 && limit <= cylinder.height / 2)
-		return (ft_max_valid(dist, cap));
-	dist = (-discr.b + sqrt(discr.dscr)) / (2 * discr.a);
-	limit = perp_to_plane(vec_sum(point, scal_vec(dist, dir)), \
-	cylinder.pos, cylinder.dir);
-	if (limit >= 0 && limit <= cylinder.height / 2)
-		return (ft_max_valid(dist, cap));
-	return (cap);
-}
-
-double	distance_to_cylinder(t_vec point, t_cylinder cyl, t_vec dir)
-{
-	t_vec	w;
-	t_discr	discr;
-
-	w = vec_rest(point, cyl.pos);
-	discr.a = dot_prod(dir, dir) - int_pow(dot_prod(dir, cyl.dir), 2);
-	discr.b = 2 * (dot_prod(dir, w) - dot_prod(dir, cyl.dir) \
-	* dot_prod(w, cyl.dir));
-	discr.c = dot_prod(w, w) - int_pow(dot_prod(w, cyl.dir), 2) \
-	- int_pow(cyl.radius, 2);
-	discr.dscr = int_pow(discr.b, 2) - 4 * discr.a * discr.c;
-	if (discr.dscr <= 0)
-		return (-1);
-	return (check_limits(point, cyl, dir, discr));
-}
-
-t_vec	get_normal_cylinder(t_mrt *mrt, t_inter inter)
-{
-	t_vec	norm;
-	t_vec	circle_to_inter;
-
-	circle_to_inter = vec_rest(inter.inter_coor, \
-	mrt->cylinder[inter.index].pos);
-	if (vect_norm((vec_rest(inter.inter_coor, mrt->cylinder[inter.index].top))) \
-	< mrt->cylinder[inter.index].radius || vect_norm(vec_rest(inter.inter_coor, \
-	mrt->cylinder[inter.index].bottom)) < mrt->cylinder[inter.index].radius)
-		return (mrt->cylinder[inter.index].dir);
-	norm = vec_rest(circle_to_inter, \
-	scal_vec(dot_prod(mrt->cylinder[inter.index].dir, \
-	circle_to_inter), mrt->cylinder[inter.index].dir));
-	return (norm);
+	ret.c = -1;
+	ret.cap_ctrl = 0;
+	if (v_abs(new_dirc.z) > 0.0001)
+	{
+		curr = ((cyl.height / (2 * new_dirc.z)) - (new_cam.z / new_dirc.z));
+		if (curr > 0 && is_in_cap(curr, cyl, new_cam, new_dirc)
+			&& (ret.c == -1 || curr < ret.c))
+		{
+			ret.c = curr;
+			ret.cap_ctrl = 1;
+		}
+		curr = (-(cyl.height / (2 * new_dirc.z)) - (new_cam.z / new_dirc.z));
+		if (curr > 0 && is_in_cap(curr, cyl, new_cam, new_dirc)
+			&& (ret.c == -1 || curr < ret.c))
+		{
+			ret.c = curr;
+			ret.cap_ctrl = 2;
+		}
+	}
+	ret = check_cyl_body(&ret, cyl, new_cam, new_dirc);
+	return (ret);
 }
 
 void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 {
-	int		i;
-	double	c;
+	int				i;
+	t_cyl_ctrl		ctr;
+	t_vec			new_cam;
+	t_vec			new_dirc;
+	t_mtrx			chg_base;
 
 	i = 0;
 	while (i < mrt->obj_count[CYLINDER])
 	{
-		c = distance_to_cylinder(point, mrt->cylinder[i], dir);
-		if (c >= 0 && (ctrl->dist == -1 || c < ctrl->dist))
+		new_cam = vec_rest(point, mrt->cylinder[i].pos);
+		chg_base = fill_mtrx(mrt->cylinder[i].base.n1,
+				mrt->cylinder[i].base.n2,
+				mrt->cylinder[i].base.n3);
+		new_cam = mtrx_by_vec(chg_base, new_cam);
+		new_dirc = mtrx_by_vec(chg_base, dir);
+		ctr = get_dist_to_cyl(mrt->cylinder[i], new_cam, new_dirc);
+		if (ctr.c > 0 && (ctrl->dist == -1 || ctr.c < ctrl->dist))
 		{
-			*ctrl = (t_inter){CYLINDER, i, c, vec_sum(mrt->cam.pos, \
-			scal_vec(c, dir)), fill_coord(0, 0, 0), mrt->cylinder[i].color};
+			*ctrl = (t_inter){CYLINDER, i, ctr.c, vec_sum(point, \
+			scal_vec(ctr.c, dir)), fill_coord(0, 0, 0), mrt->cylinder[i].color \
+			, ctr.cap_ctrl};
 		}
 		i++;
 	}

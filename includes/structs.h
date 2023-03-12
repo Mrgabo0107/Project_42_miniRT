@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by ana               #+#    #+#             */
-/*   Updated: 2023/03/05 21:13:16 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/07 22:54:55 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_rgb
 	double	g;
 	double	b;
 }			t_rgb;
+
 typedef struct s_inter
 {
 	int		type;
@@ -89,6 +90,7 @@ typedef struct s_inter
 	t_vec	inter_coor;
 	t_vec	norm;
 	t_rgb	color;
+	int		cyl_ctrl;
 }			t_inter;
 
 typedef struct s_discr
@@ -98,6 +100,12 @@ typedef struct s_discr
 	double	c;
 	double	dscr;
 }		t_discr;
+
+typedef struct s_cyl_ctrl
+{
+	double	c;
+	int		cap_ctrl;
+}			t_cyl_ctrl;
 
 /*----------------------------------------------------------------------------*/
 /*									Objects									  */

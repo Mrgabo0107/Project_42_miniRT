@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/05 21:36:12 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/07 22:47:50 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,6 +222,9 @@ t_mtrx		scal_mtrx(double s, t_mtrx m);
 t_mtrx		invert_mtrx(t_mtrx m);
 double		perp_to_plane(t_vec point, t_vec plane_pos, t_vec plane_norm);
 double		ft_max_valid(double a, double b);
+t_mtrx		fill_mtrx(t_vec v1, t_vec v2, t_vec v3);
+t_mtrx		init_base_mtrx(t_base *base);
+double		solve_quad(t_discr *info);
 
 //plane
 t_vec		get_normal_plane(t_mrt *mrt, t_inter inter);
