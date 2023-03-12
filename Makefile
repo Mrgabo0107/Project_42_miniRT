@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ana <ana@student.42.fr>                    +#+  +:+       +#+         #
+#    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/04 02:03:21 by ana              ###   ########.fr        #
+#    Updated: 2023/03/07 23:05:04 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### Compilation ###
 
 CC      = cc
-# FLAGS  = #-Wall -Werror -Wextra -g #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
-FLAGS  = -g3 -Ofast -flto
+FLAGS  = -Wall -Werror -Wextra #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
+# FLAGS  = -Wall -Werror -Wextra -Ofast -flto
 # FLAGS  = -Ofast -flto
 ### Executable ###
 #-Ofast -flto 
@@ -33,10 +33,10 @@ INCLUDES = -I $(HEADER) -I $(MLX) -I $(LIBFT)/includes
 CORE_DIR	=	core/
 CORE		=	main.c \
 				init.c \
+				keypress.c \
 
 PARSE_DIR	=	parse/
 PARSE		=	parsing.c \
-				print_objects.c \
 				fill_objects.c \
 				parsing_utils.c \
 				cell_filling.c \
@@ -49,14 +49,13 @@ UTILS		=	tools.c \
 				mem_redefs.c \
 				free.c \
 				list_utils.c \
-				ft_printf.c \
 
 MAT_DIR		=	math/
 MAT			=	math1.c \
 				math2.c \
 				math3.c \
 				math4.c \
-				math_cyl.c
+				math5.c \
 
 CAM_DIR		=	cam/
 CAM			=	cam.c \
@@ -74,6 +73,7 @@ SPHERE		=	sphere.c \
 
 CYLIN_DIR	=	cylinder/
 CYLIN		=	cylinder.c \
+				math_cyl.c
 
 # LIBFT_DIR	=	libft/
 # LIBFT		=	libft.a
