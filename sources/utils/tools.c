@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:22:52 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/05 20:39:37 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/13 21:33:51 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,6 @@ int	ft_memcpy(void *dst, const void *src, size_t n)
 		i++;
 	}
 	return (1);
-}
-
-void	*ft_realloc(void *ptr, size_t size, size_t new_size)
-{
-	void	*new_ptr;
-
-	new_ptr = ft_malloc(new_size);
-	ft_memcpy(new_ptr, ptr, size);
-	ft_free(ptr);
-	return (new_ptr);
 }
 
 char	*get_next_line(int fd)
