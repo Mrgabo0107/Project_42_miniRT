@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by ana               #+#    #+#             */
-/*   Updated: 2023/03/13 19:04:40 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:58:37 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,10 @@ typedef struct s_cyl_ctrl
 typedef struct s_sphere
 {
 	t_vec	center;
+	t_vec	dir;
 	double	radius;
 	t_rgb	color;
+	t_base	base;
 }			t_sphere;
 
 typedef struct s_plane
@@ -124,6 +126,7 @@ typedef struct s_plane
 	t_vec	pos;
 	t_vec	dir;
 	t_rgb	color;
+	t_base	base;
 }			t_plane;
 
 typedef struct s_cylinder
@@ -180,6 +183,7 @@ typedef struct s_mrt
 	t_sphere		*sphere;
 	t_plane			*plane;
 	t_cylinder		*cylinder;
+	void			*curr_obj;
 }			t_mrt;
 
 // typedef struct s_square

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+         #
+#    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/12 21:38:32 by yoel             ###   ########.fr        #
+#    Updated: 2023/03/13 20:53:24 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ MAT			=	math1.c \
 				math3.c \
 				math4.c \
 				math5.c \
+				math6.c \
 
 CAM_DIR		=	cam/
 CAM			=	cam.c \

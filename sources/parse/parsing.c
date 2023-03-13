@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/12 22:13:02 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/13 20:41:17 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ void	ft_fill_capitals(t_mrt *mrt, char **line, int type)
 	if (type == AMBIENT)
 		mrt->amblight = ft_fill_light(line, 1);
 	else if (type == CAMERA)
+	{
 		mrt->cam = ft_fill_cam(line);
+		mrt->curr_obj = (void *)&mrt->cam;
+	}
 }
 
 void	ft_fill_objs(t_mrt *mrt, t_table *table, int count[6])
