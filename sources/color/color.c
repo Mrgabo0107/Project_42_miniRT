@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/04 14:40:29 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/12 22:13:44 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,12 @@ t_rgb	add_ambient(t_rgb color, t_rgb ctr, t_light amb)
 	color.r += amb.color.r * amb.ratio * ratio.r;
 	color.g += amb.color.g * amb.ratio * ratio.g;
 	color.b += amb.color.b * amb.ratio * ratio.b;
-	color = normalize_color(color);
 	return (color);
 }
 
-t_rgb	add_color(t_inter *ctr, t_vec to_light, t_light light)
+t_rgb	add_color(t_inter *ctr, t_rgb color, t_vec to_light, t_light light)
 {
 	double	angle;
-	t_rgb	color;
 	t_rgb	ratio;
 
 	angle = get_angle_between(ctr->norm, to_light);
@@ -64,9 +62,9 @@ t_rgb	add_color(t_inter *ctr, t_vec to_light, t_light light)
 		angle = PI / 2;
 	angle = 1 - angle / (PI / 2);
 	ratio = ft_make_rgb_ratio(ctr->color);
-	color.r = light.color.r * light.ratio * ratio.r * angle;
-	color.g = light.color.g * light.ratio * ratio.g * angle;
-	color.b = light.color.b * light.ratio * ratio.b * angle;
+	color.r += light.color.r * light.ratio * ratio.r * angle;
+	color.g += light.color.g * light.ratio * ratio.g * angle;
+	color.b += light.color.b * light.ratio * ratio.b * angle;
 	return (color);
 }
 
@@ -75,19 +73,23 @@ t_rgb	get_color(t_mrt *mrt, t_inter *ctr, t_vec dir)
 	t_rgb	color;
 	t_vec	coor_to_light;
 	t_inter	linter;
+	int		i;
 
+	i = -1;
 	color = ft_make_rgb(0, 0, 0);
 	if (ctr->dist != -1)
 	{
-		coor_to_light = vec_rest(mrt->light.pos, ctr->inter_coor);
-		linter = check_shaddow(mrt, ctr, normalize(coor_to_light), \
-		vect_norm(coor_to_light));
-		if ((linter.dist < 0 || linter.dist > vect_norm(coor_to_light)))
-			color = add_color(ctr, coor_to_light, mrt->light);
+		while (++i < mrt->obj_count[LIGHT])
+		{
+			coor_to_light = vec_rest(mrt->light[i].pos, ctr->inter_coor);
+			linter = check_shaddow(mrt, ctr, normalize(coor_to_light), \
+			vect_norm(coor_to_light));
+			if ((linter.dist < 0 || linter.dist > vect_norm(coor_to_light)))
+				color = add_color(ctr, color, coor_to_light, mrt->light[i]);
+		}
 		color = add_ambient(color, ctr->color, mrt->amblight);
 	}
-	if (((t_discr)(get_sph_dscr(vec_rest(mrt->cam.pos, mrt->light.pos), \
-	dir, int_pow(0.2, 2)))).dscr >= 0.0)
-		color = mrt->light.color;
+	color = show_light_sources(mrt, color, dir);
+	color = normalize_color(color);
 	return (color);
 }

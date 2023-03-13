@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+         #
+#    By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/24 18:26:55 by gamoreno          #+#    #+#              #
-#    Updated: 2023/02/18 19:39:22 by ionorb           ###   ########.fr        #
+#    Updated: 2023/03/12 22:08:52 by yoel             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ FTPUT_DIR	=	ft_put/
 FTPUT		=	ft_putstr_fd.c
 
 FTMEM_DIR	=	ft_mem/
-FTMEM		=	ft_bzero.c ft_calloc.c
+FTMEM		=	ft_bzero.c ft_calloc.c ft_memcpy.c
 
 SOURCES		+=	$(addprefix	$(FTSTR_DIR),$(FTSTR))
 SOURCES		+=	$(addprefix	$(FTMATH_DIR),$(FTMATH))

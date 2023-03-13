@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/07 22:47:50 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/12 22:14:02 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@
 // # define WY 5
 // # define IX 10
 // # define IY 5
-// # define WX 801
-// # define WY 401
-// # define IX 801
-// # define IY 401
-# define WX 2000
-# define WY 1000
-# define IX 2000
-# define IY 1000
+# define WX 801
+# define WY 401
+# define IX 801
+# define IY 401
+// # define WX 2000
+// # define WY 1000
+// # define IX 2000
+// # define IY 1000
 # define EXIT_ERROR -777
 # define ADD_TO_MEM -666
 # define EXIT_OK -555
@@ -72,8 +72,13 @@
 //error messages
 # define TOO_MANY_CAPITALS "Too many capital letters in the scene"
 # define MISSING_CAPITALS "Missing capital letters in the scene"
+# define TOO_MANY_AMBIENTS "Too many ambient lights in the scene"
+# define TOO_MANY_CAMERAS "Too many cameras in the scene"
+# define MISSING_AMBIENT "Missing ambient light in the scene"
+# define MISSING_CAMERA "Missing camera in the scene"
+# define MISSING_LIGHT "Missing light in the scene"
 # define CAPITAL_INSTRUCTIONS "\
-\nAdd one (L)ight, one (C)amera and one (A)mbient light in the scene"
+\nAdd one (C)amera, one (A)mbient and at least one (L)ight in the scene"
 # define CYLINDER_INSTRUCTIONS "\
 \n(cy)linder: [name: 'cy', pos: (x,y,z), dir: (a,b,c), diameter, height, \
 color: (r,g,b)] \
@@ -254,6 +259,7 @@ t_rgb		get_color(t_mrt *mrt, t_inter *ctr, t_vec dir);
 t_rgb		ft_make_rgb(int r, int g, int b);
 t_rgb		ft_make_rgb_ratio(t_rgb color);
 t_rgb		normalize_color(t_rgb color);
+t_rgb		show_light_sources(t_mrt *mrt, t_rgb color, t_vec dir);
 
 int			key_press(int key, t_mrt *mrt);
 
