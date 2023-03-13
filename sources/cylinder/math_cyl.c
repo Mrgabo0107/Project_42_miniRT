@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 05:07:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/02 04:04:13 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/13 19:59:03 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,15 +88,26 @@ t_vec	get_normal_cylinder(t_mrt *mrt, t_inter inter)
 
 	ret = fill_coord(0, 0, 0);
 	if (inter.cyl_ctrl == 1)
-		return (mrt->cylinder[inter.index].dir);
+		ret = mrt->cylinder[inter.index].dir;
 	else if (inter.cyl_ctrl == 2)
-		return (scal_vec(-1, mrt->cylinder[inter.index].dir));
+		ret = scal_vec(-1, mrt->cylinder[inter.index].dir);
 	else if (inter.cyl_ctrl == 3)
-		return (vec_rest(inter.inter_coor,
+		ret = vec_rest(inter.inter_coor,
 				vec_sum(mrt->cylinder[inter.index].pos,
 					scal_vec(dot_prod(vec_rest(inter.inter_coor,
 								mrt->cylinder[inter.index].pos),
 							mrt->cylinder[inter.index].dir),
-						mrt->cylinder[inter.index].dir))));
+						mrt->cylinder[inter.index].dir)));
+	if (inter.is_in_obj)
+		ret = scal_vec(-1, ret);
 	return (ret);
+}
+
+int	cam_in_cyl(t_mrt *mrt, int indx, t_vec new_cam)
+{
+	if (int_pow(new_cam.x,2) + int_pow(new_cam.y, 2)
+		<= int_pow(mrt->cylinder[indx].radius, 2)
+		&& v_abs(new_cam.z) <= mrt->cylinder[indx].height / 2)
+		return (1);
+	return (0);
 }
