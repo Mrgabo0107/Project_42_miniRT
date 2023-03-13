@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by ana               #+#    #+#             */
-/*   Updated: 2023/03/12 21:26:06 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/13 19:04:40 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct s_inter
 	t_vec	norm;
 	t_rgb	color;
 	int		cyl_ctrl;
+	int		is_in_obj;
 }			t_inter;
 
 typedef struct s_discr
