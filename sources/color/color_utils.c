@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   color_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:55:19 by ana               #+#    #+#             */
-/*   Updated: 2023/03/13 21:32:12 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/13 23:41:33 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+double	get_angle_between(t_vec v1, t_vec v2)
+{
+	double	angle;
+
+	if (vect_norm(v1) == 0 || vect_norm(v2) == 0)
+		return (0);
+	angle = acos(dot_prod(v1, v2) / (vect_norm(v1) * vect_norm(v2)));
+	return (angle);
+}
 
 t_rgb	ft_make_rgb_ratio(t_rgb color)
 {

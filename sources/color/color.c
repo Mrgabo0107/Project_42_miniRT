@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/13 21:23:53 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/13 23:57:13 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-float	get_angle_between(t_vec v1, t_vec v2)
-{
-	float	angle;
-
-	if (vect_norm(v1) == 0 || vect_norm(v2) == 0)
-		return (0);
-	angle = acos(dot_prod(v1, v2) / (vect_norm(v1) * vect_norm(v2)));
-	return (angle);
-}
 
 t_inter	check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len)
 {
@@ -68,20 +58,14 @@ t_rgb	add_color(t_inter *ctr, t_rgb color, t_vec to_light, t_light light)
 	return (color);
 }
 
-t_rgb	add_specular(t_inter *ctr, t_rgb color, t_vec to_light, t_vec to_cam, t_light light)
+t_rgb	add_specular(t_inter *ctr, t_rgb color, t_vec h, t_light light)
 {
 	double	angle;
-	t_vec	h;
-	t_rgb	ratio;
 
-	h = scal_vec(1 / vect_norm(vec_sum(to_light, to_cam)), \
-	vec_sum(to_light, to_cam));
-	angle = max_v(0, dot_prod(h, ctr->norm));
-	angle = 1 - angle / (PI / 2);
-	ratio = ft_make_rgb_ratio(light.color);
-	color.r += light.color.r * light.ratio * ratio.r * angle;
-	color.g += light.color.g * light.ratio * ratio.g * angle;
-	color.b += light.color.b * light.ratio * ratio.b * angle;
+	angle = 0.2 * int_pow(max_v(0, dot_prod(h, ctr->norm)), 32);
+	color.r += light.color.r * light.ratio * angle;
+	color.g += light.color.g * light.ratio * angle;
+	color.b += light.color.b * light.ratio * angle;
 	return (color);
 }
 
@@ -104,8 +88,11 @@ t_rgb	get_color(t_mrt *mrt, t_inter *ctr, t_vec dir)
 			if ((linter.dist < 0 || linter.dist > vect_norm(coor_to_light)))
 			{
 				color = add_color(ctr, color, coor_to_light, mrt->light[i]);
-				// color = add_specular(ctr, color, coor_to_light, \
-				vec_rest(mrt->cam.pos, ctr->inter_coor), mrt->light[i]);
+				color = add_specular(ctr, color, \
+				scal_vec(1 / vect_norm(vec_sum(coor_to_light, \
+				vec_rest(mrt->cam.pos, ctr->inter_coor))), \
+				vec_sum(coor_to_light, vec_rest(mrt->cam.pos, \
+				ctr->inter_coor))), mrt->light[i]);
 			}
 		}
 		color = add_ambient(color, ctr->color, mrt->amblight);
