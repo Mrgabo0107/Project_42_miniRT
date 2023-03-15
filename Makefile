@@ -6,7 +6,7 @@
 #    By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/12 21:38:32 by yoel             ###   ########.fr        #
+#    Updated: 2023/03/15 01:39:18 by yoel             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ CAM			=	cam.c \
 COLOR_DIR	=	color/
 COLOR		=	color.c \
 				color_utils.c \
+				radiance.c \
 
 PLANE_DIR	=	plane/
 PLANE		=	plane.c \
