@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/15 17:04:59 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/15 20:42:18 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,7 +266,7 @@ t_rgb		add_ambient(t_rgb color, t_rgb ctr, t_light amb);
 t_rgb		add_diffuse(t_inter *ctr, t_rgb color, t_vec to_light, \
 t_light light);
 t_rgb		add_specular(t_inter *ctr, t_rgb color, t_vec h, t_light light);
-t_inter	    check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len);
+t_inter		check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len);
 
 int			key_press(int key, t_mrt *mrt);
 
