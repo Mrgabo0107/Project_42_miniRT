@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/15 01:46:08 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/15 16:58:50 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,8 @@ t_rgb	get_reflection(t_mrt *mrt, t_inter *ctr, t_vec dir)
 	ctr->norm));
 	point = vec_sum(ctr->inter_coor, scal_vec(0.0000001, ctr->norm));
 	refl_inter = check_intersections(mrt, point, refl_dir);
-	if (refl_inter.dist != -1)
-	{
-		refl_inter.norm = get_normal_at_point(mrt, refl_inter);
-		color = get_color(mrt, &refl_inter, refl_dir);
-	}
+	refl_inter.norm = get_normal_at_point(mrt, refl_inter);
+	color = get_color(mrt, &refl_inter, refl_dir);
 	return (color);
 }
 
@@ -63,11 +60,9 @@ t_rgb	get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color)
 		coor_to_light = vec_rest(mrt->light[i].pos, ctr->inter_coor);
 		linter = check_shaddow(mrt, ctr, normalize(coor_to_light), \
 		vect_norm(coor_to_light));
-		if (ctr->type == SPHERE)
-		{
-			color = get_reflection(mrt, ctr, dir);
-		}
-		else if ((linter.dist < 0 || linter.dist > vect_norm(coor_to_light)))
+		// if (ctr->type == PLANE)
+		// 	color = get_reflection(mrt, ctr, dir);
+		if ((linter.dist < 0 || linter.dist > vect_norm(coor_to_light)))
 		{
 			h = scal_vec(1 / vect_norm(vec_sum(coor_to_light, \
 			vec_rest(mrt->cam.pos, ctr->inter_coor))), \
