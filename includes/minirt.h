@@ -5,10 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/15 20:42:18 by yridgway         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/03/15 21:35:58 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #ifndef MINIRT_H
 # define MINIRT_H
@@ -218,7 +220,7 @@ t_vec		cross_prod(t_vec v1, t_vec v2);
 double		vect_norm(t_vec v);
 t_vec		vec_rest(t_vec v1, t_vec v2);
 double		norm_raised_2(t_vec v);
-t_base		get_cyl_base(t_vec	dir);
+t_base		get_obj_base(t_vec	dir);
 t_vec		mtrx_by_vec(t_mtrx m, t_vec v);
 double		mtrx_det(t_mtrx m);
 t_mtrx		mtrx_trsp(t_mtrx m);
@@ -243,6 +245,7 @@ t_discr		get_sph_dscr(t_vec ncam, t_vec dir, double square_rad);
 //cylinder
 t_vec		get_normal_cylinder(t_mrt *mrt, t_inter inter);
 void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
+int			cam_in_cyl(t_mrt *mrt, int indx, t_vec new_cam);
 
 //camera
 t_inter		check_intersections(t_mrt *mrt, t_vec point, t_vec dir);

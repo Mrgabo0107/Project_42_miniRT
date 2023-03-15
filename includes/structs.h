@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/05 21:12:53 by ana               #+#    #+#             */
-/*   Updated: 2023/03/15 21:13:39 by yridgway         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/03/15 21:35:16 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
@@ -91,6 +92,7 @@ typedef struct s_inter
 	t_vec	norm;
 	t_rgb	color;
 	int		cyl_ctrl;
+	int		is_in_obj;
 }			t_inter;
 
 typedef struct s_discr
@@ -114,8 +116,10 @@ typedef struct s_cyl_ctrl
 typedef struct s_sphere
 {
 	t_vec	center;
+	t_vec	dir;
 	double	radius;
 	t_rgb	color;
+	t_base	base;
 }			t_sphere;
 
 typedef struct s_plane
@@ -123,6 +127,7 @@ typedef struct s_plane
 	t_vec	pos;
 	t_vec	dir;
 	t_rgb	color;
+	t_base	base;
 }			t_plane;
 
 typedef struct s_cylinder
@@ -180,6 +185,7 @@ typedef struct s_mrt
 	t_sphere		*sphere;
 	t_plane			*plane;
 	t_cylinder		*cylinder;
+	void			*curr_obj;
 }			t_mrt;
 
 // typedef struct s_square
