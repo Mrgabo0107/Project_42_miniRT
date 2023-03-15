@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
+#    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/13 20:53:24 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/03/15 21:35:30 by yridgway         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ CAM			=	cam.c \
 COLOR_DIR	=	color/
 COLOR		=	color.c \
 				color_utils.c \
+				radiance.c \
 
 PLANE_DIR	=	plane/
 PLANE		=	plane.c \
