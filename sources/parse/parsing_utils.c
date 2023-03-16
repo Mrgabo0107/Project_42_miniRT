@@ -6,20 +6,11 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:02:11 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/12 22:04:18 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/12 22:15:18 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-// int *count_copy(int *count)
-// {
-// 	static int *count_copy = NULL;
-
-// 	if (count)
-// 		count_copy = count;
-// 	return (count_copy);
-// }
 
 int	ft_strcmp_1(char *s1, char *s2)
 {

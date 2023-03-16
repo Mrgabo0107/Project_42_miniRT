@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
 /*   Updated: 2023/03/15 21:43:50 by gamoreno         ###   ########.fr       */
@@ -58,10 +58,12 @@ void	ft_set_mrt(t_mrt *mrt, char *file)
 	mrt->sphere = NULL;
 	mrt->plane = NULL;
 	mrt->cylinder = NULL;
+	mrt->light = NULL;
 	mrt->scene_path = file;
 	c_obj.index = 0;
 	c_obj.type = CAMERA;
 	mrt->curr_obj = c_obj;
+	mrt->bounce = 0;
 }
 
 void	ft_reinit(t_mrt *mrt)

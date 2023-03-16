@@ -52,6 +52,7 @@ int	get_pixel_color(t_mrt *mrt, int x, int y)
 		inter.norm = get_normal_at_point(mrt, inter);
 	color = get_color(mrt, &inter, dir);
 	color = chosen_obj(mrt, x, y, color);
+	mrt->bounce = 0;
 	return ((int)color.r << 16 | (int)color.g << 8 | (int)color.b);
 }
 
