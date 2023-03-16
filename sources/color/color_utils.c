@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:55:19 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/15 21:36:15 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/16 03:34:14 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,4 @@ t_rgb	show_light_sources(t_mrt *mrt, t_rgb color, t_vec dir)
 		}
 	}
 	return (color);
-}
-
-t_rgb	get_opposite_color(t_rgb color)
-{
-	t_rgb	ret;
-
-	ret.r = 255 - color.r;
-	ret.g = 255 - color.g;
-	ret.b = 255 - color.b;
-	ret = normalize_color(ret);
-	return (ret);
 }

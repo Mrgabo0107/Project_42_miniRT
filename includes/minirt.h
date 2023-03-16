@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/16 00:31:12 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/16 05:53:58 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #ifndef MINIRT_H
 # define MINIRT_H
@@ -70,6 +68,19 @@
 # define R 114
 # define T 116
 # define ENTER 65293
+# define OBJUP 65431
+# define OBJDOWN 65433
+# define OBJLEFT 65430
+# define OBJRIGHT 65432
+# define OBJFRONT 65436
+# define OBJBEHIND 65429
+# define I 105
+# define O 111
+# define J 106
+# define K 107
+# define N 110
+# define M 109
+
 // # define COMMENT 123
 
 //error messages
@@ -234,6 +245,8 @@ t_mtrx		fill_mtrx(t_vec v1, t_vec v2, t_vec v3);
 t_mtrx		init_base_mtrx(t_base *base);
 double		solve_quad(t_discr *info);
 double		decimal_part(double n);
+t_mtrx		define_rot_mtrx(t_vec rot_axis, double sin, double cos);
+t_base		general_rotation(t_base base, int ctrl, double rad);
 
 //plane
 t_vec		get_normal_plane(t_mrt *mrt, t_inter inter);
@@ -251,6 +264,8 @@ t_vec		get_normal_cylinder(t_mrt *mrt, t_inter inter);
 void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 int			cam_in_cyl(t_mrt *mrt, int indx, t_vec new_cam);
 t_rgb		print_cyl_color(t_mrt *mrt, int index);
+t_cyl_ctrl	get_dist_to_cyl(t_cylinder cyl, t_vec new_cam, t_vec new_dirc);
+t_discr		get_cyl_disc(t_cylinder cyl, t_vec new_cam, t_vec new_dirc);
 
 //camera
 t_inter		check_intersections(t_mrt *mrt, t_vec point, t_vec dir);
@@ -278,7 +293,10 @@ t_light light);
 t_rgb		add_specular(t_inter *ctr, t_rgb color, t_vec h, t_light light);
 t_inter		check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len);
 
+//hooks_management
 int			key_press(int key, t_mrt *mrt);
 int			mouse_press(int button, int x, int y, t_mrt *mrt);
+void		move_obj(t_mrt *mrt, int key);
+void		rotate_obj(t_mrt *mrt, int key);
 
 #endif

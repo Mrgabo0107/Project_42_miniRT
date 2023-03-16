@@ -6,13 +6,13 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 20:54:16 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/16 00:30:47 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/16 05:06:08 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static t_base	first_rotation(t_vec dir, t_base can)
+t_base	first_rotation(t_vec dir, t_base can)
 {
 	double	sin_an;
 	double	cos_an;
@@ -34,7 +34,7 @@ static t_base	first_rotation(t_vec dir, t_base can)
 	return (ret);
 }
 
-static t_base	second_rotation(t_vec dir, t_base ret)
+t_base	second_rotation(t_vec dir, t_base ret)
 {
 	double	sin_an;
 	double	cos_an;
@@ -60,6 +60,31 @@ static t_base	second_rotation(t_vec dir, t_base ret)
 	retu.n2 = mtrx_by_vec(chng_base, ret.n2);
 	retu.n3 = mtrx_by_vec(chng_base, ret.n3);
 	return (retu);
+}
+
+t_base	general_rotation(t_base base, int ctrl, double rad)
+{
+	double	sin_an;
+	double	cos_an;
+	t_vec	rot_axis;
+	t_base	ret;
+	t_mtrx	chng_base;
+
+	if (ctrl == 1)
+		rot_axis = base.n1;
+	else if (ctrl == 2)
+		rot_axis = base.n2;
+	else if (ctrl == 3)
+		rot_axis = base.n3;
+	else
+		return (base);
+	cos_an = cos(rad);
+	sin_an = sin(rad);
+	chng_base = define_rot_mtrx(rot_axis, sin_an, cos_an);
+	ret.n1 = mtrx_by_vec(chng_base, base.n1);
+	ret.n2 = mtrx_by_vec(chng_base, base.n2);
+	ret.n3 = mtrx_by_vec(chng_base, base.n3);
+	return (ret);
 }
 
 t_base	get_obj_base(t_vec	dir)

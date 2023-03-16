@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/16 01:09:16 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/16 04:32:13 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,19 @@ int	key_press(int key, t_mrt *mrt)
 {
 	if (key == ESC)
 		end_mrt(mrt);
+	if (mrt->curr_obj.type != CAMERA)
+	{
+		move_obj(mrt, key);
+		rotate_obj(mrt, key);
+	}
+	if (key == ENTER)
+		ft_reinit(mrt);
 	if (key == DEL)
 		define_cam_as_curr_obj(mrt);
 	ft_move_cam(mrt, key);
 	ft_change_cam_dir(mrt, key);
 	normalize(mrt->cam.dir);
 	set_all_cam_values(&mrt->cam);
-	// else
-	// {
-	// 	move_obj()
-	// }
-	if (key == ENTER)
-		ft_reinit(mrt);
 	pixel_calcul(mrt);
 	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
 	return (key);
