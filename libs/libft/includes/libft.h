@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 13:12:32 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/12 22:11:50 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/16 01:41:53 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ char		*ft_strjoin(char const *s1, char const *s2);
 void		ft_putstr_fd(char *s, int fd);
 void		*ft_calloc(size_t nmemb, size_t size);
 void		ft_bzero(void *s, size_t n);
-void		*ft_memcpy(const void *src, size_t n);
 char		**ft_split(char const *s, char c);
 char		**ft_split_ws(char const *s);
+void		*ft_memcpy(const void *src, size_t n);
 
 #endif
