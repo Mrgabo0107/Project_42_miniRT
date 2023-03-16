@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/13 20:09:44 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/15 21:43:50 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	valid_rt_file(char *file, int fd)
 
 void	ft_set_mrt(t_mrt *mrt, char *file)
 {
+	t_curr_ob	c_obj;
+
 	mrt->mlx = NULL;
 	mrt->win = NULL;
 	mrt->img = NULL;
@@ -57,6 +59,9 @@ void	ft_set_mrt(t_mrt *mrt, char *file)
 	mrt->plane = NULL;
 	mrt->cylinder = NULL;
 	mrt->scene_path = file;
+	c_obj.index = 0;
+	c_obj.type = CAMERA;
+	mrt->curr_obj = c_obj;
 }
 
 void	ft_reinit(t_mrt *mrt)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paint.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/03 12:58:36 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/15 22:54:11 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	get_pixel_color(t_mrt *mrt, int x, int y)
 	if (inter.dist != -1)
 		inter.norm = get_normal_at_point(mrt, inter);
 	color = get_color(mrt, &inter, dir);
+	color = chosen_obj(mrt, x, y, color);
 	return ((int)color.r << 16 | (int)color.g << 8 | (int)color.b);
 }
 

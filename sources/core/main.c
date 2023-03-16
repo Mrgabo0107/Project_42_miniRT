@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/03/05 21:25:13 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/15 19:49:38 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	ft_controls(t_mrt *mrt)
 {
 	mlx_hook(mrt->win, 2, 1, key_press, mrt);
 	mlx_hook(mrt->win, 17, 0, end_mrt, mrt);
+	mlx_mouse_hook(mrt->win, &mouse_press, mrt);
 	return (0);
 }
 

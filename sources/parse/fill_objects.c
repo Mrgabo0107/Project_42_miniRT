@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:37:20 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/13 21:01:49 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/15 22:25:37 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ t_sphere	ft_fill_sphere(char *line[7])
 	sphere.dir = fill_coord(0, 0, 1);
 	sphere.radius = ft_fill_size(line[2], 0) / 2;
 	sphere.color = ft_fill_rgb(line[3]);
+	sphere.color1 = get_opposite_color(sphere.color);
 	sphere.base = get_obj_base(sphere.dir);
+	sphere.chess_ctrl = 0;
 	return (sphere);
 }
 
@@ -37,7 +39,9 @@ t_plane	ft_fill_plane(char *line[7])
 	plane.pos = ft_fill_pos(line[1], 0);
 	plane.dir = normalize(ft_fill_pos(line[2], 1));
 	plane.color = ft_fill_rgb(line[3]);
+	plane.color1 = get_opposite_color(plane.color);
 	plane.base = get_obj_base(plane.dir);
+	plane.chess_ctrl = 0;
 	return (plane);
 }
 
@@ -53,11 +57,13 @@ t_cylinder	ft_fill_cylinder(char *line[7])
 	cylinder.radius = ft_fill_size(line[3], 0) / 2;
 	cylinder.height = ft_fill_size(line[4], 0);
 	cylinder.color = ft_fill_rgb(line[5]);
+	cylinder.color1 = get_opposite_color(cylinder.color);
 	cylinder.base = get_obj_base(cylinder.dir);
 	cylinder.top = vec_sum(cylinder.pos, \
 	scal_vec(cylinder.height / 2, cylinder.dir));
 	cylinder.bottom = vec_sum(cylinder.pos, \
 	scal_vec(-cylinder.height / 2, cylinder.dir));
+	cylinder.chess_ctrl = 0;
 	return (cylinder);
 }
 

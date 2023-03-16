@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by ana               #+#    #+#             */
-/*   Updated: 2023/03/13 20:58:37 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/15 22:23:55 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,9 @@ typedef struct s_sphere
 	t_vec	dir;
 	double	radius;
 	t_rgb	color;
+	t_rgb	color1;
 	t_base	base;
+	int		chess_ctrl;
 }			t_sphere;
 
 typedef struct s_plane
@@ -126,7 +128,9 @@ typedef struct s_plane
 	t_vec	pos;
 	t_vec	dir;
 	t_rgb	color;
+	t_rgb	color1;
 	t_base	base;
+	int		chess_ctrl;
 }			t_plane;
 
 typedef struct s_cylinder
@@ -138,7 +142,9 @@ typedef struct s_cylinder
 	double	radius;
 	double	height;
 	t_rgb	color;
+	t_rgb	color1;
 	t_base	base;
+	int		chess_ctrl;
 }			t_cylinder;
 
 typedef struct s_light
@@ -165,6 +171,12 @@ typedef struct s_mem
 	struct s_mem	*next;
 }	t_mem;
 
+typedef struct s_curr_ob
+{
+	int		type;
+	int		index;
+}			t_curr_ob;
+
 typedef struct s_mrt
 {
 	void			*mlx;
@@ -183,7 +195,7 @@ typedef struct s_mrt
 	t_sphere		*sphere;
 	t_plane			*plane;
 	t_cylinder		*cylinder;
-	void			*curr_obj;
+	t_curr_ob		curr_obj;
 }			t_mrt;
 
 // typedef struct s_square

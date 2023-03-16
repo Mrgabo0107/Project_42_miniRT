@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 20:54:16 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/13 20:55:12 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/16 00:30:47 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,3 +82,11 @@ t_base	get_obj_base(t_vec	dir)
 	return (ret);
 }
 
+double	decimal_part(double n)
+{
+	double	integer_part;
+	double	decimal_part;
+
+	decimal_part = modf(n, &integer_part);
+	return (decimal_part);
+}
