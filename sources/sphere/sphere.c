@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:31:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/13 19:16:11 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/15 22:47:54 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	cam_in_sph(t_mrt *mrt, int index, t_vec new_cam)
 
 t_vec	get_normal_sphere(t_mrt *mrt, t_inter inter)
 {
-	t_vec ret;
+	t_vec	ret;
 
 	ret = normalize(vec_rest(inter.inter_coor,
 				mrt->sphere[inter.index].center));

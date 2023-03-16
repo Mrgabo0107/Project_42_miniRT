@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/03/15 21:35:58 by yridgway         ###   ########.fr       */
+/*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
+/*   Updated: 2023/03/16 00:31:12 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@
 # define BUFFER_SIZE 10000
 
 # define ESC 65307
+# define DEL 65535
 # define W 119
 # define A 97
 # define S 115
@@ -232,10 +233,13 @@ double		ft_max_valid(double a, double b);
 t_mtrx		fill_mtrx(t_vec v1, t_vec v2, t_vec v3);
 t_mtrx		init_base_mtrx(t_base *base);
 double		solve_quad(t_discr *info);
+double		decimal_part(double n);
 
 //plane
 t_vec		get_normal_plane(t_mrt *mrt, t_inter inter);
 void		check_planes(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
+double		distance_to_plane(t_vec start_point,
+				t_vec plane_pos, t_vec plane_dir, t_vec ray);
 
 //sphere
 t_vec		get_normal_sphere(t_mrt *mrt, t_inter inter);
@@ -246,6 +250,7 @@ t_discr		get_sph_dscr(t_vec ncam, t_vec dir, double square_rad);
 t_vec		get_normal_cylinder(t_mrt *mrt, t_inter inter);
 void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 int			cam_in_cyl(t_mrt *mrt, int indx, t_vec new_cam);
+t_rgb		print_cyl_color(t_mrt *mrt, int index);
 
 //camera
 t_inter		check_intersections(t_mrt *mrt, t_vec point, t_vec dir);
@@ -256,6 +261,7 @@ void		pixel_calcul(t_mrt *mrt);
 int			get_pixel_color(t_mrt *mrt, int x, int y);
 double		distance_to_cap(t_vec start_pos, t_cylinder cylinder, t_vec ray);
 t_inter		fill_ctrl(t_mrt *mrt, int type, int index, double dist);
+t_rgb		chosen_obj(t_mrt *mrt, int x, int y, t_rgb color);
 t_vec		get_normal_at_point(t_mrt *mrt, t_inter inter);
 
 //color
@@ -264,6 +270,7 @@ t_rgb		ft_make_rgb(int r, int g, int b);
 t_rgb		ft_make_rgb_ratio(t_rgb color);
 t_rgb		normalize_color(t_rgb color);
 t_rgb		show_light_sources(t_mrt *mrt, t_rgb color, t_vec dir);
+t_rgb		get_opposite_color(t_rgb color);
 double		get_angle_between(t_vec v1, t_vec v2);
 t_rgb		add_ambient(t_rgb color, t_rgb ctr, t_light amb);
 t_rgb		add_diffuse(t_inter *ctr, t_rgb color, t_vec to_light, \
@@ -272,5 +279,6 @@ t_rgb		add_specular(t_inter *ctr, t_rgb color, t_vec h, t_light light);
 t_inter		check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len);
 
 int			key_press(int key, t_mrt *mrt);
+int			mouse_press(int button, int x, int y, t_mrt *mrt);
 
 #endif

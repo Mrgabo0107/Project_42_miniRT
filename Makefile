@@ -6,7 +6,7 @@
 #    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/15 21:35:30 by yridgway         ###   ########.fr        #
+#    Updated: 2023/03/15 22:50:51 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 CC      = cc
 # FLAGS  = -Wall -Werror -Wextra -g3 #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
-# FLAGS  = -Wall -Werror -Wextra -Ofast -flto
+FLAGS  = -Wall -Werror -Wextra -Ofast -flto
 FLAGS  = -Ofast -flto
 ### Executable ###
 #-Ofast -flto 
@@ -34,6 +34,7 @@ CORE_DIR	=	core/
 CORE		=	main.c \
 				init.c \
 				keypress.c \
+				mousepress.c \
 
 PARSE_DIR	=	parse/
 PARSE		=	parsing.c \
@@ -61,6 +62,7 @@ MAT			=	math1.c \
 CAM_DIR		=	cam/
 CAM			=	cam.c \
 				paint.c \
+				chosen_obj.c \
 				
 COLOR_DIR	=	color/
 COLOR		=	color.c \
@@ -75,7 +77,7 @@ SPHERE		=	sphere.c \
 
 CYLIN_DIR	=	cylinder/
 CYLIN		=	cylinder.c \
-				math_cyl.c
+				cylinder_utils.c \
 
 # LIBFT_DIR	=	libft/
 # LIBFT		=	libft.a
