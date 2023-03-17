@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:37:20 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/17 22:23:07 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/18 00:46:59 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ t_sphere	ft_fill_sphere(t_table *table, char *line[7])
 	sphere.color1 = get_opposite_color(sphere.color);
 	sphere.base = get_obj_base(sphere.dir);
 	sphere.chess_ctrl = 0;
-	sphere.specular = 0;
-	sphere.mirror = 0;
-	ft_fill_options(table, &sphere.color1, &sphere.specular, &sphere.mirror);
+	sphere.option = ft_fill_options(table);
 	return (sphere);
 }
 

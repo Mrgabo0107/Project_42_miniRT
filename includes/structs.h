@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/17 22:18:26 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/18 00:48:19 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ typedef enum e_obj
 	OPTION
 }			t_obj;
 
-typedef enum e_option
+typedef enum e_opt
 {
 	MIRROR,
 	CHECKERBOARD,
 	TRANSPARENT,
 	SPECULAR
-}			t_option;
+}			t_opt;
 
 typedef struct s_vec
 {
@@ -91,17 +91,26 @@ typedef struct s_rgb
 	double	b;
 }			t_rgb;
 
+typedef struct s_option
+{
+	double		mirror;
+	t_rgb		check_color;
+	double		specular;
+	// int		transparent;
+}				t_option;
+
 typedef struct s_inter
 {
-	int		type;
-	int		index;
-	double	dist;
-	t_vec	inter_coor;
-	t_vec	norm;
-	t_rgb	color;
-	int		cyl_ctrl;
-	int		is_in_obj;
-}			t_inter;
+	int			type;
+	int			index;
+	double		dist;
+	t_vec		inter_coor;
+	t_vec		norm;
+	t_rgb		color;
+	t_option	option;
+	int			cyl_ctrl;
+	int			is_in_obj;
+}				t_inter;
 
 typedef struct s_discr
 {
@@ -123,16 +132,17 @@ typedef struct s_cyl_ctrl
 
 typedef struct s_sphere
 {
-	t_vec	center;
-	t_vec	dir;
-	double	radius;
-	t_rgb	color;
-	t_rgb	color1;
-	t_base	base;
-	int		chess_ctrl;
-	double	specular;
-	double	mirror;
-}			t_sphere;
+	t_vec		center;
+	t_vec		dir;
+	double		radius;
+	t_rgb		color;
+	t_rgb		color1;
+	t_base		base;
+	int			chess_ctrl;
+	double		specular;
+	double		mirror;
+	t_option	option;
+}				t_sphere;
 
 typedef struct s_plane
 {
