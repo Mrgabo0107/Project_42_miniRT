@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/16 05:53:58 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/17 01:40:51 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@
 // # define WY 5
 // # define IX 10
 // # define IY 5
-# define WX 801
-# define WY 401
-# define IX 801
-# define IY 401
-// # define WX 2000
-// # define WY 1000
-// # define IX 2000
-// # define IY 1000
+// # define WX 801
+// # define WY 401
+// # define IX 801
+// # define IY 401
+# define WX 2000
+# define WY 1000
+# define IX 2000
+# define IY 1000
 # define EXIT_ERROR -777
 # define ADD_TO_MEM -666
 # define EXIT_OK -555
@@ -247,12 +247,14 @@ double		solve_quad(t_discr *info);
 double		decimal_part(double n);
 t_mtrx		define_rot_mtrx(t_vec rot_axis, double sin, double cos);
 t_base		general_rotation(t_base base, int ctrl, double rad);
+double		integer_part(double n);
 
 //plane
 t_vec		get_normal_plane(t_mrt *mrt, t_inter inter);
 void		check_planes(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 double		distance_to_plane(t_vec start_point,
 				t_vec plane_pos, t_vec plane_dir, t_vec ray);
+t_rgb		get_plane_color(t_mrt *mrt, int index, t_vec intrsc);
 
 //sphere
 t_vec		get_normal_sphere(t_mrt *mrt, t_inter inter);
