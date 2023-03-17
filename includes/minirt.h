@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/17 21:03:00 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/17 22:35:44 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ int			eval_obj(char *line);
 t_table		*ft_fill_table(int fd);
 int			ft_arg_count(char **line);
 void		ft_error(char *msg, char *extra, char *extra2);
+void		ft_fill_options(t_table *table, t_rgb *color, double *specular, \
+double *mirror);
+int			eval_option(char *line);
 
 //cell filling
 double		ft_fill_ratio(char *cell);
@@ -57,11 +60,11 @@ int			check_for_chars(char *str, char *cell);
 int			out_of_range(double num, double min, double max);
 
 //fill objects
-t_cam		ft_fill_cam(char *line[7]);
-t_light		ft_fill_light(char *line[7], int amb);
-t_sphere	ft_fill_sphere(char *line[7]);
-t_plane		ft_fill_plane(char *line[7]);
-t_cylinder	ft_fill_cylinder(char *line[7]);
+t_cam		ft_fill_cam(t_table *table, char *line[7]);
+t_light		ft_fill_light(t_table *table, char *line[7], int amb);
+t_sphere	ft_fill_sphere(t_table *table, char *line[7]);
+t_plane		ft_fill_plane(t_table *table, char *line[7]);
+t_cylinder	ft_fill_cylinder(t_table *table, char *line[7]);
 
 //utils
 char		*get_next_line(int fd);

@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:01:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/17 21:03:04 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/17 22:17:23 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,12 +121,30 @@ commas, at least one value should be non-zero \
 \ne.g. 0,1,-0.5"
 # define OBJECT_INSTRUCTIONS "\
 \nValid objects include: \
-\n(C)amera, (L)ight, (A)mbient light, (sp)here, (pl)ane and (cy)linder"
+\n(C)amera, (L)ight, (A)mbient light, (sp)here, (pl)ane and (cy)linder \
+\nValid options include: \
+\n(mir)ror: [0.0-1.0], (check)ered: (r,g,b) (r,g,b), \
+(trans)parency: [0.0-1.0], (spec)ular: [0.0-1.0]"
+# define OPTIONS_BEFORE_OBJECTS "At least one object must be defined before \
+any options."
+# define OPTION_INSTRUCTIONS "\
+\nValid options include: \
+\n(mir)ror: [0.0-1.0], (check)ered: (r,g,b), \
+(trans)parency: [0.0-1.0], (spec)ular: [0.0-1.0]"
+# define CHECK_INSTRUCTIONS "\
+\n(check)ered: (r,g,b) \
+\ne.g. check 255,0,0"
+# define SPECULAR_INSTRUCTIONS "\
+\n(spec)ular: [0.0-1.0] \
+\ne.g. spec 0.5"
+# define MIRROR_INSTRUCTIONS "\
+\n(mir)ror: [0.0-1.0] \
+\ne.g. mir 0.5"
 # define INVALID_FILE "Invalid file"
 # define FILE_INSTRUCTIONS "\
 \nPlease provide an existing file path, with the correct \
 permissions and ending in '.rt'"
-# define INVALID_OBJECT "Invalid object in the scene"
+# define INVALID_OBJECT "Invalid object/option in the scene"
 # define FILE_ERROR "Failed to open file"
 # define CLEAN_EXIT "Program Exited Correctly :)"
 # define INT_RANGE "All values must be between INT_MAX (-2147483648) and \

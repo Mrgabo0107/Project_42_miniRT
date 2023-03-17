@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/16 05:54:04 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/17 22:18:26 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 # define UNDEFINED -1
 
-typedef enum e_type
+typedef enum e_obj
 {
 	AMBIENT,
 	CAMERA,
@@ -24,7 +24,16 @@ typedef enum e_type
 	PLANE,
 	SPHERE,
 	CYLINDER,
-}			t_type;
+	OPTION
+}			t_obj;
+
+typedef enum e_option
+{
+	MIRROR,
+	CHECKERBOARD,
+	TRANSPARENT,
+	SPECULAR
+}			t_option;
 
 typedef struct s_vec
 {
@@ -121,6 +130,8 @@ typedef struct s_sphere
 	t_rgb	color1;
 	t_base	base;
 	int		chess_ctrl;
+	double	specular;
+	double	mirror;
 }			t_sphere;
 
 typedef struct s_plane

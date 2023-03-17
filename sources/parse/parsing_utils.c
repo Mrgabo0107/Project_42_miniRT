@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:02:11 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/12 22:15:18 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/17 21:39:43 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,19 @@ int	ft_strcmp_1(char *s1, char *s2)
 	return (0);
 }
 
+int	eval_option(char *line)
+{
+	if (ft_strcmp_1(line, "mir") == 0)
+		return (MIRROR);
+	if (ft_strcmp_1(line, "check") == 0)
+		return (CHECKERBOARD);
+	if (ft_strcmp_1(line, "trans") == 0)
+		return (TRANSPARENT);
+	if (ft_strcmp_1(line, "spec") == 0)
+		return (SPECULAR);
+	return (-1);
+}
+
 int	eval_obj(char *line)
 {
 	if (ft_strcmp_1(line, "sp") == 0)
@@ -44,6 +57,8 @@ int	eval_obj(char *line)
 		return (AMBIENT);
 	if (ft_strcmp_1(line, "C") == 0)
 		return (CAMERA);
+	if (eval_option(line) != -1)
+		return (OPTION);
 	return (-1);
 }
 
