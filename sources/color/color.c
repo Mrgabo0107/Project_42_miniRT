@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/19 22:55:14 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/19 23:29:11 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,40 +50,40 @@ t_rgb	get_reflection(t_mrt *mrt, t_inter *ctr, t_vec dir)
 
 t_rgb	get_radiance(t_mrt *mrt, t_inter *ctr, t_vec dir, t_light light)
 {
-	t_rgb	color;
-	t_vec	coor_to_light;
+	t_vec	to_light;
 	t_inter	linter;
-	t_vec	h;
+	t_rgb	reflection;
+	t_rgb	diffuse;
+	t_rgb	specular;
 
-	color = ft_make_rgb(0, 0, 0);
-	coor_to_light = vec_rest(light.pos, ctr->inter_coor);
-	linter = check_shaddow(mrt, ctr, normalize(coor_to_light), \
-	vect_norm(coor_to_light));
-	if (ctr->option.mirror > 0 && mrt->bounce < 100)
-			color = mult_color(get_reflection(mrt, ctr, dir), \
-			ctr->option.mirror);
-	if ((linter.dist < 0 || linter.dist > vect_norm(coor_to_light)))
+	reflection = ft_make_rgb(0, 0, 0);
+	diffuse = ft_make_rgb(0, 0, 0);
+	specular = ft_make_rgb(0, 0, 0);
+	to_light = vec_rest(light.pos, ctr->inter_coor);
+	linter = check_shaddow(mrt, ctr, normalize(to_light), vect_norm(to_light));
+	if (ctr->option.mirror > 0 && mrt->bounce < 10)
+		reflection = get_reflection(mrt, ctr, dir);
+	reflection = mult_color(reflection, ctr->option.mirror);
+	if ((linter.dist < 0 || linter.dist > vect_norm(to_light)))
 	{
-		h = scal_vec(1 / vect_norm(vec_sum(coor_to_light, \
-		vec_rest(mrt->cam.pos, ctr->inter_coor))), \
-		vec_sum(coor_to_light, vec_rest(mrt->cam.pos, \
-		ctr->inter_coor)));
-		// color = mult_color(color, 1 - ctr->option.mirror);
-		color = add_diffuse(ctr, color, coor_to_light, light);
-		color = add_specular(ctr, color, h, light);
+		diffuse = get_diffuse(ctr, to_light, light);
+		diffuse = mult_color(diffuse, 1 - ctr->option.mirror);
+		specular = get_specular(ctr, mrt->cam.pos, to_light, light);
+		specular = mult_color(diffuse, 1 - ctr->option.mirror);
 	}
-	return (color);
+	return (add_color(add_color(reflection, diffuse), specular));
 }
 
 t_rgb	get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color)
 {
 	int		i;
+	t_rgb	ambient;
 
 	i = -1;
 	while (++i < mrt->obj_count[LIGHT])
 		color = get_radiance(mrt, ctr, dir, mrt->light[i]);
-	color = add_ambient(color, ctr->color, mrt->amblight, 1);
-	return (color);
+	ambient = get_ambient(ctr->color, mrt->amblight, 1);
+	return (add_color(color, ambient));
 }
 
 t_rgb	get_color(t_mrt *mrt, t_inter *ctr, t_vec dir)
