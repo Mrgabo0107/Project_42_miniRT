@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/17 21:37:42 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/19 20:45:32 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_rgb	get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color)
 		coor_to_light = vec_rest(mrt->light[i].pos, ctr->inter_coor);
 		linter = check_shaddow(mrt, ctr, normalize(coor_to_light), \
 		vect_norm(coor_to_light));
-		if (ctr->type == SPHERE && mrt->bounce < 100)
+		if (ctr->option.mirror == 1 && mrt->bounce < 100)
 			color = get_reflection(mrt, ctr, dir);
 		if ((linter.dist < 0 || linter.dist > vect_norm(coor_to_light)))
 		{

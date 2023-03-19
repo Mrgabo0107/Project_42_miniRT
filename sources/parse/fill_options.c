@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 22:12:17 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/18 00:44:56 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/19 20:28:00 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,26 @@
 
 void	ft_fill_check(char **line, t_option *option)
 {
-	t_rgb	color;
-
 	if (ft_arg_count(line) != 2)
 		ft_error("Wrong number of arguments for check", \
 		CHECK_INSTRUCTIONS, NULL);
 	option->check_color = ft_fill_rgb(line[1]);
-	return (color);
 }
 
 void	ft_fill_specular(char **line, t_option *option)
 {
-	double	specular;
-
 	if (ft_arg_count(line) != 2)
 		ft_error("Wrong number of arguments for specular", \
 		SPECULAR_INSTRUCTIONS, NULL);
 	option->specular = ft_fill_size(line[1], 0);
-	return (specular);
 }
 
 void	ft_fill_mirror(char **line, t_option *option)
 {
-	double	mirror;
-
 	if (ft_arg_count(line) != 2)
 		ft_error("Wrong number of arguments for mirror", \
 		MIRROR_INSTRUCTIONS, NULL);
 	option->mirror = ft_fill_size(line[1], 0);
-	return (mirror);
 }
 
 t_option	ft_fill_options(t_table *table)

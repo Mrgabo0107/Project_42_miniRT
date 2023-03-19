@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/18 00:48:19 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/19 20:30:27 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,26 +146,28 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
-	t_vec	pos;
-	t_vec	dir;
-	t_rgb	color;
-	t_rgb	color1;
-	t_base	base;
-	int		chess_ctrl;
+	t_vec		pos;
+	t_vec		dir;
+	t_rgb		color;
+	t_rgb		color1;
+	t_base		base;
+	int			chess_ctrl;
+	t_option	option;
 }			t_plane;
 
 typedef struct s_cylinder
 {
-	t_vec	pos;
-	t_vec	dir;
-	t_vec	top;
-	t_vec	bottom;
-	double	radius;
-	double	height;
-	t_rgb	color;
-	t_rgb	color1;
-	t_base	base;
-	int		chess_ctrl;
+	t_vec		pos;
+	t_vec		dir;
+	t_vec		top;
+	t_vec		bottom;
+	double		radius;
+	double		height;
+	t_rgb		color;
+	t_rgb		color1;
+	t_base		base;
+	int			chess_ctrl;
+	t_option	option;
 }			t_cylinder;
 
 typedef struct s_light
