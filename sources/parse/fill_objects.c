@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:37:20 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/18 00:46:59 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/19 20:58:11 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_plane	ft_fill_plane(t_table *table, char *line[7])
 	plane.color1 = get_opposite_color(plane.color);
 	plane.base = get_obj_base(plane.dir);
 	plane.chess_ctrl = 0;
+	plane.option = ft_fill_options(table);
 	return (plane);
 }
 
@@ -67,6 +68,7 @@ t_cylinder	ft_fill_cylinder(t_table *table, char *line[7])
 	cylinder.bottom = vec_sum(cylinder.pos, \
 	scal_vec(-cylinder.height / 2, cylinder.dir));
 	cylinder.chess_ctrl = 0;
+	cylinder.option = ft_fill_options(table);
 	return (cylinder);
 }
 

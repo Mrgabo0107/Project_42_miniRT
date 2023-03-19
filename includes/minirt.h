@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/18 00:48:54 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/19 21:40:23 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,11 +165,12 @@ t_rgb		normalize_color(t_rgb color);
 t_rgb		show_light_sources(t_mrt *mrt, t_rgb color, t_vec dir);
 t_rgb		get_opposite_color(t_rgb color);
 double		get_angle_between(t_vec v1, t_vec v2);
-t_rgb		add_ambient(t_rgb color, t_rgb ctr, t_light amb);
+t_rgb		add_ambient(t_rgb color, t_rgb ctr, t_light amb, double mirror);
 t_rgb		add_diffuse(t_inter *ctr, t_rgb color, t_vec to_light, \
 t_light light);
 t_rgb		add_specular(t_inter *ctr, t_rgb color, t_vec h, t_light light);
 t_inter		check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len);
+t_rgb		mult_color(t_rgb color, double mult);
 
 //hooks_management
 int			key_press(int key, t_mrt *mrt);

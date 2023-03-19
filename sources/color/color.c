@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/19 20:45:32 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/19 22:55:14 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,32 +48,41 @@ t_rgb	get_reflection(t_mrt *mrt, t_inter *ctr, t_vec dir)
 	return (color);
 }
 
-t_rgb	get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color)
+t_rgb	get_radiance(t_mrt *mrt, t_inter *ctr, t_vec dir, t_light light)
 {
+	t_rgb	color;
 	t_vec	coor_to_light;
 	t_inter	linter;
 	t_vec	h;
+
+	color = ft_make_rgb(0, 0, 0);
+	coor_to_light = vec_rest(light.pos, ctr->inter_coor);
+	linter = check_shaddow(mrt, ctr, normalize(coor_to_light), \
+	vect_norm(coor_to_light));
+	if (ctr->option.mirror > 0 && mrt->bounce < 100)
+			color = mult_color(get_reflection(mrt, ctr, dir), \
+			ctr->option.mirror);
+	if ((linter.dist < 0 || linter.dist > vect_norm(coor_to_light)))
+	{
+		h = scal_vec(1 / vect_norm(vec_sum(coor_to_light, \
+		vec_rest(mrt->cam.pos, ctr->inter_coor))), \
+		vec_sum(coor_to_light, vec_rest(mrt->cam.pos, \
+		ctr->inter_coor)));
+		// color = mult_color(color, 1 - ctr->option.mirror);
+		color = add_diffuse(ctr, color, coor_to_light, light);
+		color = add_specular(ctr, color, h, light);
+	}
+	return (color);
+}
+
+t_rgb	get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color)
+{
 	int		i;
 
 	i = -1;
 	while (++i < mrt->obj_count[LIGHT])
-	{
-		coor_to_light = vec_rest(mrt->light[i].pos, ctr->inter_coor);
-		linter = check_shaddow(mrt, ctr, normalize(coor_to_light), \
-		vect_norm(coor_to_light));
-		if (ctr->option.mirror == 1 && mrt->bounce < 100)
-			color = get_reflection(mrt, ctr, dir);
-		if ((linter.dist < 0 || linter.dist > vect_norm(coor_to_light)))
-		{
-			h = scal_vec(1 / vect_norm(vec_sum(coor_to_light, \
-			vec_rest(mrt->cam.pos, ctr->inter_coor))), \
-			vec_sum(coor_to_light, vec_rest(mrt->cam.pos, \
-			ctr->inter_coor)));
-			color = add_diffuse(ctr, color, coor_to_light, mrt->light[i]);
-			color = add_specular(ctr, color, h, mrt->light[i]);
-		}
-	}
-	color = add_ambient(color, ctr->color, mrt->amblight);
+		color = get_radiance(mrt, ctr, dir, mrt->light[i]);
+	color = add_ambient(color, ctr->color, mrt->amblight, 1);
 	return (color);
 }
 

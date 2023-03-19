@@ -6,20 +6,20 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 01:29:54 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/15 01:33:30 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/19 22:05:22 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_rgb	add_ambient(t_rgb color, t_rgb ctr, t_light amb)
+t_rgb	add_ambient(t_rgb color, t_rgb ctr, t_light amb, double mirror)
 {
 	t_rgb	ratio;
 
 	ratio = ft_make_rgb_ratio(ctr);
-	color.r += amb.color.r * amb.ratio * ratio.r;
-	color.g += amb.color.g * amb.ratio * ratio.g;
-	color.b += amb.color.b * amb.ratio * ratio.b;
+	color.r += amb.color.r * amb.ratio * ratio.r * mirror;
+	color.g += amb.color.g * amb.ratio * ratio.g * mirror;
+	color.b += amb.color.b * amb.ratio * ratio.b * mirror;
 	return (color);
 }
 
