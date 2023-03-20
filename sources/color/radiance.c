@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   radiance.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 01:29:54 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/19 23:47:19 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/20 16:18:11 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,8 @@ t_rgb	get_specular(t_inter *ctr, t_vec pos, t_vec to_light, t_light light)
 	int		exponent;
 	double	intensity;
 
-	exponent = (int)ctr->option.specular[0];
-	intensity = ctr->option.specular[1];
-	if (exponent != 0 && intensity != 0)
-		printf("exponent: %d, intensity: %f\n", exponent, intensity);
+	intensity = ctr->option.specular[0];
+	exponent = (int)ctr->option.specular[1];
 	h = scal_vec(1 / vect_norm(vec_sum(to_light, \
 	vec_rest(pos, ctr->inter_coor))), vec_sum(to_light, \
 	vec_rest(pos, ctr->inter_coor)));

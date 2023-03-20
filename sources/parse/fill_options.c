@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_options.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 22:12:17 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/19 23:43:17 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/20 16:31:22 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_fill_specular(char **line, t_option *option)
 	if (ft_arg_count(line) != 3)
 		ft_error("Wrong number of arguments for specular", \
 		SPECULAR_INSTRUCTIONS, NULL);
-	option->specular[0] = ft_fill_size(line[1], 0);
+	option->specular[0] = ft_fill_ratio(line[1]);
 	option->specular[1] = ft_fill_size(line[2], 0);
 }
 
@@ -34,14 +34,14 @@ void	ft_fill_mirror(char **line, t_option *option)
 	if (ft_arg_count(line) != 2)
 		ft_error("Wrong number of arguments for mirror", \
 		MIRROR_INSTRUCTIONS, NULL);
-	option->mirror = ft_fill_size(line[1], 0);
+	option->mirror = ft_fill_ratio(line[1]);
 }
 
 t_option	ft_fill_options(t_table *table)
 {
 	t_option	option;
 
-	option = (t_option){0, ft_make_rgb(0, 0, 0), 0};
+	option = (t_option){0, ft_make_rgb(0, 0, 0), {0.3, 16}};
 	while (table && table->next && eval_obj(table->next->line[0]) == OPTION)
 	{
 		if (eval_option(table->next->line[0]) == CHECKERBOARD)
