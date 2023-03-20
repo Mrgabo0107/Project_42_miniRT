@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 19:53:14 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/20 18:33:13 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:44:12 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int	mouse_press(int button, int x, int y, t_mrt *mrt)
 			mrt->curr_obj.index = 0;
 		}
 	}
-	pixel_calcul(mrt);
-	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, \
-	((WX - IX) / 2) + BORDER, (WY - IY) / 2);
+	render_scene(mrt);
 	return (button);
 }
