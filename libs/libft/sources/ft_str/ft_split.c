@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ionorb <ionorb@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 14:05:32 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/18 19:29:20 by ionorb           ###   ########.fr       */
+/*   Updated: 2023/03/17 22:25:03 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static long unsigned int	contador(char const *str, char c)
 
 	i = 0;
 	cont = 0;
-	while (str[i])
+	while (str && str[i])
 	{
 		if (str[i] != c && (i == 0 || (i > 0 && str[i - 1] == c)))
 		{
