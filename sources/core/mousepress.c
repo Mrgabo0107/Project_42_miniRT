@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mousepress.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 19:53:14 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/15 21:48:41 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:22:32 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int	mouse_press(int button, int x, int y, t_mrt *mrt)
 		}
 	}
 	pixel_calcul(mrt);
-	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
+	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, ((WX - IX) / 2) + BORDER, (WY - IY) / 2);
 	return (button);
 }
