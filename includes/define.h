@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:01:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/17 22:17:23 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/19 23:43:56 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ any options."
 \n(check)ered: (r,g,b) \
 \ne.g. check 255,0,0"
 # define SPECULAR_INSTRUCTIONS "\
-\n(spec)ular: [0.0-1.0] \
+\n(spec)ular: intensity - [0.0-1.0], exponent - [1, 256] \
 \ne.g. spec 0.5"
 # define MIRROR_INSTRUCTIONS "\
 \n(mir)ror: [0.0-1.0] \

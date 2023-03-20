@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/19 23:29:11 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/20 01:04:12 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,6 @@ t_inter	check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len)
 	return (ret);
 }
 
-t_rgb	get_reflection(t_mrt *mrt, t_inter *ctr, t_vec dir)
-{
-	t_vec	refl_dir;
-	t_vec	point;
-	t_inter	refl_inter;
-	t_rgb	color;
-
-	mrt->bounce++;
-	refl_dir = vec_sum(dir, scal_vec(-2 * dot_prod(dir, ctr->norm), \
-	ctr->norm));
-	point = vec_sum(ctr->inter_coor, scal_vec(0.0000001, ctr->norm));
-	refl_inter = check_intersections(mrt, point, refl_dir);
-	refl_inter.norm = get_normal_at_point(mrt, refl_inter);
-	color = get_color(mrt, &refl_inter, refl_dir);
-	return (color);
-}
-
 t_rgb	get_radiance(t_mrt *mrt, t_inter *ctr, t_vec dir, t_light light)
 {
 	t_vec	to_light;
@@ -63,14 +46,16 @@ t_rgb	get_radiance(t_mrt *mrt, t_inter *ctr, t_vec dir, t_light light)
 	linter = check_shaddow(mrt, ctr, normalize(to_light), vect_norm(to_light));
 	if (ctr->option.mirror > 0 && mrt->bounce < 10)
 		reflection = get_reflection(mrt, ctr, dir);
-	reflection = mult_color(reflection, ctr->option.mirror);
 	if ((linter.dist < 0 || linter.dist > vect_norm(to_light)))
 	{
-		diffuse = get_diffuse(ctr, to_light, light);
-		diffuse = mult_color(diffuse, 1 - ctr->option.mirror);
-		specular = get_specular(ctr, mrt->cam.pos, to_light, light);
-		specular = mult_color(diffuse, 1 - ctr->option.mirror);
+		if (ctr->option.mirror < 1)
+			diffuse = get_diffuse(ctr, to_light, light);
+		// if (ctr->option.specular > 0)
+			// specular = get_specular(ctr, mrt->cam.pos, to_light, light);
 	}
+	reflection = mult_color(reflection, ctr->option.mirror);
+	diffuse = mult_color(diffuse, 1 - ctr->option.mirror);
+	specular = mult_color(specular, 1 - ctr->option.mirror);
 	return (add_color(add_color(reflection, diffuse), specular));
 }
 

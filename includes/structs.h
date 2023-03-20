@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/19 20:30:27 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/19 23:42:13 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ typedef struct s_option
 {
 	double		mirror;
 	t_rgb		check_color;
-	double		specular;
+	double		specular[2];
 	// int		transparent;
 }				t_option;
 

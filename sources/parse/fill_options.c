@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 22:12:17 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/19 20:28:00 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/19 23:43:17 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ void	ft_fill_check(char **line, t_option *option)
 
 void	ft_fill_specular(char **line, t_option *option)
 {
-	if (ft_arg_count(line) != 2)
+	if (ft_arg_count(line) != 3)
 		ft_error("Wrong number of arguments for specular", \
 		SPECULAR_INSTRUCTIONS, NULL);
-	option->specular = ft_fill_size(line[1], 0);
+	option->specular[0] = ft_fill_size(line[1], 0);
+	option->specular[1] = ft_fill_size(line[2], 0);
 }
 
 void	ft_fill_mirror(char **line, t_option *option)
