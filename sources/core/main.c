@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/03/20 18:22:27 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:28:21 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	main(int ac, char **av)
 		return (1);
 	set_all_cam_values(&mrt.cam);
 	pixel_calcul(&mrt);
-	mlx_put_image_to_window(mrt.mlx, mrt.win, mrt.img, ((WX - IX) / 2) + BORDER, (WY - IY) / 2);
+	mlx_put_image_to_window(mrt.mlx, mrt.win, mrt.img, \
+	((WX - IX) / 2) + BORDER, (WY - IY) / 2);
 	ft_controls(&mrt);
 	mlx_loop(mrt.mlx);
 	return (0);

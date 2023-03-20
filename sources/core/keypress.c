@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/20 18:22:18 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:28:11 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	key_press(int key, t_mrt *mrt)
 	normalize(mrt->cam.dir);
 	set_all_cam_values(&mrt->cam);
 	pixel_calcul(mrt);
-	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, ((WX - IX) / 2) + BORDER, (WY - IY) / 2);
+	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, \
+	((WX - IX) / 2) + BORDER, (WY - IY) / 2);
 	return (key);
 }
