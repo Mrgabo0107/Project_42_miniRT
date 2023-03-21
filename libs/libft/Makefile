@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
+#    By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/24 18:26:55 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/16 01:38:25 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/03/17 22:29:18 by yoel             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### Compilation ###
 
 CC	= cc
-CFLAGS	= -Wall -Wextra -Werror -I.
+CFLAGS	= -Wall -Wextra -Werror -g3 -I.
 
 ### Executable ###
 

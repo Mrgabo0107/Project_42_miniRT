@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/15 22:46:59 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/19 20:44:02 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,9 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 		if (ctr.c > 0 && (ctrl->dist == -1 || ctr.c < ctrl->dist))
 		{
 			*ctrl = (t_inter){CYLINDER, i, ctr.c, vec_sum(point, \
-			scal_vec(ctr.c, dir)), fill_coord(0, 0, 0), mrt->cylinder[i].color \
-			, ctr.cap_ctrl, cam_in_cyl(mrt, i, new_cam)};
+			scal_vec(ctr.c, dir)), fill_coord(0, 0, 0), \
+			mrt->cylinder[i].color, mrt->cylinder[i].option, \
+			ctr.cap_ctrl, cam_in_cyl(mrt, i, new_cam)};
 		}
 		i++;
 	}

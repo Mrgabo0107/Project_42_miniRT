@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/16 05:54:04 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/19 23:42:13 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 # define UNDEFINED -1
 
-typedef enum e_type
+typedef enum e_obj
 {
 	AMBIENT,
 	CAMERA,
@@ -24,7 +24,16 @@ typedef enum e_type
 	PLANE,
 	SPHERE,
 	CYLINDER,
-}			t_type;
+	OPTION
+}			t_obj;
+
+typedef enum e_opt
+{
+	MIRROR,
+	CHECKERBOARD,
+	TRANSPARENT,
+	SPECULAR
+}			t_opt;
 
 typedef struct s_vec
 {
@@ -82,17 +91,26 @@ typedef struct s_rgb
 	double	b;
 }			t_rgb;
 
+typedef struct s_option
+{
+	double		mirror;
+	t_rgb		check_color;
+	double		specular[2];
+	// int		transparent;
+}				t_option;
+
 typedef struct s_inter
 {
-	int		type;
-	int		index;
-	double	dist;
-	t_vec	inter_coor;
-	t_vec	norm;
-	t_rgb	color;
-	int		cyl_ctrl;
-	int		is_in_obj;
-}			t_inter;
+	int			type;
+	int			index;
+	double		dist;
+	t_vec		inter_coor;
+	t_vec		norm;
+	t_rgb		color;
+	t_option	option;
+	int			cyl_ctrl;
+	int			is_in_obj;
+}				t_inter;
 
 typedef struct s_discr
 {
@@ -114,37 +132,42 @@ typedef struct s_cyl_ctrl
 
 typedef struct s_sphere
 {
-	t_vec	center;
-	t_vec	dir;
-	double	radius;
-	t_rgb	color;
-	t_rgb	color1;
-	t_base	base;
-	int		chess_ctrl;
-}			t_sphere;
+	t_vec		center;
+	t_vec		dir;
+	double		radius;
+	t_rgb		color;
+	t_rgb		color1;
+	t_base		base;
+	int			chess_ctrl;
+	double		specular;
+	double		mirror;
+	t_option	option;
+}				t_sphere;
 
 typedef struct s_plane
 {
-	t_vec	pos;
-	t_vec	dir;
-	t_rgb	color;
-	t_rgb	color1;
-	t_base	base;
-	int		chess_ctrl;
+	t_vec		pos;
+	t_vec		dir;
+	t_rgb		color;
+	t_rgb		color1;
+	t_base		base;
+	int			chess_ctrl;
+	t_option	option;
 }			t_plane;
 
 typedef struct s_cylinder
 {
-	t_vec	pos;
-	t_vec	dir;
-	t_vec	top;
-	t_vec	bottom;
-	double	radius;
-	double	height;
-	t_rgb	color;
-	t_rgb	color1;
-	t_base	base;
-	int		chess_ctrl;
+	t_vec		pos;
+	t_vec		dir;
+	t_vec		top;
+	t_vec		bottom;
+	double		radius;
+	double		height;
+	t_rgb		color;
+	t_rgb		color1;
+	t_base		base;
+	int			chess_ctrl;
+	t_option	option;
 }			t_cylinder;
 
 typedef struct s_light

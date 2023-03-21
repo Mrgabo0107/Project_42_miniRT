@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
+#    By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/17 01:42:47 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/03/19 20:52:35 by yoel             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@
 
 CC      = cc
 # FLAGS  = -Wall -Werror -Wextra -g3 #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
-FLAGS  = -Wall -Werror -Wextra -Ofast -flto
-# FLAGS  = -Ofast -flto
+# FLAGS  = -Wall -Werror -Wextra -Ofast -flto
+FLAGS  = -Ofast -flto
 ### Executable ###
 #-Ofast -flto 
 NAME   = minirt
@@ -41,6 +41,7 @@ CORE		=	main.c \
 PARSE_DIR	=	parse/
 PARSE		=	parsing.c \
 				fill_objects.c \
+				fill_options.c \
 				parsing_utils.c \
 				cell_filling.c \
 				cell_filling_utils.c \

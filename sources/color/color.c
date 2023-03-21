@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/15 21:31:04 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/20 01:04:12 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,50 +31,44 @@ t_inter	check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len)
 	return (ret);
 }
 
-t_rgb	get_reflection(t_mrt *mrt, t_inter *ctr, t_vec dir)
+t_rgb	get_radiance(t_mrt *mrt, t_inter *ctr, t_vec dir, t_light light)
 {
-	t_vec	refl_dir;
-	t_vec	point;
-	t_inter	refl_inter;
-	t_rgb	color;
+	t_vec	to_light;
+	t_inter	linter;
+	t_rgb	reflection;
+	t_rgb	diffuse;
+	t_rgb	specular;
 
-	mrt->bounce++;
-	refl_dir = vec_sum(dir, scal_vec(-2 * dot_prod(dir, ctr->norm), \
-	ctr->norm));
-	point = vec_sum(ctr->inter_coor, scal_vec(0.0000001, ctr->norm));
-	refl_inter = check_intersections(mrt, point, refl_dir);
-	refl_inter.norm = get_normal_at_point(mrt, refl_inter);
-	color = get_color(mrt, &refl_inter, refl_dir);
-	return (color);
+	reflection = ft_make_rgb(0, 0, 0);
+	diffuse = ft_make_rgb(0, 0, 0);
+	specular = ft_make_rgb(0, 0, 0);
+	to_light = vec_rest(light.pos, ctr->inter_coor);
+	linter = check_shaddow(mrt, ctr, normalize(to_light), vect_norm(to_light));
+	if (ctr->option.mirror > 0 && mrt->bounce < 10)
+		reflection = get_reflection(mrt, ctr, dir);
+	if ((linter.dist < 0 || linter.dist > vect_norm(to_light)))
+	{
+		if (ctr->option.mirror < 1)
+			diffuse = get_diffuse(ctr, to_light, light);
+		// if (ctr->option.specular > 0)
+			// specular = get_specular(ctr, mrt->cam.pos, to_light, light);
+	}
+	reflection = mult_color(reflection, ctr->option.mirror);
+	diffuse = mult_color(diffuse, 1 - ctr->option.mirror);
+	specular = mult_color(specular, 1 - ctr->option.mirror);
+	return (add_color(add_color(reflection, diffuse), specular));
 }
 
 t_rgb	get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color)
 {
-	t_vec	coor_to_light;
-	t_inter	linter;
-	t_vec	h;
 	int		i;
+	t_rgb	ambient;
 
 	i = -1;
 	while (++i < mrt->obj_count[LIGHT])
-	{
-		coor_to_light = vec_rest(mrt->light[i].pos, ctr->inter_coor);
-		linter = check_shaddow(mrt, ctr, normalize(coor_to_light), \
-		vect_norm(coor_to_light));
-		if (ctr->type == SPHERE && mrt->bounce < 100)
-			color = get_reflection(mrt, ctr, dir);
-		if ((linter.dist < 0 || linter.dist > vect_norm(coor_to_light)))
-		{
-			h = scal_vec(1 / vect_norm(vec_sum(coor_to_light, \
-			vec_rest(mrt->cam.pos, ctr->inter_coor))), \
-			vec_sum(coor_to_light, vec_rest(mrt->cam.pos, \
-			ctr->inter_coor)));
-			color = add_diffuse(ctr, color, coor_to_light, mrt->light[i]);
-			color = add_specular(ctr, color, h, mrt->light[i]);
-		}
-	}
-	color = add_ambient(color, ctr->color, mrt->amblight);
-	return (color);
+		color = get_radiance(mrt, ctr, dir, mrt->light[i]);
+	ambient = get_ambient(ctr->color, mrt->amblight, 1);
+	return (add_color(color, ambient));
 }
 
 t_rgb	get_color(t_mrt *mrt, t_inter *ctr, t_vec dir)

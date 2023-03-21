@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/15 20:16:34 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/17 21:46:02 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ int	*ft_count_objs(t_table *table, int obj_count[6])
 			obj_count[LIGHT]), obj_count);
 }
 
-void	ft_fill_capitals(t_mrt *mrt, char **line, int type)
+void	ft_fill_capitals(t_mrt *mrt, t_table *table, char **line, int type)
 {
 	if (type == AMBIENT)
-		mrt->amblight = ft_fill_light(line, 1);
+		mrt->amblight = ft_fill_light(table, line, 1);
 	else if (type == CAMERA)
-		mrt->cam = ft_fill_cam(line);
+		mrt->cam = ft_fill_cam(table, line);
 }
 
 void	ft_fill_objs(t_mrt *mrt, t_table *table, int count[6])
@@ -75,15 +75,16 @@ void	ft_fill_objs(t_mrt *mrt, t_table *table, int count[6])
 	{
 		type = eval_obj(table->line[0]);
 		if (type == AMBIENT || type == CAMERA)
-			ft_fill_capitals(mrt, table->line, type);
+			ft_fill_capitals(mrt, table, table->line, type);
 		else if (eval_obj(table->line[0]) == LIGHT)
-			mrt->light[--count[LIGHT]] = ft_fill_light(table->line, 0);
+			mrt->light[--count[LIGHT]] = ft_fill_light(table, table->line, 0);
 		else if (eval_obj(table->line[0]) == SPHERE)
-			mrt->sphere[--count[SPHERE]] = ft_fill_sphere(table->line);
+			mrt->sphere[--count[SPHERE]] = ft_fill_sphere(table, table->line);
 		else if (eval_obj(table->line[0]) == PLANE)
-			mrt->plane[--count[PLANE]] = ft_fill_plane(table->line);
+			mrt->plane[--count[PLANE]] = ft_fill_plane(table, table->line);
 		else if (eval_obj(table->line[0]) == CYLINDER)
-			mrt->cylinder[--count[CYLINDER]] = ft_fill_cylinder(table->line);
+			mrt->cylinder[--count[CYLINDER]] = \
+			ft_fill_cylinder(table, table->line);
 		table = table->next;
 	}
 }
