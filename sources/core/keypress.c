@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/20 18:46:16 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/21 22:39:02 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,21 @@ void	define_cam_as_curr_obj(t_mrt *mrt)
 	mrt->curr_obj.type = CAMERA;
 }
 
+// void	chess_ctr(t_mrt *mrt, int key)
+// {
+// 	if (key == PLUS)
+// }
+
 int	key_press(int key, t_mrt *mrt)
 {
+	printf("%d\n", key);
 	if (key == ESC)
 		end_mrt(mrt);
 	if (mrt->curr_obj.type != CAMERA)
 	{
 		move_obj(mrt, key);
 		rotate_obj(mrt, key);
+		// chess_ctr(mrt, key);
 	}
 	if (key == ENTER)
 		ft_reinit(mrt);

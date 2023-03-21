@@ -76,6 +76,7 @@ COLOR		=	color.c \
 
 PLANE_DIR	=	plane/
 PLANE		=	plane.c \
+				plane_color.c \
 				
 SPHERE_DIR	=	sphere/
 SPHERE		=	sphere.c \
