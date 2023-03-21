@@ -125,12 +125,14 @@ double		solve_quad(t_discr *info);
 double		decimal_part(double n);
 t_mtrx		define_rot_mtrx(t_vec rot_axis, double sin, double cos);
 t_base		general_rotation(t_base base, int ctrl, double rad);
+double		integer_part(double n);
 
 //plane
 t_vec		get_normal_plane(t_mrt *mrt, t_inter inter);
 void		check_planes(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 double		distance_to_plane(t_vec start_point,
 				t_vec plane_pos, t_vec plane_dir, t_vec ray);
+t_rgb		get_plane_color(t_mrt *mrt, int index, t_vec intrsc);
 
 //sphere
 t_vec		get_normal_sphere(t_mrt *mrt, t_inter inter);
