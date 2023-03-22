@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 03:43:09 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/16 05:53:14 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/22 20:21:17 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	rotate_sphere(t_mrt *mrt, int key, double angl)
 	if (key == M)
 		mrt->sphere[mrt->curr_obj.index].base
 			= general_rotation(mrt->sphere[mrt->curr_obj.index].base, 3, -angl);
+	mrt->sphere[mrt->curr_obj.index].dir
+		= mrt->sphere[mrt->curr_obj.index].base.n3;
 }
 
 void	rotate_cyl(t_mrt *mrt, int key, double angl)
@@ -84,6 +86,8 @@ void	rotate_cyl(t_mrt *mrt, int key, double angl)
 		mrt->cylinder[mrt->curr_obj.index].base
 			= general_rotation(mrt->cylinder[mrt->curr_obj.index].base, 3,
 				-angl);
+	mrt->cylinder[mrt->curr_obj.index].dir
+		= mrt->cylinder[mrt->curr_obj.index].base.n3;
 }
 
 void	rotate_obj(t_mrt *mrt, int key)

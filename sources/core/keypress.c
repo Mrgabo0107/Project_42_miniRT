@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/17 02:12:54 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/22 20:05:15 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,26 @@ void	define_cam_as_curr_obj(t_mrt *mrt)
 	mrt->curr_obj.type = CAMERA;
 }
 
-// void	chess_ctr(t_mrt *mrt, int key)
-// {
-// 	if (key == PLUS)
-// }
+void	chess_ctr(t_mrt *mrt, int key)
+{
+	if (mrt->curr_obj.type == PLANE)
+	{
+		if (key == PLUS)
+			mrt->plane[mrt->curr_obj.index].chess_ctrl++;
+		if (key == MINUS)
+			mrt->plane[mrt->curr_obj.index].chess_ctrl--;
+	}
+}
 
 int	key_press(int key, t_mrt *mrt)
 {
-	printf("%d\n", key);
 	if (key == ESC)
 		end_mrt(mrt);
 	if (mrt->curr_obj.type != CAMERA)
 	{
 		move_obj(mrt, key);
 		rotate_obj(mrt, key);
-		// chess_ctr(mrt, key);
+		chess_ctr(mrt, key);
 	}
 	if (key == ENTER)
 		ft_reinit(mrt);
