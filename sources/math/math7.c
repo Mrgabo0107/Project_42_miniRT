@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 20:54:16 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/16 21:38:29 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/22 19:54:18 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_mtrx	define_rot_mtrx(t_vec rot_axis, double sin, double cos)
 	return (ret);
 }
 
-double	integer_part(double n)
+int	integer_part(double n)
 {
 	double	integer_part;
 	double	decimal_part;
