@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:01:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/20 18:26:14 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/22 21:19:35 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@
 // # define WY 5
 // # define IX 10
 // # define IY 5
-// # define WX 800
-// # define WY 400
-// # define IX 800
-// # define IY 400
-# define WX 1500
-# define WY 755
-# define IX 1250
-# define IY 750
+# define WX 800
+# define WY 400
+# define IX 800
+# define IY 400
+// # define WX 1500
+// # define WY 755
+// # define IX 1250
+// # define IY 750
 # define BORDER 122
 // # define WX 2000
 // # define WY 1000
