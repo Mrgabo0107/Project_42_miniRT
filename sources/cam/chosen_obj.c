@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 22:50:27 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/16 05:45:48 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/22 22:20:33 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ t_rgb	check_plane_grid(t_mrt *mrt, t_vec	curr_dir, t_rgb color)
 	t_vec	inter;
 	t_mtrx	chg_b;
 	t_rgb	ret;
+	t_vec	new_cam;
 
 	ret = color;
+	new_cam = vec_rest(mrt->cam.pos, mrt->plane[mrt->curr_obj.index].pos);
 	c = distance_to_plane(mrt->cam.pos, mrt->plane[mrt->curr_obj.index].pos,
 			mrt->plane[mrt->curr_obj.index].dir, curr_dir);
 	if (c > 0)
@@ -28,7 +30,7 @@ t_rgb	check_plane_grid(t_mrt *mrt, t_vec	curr_dir, t_rgb color)
 				mrt->plane[mrt->curr_obj.index].base.n2,
 				mrt->plane[mrt->curr_obj.index].base.n3);
 		inter = mtrx_by_vec(chg_b,
-				vec_sum(mrt->cam.pos, scal_vec(c, curr_dir)));
+				vec_sum(new_cam, scal_vec(c, curr_dir)));
 		if (v_abs(decimal_part(inter.x)) * c / 2 < 0.007 * c
 			|| v_abs(decimal_part(inter.y)) * c / 2 < 0.007 * c)
 			ret = get_opposite_color(ret);
