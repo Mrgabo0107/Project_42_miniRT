@@ -6,7 +6,7 @@
 #    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/22 21:04:41 by yridgway         ###   ########.fr        #
+#    Updated: 2023/03/22 22:24:05 by yridgway         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ CORE		=	main.c \
 				keypress_obj1.c \
 				keypress_obj2.c \
 				mousepress.c \
+				info_display.c \
 
 PARSE_DIR	=	parse/
 PARSE		=	parsing.c \
