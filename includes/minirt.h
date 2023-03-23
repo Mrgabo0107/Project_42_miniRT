@@ -126,6 +126,7 @@ double		decimal_part(double n);
 t_mtrx		define_rot_mtrx(t_vec rot_axis, double sin, double cos);
 t_base		general_rotation(t_base base, int ctrl, double rad);
 double		integer_part(double n);
+t_vec		get_espheric_coord(t_vec orig);
 
 //plane
 t_vec		get_normal_plane(t_mrt *mrt, t_inter inter);
@@ -138,6 +139,7 @@ t_rgb		get_plane_color(t_mrt *mrt, int index, t_vec intrsc);
 t_vec		get_normal_sphere(t_mrt *mrt, t_inter inter);
 void		check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 t_discr		get_sph_dscr(t_vec ncam, t_vec dir, double square_rad);
+t_rgb		get_sphere_color(t_mrt *mrt, int index, t_vec intrsc);
 
 //cylinder
 t_vec		get_normal_cylinder(t_mrt *mrt, t_inter inter);
