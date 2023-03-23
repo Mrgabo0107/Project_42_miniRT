@@ -6,7 +6,7 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/23 03:00:44 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/03/23 05:17:55 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ CORE		=	main.c \
 				keypress.c \
 				keypress_obj1.c \
 				keypress_obj2.c \
+				keypress_obj3.c \
 				mousepress.c \
 				info_display.c \
 
