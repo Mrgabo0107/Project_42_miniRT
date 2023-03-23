@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/22 21:49:33 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/22 22:23:52 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,5 +182,9 @@ int			key_press(int key, t_mrt *mrt);
 int			mouse_press(int button, int x, int y, t_mrt *mrt);
 void		move_obj(t_mrt *mrt, int key);
 void		rotate_obj(t_mrt *mrt, int key);
+void		render_scene(t_mrt *mrt);
+
+//info display
+void	display_strings(t_mrt *mrt);
 
 #endif
