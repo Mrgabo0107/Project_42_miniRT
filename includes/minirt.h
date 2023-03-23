@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/23 03:04:51 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/23 05:43:07 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,8 +187,11 @@ int			mouse_press(int button, int x, int y, t_mrt *mrt);
 void		move_obj(t_mrt *mrt, int key);
 void		rotate_obj(t_mrt *mrt, int key);
 void		render_scene(t_mrt *mrt);
+void		chg_options(t_mrt *mrt, int key);
+void		radius_ctr(t_mrt *mrt, int key);
+void		height_ctr(t_mrt *mrt, int key);
 
 //info display
-void	display_strings(t_mrt *mrt);
+void		display_strings(t_mrt *mrt);
 
 #endif

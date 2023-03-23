@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/23 03:21:18 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/23 05:43:16 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,21 @@ void	define_cam_as_curr_obj(t_mrt *mrt)
 
 void	chess_ctr(t_mrt *mrt, int key)
 {
-	if (mrt->curr_obj.type == PLANE)
+	if (mrt->curr_obj.type == PLANE && mrt->curr_obj.chg_opt == CHECKERBOARD)
 	{
 		if (key == PLUS)
 			mrt->plane[mrt->curr_obj.index].chess_ctrl++;
 		if (key == MINUS && mrt->plane[mrt->curr_obj.index].chess_ctrl > 0)
 			mrt->plane[mrt->curr_obj.index].chess_ctrl--;
 	}
-	if (mrt->curr_obj.type == SPHERE)
+	if (mrt->curr_obj.type == SPHERE && mrt->curr_obj.chg_opt == CHECKERBOARD)
 	{
 		if (key == PLUS)
 			mrt->sphere[mrt->curr_obj.index].chess_ctrl++;
 		if (key == MINUS && mrt->sphere[mrt->curr_obj.index].chess_ctrl > 0)
 			mrt->sphere[mrt->curr_obj.index].chess_ctrl--;
 	}
-	if (mrt->curr_obj.type == CYLINDER)
+	if (mrt->curr_obj.type == CYLINDER && mrt->curr_obj.chg_opt == CHECKERBOARD)
 	{
 		if (key == PLUS)
 			mrt->cylinder[mrt->curr_obj.index].chess_ctrl++;
@@ -89,7 +89,10 @@ int	key_press(int key, t_mrt *mrt)
 	{
 		move_obj(mrt, key);
 		rotate_obj(mrt, key);
+		chg_options(mrt, key);
 		chess_ctr(mrt, key);
+		radius_ctr(mrt, key);
+		height_ctr(mrt, key);
 	}
 	if (key == ENTER)
 		ft_reinit(mrt);
@@ -98,7 +101,6 @@ int	key_press(int key, t_mrt *mrt)
 	ft_move_cam(mrt, key);
 	ft_change_cam_dir(mrt, key);
 	normalize(mrt->cam.dir);
-	// set_all_cam_values(&mrt->cam);
 	render_scene(mrt);
 	return (key);
 }

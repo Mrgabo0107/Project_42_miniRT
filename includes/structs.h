@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/20 17:06:53 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/23 06:25:37 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,18 @@ typedef enum e_obj
 typedef enum e_opt
 {
 	MIRROR,
-	CHECKERBOARD,
 	TRANSPARENT,
 	SPECULAR
 }			t_opt;
+
+typedef enum e_chg
+{
+	RADIUS,
+	HEIGHT,
+	CHECKERBOARD,
+	NOTHING
+	// ANGLE
+}			t_chg;
 
 typedef struct s_vec
 {
@@ -114,6 +122,13 @@ typedef struct s_cyl_ctrl
 	int		cap_ctrl;
 }			t_cyl_ctrl;
 
+typedef struct s_cyl_chess
+{
+	t_rgb	color;
+	int		even_ctrl;
+}			t_cyl_chess;
+
+
 /*----------------------------------------------------------------------------*/
 /*									Objects									  */
 /*----------------------------------------------------------------------------*/
@@ -186,6 +201,7 @@ typedef struct s_curr_ob
 {
 	int		type;
 	int		index;
+	int		chg_opt;	
 }			t_curr_ob;
 
 typedef struct s_mrt
@@ -208,7 +224,7 @@ typedef struct s_mrt
 	t_plane			*plane;
 	t_cylinder		*cylinder;
 	t_curr_ob		curr_obj;
-}			t_mrt;
+}					t_mrt;
 
 // typedef struct s_square
 // {

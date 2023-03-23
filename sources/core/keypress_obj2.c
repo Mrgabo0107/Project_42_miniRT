@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 03:43:09 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/22 20:21:17 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/23 04:51:16 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,32 +60,26 @@ void	rotate_sphere(t_mrt *mrt, int key, double angl)
 		= mrt->sphere[mrt->curr_obj.index].base.n3;
 }
 
-void	rotate_cyl(t_mrt *mrt, int key, double angl)
+void	rotate_cyl(t_mrt *mrt, int key, double an)
 {
 	if (key == I)
 		mrt->cylinder[mrt->curr_obj.index].base
-			= general_rotation(mrt->cylinder[mrt->curr_obj.index].base, 1,
-				angl);
+			= general_rotation(mrt->cylinder[mrt->curr_obj.index].base, 1, an);
 	if (key == O)
 		mrt->cylinder[mrt->curr_obj.index].base
-			= general_rotation(mrt->cylinder[mrt->curr_obj.index].base, 1,
-				-angl);
+			= general_rotation(mrt->cylinder[mrt->curr_obj.index].base, 1, -an);
 	if (key == J)
 		mrt->cylinder[mrt->curr_obj.index].base
-			= general_rotation(mrt->cylinder[mrt->curr_obj.index].base, 2,
-				angl);
+			= general_rotation(mrt->cylinder[mrt->curr_obj.index].base, 2, an);
 	if (key == K)
 		mrt->cylinder[mrt->curr_obj.index].base
-			= general_rotation(mrt->cylinder[mrt->curr_obj.index].base, 2,
-				-angl);
+			= general_rotation(mrt->cylinder[mrt->curr_obj.index].base, 2, -an);
 	if (key == N)
 		mrt->cylinder[mrt->curr_obj.index].base
-			= general_rotation(mrt->cylinder[mrt->curr_obj.index].base, 3,
-				angl);
+			= general_rotation(mrt->cylinder[mrt->curr_obj.index].base, 3, an);
 	if (key == M)
 		mrt->cylinder[mrt->curr_obj.index].base
-			= general_rotation(mrt->cylinder[mrt->curr_obj.index].base, 3,
-				-angl);
+			= general_rotation(mrt->cylinder[mrt->curr_obj.index].base, 3, -an);
 	mrt->cylinder[mrt->curr_obj.index].dir
 		= mrt->cylinder[mrt->curr_obj.index].base.n3;
 }
