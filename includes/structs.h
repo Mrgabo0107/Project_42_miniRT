@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/19 23:42:13 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/20 17:06:53 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,6 @@ typedef struct s_mtrx
 /*----------------------------------------------------------------------------*/
 /*									Camera									  */
 /*----------------------------------------------------------------------------*/
-
-// typedef struct s_ray
-// {
-// 	t_vec	origin;
-// 	t_vec	direction;
-// }			t_ray;
-
-// typedef struct s_amblight
-// {
-// 	double	ratio;
-// 	uint	color;
-// }			t_amblight;
 
 typedef struct s_cam
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:01:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/19 23:43:56 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/22 21:19:35 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,15 @@
 // # define WY 5
 // # define IX 10
 // # define IY 5
-# define WX 801
-# define WY 401
-# define IX 801
-# define IY 401
+# define WX 800
+# define WY 400
+# define IX 800
+# define IY 400
+// # define WX 1500
+// # define WY 755
+// # define IX 1250
+// # define IY 750
+# define BORDER 122
 // # define WX 2000
 // # define WY 1000
 // # define IX 2000
@@ -130,12 +135,12 @@ any options."
 # define OPTION_INSTRUCTIONS "\
 \nValid options include: \
 \n(mir)ror: [0.0-1.0], (check)ered: (r,g,b), \
-(trans)parency: [0.0-1.0], (spec)ular: [0.0-1.0]"
+(spec)ular: intensity exponent"
 # define CHECK_INSTRUCTIONS "\
 \n(check)ered: (r,g,b) \
 \ne.g. check 255,0,0"
 # define SPECULAR_INSTRUCTIONS "\
-\n(spec)ular: intensity - [0.0-1.0], exponent - [1, 256] \
+\n(spec)ular: intensity - [0.0-1.0], exponent - [1-1000] \
 \ne.g. spec 0.5"
 # define MIRROR_INSTRUCTIONS "\
 \n(mir)ror: [0.0-1.0] \

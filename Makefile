@@ -37,6 +37,7 @@ CORE		=	main.c \
 				keypress_obj1.c \
 				keypress_obj2.c \
 				mousepress.c \
+				info_display.c \
 
 PARSE_DIR	=	parse/
 PARSE		=	parsing.c \

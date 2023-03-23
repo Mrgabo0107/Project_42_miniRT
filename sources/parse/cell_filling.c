@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cell_filling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:52:58 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/04 14:39:44 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/20 16:33:55 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,6 @@ double	ft_fill_ratio(char *cell)
 		ft_error("Invalid char in ratio", cell, RATIO_INSTRUCTIONS);
 	check_valid_number(cell);
 	if (ft_atof(cell) < 0.0 || ft_atof(cell) > 1.0)
-		ft_error(RATIO_RANGE, cell, RATIO_INSTRUCTIONS);
+		ft_error(cell, RATIO_INSTRUCTIONS, NULL);
 	return (ft_atof(cell));
 }

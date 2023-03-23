@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mousepress.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 19:53:14 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/15 21:48:41 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/22 21:21:03 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	mouse_press(int button, int x, int y, t_mrt *mrt)
 
 	if (button == 1)
 	{
-		curr_dir = normalize(vec_rest(screen_pxl_by_indx(&mrt->cam, x, y),
-					mrt->cam.pos));
+		curr_dir = normalize(vec_rest(screen_pxl_by_indx(&mrt->cam, \
+		x - BORDER, y), mrt->cam.pos));
 		inter = check_intersections(mrt, mrt->cam.pos, curr_dir);
 		if (inter.dist != -1)
 		{
@@ -33,7 +33,6 @@ int	mouse_press(int button, int x, int y, t_mrt *mrt)
 			mrt->curr_obj.index = 0;
 		}
 	}
-	pixel_calcul(mrt);
-	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
+	render_scene(mrt);
 	return (button);
 }

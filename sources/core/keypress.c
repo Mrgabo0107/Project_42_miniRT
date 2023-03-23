@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
 /*   Updated: 2023/03/23 00:57:51 by gamoreno         ###   ########.fr       */
@@ -91,8 +91,7 @@ int	key_press(int key, t_mrt *mrt)
 	ft_move_cam(mrt, key);
 	ft_change_cam_dir(mrt, key);
 	normalize(mrt->cam.dir);
-	set_all_cam_values(&mrt->cam);
-	pixel_calcul(mrt);
-	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
+	// set_all_cam_values(&mrt->cam);
+	render_scene(mrt);
 	return (key);
 }

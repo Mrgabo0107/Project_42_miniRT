@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/20 01:04:12 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/20 16:13:50 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ t_rgb	get_radiance(t_mrt *mrt, t_inter *ctr, t_vec dir, t_light light)
 	{
 		if (ctr->option.mirror < 1)
 			diffuse = get_diffuse(ctr, to_light, light);
-		// if (ctr->option.specular > 0)
-			// specular = get_specular(ctr, mrt->cam.pos, to_light, light);
+		if (ctr->option.specular > 0)
+			specular = get_specular(ctr, mrt->cam.pos, to_light, light);
 	}
 	reflection = mult_color(reflection, ctr->option.mirror);
 	diffuse = mult_color(diffuse, 1 - ctr->option.mirror);
