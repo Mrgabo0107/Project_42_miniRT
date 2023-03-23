@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:31:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/19 20:36:54 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/23 02:21:32 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void	check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 			if (c > 0 && (ctrl->dist == -1 || c < ctrl->dist))
 				*ctrl = (t_inter){SPHERE, i, c, vec_sum(vec_sum(new_cam, \
 				scal_vec(c, dir)), mrt->sphere[i].center), fill_coord(0, 0, 0), \
-				mrt->sphere[i].color, mrt->sphere[i].option, 0, \
+				// mrt->sphere[i].color, mrt->sphere[i].option, 0, 
+				get_sphere_color(mrt, i, vec_sum(vec_sum(new_cam, scal_vec(c, dir)), mrt->sphere[i].center)), mrt->sphere[i].option, 0, \
 				cam_in_sph(mrt, i, new_cam)};
 		}
 		i++;

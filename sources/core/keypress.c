@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/22 20:05:15 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/23 00:57:51 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,15 @@ void	chess_ctr(t_mrt *mrt, int key)
 	{
 		if (key == PLUS)
 			mrt->plane[mrt->curr_obj.index].chess_ctrl++;
-		if (key == MINUS)
+		if (key == MINUS && mrt->plane[mrt->curr_obj.index].chess_ctrl > 0)
 			mrt->plane[mrt->curr_obj.index].chess_ctrl--;
+	}
+	if (mrt->curr_obj.type == SPHERE)
+	{
+		if (key == PLUS)
+			mrt->sphere[mrt->curr_obj.index].chess_ctrl++;
+		if (key == MINUS && mrt->sphere[mrt->curr_obj.index].chess_ctrl > 0)
+			mrt->sphere[mrt->curr_obj.index].chess_ctrl--;
 	}
 }
 
