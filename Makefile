@@ -6,7 +6,7 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/23 02:06:04 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/03/23 03:00:44 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,6 +86,7 @@ SPHERE		=	sphere.c \
 CYLIN_DIR	=	cylinder/
 CYLIN		=	cylinder.c \
 				cylinder_utils.c \
+				cylinder_color.c \
 
 # LIBFT_DIR	=	libft/
 # LIBFT		=	libft.a

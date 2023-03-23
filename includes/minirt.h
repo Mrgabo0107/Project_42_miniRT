@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/22 22:23:52 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/23 03:04:51 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,8 @@ double		decimal_part(double n);
 t_mtrx		define_rot_mtrx(t_vec rot_axis, double sin, double cos);
 t_base		general_rotation(t_base base, int ctrl, double rad);
 double		integer_part(double n);
-t_vec		get_espheric_coord(t_vec orig);
+t_vec		get_spheric_coord(t_vec orig);
+t_vec		get_cyl_coor(t_vec orig);
 
 //plane
 t_vec		get_normal_plane(t_mrt *mrt, t_inter inter);
@@ -148,6 +149,7 @@ int			cam_in_cyl(t_mrt *mrt, int indx, t_vec new_cam);
 t_rgb		print_cyl_color(t_mrt *mrt, int index);
 t_cyl_ctrl	get_dist_to_cyl(t_cylinder cyl, t_vec new_cam, t_vec new_dirc);
 t_discr		get_cyl_disc(t_cylinder cyl, t_vec new_cam, t_vec new_dirc);
+t_rgb		get_cyl_color(t_mrt *mrt, int index, t_vec intrsc, t_cyl_ctrl ctr);
 
 //camera
 t_inter		check_intersections(t_mrt *mrt, t_vec point, t_vec dir);

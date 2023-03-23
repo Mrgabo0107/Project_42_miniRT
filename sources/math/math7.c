@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 20:54:16 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/23 01:46:27 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/23 03:40:57 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ double	integer_part(double n)
 	return (integer_part);
 }
 
-double get_azimuth(t_vec orig)
+double	get_azimuth(t_vec orig)
 {
-	double ret;
+	double	ret;
 
 	if (orig.z > 0)
 		ret = atan(sqrt(int_pow(orig.x, 2) + int_pow(orig.y, 2)) / orig.z);
@@ -53,7 +53,7 @@ double get_azimuth(t_vec orig)
 	return (ret);
 }
 
-t_vec	get_espheric_coord(t_vec orig)
+t_vec	get_spheric_coord(t_vec orig)
 {
 	t_vec	ret;
 
@@ -75,5 +75,27 @@ t_vec	get_espheric_coord(t_vec orig)
 	}
 	if (orig.x < 0)
 		ret.z = PI + atan(orig.y / orig.x);
+	return (ret);
+}
+
+t_vec	get_cyl_coor(t_vec orig)
+{
+	t_vec	ret;
+
+	ret.x = sqrt(int_pow(orig.x, 2) + int_pow(orig.y, 2));
+	if (orig.x != 0)
+	{
+		ret.y = atan(orig.y / orig.x);
+		if (ret.y < 0)
+			ret.y += PI;
+	}
+	else
+	{
+		if (orig.y > 0)
+			ret.y = PI;
+		if (orig.y < 0)
+			ret.y = -PI;
+	}
+	ret.z = orig.z;
 	return (ret);
 }

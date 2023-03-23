@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/23 00:57:51 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/23 03:21:18 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,13 @@ void	chess_ctr(t_mrt *mrt, int key)
 			mrt->sphere[mrt->curr_obj.index].chess_ctrl++;
 		if (key == MINUS && mrt->sphere[mrt->curr_obj.index].chess_ctrl > 0)
 			mrt->sphere[mrt->curr_obj.index].chess_ctrl--;
+	}
+	if (mrt->curr_obj.type == CYLINDER)
+	{
+		if (key == PLUS)
+			mrt->cylinder[mrt->curr_obj.index].chess_ctrl++;
+		if (key == MINUS && mrt->cylinder[mrt->curr_obj.index].chess_ctrl > 0)
+			mrt->cylinder[mrt->curr_obj.index].chess_ctrl--;
 	}
 }
 
