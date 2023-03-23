@@ -125,7 +125,7 @@ double		solve_quad(t_discr *info);
 double		decimal_part(double n);
 t_mtrx		define_rot_mtrx(t_vec rot_axis, double sin, double cos);
 t_base		general_rotation(t_base base, int ctrl, double rad);
-int			integer_part(double n);
+double		integer_part(double n);
 
 //plane
 t_vec		get_normal_plane(t_mrt *mrt, t_inter inter);
