@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/05 21:25:02 by ana               #+#    #+#             */
-/*   Updated: 2023/03/05 21:35:12 by ana              ###   ########.fr       */
+/*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
+/*   Updated: 2023/03/24 22:32:04 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,30 @@ void	ft_change_cam_dir(t_mrt *mrt, int key)
 		scal_vec(0.2, mrt->cam.screen_base.n1));
 }
 
+void	define_cam_as_curr_obj(t_mrt *mrt)
+{
+	mrt->curr_obj.index = 0;
+	mrt->curr_obj.type = CAMERA;
+}
+
 int	key_press(int key, t_mrt *mrt)
 {
 	if (key == ESC)
 		end_mrt(mrt);
-	ft_move_cam(mrt, key);
-	ft_change_cam_dir(mrt, key);
+	if (mrt->curr_obj.type != CAMERA)
+	{
+		move_obj(mrt, key);
+		rotate_obj(mrt, key);
+		chg_options(mrt, key);
+		radius_ctr(mrt, key);
+		height_ctr(mrt, key);
+	}
 	if (key == ENTER)
 		ft_reinit(mrt);
+	if (key == DEL)
+		define_cam_as_curr_obj(mrt);
+	ft_move_cam(mrt, key);
+	ft_change_cam_dir(mrt, key);
 	normalize(mrt->cam.dir);
-	set_all_cam_values(&mrt->cam);
-	pixel_calcul(mrt);
-	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
 	return (key);
 }

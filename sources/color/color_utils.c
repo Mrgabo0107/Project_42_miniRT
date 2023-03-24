@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   color_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:55:19 by ana               #+#    #+#             */
-/*   Updated: 2023/03/03 18:56:01 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/24 22:28:47 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+t_rgb	get_opposite_color(t_rgb color)
+{
+	t_rgb	ret;
+
+	ret.r = 255 - color.r;
+	ret.g = 255 - color.g;
+	ret.b = 255 - color.b;
+	ret = normalize_color(ret);
+	return (ret);
+}
 
 t_rgb	ft_make_rgb_ratio(t_rgb color)
 {

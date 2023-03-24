@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_cyl.c                                         :+:      :+:    :+:   */
+/*   math6.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/24 05:07:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/24 22:30:54 by yridgway         ###   ########.fr       */
+/*   Created: 2023/03/13 20:54:16 by gamoreno          #+#    #+#             */
+/*   Updated: 2023/03/16 21:38:17 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	cam_in_cyl(t_mrt *mrt, int indx, t_vec new_cam)
-{
-	if (int_pow(new_cam.x, 2) + int_pow(new_cam.y, 2)
-		<= int_pow(mrt->cylinder[indx].radius, 2)
-		&& v_abs(new_cam.z) <= mrt->cylinder[indx].height / 2)
-		return (1);
-	return (0);
-}
-
-static t_base	first_rotation(t_vec dir, t_base can)
+t_base	first_rotation(t_vec dir, t_base can)
 {
 	double	sin_an;
 	double	cos_an;
@@ -43,7 +34,7 @@ static t_base	first_rotation(t_vec dir, t_base can)
 	return (ret);
 }
 
-static t_base	second_rotation(t_vec dir, t_base ret)
+t_base	second_rotation(t_vec dir, t_base ret)
 {
 	double	sin_an;
 	double	cos_an;
@@ -71,7 +62,32 @@ static t_base	second_rotation(t_vec dir, t_base ret)
 	return (retu);
 }
 
-t_base	get_cyl_base(t_vec	dir)
+t_base	general_rotation(t_base base, int ctrl, double rad)
+{
+	double	sin_an;
+	double	cos_an;
+	t_vec	rot_axis;
+	t_base	ret;
+	t_mtrx	chng_base;
+
+	if (ctrl == 1)
+		rot_axis = base.n1;
+	else if (ctrl == 2)
+		rot_axis = base.n2;
+	else if (ctrl == 3)
+		rot_axis = base.n3;
+	else
+		return (base);
+	cos_an = cos(rad);
+	sin_an = sin(rad);
+	chng_base = define_rot_mtrx(rot_axis, sin_an, cos_an);
+	ret.n1 = mtrx_by_vec(chng_base, base.n1);
+	ret.n2 = mtrx_by_vec(chng_base, base.n2);
+	ret.n3 = mtrx_by_vec(chng_base, base.n3);
+	return (ret);
+}
+
+t_base	get_obj_base(t_vec	dir)
 {
 	t_base	ret;
 	t_base	can;
@@ -91,21 +107,11 @@ t_base	get_cyl_base(t_vec	dir)
 	return (ret);
 }
 
-t_vec	get_normal_cylinder(t_mrt *mrt, t_inter inter)
+double	decimal_part(double n)
 {
-	t_vec	ret;
+	double	integer_part;
+	double	decimal_part;
 
-	ret = fill_coord(0, 0, 0);
-	if (inter.cyl_ctrl == 1)
-		return (mrt->cylinder[inter.index].dir);
-	else if (inter.cyl_ctrl == 2)
-		return (scal_vec(-1, mrt->cylinder[inter.index].dir));
-	else if (inter.cyl_ctrl == 3)
-		return (vec_rest(inter.inter_coor,
-				vec_sum(mrt->cylinder[inter.index].pos,
-					scal_vec(dot_prod(vec_rest(inter.inter_coor,
-								mrt->cylinder[inter.index].pos),
-							mrt->cylinder[inter.index].dir),
-						mrt->cylinder[inter.index].dir))));
-	return (ret);
+	decimal_part = modf(n, &integer_part);
+	return (decimal_part);
 }

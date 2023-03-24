@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by ana               #+#    #+#             */
-/*   Updated: 2023/03/07 22:54:55 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/24 22:21:55 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ typedef enum e_type
 	SPHERE,
 	CYLINDER,
 }			t_type;
+
+typedef enum e_chg
+{
+	RADIUS,
+	HEIGHT,
+	NOTHING
+}			t_chg;
 
 typedef struct s_vec
 {
@@ -116,6 +123,7 @@ typedef struct s_sphere
 	t_vec	center;
 	double	radius;
 	t_rgb	color;
+	t_base	base;
 }			t_sphere;
 
 typedef struct s_plane
@@ -123,6 +131,7 @@ typedef struct s_plane
 	t_vec	pos;
 	t_vec	dir;
 	t_rgb	color;
+	t_base	base;
 }			t_plane;
 
 typedef struct s_cylinder
@@ -161,6 +170,13 @@ typedef struct s_mem
 	struct s_mem	*next;
 }	t_mem;
 
+typedef struct s_curr_ob
+{
+	int		type;
+	int		index;
+	int		chg_opt;	
+}			t_curr_ob;
+
 typedef struct s_mrt
 {
 	void			*mlx;
@@ -179,6 +195,7 @@ typedef struct s_mrt
 	t_sphere		*sphere;
 	t_plane			*plane;
 	t_cylinder		*cylinder;
+	t_curr_ob		curr_obj;
 }			t_mrt;
 
 // typedef struct s_square

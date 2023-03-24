@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/07 22:47:50 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/24 22:31:32 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 # define BUFFER_SIZE 10000
 
 # define ESC 65307
+# define DEL 65535
 # define W 119
 # define A 97
 # define S 115
@@ -67,7 +68,20 @@
 # define R 114
 # define T 116
 # define ENTER 65293
-// # define COMMENT 123
+# define OBJUP 65431
+# define OBJDOWN 65433
+# define OBJLEFT 65430
+# define OBJRIGHT 65432
+# define OBJFRONT 65436
+# define OBJBEHIND 65429
+# define I 105
+# define O 111
+# define J 106
+# define K 107
+# define N 110
+# define M 109
+# define C 99
+# define H 104
 
 //error messages
 # define TOO_MANY_CAPITALS "Too many capital letters in the scene"
@@ -196,7 +210,37 @@ void		ft_free_mlx(void **mlx, void **win, void **img);
 void		ft_free_array(char **array);
 void		ft_free_table(t_table *table);
 
+// //math
+// double		int_pow(double basis, int exp);
+// double		vect_norm(t_vec v);
+// t_vec		fill_coord(double c1, double c2, double c3);
+// t_vec		normalize(t_vec v);
+// t_vec		scal_vec(double scalar, t_vec vector);
+// t_vec		vec_sum(t_vec v1, t_vec v2);
+// double		rad_and_deg(double angle, int ctrl);
+// void			print_vector(t_vec v); //debug
+// double		min_v(double d1, double d2);
+// double		max_v(double d1, double d2);
+// double		v_abs(double x);
+// double		dot_prod(t_vec v1, t_vec v2);
+// t_vec		cross_prod(t_vec v1, t_vec v2);
+// double		vect_norm(t_vec v);
+// t_vec		vec_rest(t_vec v1, t_vec v2);
+// double		norm_raised_2(t_vec v);
+// t_vec		mtrx_by_vec(t_mtrx m, t_vec v);
+// double		mtrx_det(t_mtrx m);
+// t_mtrx		mtrx_trsp(t_mtrx m);
+// t_mtrx		mtrx_adj(t_mtrx m);
+// t_mtrx		scal_mtrx(double s, t_mtrx m);
+// t_mtrx		invert_mtrx(t_mtrx m);
+// double		perp_to_plane(t_vec point, t_vec plane_pos, t_vec plane_norm);
+// double		ft_max_valid(double a, double b);
+// t_mtrx		fill_mtrx(t_vec v1, t_vec v2, t_vec v3);
+// t_mtrx		init_base_mtrx(t_base *base);
+// double		solve_quad(t_discr *info);
+
 //math
+t_base		get_cyl_base(t_vec	dir);
 double		int_pow(double basis, int exp);
 double		vect_norm(t_vec v);
 t_vec		fill_coord(double c1, double c2, double c3);
@@ -213,7 +257,7 @@ t_vec		cross_prod(t_vec v1, t_vec v2);
 double		vect_norm(t_vec v);
 t_vec		vec_rest(t_vec v1, t_vec v2);
 double		norm_raised_2(t_vec v);
-t_base		get_cyl_base(t_vec	dir);
+t_base		get_obj_base(t_vec	dir);
 t_vec		mtrx_by_vec(t_mtrx m, t_vec v);
 double		mtrx_det(t_mtrx m);
 t_mtrx		mtrx_trsp(t_mtrx m);
@@ -225,10 +269,18 @@ double		ft_max_valid(double a, double b);
 t_mtrx		fill_mtrx(t_vec v1, t_vec v2, t_vec v3);
 t_mtrx		init_base_mtrx(t_base *base);
 double		solve_quad(t_discr *info);
+double		decimal_part(double n);
+t_mtrx		define_rot_mtrx(t_vec rot_axis, double sin, double cos);
+t_base		general_rotation(t_base base, int ctrl, double rad);
+double		integer_part(double n);
+t_vec		get_spheric_coord(t_vec orig);
+t_vec		get_cyl_coor(t_vec orig);
 
 //plane
 t_vec		get_normal_plane(t_mrt *mrt, t_inter inter);
 void		check_planes(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
+double		distance_to_plane(t_vec start_point, t_vec plane_pos, \
+t_vec plane_dir, t_vec ray);
 
 //sphere
 t_vec		get_normal_sphere(t_mrt *mrt, t_inter inter);
@@ -238,6 +290,9 @@ t_discr		get_sph_dscr(t_vec ncam, t_vec dir, double square_rad);
 //cylinder
 t_vec		get_normal_cylinder(t_mrt *mrt, t_inter inter);
 void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
+t_discr		get_cyl_disc(t_cylinder cyl, t_vec new_cam, t_vec new_dirc);
+int			cam_in_cyl(t_mrt *mrt, int indx, t_vec new_cam);
+t_cyl_ctrl	get_dist_to_cyl(t_cylinder cyl, t_vec new_cam, t_vec new_dirc);
 
 //camera
 t_inter		check_intersections(t_mrt *mrt, t_vec point, t_vec dir);
@@ -254,7 +309,16 @@ t_rgb		get_color(t_mrt *mrt, t_inter *ctr, t_vec dir);
 t_rgb		ft_make_rgb(int r, int g, int b);
 t_rgb		ft_make_rgb_ratio(t_rgb color);
 t_rgb		normalize_color(t_rgb color);
+t_rgb		get_opposite_color(t_rgb color);
 
+//hooks_management
 int			key_press(int key, t_mrt *mrt);
+int			mouse_press(int button, int x, int y, t_mrt *mrt);
+void		move_obj(t_mrt *mrt, int key);
+void		rotate_obj(t_mrt *mrt, int key);
+void		render_scene(t_mrt *mrt);
+void		chg_options(t_mrt *mrt, int key);
+void		radius_ctr(t_mrt *mrt, int key);
+void		height_ctr(t_mrt *mrt, int key);
 
 #endif
