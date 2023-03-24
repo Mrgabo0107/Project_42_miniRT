@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 22:12:17 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/20 16:31:22 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:55:52 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_option	ft_fill_options(t_table *table)
 	option = (t_option){0, ft_make_rgb(0, 0, 0), {0.3, 16}};
 	while (table && table->next && eval_obj(table->next->line[0]) == OPTION)
 	{
-		if (eval_option(table->next->line[0]) == CHECKERBOARD)
+		if (eval_option(table->next->line[0]) == CHECK)
 			ft_fill_check(table->next->line, &option);
 		if (eval_option(table->next->line[0]) == SPECULAR)
 			ft_fill_specular(table->next->line, &option);

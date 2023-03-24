@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/23 06:25:37 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:56:14 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ typedef enum e_opt
 {
 	MIRROR,
 	TRANSPARENT,
-	SPECULAR
+	SPECULAR,
+	CHECK
 }			t_opt;
 
 typedef enum e_chg

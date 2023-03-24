@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/23 05:43:07 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/24 18:21:41 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,5 +193,7 @@ void		height_ctr(t_mrt *mrt, int key);
 
 //info display
 void		display_strings(t_mrt *mrt);
+t_rgb		ft_get_obj_color(t_mrt *mrt, int type, int index);
+char		*ft_get_color_str(t_rgb color);
 
 #endif
