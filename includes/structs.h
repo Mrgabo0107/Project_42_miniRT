@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/24 19:34:17 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/24 21:31:56 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef enum e_obj
 	PLANE,
 	SPHERE,
 	CYLINDER,
+	CONE,
 	OPTION
 }			t_obj;
 
@@ -142,7 +143,6 @@ typedef struct s_sphere
 	double		radius;
 	t_rgb		color;
 	t_base		base;
-	int			chess_ctrl;
 	double		specular;
 	double		mirror;
 	t_option	option;
@@ -154,9 +154,8 @@ typedef struct s_plane
 	t_vec		dir;
 	t_rgb		color;
 	t_base		base;
-	int			chess_ctrl;
 	t_option	option;
-}			t_plane;
+}				t_plane;
 
 typedef struct s_cylinder
 {
@@ -168,9 +167,22 @@ typedef struct s_cylinder
 	double		height;
 	t_rgb		color;
 	t_base		base;
-	int			chess_ctrl;
 	t_option	option;
-}			t_cylinder;
+}				t_cylinder;
+
+typedef struct s_cone
+{
+	t_vec		pos;
+	t_vec		dir;
+	t_vec		top;
+	t_vec		bottom;
+	double		radius;
+	double		height;
+	double		angle;
+	t_rgb		color;
+	t_base		base;
+	t_option	option;
+}				t_cone;
 
 typedef struct s_light
 {
@@ -186,7 +198,7 @@ typedef struct s_light
 
 typedef struct s_table
 {
-	char			*line[7];
+	char			**line;
 	struct s_table	*next;
 }			t_table;
 
@@ -214,7 +226,8 @@ typedef struct s_mrt
 	int				endi;
 	int				bpp;
 	int				sizel;
-	int				obj_count[6];
+	int				*obj_count;
+	int				num_objs;
 	int				bounce;
 	t_light			amblight;
 	t_cam			cam;
@@ -222,6 +235,7 @@ typedef struct s_mrt
 	t_sphere		*sphere;
 	t_plane			*plane;
 	t_cylinder		*cylinder;
+	t_cone			*cone;
 	t_curr_ob		curr_obj;
 }					t_mrt;
 

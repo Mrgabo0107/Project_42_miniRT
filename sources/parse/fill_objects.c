@@ -6,13 +6,13 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:37:20 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/24 19:28:40 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/24 21:32:12 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_sphere	ft_fill_sphere(t_table *table, char *line[7])
+t_sphere	ft_fill_sphere(t_table *table, char **line)
 {
 	t_sphere	sphere;
 
@@ -29,11 +29,10 @@ t_sphere	ft_fill_sphere(t_table *table, char *line[7])
 	return (sphere);
 }
 
-t_plane	ft_fill_plane(t_table *table, char *line[7])
+t_plane	ft_fill_plane(t_table *table, char **line)
 {
 	t_plane	plane;
 
-	(void)table;
 	if (ft_arg_count(line) != 4)
 		ft_error("Wrong number of arguments for plane", \
 		PLANE_INSTRUCTIONS, NULL);
@@ -46,11 +45,10 @@ t_plane	ft_fill_plane(t_table *table, char *line[7])
 	return (plane);
 }
 
-t_cylinder	ft_fill_cylinder(t_table *table, char *line[7])
+t_cylinder	ft_fill_cylinder(t_table *table, char **line)
 {
 	t_cylinder	cylinder;
 
-	(void)table;
 	if (ft_arg_count(line) != 6)
 		ft_error("Wrong number of arguments for cylinder", \
 		CYLINDER_INSTRUCTIONS, NULL);
@@ -69,7 +67,29 @@ t_cylinder	ft_fill_cylinder(t_table *table, char *line[7])
 	return (cylinder);
 }
 
-t_cam	ft_fill_cam(t_table *table, char *line[7])
+t_cone	ft_fill_cone(t_table *table, char **line)
+{
+	t_cone	cone;
+
+	if (ft_arg_count(line) != 6)
+		ft_error("Wrong number of arguments for cone", \
+		CONE_INSTRUCTIONS, NULL);
+	cone.pos = ft_fill_pos(line[1], 0);
+	cone.dir = normalize(ft_fill_pos(line[2], 1));
+	cone.angle = ft_fill_size(line[3], 1);
+	cone.height = ft_fill_size(line[4], 0);
+	cone.color = ft_fill_rgb(line[5]);
+	cone.base = get_obj_base(cone.dir);
+	cone.base.bs_orig = cone.pos;
+	cone.top = vec_sum(cone.pos, \
+	scal_vec(cone.height / 2, cone.dir));
+	cone.bottom = vec_sum(cone.pos, \
+	scal_vec(-cone.height / 2, cone.dir));
+	cone.option = ft_fill_options(table, cone.color);
+	return (cone);
+}
+
+t_cam	ft_fill_cam(t_table *table, char **line)
 {
 	t_cam	cam;
 
@@ -84,7 +104,7 @@ t_cam	ft_fill_cam(t_table *table, char *line[7])
 	return (cam);
 }
 
-t_light	ft_fill_light(t_table *table, char *line[7], int amb)
+t_light	ft_fill_light(t_table *table, char **line, int amb)
 {
 	t_light		light;
 	int			i;
