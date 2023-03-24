@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/24 18:21:41 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/24 19:28:56 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int			eval_obj(char *line);
 t_table		*ft_fill_table(int fd);
 int			ft_arg_count(char **line);
 void		ft_error(char *msg, char *extra, char *extra2);
-t_option	ft_fill_options(t_table *table);
+t_option	ft_fill_options(t_table *table, t_rgb color);
 int			eval_option(char *line);
 
 //cell filling

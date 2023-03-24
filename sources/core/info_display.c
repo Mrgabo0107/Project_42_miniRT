@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 22:23:17 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/24 18:14:03 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/24 19:36:54 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 char	*ft_get_index_str(int type, int index)
 {
 	char	*str;
-	char	*tmp;
 
 	if (type == CAMERA)
 		return (ft_strdup(""));
@@ -47,8 +46,8 @@ void	display_strings(t_mrt *mrt)
 	char	*color;
 
 	object = ft_get_object_str(mrt->curr_obj.type, mrt->curr_obj.index);
-	color = ft_get_color_str(ft_get_obj_color(mrt, mrt->curr_obj.type, \
-	mrt->curr_obj.index));
+	color = ft_strjoin("color: ", ft_get_color_str(ft_get_obj_color(mrt, \
+	mrt->curr_obj.type, mrt->curr_obj.index)));
 	mlx_clear_window(mrt->mlx, mrt->win);
 	mlx_string_put(mrt->mlx, mrt->win, 10, 20, 0xFFFFFF, "MiniRT");
 	mlx_string_put(mrt->mlx, mrt->win, 10, 40, 0xFFFFFF, "Controls:");

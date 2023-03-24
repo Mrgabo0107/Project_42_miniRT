@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 22:12:17 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/24 16:55:52 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/24 19:29:11 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	ft_fill_check(char **line, t_option *option)
 {
-	if (ft_arg_count(line) != 2)
+	if (ft_arg_count(line) != 3)
 		ft_error("Wrong number of arguments for check", \
 		CHECK_INSTRUCTIONS, NULL);
 	option->check_color = ft_fill_rgb(line[1]);
+	option->chess_ctrl = ft_fill_size(line[2], 0);
 }
 
 void	ft_fill_specular(char **line, t_option *option)
@@ -37,11 +38,11 @@ void	ft_fill_mirror(char **line, t_option *option)
 	option->mirror = ft_fill_ratio(line[1]);
 }
 
-t_option	ft_fill_options(t_table *table)
+t_option	ft_fill_options(t_table *table, t_rgb color)
 {
 	t_option	option;
 
-	option = (t_option){0, ft_make_rgb(0, 0, 0), {0.3, 16}};
+	option = (t_option){0, get_opposite_color(color), 0, {0.3, 16}};
 	while (table && table->next && eval_obj(table->next->line[0]) == OPTION)
 	{
 		if (eval_option(table->next->line[0]) == CHECK)

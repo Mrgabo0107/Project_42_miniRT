@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/24 16:56:14 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/24 19:34:17 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct s_option
 {
 	double		mirror;
 	t_rgb		check_color;
+	int			chess_ctrl;
 	double		specular[2];
 	// int		transparent;
 }				t_option;
@@ -140,7 +141,6 @@ typedef struct s_sphere
 	t_vec		dir;
 	double		radius;
 	t_rgb		color;
-	t_rgb		color1;
 	t_base		base;
 	int			chess_ctrl;
 	double		specular;
@@ -153,7 +153,6 @@ typedef struct s_plane
 	t_vec		pos;
 	t_vec		dir;
 	t_rgb		color;
-	t_rgb		color1;
 	t_base		base;
 	int			chess_ctrl;
 	t_option	option;
@@ -168,7 +167,6 @@ typedef struct s_cylinder
 	double		radius;
 	double		height;
 	t_rgb		color;
-	t_rgb		color1;
 	t_base		base;
 	int			chess_ctrl;
 	t_option	option;

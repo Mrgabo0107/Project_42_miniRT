@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:01:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/23 05:33:58 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/24 19:20:08 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,16 +131,14 @@ commas, at least one value should be non-zero \
 \nValid objects include: \
 \n(C)amera, (L)ight, (A)mbient light, (sp)here, (pl)ane and (cy)linder \
 \nValid options include: \
-\n(mir)ror: [0.0-1.0], (check)ered: (r,g,b) (r,g,b), \
-(trans)parency: [0.0-1.0], (spec)ular: [0.0-1.0]"
+\n(mir)ror, (check)ered, (spec)ular"
 # define OPTIONS_BEFORE_OBJECTS "At least one object must be defined before \
 any options."
 # define OPTION_INSTRUCTIONS "\
 \nValid options include: \
-\n(mir)ror: [0.0-1.0], (check)ered: (r,g,b), \
-(spec)ular: intensity exponent"
+\n(mir)ror, (check)ered, (spec)ular"
 # define CHECK_INSTRUCTIONS "\
-\n(check)ered: (r,g,b) \
+\n(check)ered: color:(r,g,b), density:[1-1000]\
 \ne.g. check 255,0,0"
 # define SPECULAR_INSTRUCTIONS "\
 \n(spec)ular: intensity - [0.0-1.0], exponent - [1-1000] \
