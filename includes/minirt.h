@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/24 22:31:32 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/25 17:49:49 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,6 +310,7 @@ t_rgb		ft_make_rgb(int r, int g, int b);
 t_rgb		ft_make_rgb_ratio(t_rgb color);
 t_rgb		normalize_color(t_rgb color);
 t_rgb		get_opposite_color(t_rgb color);
+t_rgb		chosen_obj(t_mrt *mrt, int x, int y, t_rgb color);
 
 //hooks_management
 int			key_press(int key, t_mrt *mrt);
@@ -320,5 +321,6 @@ void		render_scene(t_mrt *mrt);
 void		chg_options(t_mrt *mrt, int key);
 void		radius_ctr(t_mrt *mrt, int key);
 void		height_ctr(t_mrt *mrt, int key);
+void		render_scene(t_mrt *mrt);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/03/05 21:25:13 by ana              ###   ########.fr       */
+/*   Updated: 2023/03/25 17:35:01 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,15 @@ int	ft_controls(t_mrt *mrt)
 {
 	mlx_hook(mrt->win, 2, 1, key_press, mrt);
 	mlx_hook(mrt->win, 17, 0, end_mrt, mrt);
+	mlx_mouse_hook(mrt->win, &mouse_press, mrt);
 	return (0);
+}
+
+void	render_scene(t_mrt *mrt)
+{
+	set_all_cam_values(&mrt->cam);
+	pixel_calcul(mrt);
+	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
 }
 
 int	main(int ac, char **av)
@@ -35,9 +43,7 @@ int	main(int ac, char **av)
 		return (printf("Usage: ./miniRT <scene.rt>\n"), 1);
 	if (init_minirt(&mrt, av[1]))
 		return (1);
-	set_all_cam_values(&mrt.cam);
-	pixel_calcul(&mrt);
-	mlx_put_image_to_window(mrt.mlx, mrt.win, mrt.img, 0, 0);
+	render_scene(&mrt);
 	ft_controls(&mrt);
 	mlx_loop(mrt.mlx);
 	return (0);

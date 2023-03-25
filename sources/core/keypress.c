@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/24 22:32:04 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/25 17:44:05 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ int	key_press(int key, t_mrt *mrt)
 	ft_move_cam(mrt, key);
 	ft_change_cam_dir(mrt, key);
 	normalize(mrt->cam.dir);
+	render_scene(mrt);
 	return (key);
 }

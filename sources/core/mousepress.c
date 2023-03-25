@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 19:53:14 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/24 22:31:56 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/25 17:44:16 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	mouse_press(int button, int x, int y, t_mrt *mrt)
 			mrt->curr_obj.index = 0;
 			mrt->curr_obj.chg_opt = NOTHING;
 		}
+		render_scene(mrt);
 	}
 	return (button);
 }
