@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/25 17:49:49 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/25 22:35:55 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,6 +275,7 @@ t_base		general_rotation(t_base base, int ctrl, double rad);
 double		integer_part(double n);
 t_vec		get_spheric_coord(t_vec orig);
 t_vec		get_cyl_coor(t_vec orig);
+float		get_angle_between(t_vec v1, t_vec v2);
 
 //plane
 t_vec		get_normal_plane(t_mrt *mrt, t_inter inter);
