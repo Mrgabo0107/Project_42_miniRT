@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:02:11 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/24 22:02:19 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/26 21:07:45 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	eval_option(char *line)
 		return (TRANSPARENT);
 	if (ft_strcmp_1(line, "spec") == 0)
 		return (SPECULAR);
+	if (ft_strcmp_1(line, "bump") == 0)
+		return (BUMPMAP);
 	return (-1);
 }
 

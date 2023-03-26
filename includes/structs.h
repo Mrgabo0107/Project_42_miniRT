@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/26 20:33:01 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/26 21:15:13 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ typedef enum e_opt
 	MIRROR,
 	TRANSPARENT,
 	SPECULAR,
-	CHECK
+	CHECK,
+	BUMPMAP
 }			t_opt;
 
 typedef enum e_chg
@@ -94,6 +95,10 @@ typedef struct s_option
 	t_rgb		check_color;
 	int			chess_ctrl;
 	double		specular[2];
+	char		*bump_path;
+	void		*bump_img;
+	int			bump_width;
+	int			bump_height;
 }				t_option;
 
 typedef struct s_inter

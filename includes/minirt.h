@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/24 22:02:36 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/26 21:16:01 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ double		ft_fill_ratio(char *cell);
 t_rgb		ft_fill_rgb(char *cell);
 t_vec		ft_fill_pos(char *cell, int dir);
 double		ft_fill_size(char *cell, int fov);
+char		*ft_fill_xpm(char *cell);
 void		ft_check_dots_and_minus(char *str);
 int			check_valid_number(char *str);
 void		valid_nums(char **line);

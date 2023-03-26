@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 21:53:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/23 06:49:12 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/26 23:40:28 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "minirt.h"
 
 double	int_pow(double basis, int exp)
 {

@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 22:12:17 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/24 19:29:11 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/26 21:19:55 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,20 @@ void	ft_fill_mirror(char **line, t_option *option)
 	option->mirror = ft_fill_ratio(line[1]);
 }
 
+void	ft_fill_bumpmap(char **line, t_option *option)
+{
+	if (ft_arg_count(line) != 2)
+		ft_error("Wrong number of arguments for bumpmap", \
+		BUMP_INSTRUCTIONS, NULL);
+	option->bump_path = ft_fill_xpm(line[1]);
+}
+
 t_option	ft_fill_options(t_table *table, t_rgb color)
 {
 	t_option	option;
 
-	option = (t_option){0, get_opposite_color(color), 0, {0.3, 16}};
+	option = \
+	(t_option){0, get_opposite_color(color), 0, {0.3, 16}, NULL, NULL, 0, 0};
 	while (table && table->next && eval_obj(table->next->line[0]) == OPTION)
 	{
 		if (eval_option(table->next->line[0]) == CHECK)
@@ -51,6 +60,8 @@ t_option	ft_fill_options(t_table *table, t_rgb color)
 			ft_fill_specular(table->next->line, &option);
 		if (eval_option(table->next->line[0]) == MIRROR)
 			ft_fill_mirror(table->next->line, &option);
+		if (eval_option(table->next->line[0]) == BUMPMAP)
+			ft_fill_bumpmap(table->next->line, &option);
 		table = table->next;
 	}
 	return (option);
