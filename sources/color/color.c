@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/20 16:13:50 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/26 18:02:01 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_rgb	get_radiance(t_mrt *mrt, t_inter *ctr, t_vec dir, t_light light)
 	specular = ft_make_rgb(0, 0, 0);
 	to_light = vec_rest(light.pos, ctr->inter_coor);
 	linter = check_shaddow(mrt, ctr, normalize(to_light), vect_norm(to_light));
-	if (ctr->option.mirror > 0 && mrt->bounce < 10)
+	if (ctr->option.mirror > 0 && mrt->bounce < 40)
 		reflection = get_reflection(mrt, ctr, dir);
 	if ((linter.dist < 0 || linter.dist > vect_norm(to_light)))
 	{

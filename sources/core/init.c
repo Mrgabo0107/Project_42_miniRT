@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/24 21:57:19 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/26 18:13:31 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,17 @@ void	ft_set_mrt(t_mrt *mrt, char *file)
 
 void	ft_reinit(t_mrt *mrt)
 {
+	int	i;
+
+	i = 0;
 	ft_free(mrt->sphere);
 	mrt->sphere = NULL;
 	ft_free(mrt->plane);
 	mrt->plane = NULL;
 	ft_free(mrt->cylinder);
 	mrt->cylinder = NULL;
+	while (i < mrt->num_objs)
+		mrt->obj_count[i++] = 0;
 	ft_parse(mrt);
 }
 
