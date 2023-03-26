@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/26 18:02:01 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/26 20:29:48 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,5 @@ t_rgb	get_color(t_mrt *mrt, t_inter *ctr, t_vec dir)
 	if (ctr->dist != -1)
 		color = get_object_color(mrt, ctr, dir, color);
 	color = show_light_sources(mrt, color, dir);
-	color = normalize_color(color);
 	return (color);
 }

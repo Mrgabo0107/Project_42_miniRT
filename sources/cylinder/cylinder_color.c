@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 06:50:08 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/24 19:52:50 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/26 20:27:11 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ t_cyl_chess	get_body_color(t_mrt *mrt, int i, t_vec coor, t_rgb color)
 	int			ctrl;
 
 	ret.color = color;
-	aux_dist = integer_part((mrt->cylinder[i].height
-				* int_pow(2, mrt->cylinder[i].option.chess_ctrl))
-			/ (PI * mrt->cylinder[i].radius));
+	aux_dist = integer_part((mrt->cylinder[i].height \
+	* int_pow(2, mrt->cylinder[i].option.chess_ctrl)) \
+	/ (PI * mrt->cylinder[i].radius));
 	if ((int)aux_dist % 2 == 1)
 		aux_dist += 1.0;
 	aux_dist = mrt->cylinder[i].height / aux_dist;
-	ctrl = chess_y(coor.y, mrt->cylinder[i].option.chess_ctrl)
-		+ chess_z(coor.z, mrt->cylinder[i].height, aux_dist);
+	ctrl = chess_y(coor.y, mrt->cylinder[i].option.chess_ctrl) \
+	+ chess_z(coor.z, mrt->cylinder[i].height, aux_dist);
 	if (ctrl == 2 || ctrl == 0)
 	{
 		ret.color = mrt->cylinder[i].option.check_color;

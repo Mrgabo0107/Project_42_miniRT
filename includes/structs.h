@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/24 21:31:56 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/26 20:33:01 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef enum e_chg
 	HEIGHT,
 	CHECKERBOARD,
 	NOTHING
-	// ANGLE
 }			t_chg;
 
 typedef struct s_vec
@@ -95,7 +94,6 @@ typedef struct s_option
 	t_rgb		check_color;
 	int			chess_ctrl;
 	double		specular[2];
-	// int		transparent;
 }				t_option;
 
 typedef struct s_inter
@@ -130,7 +128,6 @@ typedef struct s_cyl_chess
 	t_rgb	color;
 	int		even_ctrl;
 }			t_cyl_chess;
-
 
 /*----------------------------------------------------------------------------*/
 /*									Objects									  */
@@ -210,10 +207,11 @@ typedef struct s_mem
 
 typedef struct s_curr_ob
 {
-	int		type;
-	int		index;
-	int		chg_opt;	
-}			t_curr_ob;
+	int			type;
+	int			index;
+	int			chg_opt;
+	t_option	option;	
+}				t_curr_ob;
 
 typedef struct s_mrt
 {

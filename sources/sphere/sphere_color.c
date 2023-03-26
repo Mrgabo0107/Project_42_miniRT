@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 01:00:48 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/24 19:24:27 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/26 20:21:46 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_rgb	get_sphere_color(t_mrt *mrt, int index, t_vec intrsc)
 	t_mtrx	chg;
 	t_vec	new_inter;
 	t_rgb	ret;
-	// int		chess_ctrl;
 
 	ret = mrt->sphere[index].color;
 	if (mrt->sphere[index].option.chess_ctrl > 0)
