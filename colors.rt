@@ -1,0 +1,78 @@
+A	0.3 										255,255,255
+
+C	0,13,0		0,-0.6,0        90
+L	0,0,0					1				255,255,255
+
+# pl  0,0,0  0,1,0       55,155,255
+
+#red
+sp  0,-5,4       2      255,0,0
+spec 0 16
+check 0,0,0 1
+mir 0.5
+
+#green
+sp  -4,-5,-3       2      0,255,0 
+spec 0 16
+check 0,0,0 1
+mir 0.5
+
+# blue
+sp  4,-5,-3      2      0,0,255 
+spec 0 16
+check 0,0,0 1
+mir 0.5
+
+#yellow
+sp  -4,-5,1.5       2      255,255,0 
+spec 0 16
+check 0,0,0 2
+mir 0.5
+
+#cyan
+sp  0,-5,-5       2      0,255,255 
+spec 0 16
+check 0,0,0 2
+mir 0.5
+
+#magenta
+sp  4,-5,1.5      2      255,0,255 
+spec 0 16
+check 0,0,0 2
+mir 0.5
+
+#orange
+sp  -2.2,-5,3       2      255,142,0
+spec 0 16
+check 0,0,0 3
+mir 0.5
+
+#rose
+sp  2.2,-5,3      2      255,0,142
+spec 0 16
+check 0,0,0 3
+mir 0.5
+
+#purple
+sp  4,-5,-0.74      2      142,0,255
+spec 0 16
+check 0,0,0 3
+mir 0.5
+
+#Azure
+sp  2,-5,-4      2      0,142,255
+spec 0 16
+check 0,0,0 3
+mir 0.5
+
+#Chartreuse Green
+sp  -4,-5,-0.74      2      127,255,0
+spec 0 0
+check 0,0,0 3
+mir 0.5
+
+#Spring Green
+sp  -2,-5,-4      2      0,255,127
+spec 0 16
+check 0,0,0 3
+mir 0.5

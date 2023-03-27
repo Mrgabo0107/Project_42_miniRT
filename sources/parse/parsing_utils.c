@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:02:11 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/17 21:39:43 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/26 21:07:45 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,13 @@ int	eval_option(char *line)
 	if (ft_strcmp_1(line, "mir") == 0)
 		return (MIRROR);
 	if (ft_strcmp_1(line, "check") == 0)
-		return (CHECKERBOARD);
+		return (CHECK);
 	if (ft_strcmp_1(line, "trans") == 0)
 		return (TRANSPARENT);
 	if (ft_strcmp_1(line, "spec") == 0)
 		return (SPECULAR);
+	if (ft_strcmp_1(line, "bump") == 0)
+		return (BUMPMAP);
 	return (-1);
 }
 
@@ -51,6 +53,8 @@ int	eval_obj(char *line)
 		return (PLANE);
 	if (ft_strcmp_1(line, "cy") == 0)
 		return (CYLINDER);
+	if (ft_strcmp_1(line, "co") == 0)
+		return (CONE);
 	if (ft_strcmp_1(line, "L") == 0)
 		return (LIGHT);
 	if (ft_strcmp_1(line, "A") == 0)
@@ -72,7 +76,7 @@ int	ft_arg_count(char **line)
 	return (i);
 }
 
-t_table	*ft_fill_table(int fd)
+t_table	*ft_fill_table(int fd, int num_objs)
 {
 	char	*line;
 	t_table	*table;
@@ -82,12 +86,27 @@ t_table	*ft_fill_table(int fd)
 	while (line)
 	{
 		if (line && line[0] && line[0] != '\n' && line[0] != '#')
-			table = ft_tableadd_new(table, ft_split_ws(line));
+			table = ft_tableadd_new(table, ft_split_ws(line), num_objs);
 		else
 			ft_free(line);
 		line = get_next_line(fd);
 	}
 	return (table);
+}
+
+int	*int_arrcpy(int *arr, int size)
+{
+	int	*new;
+	int	i;
+
+	i = 0;
+	new = malloc(sizeof(int) * size);
+	while (i < size)
+	{
+		new[i] = arr[i];
+		i++;
+	}
+	return (new);
 }
 
 void	ft_error(char *msg, char *extra, char *extra2)

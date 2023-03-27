@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paint.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/15 22:54:11 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/26 23:41:01 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	get_pixel_color(t_mrt *mrt, int x, int y)
 	color = get_color(mrt, &inter, dir);
 	color = chosen_obj(mrt, x, y, color);
 	mrt->bounce = 0;
+	color = normalize_color(color);
 	return ((int)color.r << 16 | (int)color.g << 8 | (int)color.b);
 }
 

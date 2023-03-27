@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/23 05:43:16 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/26 20:31:14 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,23 +61,26 @@ void	chess_ctr(t_mrt *mrt, int key)
 	if (mrt->curr_obj.type == PLANE && mrt->curr_obj.chg_opt == CHECKERBOARD)
 	{
 		if (key == PLUS)
-			mrt->plane[mrt->curr_obj.index].chess_ctrl++;
-		if (key == MINUS && mrt->plane[mrt->curr_obj.index].chess_ctrl > 0)
-			mrt->plane[mrt->curr_obj.index].chess_ctrl--;
+			mrt->plane[mrt->curr_obj.index].option.chess_ctrl++;
+		if (key == MINUS \
+		&& mrt->plane[mrt->curr_obj.index].option.chess_ctrl > 0)
+			mrt->plane[mrt->curr_obj.index].option.chess_ctrl--;
 	}
 	if (mrt->curr_obj.type == SPHERE && mrt->curr_obj.chg_opt == CHECKERBOARD)
 	{
 		if (key == PLUS)
-			mrt->sphere[mrt->curr_obj.index].chess_ctrl++;
-		if (key == MINUS && mrt->sphere[mrt->curr_obj.index].chess_ctrl > 0)
-			mrt->sphere[mrt->curr_obj.index].chess_ctrl--;
+			mrt->sphere[mrt->curr_obj.index].option.chess_ctrl++;
+		if (key == MINUS \
+		&& mrt->sphere[mrt->curr_obj.index].option.chess_ctrl > 0)
+			mrt->sphere[mrt->curr_obj.index].option.chess_ctrl--;
 	}
 	if (mrt->curr_obj.type == CYLINDER && mrt->curr_obj.chg_opt == CHECKERBOARD)
 	{
 		if (key == PLUS)
-			mrt->cylinder[mrt->curr_obj.index].chess_ctrl++;
-		if (key == MINUS && mrt->cylinder[mrt->curr_obj.index].chess_ctrl > 0)
-			mrt->cylinder[mrt->curr_obj.index].chess_ctrl--;
+			mrt->cylinder[mrt->curr_obj.index].option.chess_ctrl++;
+		if (key == MINUS \
+		&& mrt->cylinder[mrt->curr_obj.index].option.chess_ctrl > 0)
+			mrt->cylinder[mrt->curr_obj.index].option.chess_ctrl--;
 	}
 }
 

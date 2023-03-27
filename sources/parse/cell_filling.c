@@ -6,11 +6,22 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:52:58 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/20 16:33:55 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/26 21:14:36 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+char	*ft_fill_xpm(char *cell)
+{
+	int		fd;
+
+	fd = open(cell, O_RDONLY);
+	if (fd < 0)
+		ft_error("Invalid xpm file", cell, NULL);
+	close(fd);
+	return (ft_strdup(cell));
+}
 
 double	ft_fill_size(char *cell, int fov)
 {

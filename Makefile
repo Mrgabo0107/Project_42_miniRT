@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
+#    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/23 05:17:55 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/03/27 00:44:35 by yridgway         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ CORE		=	main.c \
 				keypress_obj3.c \
 				mousepress.c \
 				info_display.c \
+				color_names.c \
 
 PARSE_DIR	=	parse/
 PARSE		=	parsing.c \

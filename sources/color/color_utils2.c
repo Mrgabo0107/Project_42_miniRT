@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 03:33:43 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/19 22:57:12 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/26 20:30:42 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_rgb	get_opposite_color(t_rgb color)
 	ret.r = 255 - color.r;
 	ret.g = 255 - color.g;
 	ret.b = 255 - color.b;
-	ret = normalize_color(ret);
 	return (ret);
 }
 
@@ -30,7 +29,6 @@ t_rgb	mult_color(t_rgb color, double mult)
 	ret.r = color.r * mult;
 	ret.g = color.g * mult;
 	ret.b = color.b * mult;
-	// ret = normalize_color(ret);
 	return (ret);
 }
 
@@ -41,6 +39,5 @@ t_rgb	add_color(t_rgb color1, t_rgb color2)
 	ret.r = color1.r + color2.r;
 	ret.g = color1.g + color2.g;
 	ret.b = color1.b + color2.b;
-	// ret = normalize_color(ret);
 	return (ret);
 }
