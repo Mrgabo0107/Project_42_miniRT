@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 21:18:20 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/27 21:43:15 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/27 22:12:34 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	ft_write_amblight(t_light amblight, int fd)
 {
 	char	*line;
 
-	line = ft_strjoin("A ", ft_ftoa(amblight.ratio));
-	line = ft_strjoin(line, " ");
+	line = ft_strjoin("A\t\t", ft_ftoa(amblight.ratio));
+	line = ft_strjoin(line, "\t\t");
 	line = ft_strjoin(line, ft_write_rgb(amblight.color));
 	ft_write_to_file(line, fd);
 	ft_free(line);
@@ -55,13 +55,93 @@ void	ft_write_camera(t_cam cam, int fd)
 {
 	char	*line;
 
-	line = ft_strjoin("c ", ft_write_pos(cam.dir));
-	line = ft_strjoin(line, " ");
-	line = ft_strjoin(line, ft_write_pos(cam.pos));
-	line = ft_strjoin(line, " ");
+	line = ft_strjoin("C\t\t", ft_write_pos(cam.pos));
+	line = ft_strjoin(line, "\t\t");
+	line = ft_strjoin(line, ft_write_pos(cam.dir));
+	line = ft_strjoin(line, "\t\t");
 	line = ft_strjoin(line, ft_itoa(cam.fov));
 	ft_write_to_file(line, fd);
 	ft_free(line);
+}
+
+void	ft_write_lights(t_light *light, int count, int fd)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	while (i < count)
+	{
+		line = ft_strjoin("L\t\t", ft_write_pos(light[i].pos));
+		line = ft_strjoin(line, "\t\t");
+		line = ft_strjoin(line, ft_ftoa(light[i].ratio));
+		line = ft_strjoin(line, "\t\t");
+		line = ft_strjoin(line, ft_write_rgb(light[i].color));
+		ft_write_to_file(line, fd);
+		ft_free(line);
+		i++;
+	}
+}
+
+void	ft_write_planes(t_plane *plane, int count, int fd)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	while (i < count)
+	{
+		line = ft_strjoin("pl\t\t", ft_write_pos(plane[i].pos));
+		line = ft_strjoin(line, "\t\t");
+		line = ft_strjoin(line, ft_write_pos(plane[i].dir));
+		line = ft_strjoin(line, "\t\t");
+		line = ft_strjoin(line, ft_write_rgb(plane[i].color));
+		ft_write_to_file(line, fd);
+		ft_free(line);
+		i++;
+	}
+}
+
+void	ft_write_spheres(t_sphere *sphere, int count, int fd)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	while (i < count)
+	{
+		line = ft_strjoin("sp\t\t", ft_write_pos(sphere[i].center));
+		line = ft_strjoin(line, "\t\t");
+		line = ft_strjoin(line, ft_ftoa(sphere[i].radius * 2));
+		line = ft_strjoin(line, "\t\t");
+		line = ft_strjoin(line, ft_write_rgb(sphere[i].color));
+		ft_write_to_file(line, fd);
+		ft_free(line);
+		i++;
+	}
+}
+
+void	ft_write_cylinders(t_cylinder *cylinder, int count, int fd)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	while (i < count)
+	{
+		line = ft_strjoin("cy\t\t", ft_write_pos(cylinder[i].pos));
+		line = ft_strjoin(line, "\t\t");
+		line = ft_strjoin(line, ft_write_pos(cylinder[i].dir));
+		line = ft_strjoin(line, "\t\t");
+		line = ft_strjoin(line, ft_ftoa(cylinder[i].radius * 2));
+		line = ft_strjoin(line, "\t\t");
+		line = ft_strjoin(line, ft_ftoa(cylinder[i].height));
+		line = ft_strjoin(line, "\t\t");
+		line = ft_strjoin(line, ft_write_rgb(cylinder[i].color));
+		ft_write_to_file(line, fd);
+		ft_free(line);
+		i++;
+	}
 }
 
 void	save_scene(t_mrt *mrt)
@@ -74,8 +154,8 @@ void	save_scene(t_mrt *mrt)
 		ft_error("Error opening file", "scene.rt", NULL);
 	ft_write_amblight(mrt->amblight, fd);
 	ft_write_camera(mrt->cam, fd);
-	// ft_write_lights(mrt->light, mrt->obj_count[LIGHT], fd);
-	// ft_write_planes(mrt->plane, mrt->obj_count[PLANE], fd);
-	// ft_write_spheres(mrt->sphere, mrt->obj_count[SPHERE], fd);
-	// ft_write_cylinders(mrt->cylinder, mrt->obj_count[CYLINDER], fd);
+	ft_write_lights(mrt->light, mrt->obj_count[LIGHT], fd);
+	ft_write_planes(mrt->plane, mrt->obj_count[PLANE], fd);
+	ft_write_spheres(mrt->sphere, mrt->obj_count[SPHERE], fd);
+	ft_write_cylinders(mrt->cylinder, mrt->obj_count[CYLINDER], fd);
 }
