@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 21:18:20 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/27 22:12:34 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/27 23:49:43 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,25 @@ char	*ft_write_rgb(t_rgb color)
 	line = ft_strjoin(line, ",");
 	line = ft_strjoin(line, ft_itoa(color.b));
 	return (line);
+}
+
+void	ft_write_options(t_option option, int fd)
+{
+	char	*line;
+
+	line = ft_strjoin("mir ", ft_ftoa(option.mirror));
+	ft_write_to_file(line, fd);
+	ft_free(line);
+	line = ft_strjoin("spec ", ft_ftoa(option.specular[0]));
+	line = ft_strjoin(line, " ");
+	line = ft_strjoin(line, ft_ftoa(option.specular[1]));
+	ft_write_to_file(line, fd);
+	ft_free(line);
+	line = ft_strjoin("check ", ft_write_rgb(option.check_color));
+	line = ft_strjoin(line, " ");
+	line = ft_strjoin(line, ft_ftoa(option.chess_ctrl));
+	ft_write_to_file(line, fd);
+	ft_free(line);
 }
 
 void	ft_write_amblight(t_light amblight, int fd)
@@ -97,6 +116,7 @@ void	ft_write_planes(t_plane *plane, int count, int fd)
 		line = ft_strjoin(line, "\t\t");
 		line = ft_strjoin(line, ft_write_rgb(plane[i].color));
 		ft_write_to_file(line, fd);
+		ft_write_options(plane[i].option, fd);
 		ft_free(line);
 		i++;
 	}
@@ -116,6 +136,7 @@ void	ft_write_spheres(t_sphere *sphere, int count, int fd)
 		line = ft_strjoin(line, "\t\t");
 		line = ft_strjoin(line, ft_write_rgb(sphere[i].color));
 		ft_write_to_file(line, fd);
+		ft_write_options(sphere[i].option, fd);
 		ft_free(line);
 		i++;
 	}
@@ -139,6 +160,7 @@ void	ft_write_cylinders(t_cylinder *cylinder, int count, int fd)
 		line = ft_strjoin(line, "\t\t");
 		line = ft_strjoin(line, ft_write_rgb(cylinder[i].color));
 		ft_write_to_file(line, fd);
+		ft_write_options(cylinder[i].option, fd);
 		ft_free(line);
 		i++;
 	}
