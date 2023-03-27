@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/28 00:22:30 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/28 01:47:38 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ t_rgb	get_radiance(t_mrt *mrt, t_inter *ctr, t_vec dir, t_light light)
 	specular = ft_make_rgb(0, 0, 0);
 	to_light = vec_rest(light.pos, ctr->inter_coor);
 	linter = check_shaddow(mrt, ctr, normalize(to_light), vect_norm(to_light));
-	if (ctr->option.mirror > 0 && mrt->bounce < 40)
-		reflection = get_reflection(mrt, ctr, dir);
 	if ((linter.dist < 0 || linter.dist > vect_norm(to_light)))
 	{
 		if (ctr->option.mirror < 1)
@@ -62,12 +60,16 @@ t_rgb	get_radiance(t_mrt *mrt, t_inter *ctr, t_vec dir, t_light light)
 t_rgb	get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color)
 {
 	int		i;
+	t_rgb	reflection;
 
 	i = -1;
 	while (++i < mrt->obj_count[LIGHT])
 		color = add_color(color, \
 		get_radiance(mrt, ctr, dir, mrt->light[i]));
-	return (color);
+	if (ctr->option.mirror > 0 && mrt->bounce < 40)
+		reflection = get_reflection(mrt, ctr, dir);
+	color = add_color(color, reflection);
+	return (add_color(color, get_ambient(ctr->color, mrt->amblight, 1)));
 }
 
 t_rgb	get_color(t_mrt *mrt, t_inter *ctr, t_vec dir)
@@ -76,9 +78,7 @@ t_rgb	get_color(t_mrt *mrt, t_inter *ctr, t_vec dir)
 
 	color = ft_make_rgb(0, 0, 0);
 	if (ctr->dist != -1)
-	{
 		color = get_object_color(mrt, ctr, dir, color);
-	}
 	color = show_light_sources(mrt, color, dir);
 	return (color);
 }
