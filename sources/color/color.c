@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/27 21:34:46 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/28 00:22:30 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,12 @@ t_rgb	get_radiance(t_mrt *mrt, t_inter *ctr, t_vec dir, t_light light)
 t_rgb	get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color)
 {
 	int		i;
-	t_rgb	ambient;
 
 	i = -1;
 	while (++i < mrt->obj_count[LIGHT])
 		color = add_color(color, \
 		get_radiance(mrt, ctr, dir, mrt->light[i]));
-	ambient = get_ambient(ctr->color, mrt->amblight, 1);
-	return (add_color(color, ambient));
+	return (color);
 }
 
 t_rgb	get_color(t_mrt *mrt, t_inter *ctr, t_vec dir)
@@ -78,7 +76,9 @@ t_rgb	get_color(t_mrt *mrt, t_inter *ctr, t_vec dir)
 
 	color = ft_make_rgb(0, 0, 0);
 	if (ctr->dist != -1)
+	{
 		color = get_object_color(mrt, ctr, dir, color);
+	}
 	color = show_light_sources(mrt, color, dir);
 	return (color);
 }

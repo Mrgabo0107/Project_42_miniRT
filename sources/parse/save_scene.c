@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 21:18:20 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/27 23:49:43 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/27 23:58:50 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	ft_write_amblight(t_light amblight, int fd)
 	line = ft_strjoin(line, ft_write_rgb(amblight.color));
 	ft_write_to_file(line, fd);
 	ft_free(line);
+	// ft_write_to_file("\n", fd);
 }
 
 void	ft_write_camera(t_cam cam, int fd)
@@ -81,6 +82,7 @@ void	ft_write_camera(t_cam cam, int fd)
 	line = ft_strjoin(line, ft_itoa(cam.fov));
 	ft_write_to_file(line, fd);
 	ft_free(line);
+	// ft_write_to_file("\n", fd);
 }
 
 void	ft_write_lights(t_light *light, int count, int fd)
@@ -89,6 +91,7 @@ void	ft_write_lights(t_light *light, int count, int fd)
 	char	*line;
 
 	i = 0;
+	ft_write_to_file("", fd);
 	while (i < count)
 	{
 		line = ft_strjoin("L\t\t", ft_write_pos(light[i].pos));
@@ -100,6 +103,7 @@ void	ft_write_lights(t_light *light, int count, int fd)
 		ft_free(line);
 		i++;
 	}
+	ft_write_to_file("", fd);
 }
 
 void	ft_write_planes(t_plane *plane, int count, int fd)
@@ -118,6 +122,7 @@ void	ft_write_planes(t_plane *plane, int count, int fd)
 		ft_write_to_file(line, fd);
 		ft_write_options(plane[i].option, fd);
 		ft_free(line);
+		ft_write_to_file("", fd);
 		i++;
 	}
 }
@@ -138,6 +143,7 @@ void	ft_write_spheres(t_sphere *sphere, int count, int fd)
 		ft_write_to_file(line, fd);
 		ft_write_options(sphere[i].option, fd);
 		ft_free(line);
+		ft_write_to_file("", fd);
 		i++;
 	}
 }
@@ -162,6 +168,7 @@ void	ft_write_cylinders(t_cylinder *cylinder, int count, int fd)
 		ft_write_to_file(line, fd);
 		ft_write_options(cylinder[i].option, fd);
 		ft_free(line);
+		ft_write_to_file("", fd);
 		i++;
 	}
 }
@@ -180,4 +187,5 @@ void	save_scene(t_mrt *mrt)
 	ft_write_planes(mrt->plane, mrt->obj_count[PLANE], fd);
 	ft_write_spheres(mrt->sphere, mrt->obj_count[SPHERE], fd);
 	ft_write_cylinders(mrt->cylinder, mrt->obj_count[CYLINDER], fd);
+	close(fd);
 }

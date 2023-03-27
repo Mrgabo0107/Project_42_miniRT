@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/27 21:38:27 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/28 00:05:04 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	key_press(int key, t_mrt *mrt)
 {
 	// printf("key: %d", key);
 	if (key == Z)
-		save_scene(mrt);
+		return (save_scene(mrt), 0);
 	if (key == ESC)
 		end_mrt(mrt);
 	if (mrt->curr_obj.type != CAMERA)
