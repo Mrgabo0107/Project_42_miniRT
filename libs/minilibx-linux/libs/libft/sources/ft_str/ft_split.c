@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 14:05:32 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/27 21:45:21 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/27 21:46:45 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static long unsigned int	contador(char const *str, char c)
 
 	i = 0;
 	cont = 0;
-	while (str && str[i])
+	while (str[i])
 	{
 		if (str[i] != c && (i == 0 || (i > 0 && str[i - 1] == c)))
 		{

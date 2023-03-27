@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/26 21:16:01 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/27 21:34:24 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <limits.h>
 # include <errno.h>
 # include <string.h>
+# include <time.h>
 
 //init
 int			init_minirt(t_mrt *mrt, char *file);
@@ -183,6 +184,8 @@ t_light light);
 t_rgb		mult_color(t_rgb color, double mult);
 t_rgb		add_color(t_rgb color1, t_rgb color2);
 t_inter		check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len);
+t_rgb		get_radiance(t_mrt *mrt, t_inter *ctr, t_vec dir, t_light light);
+t_rgb		get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color);
 
 //hooks_management
 int			key_press(int key, t_mrt *mrt);
@@ -198,5 +201,8 @@ void		height_ctr(t_mrt *mrt, int key);
 void		display_strings(t_mrt *mrt);
 t_rgb		ft_get_obj_color(t_mrt *mrt, int type, int index);
 char		*ft_get_color_str(t_rgb color);
+
+//save
+void		save_scene(t_mrt *mrt);
 
 #endif

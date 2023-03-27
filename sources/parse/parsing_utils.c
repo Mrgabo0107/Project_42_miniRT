@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:02:11 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/26 21:07:45 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/27 21:54:51 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	*int_arrcpy(int *arr, int size)
 	int	i;
 
 	i = 0;
-	new = malloc(sizeof(int) * size);
+	new = ft_malloc(sizeof(int) * size);
 	while (i < size)
 	{
 		new[i] = arr[i];

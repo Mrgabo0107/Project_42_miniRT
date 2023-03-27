@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:01:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/26 20:33:14 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/27 21:38:23 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@
 # define M 109
 # define C 99
 # define H 104
+# define Z 122
 
 //error messages
 # define TOO_MANY_CAPITALS "Too many capital letters in the scene"

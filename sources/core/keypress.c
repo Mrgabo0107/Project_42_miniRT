@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/26 20:31:14 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/27 21:38:27 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,9 @@ void	chess_ctr(t_mrt *mrt, int key)
 
 int	key_press(int key, t_mrt *mrt)
 {
+	// printf("key: %d", key);
+	if (key == Z)
+		save_scene(mrt);
 	if (key == ESC)
 		end_mrt(mrt);
 	if (mrt->curr_obj.type != CAMERA)

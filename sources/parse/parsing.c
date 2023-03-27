@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/24 22:02:48 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/27 21:55:07 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	*ft_count_objs(t_table *table, int *count)
 			ft_error(INVALID_OBJECT, table->line[0], OBJECT_INSTRUCTIONS);
 		table = table->next;
 	}
+	// printf("LIGHT: %d\n", count[LIGHT]);
 	return (ft_check_capitals(count[AMBIENT], count[CAMERA],
 			count[LIGHT]), count);
 }
