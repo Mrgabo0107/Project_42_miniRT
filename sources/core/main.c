@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/03/27 00:38:31 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/28 18:11:31 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,11 @@ int	ft_controls(t_mrt *mrt)
 
 void	render_scene(t_mrt *mrt)
 {
-	int	i;
-
-	i = 0;
 	display_strings(mrt);
 	set_all_cam_values(&mrt->cam);
 	pixel_calcul(mrt);
 	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, \
 	((WX - IX) / 2) + BORDER, (WY - IY) / 2);
-	while (i < mrt->obj_count[SPHERE])
-	{
-		if (mrt->sphere[i].option.bump_path)
-		{
-			mrt->sphere[i].option.bump_img = mlx_xpm_file_to_image(mrt->mlx, \
-			mrt->sphere[i].option.bump_path, &mrt->sphere[i].option.bump_width, \
-			&mrt->sphere[i].option.bump_height);
-			mlx_put_image_to_window(mrt->mlx, mrt->win, \
-			mrt->sphere[i].option.bump_img, 0, 0);
-		}
-		i++;
-	}
 }
 
 int	main(int ac, char **av)
@@ -61,6 +46,18 @@ int	main(int ac, char **av)
 	if (init_minirt(&mrt, av[1]))
 		return (1);
 	render_scene(&mrt);
+	// while (i < sl * mrt.sphere[5].option.bump_height)
+	// {
+	// 	printf("%d\n", address[i]);
+	// 	i++;
+	// }
+	// i = 0;
+	// while (i < mrt.sizel * IY)
+	// {
+	// 	if (mrt.addr[i] < 0)
+	// 		printf("%d\n", mrt.addr[i]);
+	// 	i++;
+	// }
 	ft_controls(&mrt);
 	mlx_loop(mrt.mlx);
 	return (0);

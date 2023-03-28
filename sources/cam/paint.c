@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paint.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/28 01:46:28 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/28 17:35:45 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,9 @@ void	my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color)
 
 	dst = mrt->addr + (y * mrt->sizel + x * (mrt->bpp / 8));
 	*(unsigned int *)dst = color;
+	// printf("1: dst: %d, color: %d\n", *dst, color);
+	// color = *(unsigned int *)dst;
+	// printf("2: dst: %d, color: %d\n", *dst, color);
+	// if (*dst < 0)
+	// 	printf("dst: %d, color: %d\n", *dst, color);
 }

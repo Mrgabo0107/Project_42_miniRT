@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/28 14:16:00 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/28 18:12:48 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_inter	check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len)
 	return (ret);
 }
 
-t_rgb	get_radiance(t_mrt *mrt, t_inter *ctr, t_vec dir, t_light light)
+t_rgb	get_radiance(t_mrt *mrt, t_inter *ctr, t_light light)
 {
 	t_vec	to_light;
 	t_inter	linter;
@@ -63,7 +63,7 @@ t_rgb	get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color)
 	reflection = ft_make_rgb(0, 0, 0);
 	while (++i < mrt->obj_count[LIGHT])
 		color = add_color(color, \
-		get_radiance(mrt, ctr, dir, mrt->light[i]));
+		get_radiance(mrt, ctr, mrt->light[i]));
 	if (ctr->option.mirror > 0 && mrt->bounce < 40)
 		reflection = mult_color(get_reflection(mrt, ctr, dir), \
 		ctr->option.mirror);

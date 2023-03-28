@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 21:18:20 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/27 23:58:50 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/28 18:11:46 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,6 @@ void	ft_write_cylinders(t_cylinder *cylinder, int count, int fd)
 void	save_scene(t_mrt *mrt)
 {
 	int		fd;
-	char	*line;
 
 	fd = open("scene.rt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)

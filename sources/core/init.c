@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/27 20:47:06 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:07:00 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	ft_reinit(t_mrt *mrt)
 	while (i < mrt->num_objs)
 		mrt->obj_count[i++] = 0;
 	ft_parse(mrt);
+	set_bump_maps(mrt);
 }
 
 int	init_minirt(t_mrt *mrt, char *file)
@@ -95,5 +96,6 @@ int	init_minirt(t_mrt *mrt, char *file)
 	ft_parse(mrt);
 	if (ft_init_mlx(mrt))
 		return (printf("Problem initializing minilibx\n"), 1);
+	set_bump_maps(mrt);
 	return (0);
 }
