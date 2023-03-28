@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 21:18:20 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/28 18:11:46 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:46:41 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,33 @@ char	*ft_write_pos(t_vec pos)
 	line = ft_strjoin(line, ft_ftoa(pos.y));
 	line = ft_strjoin(line, ",");
 	line = ft_strjoin(line, ft_ftoa(pos.z));
+	return (line);
+}
+
+t_vec	ft_unnormalize(t_vec vec)
+{
+	double	max;
+
+	max = v_abs(vec.x);
+	if (v_abs(vec.y) > max)
+		max = v_abs(vec.y);
+	if (v_abs(vec.z) > max)
+		max = v_abs(vec.z);
+	vec.x *= 1 / max;
+	vec.y *= 1 / max;
+	vec.z *= 1 / max;
+	return (vec);
+}
+
+char	*ft_write_dir(t_vec dir)
+{
+	char	*line;
+
+	dir = ft_unnormalize(dir);
+	line = ft_strjoin(ft_ftoa(dir.x), ",");
+	line = ft_strjoin(line, ft_ftoa(dir.y));
+	line = ft_strjoin(line, ",");
+	line = ft_strjoin(line, ft_ftoa(dir.z));
 	return (line);
 }
 
@@ -77,7 +104,7 @@ void	ft_write_camera(t_cam cam, int fd)
 
 	line = ft_strjoin("C\t\t", ft_write_pos(cam.pos));
 	line = ft_strjoin(line, "\t\t");
-	line = ft_strjoin(line, ft_write_pos(cam.dir));
+	line = ft_strjoin(line, ft_write_dir(cam.dir));
 	line = ft_strjoin(line, "\t\t");
 	line = ft_strjoin(line, ft_itoa(cam.fov));
 	ft_write_to_file(line, fd);
@@ -116,7 +143,7 @@ void	ft_write_planes(t_plane *plane, int count, int fd)
 	{
 		line = ft_strjoin("pl\t\t", ft_write_pos(plane[i].pos));
 		line = ft_strjoin(line, "\t\t");
-		line = ft_strjoin(line, ft_write_pos(plane[i].dir));
+		line = ft_strjoin(line, ft_write_dir(plane[i].dir));
 		line = ft_strjoin(line, "\t\t");
 		line = ft_strjoin(line, ft_write_rgb(plane[i].color));
 		ft_write_to_file(line, fd);
@@ -158,7 +185,7 @@ void	ft_write_cylinders(t_cylinder *cylinder, int count, int fd)
 	{
 		line = ft_strjoin("cy\t\t", ft_write_pos(cylinder[i].pos));
 		line = ft_strjoin(line, "\t\t");
-		line = ft_strjoin(line, ft_write_pos(cylinder[i].dir));
+		line = ft_strjoin(line, ft_write_dir(cylinder[i].dir));
 		line = ft_strjoin(line, "\t\t");
 		line = ft_strjoin(line, ft_ftoa(cylinder[i].radius * 2));
 		line = ft_strjoin(line, "\t\t");

@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/28 21:07:00 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:36:34 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ void	ft_reinit(t_mrt *mrt)
 	mrt->cylinder = NULL;
 	while (i < mrt->num_objs)
 		mrt->obj_count[i++] = 0;
+	mrt->curr_obj.index = 0;
+	mrt->curr_obj.type = CAMERA;
 	ft_parse(mrt);
 	set_bump_maps(mrt);
 }

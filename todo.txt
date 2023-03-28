@@ -1,3 +1,4 @@
 find a way to change the resolution/size of the screen
 [DONE] fix problem with multiple lights and mirrors
 [DONE] find a way to create a save a scene while the program is running
+implement movement of lights in mandatory and bonus
