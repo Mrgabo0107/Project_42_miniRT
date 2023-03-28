@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/26 21:15:13 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/28 20:57:31 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,16 +89,26 @@ typedef struct s_rgb
 	double	b;
 }			t_rgb;
 
+typedef struct s_bump
+{
+	int			**array;
+	int			width;
+	int			height;
+	char		*path;
+	void		*img;
+	int			bpp;
+	int			sizel;
+	int			endian;
+	char		*addr;
+}				t_bump;
+
 typedef struct s_option
 {
 	double		mirror;
 	t_rgb		check_color;
 	int			chess_ctrl;
 	double		specular[2];
-	char		*bump_path;
-	void		*bump_img;
-	int			bump_width;
-	int			bump_height;
+	t_bump		bump_map;
 }				t_option;
 
 typedef struct s_inter
@@ -120,7 +130,7 @@ typedef struct s_discr
 	double	a;
 	double	c;
 	double	dscr;
-}		t_discr;
+}			t_discr;
 
 typedef struct s_cyl_ctrl
 {

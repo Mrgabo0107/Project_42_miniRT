@@ -6,16 +6,16 @@
 #    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/27 00:44:35 by yridgway         ###   ########.fr        #
+#    Updated: 2023/03/28 23:47:59 by yridgway         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### Compilation ###
 
 CC      = cc
-# FLAGS  = -Wall -Werror -Wextra -g3 #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
+FLAGS  = #-Wall -Werror -Wextra -g3 #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
 # FLAGS  = -Wall -Werror -Wextra -Ofast -flto
-FLAGS  = -Ofast -flto
+# FLAGS  = -Ofast -flto
 ### Executable ###
 #-Ofast -flto 
 NAME   = minirt
@@ -40,6 +40,7 @@ CORE		=	main.c \
 				mousepress.c \
 				info_display.c \
 				color_names.c \
+				set_bump_map.c \
 
 PARSE_DIR	=	parse/
 PARSE		=	parsing.c \
@@ -48,6 +49,7 @@ PARSE		=	parsing.c \
 				parsing_utils.c \
 				cell_filling.c \
 				cell_filling_utils.c \
+				save_scene.c \
 
 UTIL_DIR	=	utils/
 UTILS		=	tools.c \

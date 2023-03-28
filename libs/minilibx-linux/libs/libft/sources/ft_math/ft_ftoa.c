@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 02:42:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/27 21:50:06 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/27 21:46:42 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*separator(char *entera)
 	char	*temp;
 
 	temp = ft_strjoin(entera, ".");
-	ft_free(entera);
+	free (entera);
 	return (temp);
 }
 

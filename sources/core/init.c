@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/26 18:13:31 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:36:34 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,10 @@ void	ft_reinit(t_mrt *mrt)
 	mrt->cylinder = NULL;
 	while (i < mrt->num_objs)
 		mrt->obj_count[i++] = 0;
+	mrt->curr_obj.index = 0;
+	mrt->curr_obj.type = CAMERA;
 	ft_parse(mrt);
+	set_bump_maps(mrt);
 }
 
 int	init_minirt(t_mrt *mrt, char *file)
@@ -95,5 +98,6 @@ int	init_minirt(t_mrt *mrt, char *file)
 	ft_parse(mrt);
 	if (ft_init_mlx(mrt))
 		return (printf("Problem initializing minilibx\n"), 1);
+	set_bump_maps(mrt);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 01:29:54 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/20 16:18:11 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/28 23:54:47 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,7 @@ t_rgb	get_diffuse(t_inter *ctr, t_vec to_light, t_light light)
 	t_rgb	ratio;
 	t_rgb	color;
 
-	angle = get_angle_between(ctr->norm, to_light);
-	if (angle > PI / 2)
-		angle = PI / 2;
-	angle = 1 - angle / (PI / 2);
+	angle = dot_prod(normalize(ctr->norm), normalize(to_light));
 	ratio = ft_make_rgb_ratio(ctr->color);
 	color.r = light.color.r * light.ratio * ratio.r * angle;
 	color.g = light.color.g * light.ratio * ratio.g * angle;
@@ -60,7 +57,7 @@ t_rgb	get_diffuse(t_inter *ctr, t_vec to_light, t_light light)
 
 t_rgb	get_specular(t_inter *ctr, t_vec pos, t_vec to_light, t_light light)
 {
-	double	angle;
+	double	ratio;
 	t_rgb	color;
 	t_vec	h;
 	int		exponent;
@@ -68,12 +65,14 @@ t_rgb	get_specular(t_inter *ctr, t_vec pos, t_vec to_light, t_light light)
 
 	intensity = ctr->option.specular[0];
 	exponent = (int)ctr->option.specular[1];
-	h = scal_vec(1 / vect_norm(vec_sum(to_light, \
-	vec_rest(pos, ctr->inter_coor))), vec_sum(to_light, \
-	vec_rest(pos, ctr->inter_coor)));
-	angle = intensity * int_pow(max_v(0, dot_prod(h, ctr->norm)), exponent);
-	color.r = light.color.r * light.ratio * angle;
-	color.g = light.color.g * light.ratio * angle;
-	color.b = light.color.b * light.ratio * angle;
+	h = normalize(scal_vec(1 / vect_norm(normalize(vec_sum(normalize(to_light), \
+	normalize(vec_rest(pos, ctr->inter_coor))))), \
+	normalize(vec_sum(normalize(to_light), \
+	normalize(vec_rest(pos, ctr->inter_coor))))));
+	ratio = \
+	intensity * int_pow(dot_prod(normalize(ctr->norm), h), exponent * 10);
+	color.r = light.color.r * light.ratio * ratio;
+	color.g = light.color.g * light.ratio * ratio;
+	color.b = light.color.b * light.ratio * ratio;
 	return (color);
 }
