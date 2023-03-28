@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/28 14:14:38 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/28 14:16:00 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,9 @@ t_rgb	get_radiance(t_mrt *mrt, t_inter *ctr, t_vec dir, t_light light)
 {
 	t_vec	to_light;
 	t_inter	linter;
-	// t_rgb	reflection;
 	t_rgb	diffuse;
 	t_rgb	specular;
 
-	// reflection = ft_make_rgb(0, 0, 0);
 	diffuse = ft_make_rgb(0, 0, 0);
 	specular = ft_make_rgb(0, 0, 0);
 	to_light = vec_rest(light.pos, ctr->inter_coor);
@@ -51,7 +49,6 @@ t_rgb	get_radiance(t_mrt *mrt, t_inter *ctr, t_vec dir, t_light light)
 		if (ctr->option.specular > 0)
 			specular = get_specular(ctr, mrt->cam.pos, to_light, light);
 	}
-	// reflection = mult_color(reflection, ctr->option.mirror);
 	diffuse = mult_color(diffuse, 1 - ctr->option.mirror);
 	specular = mult_color(specular, 1 - ctr->option.mirror);
 	return (add_color(diffuse, specular));
