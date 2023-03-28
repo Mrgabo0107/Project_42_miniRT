@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/28 00:05:04 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/28 23:55:53 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	chess_ctr(t_mrt *mrt, int key)
 
 int	key_press(int key, t_mrt *mrt)
 {
-	// printf("key: %d", key);
 	if (key == Z)
 		return (save_scene(mrt), 0);
 	if (key == ESC)

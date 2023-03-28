@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/03/28 18:11:31 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/28 23:55:06 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,6 @@ int	main(int ac, char **av)
 	if (init_minirt(&mrt, av[1]))
 		return (1);
 	render_scene(&mrt);
-	// while (i < sl * mrt.sphere[5].option.bump_height)
-	// {
-	// 	printf("%d\n", address[i]);
-	// 	i++;
-	// }
-	// i = 0;
-	// while (i < mrt.sizel * IY)
-	// {
-	// 	if (mrt.addr[i] < 0)
-	// 		printf("%d\n", mrt.addr[i]);
-	// 	i++;
-	// }
 	ft_controls(&mrt);
 	mlx_loop(mrt.mlx);
 	return (0);

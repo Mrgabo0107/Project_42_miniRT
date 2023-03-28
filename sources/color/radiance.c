@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 01:29:54 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/28 23:50:16 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/28 23:54:47 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ t_rgb	get_reflection(t_mrt *mrt, t_inter *ctr, t_vec dir)
 	point = vec_sum(ctr->inter_coor, scal_vec(0.0000001, ctr->norm));
 	refl_inter = check_intersections(mrt, point, refl_dir);
 	refl_inter.norm = get_normal_at_point(mrt, refl_inter);
-	// color = get_object_color(mrt, &refl_inter, refl_dir);
 	color = get_color(mrt, &refl_inter, refl_dir);
 	return (color);
 }

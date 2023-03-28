@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 21:04:14 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/28 21:32:39 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/28 23:55:43 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	bump_to_array(t_bump *bump_map)
 void	set_bump_maps(t_mrt *mrt)
 {
 	int		i;
-	int		j;
 	int		k;
 	t_bump	*bump_map;
 
@@ -63,17 +62,6 @@ void	set_bump_maps(t_mrt *mrt)
 			mlx_destroy_image(mrt->mlx, bump_map->img);
 			bump_map->addr = NULL;
 			bump_map->img = NULL;
-			j = 0;
-			while (j < bump_map->height)
-			{
-				k = 0;
-				while (k < bump_map->width)
-				{
-					printf("%d\n", bump_map->array[j][k]);
-					k++;
-				}
-				j++;
-			}
 		}
 		i++;
 	}
