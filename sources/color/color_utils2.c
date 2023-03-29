@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 03:33:43 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/26 20:30:42 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:05:27 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,16 @@ t_rgb	add_color(t_rgb color1, t_rgb color2)
 	ret.g = color1.g + color2.g;
 	ret.b = color1.b + color2.b;
 	return (ret);
+}
+
+
+int	diminish_color(int color, double percent)
+{
+	t_rgb	rgb;
+
+	rgb.r = (color >> 16) & 0xFF;
+	rgb.g = (color >> 8) & 0xFF;
+	rgb.b = color & 0xFF;
+	rgb = mult_color(rgb, percent);
+	return ((int)rgb.r << 16 | (int)rgb.g << 8 | (int)rgb.b);
 }

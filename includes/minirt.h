@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/28 21:05:09 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:37:07 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # include <time.h>
 
 //init
-int			init_minirt(t_mrt *mrt, char *file);
+int			init_minirt(t_mrt *mrt, char **av, int ac);
 int			ft_init_mlx(t_mrt *mrt);
 void		ft_reinit(t_mrt *mrt);
 int			valid_rt_file(char *file, int fd);
@@ -157,8 +157,8 @@ t_rgb		get_cyl_color(t_mrt *mrt, int index, t_vec intrsc, t_cyl_ctrl ctr);
 
 //camera
 t_inter		check_intersections(t_mrt *mrt, t_vec point, t_vec dir);
-void		set_all_cam_values(t_cam *cam);
-t_vec		screen_pxl_by_indx(t_cam *cam, int i, int j);
+void		set_all_cam_values(t_cam *cam, int ix);
+t_vec		screen_pxl_by_indx(t_mrt *mrt, t_cam *cam, int i, int j);
 void		my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color);
 void		pixel_calcul(t_mrt *mrt);
 int			get_pixel_color(t_mrt *mrt, int x, int y);
@@ -186,6 +186,7 @@ t_rgb		add_color(t_rgb color1, t_rgb color2);
 t_inter		check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len);
 t_rgb		get_radiance(t_mrt *mrt, t_inter *ctr, t_light light);
 t_rgb		get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color);
+int			diminish_color(int color, double percent);
 
 //hooks_management
 int			key_press(int key, t_mrt *mrt);
@@ -205,6 +206,7 @@ char		*ft_get_color_str(t_rgb color);
 
 //save
 void		save_scene(t_mrt *mrt);
+void		write_to_ppm(t_mrt *mrt);
 
 //bump map
 void		set_bump_maps(t_mrt *mrt);

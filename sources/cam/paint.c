@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/28 23:54:58 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:01:57 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	get_pixel_color(t_mrt *mrt, int x, int y)
 	t_rgb	color;
 	t_vec	dir;
 
-	dir = normalize(vec_rest(screen_pxl_by_indx(&mrt->cam, x, y),
+	dir = normalize(vec_rest(screen_pxl_by_indx(mrt, &mrt->cam, x, y),
 				mrt->cam.pos));
 	inter = check_intersections(mrt, mrt->cam.pos, dir);
 	if (inter.dist != -1)
@@ -61,15 +61,17 @@ void	pixel_calcul(t_mrt *mrt)
 {
 	int		i;
 	int		j;
+	int		fd;
+	int		color;
 
 	i = 0;
-	while (i < IX)
+	while (i < mrt->ix)
 	{
 		j = 0;
-		while (j < IY - 1)
+		while (j < mrt->iy - 1)
 		{
-			my_mlx_pixel_put(mrt, i, j, \
-			get_pixel_color(mrt, i + 1, j + 1));
+			color = get_pixel_color(mrt, i + 1, j + 1);
+			my_mlx_pixel_put(mrt, i, j, color);
 			j++;
 		}
 	i++;
@@ -80,6 +82,8 @@ void	my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color)
 {
 	char	*dst;
 
+	if (!mrt->save && x < BORDER)
+		color = diminish_color(color, 0.3);
 	dst = mrt->addr + (y * mrt->sizel + x * (mrt->bpp / 8));
 	*(unsigned int *)dst = color;
 }
