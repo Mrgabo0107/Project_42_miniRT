@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 18:13:47 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/26 20:30:53 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:04:10 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ char	*ft_get_color_str(t_rgb color)
 		ft_free(line);
 		line = get_next_line(fd);
 	}
-	close(fd);
-	return (str);
+	return (close(fd), str);
 }
 
 t_rgb	ft_get_obj_color(t_mrt *mrt, int type, int index)

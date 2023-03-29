@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/28 18:12:48 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 21:41:55 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ t_rgb	get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color)
 	t_rgb	reflection;
 
 	i = -1;
+	if (ctr->dist == -1)
+		return (ft_make_rgb(0, 0, 0));
 	reflection = ft_make_rgb(0, 0, 0);
 	while (++i < mrt->obj_count[LIGHT])
 		color = add_color(color, \

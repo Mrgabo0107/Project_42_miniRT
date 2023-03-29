@@ -6,7 +6,7 @@
 #    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/29 14:42:44 by yridgway         ###   ########.fr        #
+#    Updated: 2023/03/29 23:02:08 by yridgway         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,10 @@ PARSE		=	parsing.c \
 				cell_filling.c \
 				cell_filling_utils.c \
 				save_scene.c \
+				save_utils.c \
+				write_objects.c \
+				eval_objects.c \
+				fill_capitals.c \
 
 UTIL_DIR	=	utils/
 UTILS		=	tools.c \

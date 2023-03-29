@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 22:23:17 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/29 15:00:08 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:06:29 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	display_strings(t_mrt *mrt)
 	object = ft_get_object_str(mrt->curr_obj.type, mrt->curr_obj.index);
 	color = ft_strjoin("color: ", ft_get_color_str(ft_get_obj_color(mrt, \
 	mrt->curr_obj.type, mrt->curr_obj.index)));
-	// set_background(mrt);
 	mlx_string_put(mrt->mlx, mrt->win, 10, 20, 0xFFFFFF, "---MiniRT---");
 	mlx_string_put(mrt->mlx, mrt->win, 10, 40, 0xFFFFFF, "Controls:");
 	mlx_string_put(mrt->mlx, mrt->win, 10, 60, 0xFFFFFF, "WASDQE - move cam");

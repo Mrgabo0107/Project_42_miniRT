@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/29 18:36:24 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:27:55 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ int	ft_init_mlx(t_mrt *mrt)
 	mrt->mlx = mlx_init();
 	if (!mrt->mlx)
 		return (1);
-	mrt->win = mlx_new_window(mrt->mlx, mrt->ix, mrt->iy, "MiniRT");
-	if (!mrt->win)
-		return (mlx_destroy_display(mrt->mlx), free(mrt->mlx), 1);
+	if (!mrt->save)
+	{
+		mrt->win = mlx_new_window(mrt->mlx, mrt->ix, mrt->iy, "MiniRT");
+		if (!mrt->win)
+			return (mlx_destroy_display(mrt->mlx), free(mrt->mlx), 1);
+	}
 	mrt->img = mlx_new_image(mrt->mlx, mrt->ix, mrt->iy);
 	if (!mrt->img)
 		return (mlx_destroy_window(mrt->mlx, mrt->win), \
@@ -69,7 +72,6 @@ void	ft_set_mrt(t_mrt *mrt, char *file, int ix, int iy)
 	mrt->bounce = 0;
 	mrt->num_objs = 8;
 	mrt->obj_count = ft_malloc(mrt->num_objs * sizeof(int));
-	mrt->save = 0;
 	mrt->ix = ix;
 	mrt->iy = iy;
 	while (i < mrt->num_objs)
@@ -97,7 +99,7 @@ void	ft_reinit(t_mrt *mrt)
 
 int	init_minirt(t_mrt *mrt, char **av, int ac)
 {
-	if (ac == 5)
+	if (mrt->save)
 		ft_set_mrt(mrt, av[1], ft_atoi(av[3]), ft_atoi(av[4]));
 	else
 		ft_set_mrt(mrt, av[1], IX, IY);

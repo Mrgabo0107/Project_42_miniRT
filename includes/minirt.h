@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/29 18:37:07 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:00:26 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ t_option	ft_fill_options(t_table *table, t_rgb color);
 int			eval_option(char *line);
 int			*int_arrcpy(int *arr, int size);
 
+//eval objects
+int			ft_strcmp_1(char *s1, char *s2);
+int			eval_option(char *line);
+int			eval_obj(char *line);
+
 //cell filling
 double		ft_fill_ratio(char *cell);
 t_rgb		ft_fill_rgb(char *cell);
@@ -73,9 +78,6 @@ t_cone		ft_fill_cone(t_table *table, char **line);
 char		*get_next_line(int fd);
 
 //list
-// t_lst		*ft_lstnew(void *obj, int type);
-// t_lst		*ft_lstadd_back(t_lst *lst, t_lst *new);
-// t_lst		*ft_lstadd_new(t_lst *lst, void *obj, int type);
 t_table		*ft_tablenew(char **line, int num_objs);
 t_table		*ft_tableadd_back(t_table *table, t_table *new);
 t_table		*ft_tableadd_new(t_table *table, char **line, int num_objs);
@@ -207,6 +209,14 @@ char		*ft_get_color_str(t_rgb color);
 //save
 void		save_scene(t_mrt *mrt);
 void		write_to_ppm(t_mrt *mrt);
+void		ft_write_planes(t_plane *plane, int count, int fd);
+void		ft_write_spheres(t_sphere *sphere, int count, int fd);
+void		ft_write_cylinders(t_cylinder *cylinder, int count, int fd);
+void		ft_write_to_file(char *line, int fd);
+char		*ft_write_pos(t_vec pos);
+t_vec		ft_unnormalize(t_vec vec);
+char		*ft_write_dir(t_vec dir);
+char		*ft_write_rgb(t_rgb color);
 
 //bump map
 void		set_bump_maps(t_mrt *mrt);

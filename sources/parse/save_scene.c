@@ -6,85 +6,11 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 21:18:20 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/28 22:46:41 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:58:05 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-void	ft_write_to_file(char *line, int fd)
-{
-	write(fd, line, ft_strlen(line));
-	write(fd, "\n", 1);
-}
-
-char	*ft_write_pos(t_vec pos)
-{
-	char	*line;
-
-	line = ft_strjoin(ft_ftoa(pos.x), ",");
-	line = ft_strjoin(line, ft_ftoa(pos.y));
-	line = ft_strjoin(line, ",");
-	line = ft_strjoin(line, ft_ftoa(pos.z));
-	return (line);
-}
-
-t_vec	ft_unnormalize(t_vec vec)
-{
-	double	max;
-
-	max = v_abs(vec.x);
-	if (v_abs(vec.y) > max)
-		max = v_abs(vec.y);
-	if (v_abs(vec.z) > max)
-		max = v_abs(vec.z);
-	vec.x *= 1 / max;
-	vec.y *= 1 / max;
-	vec.z *= 1 / max;
-	return (vec);
-}
-
-char	*ft_write_dir(t_vec dir)
-{
-	char	*line;
-
-	dir = ft_unnormalize(dir);
-	line = ft_strjoin(ft_ftoa(dir.x), ",");
-	line = ft_strjoin(line, ft_ftoa(dir.y));
-	line = ft_strjoin(line, ",");
-	line = ft_strjoin(line, ft_ftoa(dir.z));
-	return (line);
-}
-
-char	*ft_write_rgb(t_rgb color)
-{
-	char	*line;
-
-	line = ft_strjoin(ft_itoa(color.r), ",");
-	line = ft_strjoin(line, ft_itoa(color.g));
-	line = ft_strjoin(line, ",");
-	line = ft_strjoin(line, ft_itoa(color.b));
-	return (line);
-}
-
-void	ft_write_options(t_option option, int fd)
-{
-	char	*line;
-
-	line = ft_strjoin("mir ", ft_ftoa(option.mirror));
-	ft_write_to_file(line, fd);
-	ft_free(line);
-	line = ft_strjoin("spec ", ft_ftoa(option.specular[0]));
-	line = ft_strjoin(line, " ");
-	line = ft_strjoin(line, ft_ftoa(option.specular[1]));
-	ft_write_to_file(line, fd);
-	ft_free(line);
-	line = ft_strjoin("check ", ft_write_rgb(option.check_color));
-	line = ft_strjoin(line, " ");
-	line = ft_strjoin(line, ft_ftoa(option.chess_ctrl));
-	ft_write_to_file(line, fd);
-	ft_free(line);
-}
 
 void	ft_write_amblight(t_light amblight, int fd)
 {
@@ -131,73 +57,6 @@ void	ft_write_lights(t_light *light, int count, int fd)
 		i++;
 	}
 	ft_write_to_file("", fd);
-}
-
-void	ft_write_planes(t_plane *plane, int count, int fd)
-{
-	int		i;
-	char	*line;
-
-	i = 0;
-	while (i < count)
-	{
-		line = ft_strjoin("pl\t\t", ft_write_pos(plane[i].pos));
-		line = ft_strjoin(line, "\t\t");
-		line = ft_strjoin(line, ft_write_dir(plane[i].dir));
-		line = ft_strjoin(line, "\t\t");
-		line = ft_strjoin(line, ft_write_rgb(plane[i].color));
-		ft_write_to_file(line, fd);
-		ft_write_options(plane[i].option, fd);
-		ft_free(line);
-		ft_write_to_file("", fd);
-		i++;
-	}
-}
-
-void	ft_write_spheres(t_sphere *sphere, int count, int fd)
-{
-	int		i;
-	char	*line;
-
-	i = 0;
-	while (i < count)
-	{
-		line = ft_strjoin("sp\t\t", ft_write_pos(sphere[i].center));
-		line = ft_strjoin(line, "\t\t");
-		line = ft_strjoin(line, ft_ftoa(sphere[i].radius * 2));
-		line = ft_strjoin(line, "\t\t");
-		line = ft_strjoin(line, ft_write_rgb(sphere[i].color));
-		ft_write_to_file(line, fd);
-		ft_write_options(sphere[i].option, fd);
-		ft_free(line);
-		ft_write_to_file("", fd);
-		i++;
-	}
-}
-
-void	ft_write_cylinders(t_cylinder *cylinder, int count, int fd)
-{
-	int		i;
-	char	*line;
-
-	i = 0;
-	while (i < count)
-	{
-		line = ft_strjoin("cy\t\t", ft_write_pos(cylinder[i].pos));
-		line = ft_strjoin(line, "\t\t");
-		line = ft_strjoin(line, ft_write_dir(cylinder[i].dir));
-		line = ft_strjoin(line, "\t\t");
-		line = ft_strjoin(line, ft_ftoa(cylinder[i].radius * 2));
-		line = ft_strjoin(line, "\t\t");
-		line = ft_strjoin(line, ft_ftoa(cylinder[i].height));
-		line = ft_strjoin(line, "\t\t");
-		line = ft_strjoin(line, ft_write_rgb(cylinder[i].color));
-		ft_write_to_file(line, fd);
-		ft_write_options(cylinder[i].option, fd);
-		ft_free(line);
-		ft_write_to_file("", fd);
-		i++;
-	}
 }
 
 void	save_scene(t_mrt *mrt)

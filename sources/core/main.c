@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/03/29 18:34:36 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:50:01 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	write_to_ppm(t_mrt *mrt)
 	while (i < mrt->ix * mrt->iy * (mrt->bpp / 8))
 	{
 		write(fd, mrt->addr + i, 1);
-		i++;
-		if ((i + 1) % 4 == 0)
+		if (i % (mrt->bpp / 8) == 0)
 			i++;
+		i++;
 	}
 	close(fd);
 }
@@ -59,7 +59,8 @@ void	render_scene(t_mrt *mrt)
 	pixel_calcul(mrt);
 	if (mrt->save)
 		write_to_ppm(mrt);
-	mlx_clear_window(mrt->mlx, mrt->win);
+	if (!mrt->save)
+		mlx_clear_window(mrt->mlx, mrt->win);
 	if (!mrt->save)
 		mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
 	if (!mrt->save)
@@ -70,19 +71,19 @@ int	main(int ac, char **av)
 {
 	t_mrt	mrt;
 
+	mrt.save = 0;
 	if (ac != 2 && ac != 5)
 		return (printf("Usage: ./miniRT <scene.rt>\n"), 1);
-	if (init_minirt(&mrt, av, ac))
-		return (1);
 	if (ac == 5)
 	{
+		mrt.save = 1;
 		if (ft_strcmp_1(av[2], "--save"))
 			return (printf("Usage: ./miniRT <scene.rt> --save\n"), 1);
-		mrt.ix = ft_atoi(av[3]);
-		mrt.iy = ft_atoi(av[4]);
-		mrt.save = 1;
-		return (render_scene(&mrt), 0);
 	}
+	if (init_minirt(&mrt, av, ac))
+		return (1);
+	if (mrt.save)
+		return (render_scene(&mrt), 0);
 	render_scene(&mrt);
 	ft_controls(&mrt);
 	mlx_loop(mrt.mlx);
