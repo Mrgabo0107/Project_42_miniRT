@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
+#    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/29 14:42:44 by yridgway         ###   ########.fr        #
+#    Updated: 2023/03/29 23:59:03 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@
 CC      = cc
 
 # FLAGS  = #-Wall -Werror -Wextra -g3 #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
-# FLAGS  = -Wall -Werror -Wextra -Ofast -flto
-FLAGS  = -Ofast -flto
+FLAGS  = -Wall -Werror -Wextra -Ofast -flto
+# FLAGS  = -Ofast -flto
 ### Executable ###
 #-Ofast -flto 
 NAME   = minirt
@@ -42,6 +42,7 @@ CORE		=	main.c \
 				info_display.c \
 				color_names.c \
 				set_bump_map.c \
+				bump_map_utils.c \
 
 PARSE_DIR	=	parse/
 PARSE		=	parsing.c \

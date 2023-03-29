@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 03:33:43 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/29 15:05:27 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:00:47 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,14 @@ int	diminish_color(int color, double percent)
 	rgb.b = color & 0xFF;
 	rgb = mult_color(rgb, percent);
 	return ((int)rgb.r << 16 | (int)rgb.g << 8 | (int)rgb.b);
+}
+
+t_rgb	convert_to_rgb(int color)
+{
+	t_rgb	rgb;
+
+	rgb.r = (color >> 16) & 0xFF;
+	rgb.g = (color >> 8) & 0xFF;
+	rgb.b = color & 0xFF;
+	return (rgb);
 }

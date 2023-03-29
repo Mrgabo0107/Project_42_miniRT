@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/29 18:37:07 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:14:55 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ t_inter		check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len);
 t_rgb		get_radiance(t_mrt *mrt, t_inter *ctr, t_light light);
 t_rgb		get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color);
 int			diminish_color(int color, double percent);
+t_rgb		convert_to_rgb(int color);
 
 //hooks_management
 int			key_press(int key, t_mrt *mrt);
@@ -210,5 +211,6 @@ void		write_to_ppm(t_mrt *mrt);
 
 //bump map
 void		set_bump_maps(t_mrt *mrt);
+t_vec		bump_nrml_by_coor(t_option *opt, int x, int y, double height);
 
 #endif
