@@ -12,12 +12,22 @@
 
 #include "minirt.h"
 
+// t_vec	bump_maped(t_mrt *mrt, t_inter inter)
+// {
+
+// }
+
 t_vec	get_normal_plane(t_mrt *mrt, t_inter inter)
 {
+	t_vec	ret;
+
+	ret = mrt->plane[inter.index].dir;
 	if (dot_prod(vec_rest(mrt->cam.pos, mrt->plane[inter.index].pos),
 			mrt->plane[inter.index].dir) < 0.0)
-		return (scal_vec(-1, mrt->plane[inter.index].dir));
-	return (mrt->plane[inter.index].dir);
+		ret = scal_vec(-1, ret);
+	// if (mrt->plane[inter.index].option.b_mp_ctrl == 1)
+	// 	return (bump_maped(mrt, inter));
+	return (ret);
 }
 
 double	distance_to_plane(t_vec start_point, t_vec plane_pos,

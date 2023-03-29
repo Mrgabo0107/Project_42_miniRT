@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 14:05:32 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/17 22:25:03 by yoel             ###   ########.fr       */
+/*   Updated: 2023/03/27 21:45:21 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ static char	**free_all(char **s)
 
 	i = 0;
 	while (s[i])
-		free(s[i++]);
-	free(s);
+		ft_free(s[i++]);
+	ft_free(s);
 	return (NULL);
 }
 

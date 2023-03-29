@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/23 05:43:07 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:05:09 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <limits.h>
 # include <errno.h>
 # include <string.h>
+# include <time.h>
 
 //init
 int			init_minirt(t_mrt *mrt, char *file);
@@ -41,17 +42,19 @@ int			end_mrt(t_mrt *mrt);
 int			ft_parse(t_mrt *mrt);
 int			ft_strcmp_1(char *s1, char *s2);
 int			eval_obj(char *line);
-t_table		*ft_fill_table(int fd);
+t_table		*ft_fill_table(int fd, int num_objs);
 int			ft_arg_count(char **line);
 void		ft_error(char *msg, char *extra, char *extra2);
-t_option	ft_fill_options(t_table *table);
+t_option	ft_fill_options(t_table *table, t_rgb color);
 int			eval_option(char *line);
+int			*int_arrcpy(int *arr, int size);
 
 //cell filling
 double		ft_fill_ratio(char *cell);
 t_rgb		ft_fill_rgb(char *cell);
 t_vec		ft_fill_pos(char *cell, int dir);
 double		ft_fill_size(char *cell, int fov);
+char		*ft_fill_xpm(char *cell);
 void		ft_check_dots_and_minus(char *str);
 int			check_valid_number(char *str);
 void		valid_nums(char **line);
@@ -59,11 +62,12 @@ int			check_for_chars(char *str, char *cell);
 int			out_of_range(double num, double min, double max);
 
 //fill objects
-t_cam		ft_fill_cam(t_table *table, char *line[7]);
-t_light		ft_fill_light(t_table *table, char *line[7], int amb);
-t_sphere	ft_fill_sphere(t_table *table, char *line[7]);
-t_plane		ft_fill_plane(t_table *table, char *line[7]);
-t_cylinder	ft_fill_cylinder(t_table *table, char *line[7]);
+t_cam		ft_fill_cam(t_table *table, char **line);
+t_light		ft_fill_light(t_table *table, char **line, int amb);
+t_sphere	ft_fill_sphere(t_table *table, char **line);
+t_plane		ft_fill_plane(t_table *table, char **line);
+t_cylinder	ft_fill_cylinder(t_table *table, char **line);
+t_cone		ft_fill_cone(t_table *table, char **line);
 
 //utils
 char		*get_next_line(int fd);
@@ -72,9 +76,9 @@ char		*get_next_line(int fd);
 // t_lst		*ft_lstnew(void *obj, int type);
 // t_lst		*ft_lstadd_back(t_lst *lst, t_lst *new);
 // t_lst		*ft_lstadd_new(t_lst *lst, void *obj, int type);
-t_table		*ft_tablenew(char **line);
+t_table		*ft_tablenew(char **line, int num_objs);
 t_table		*ft_tableadd_back(t_table *table, t_table *new);
-t_table		*ft_tableadd_new(t_table *table, char **line);
+t_table		*ft_tableadd_new(t_table *table, char **line, int num_objs);
 
 //memory
 void		*ft_malloc(long long int size);
@@ -180,6 +184,8 @@ t_light light);
 t_rgb		mult_color(t_rgb color, double mult);
 t_rgb		add_color(t_rgb color1, t_rgb color2);
 t_inter		check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len);
+t_rgb		get_radiance(t_mrt *mrt, t_inter *ctr, t_light light);
+t_rgb		get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color);
 
 //hooks_management
 int			key_press(int key, t_mrt *mrt);
@@ -190,8 +196,17 @@ void		render_scene(t_mrt *mrt);
 void		chg_options(t_mrt *mrt, int key);
 void		radius_ctr(t_mrt *mrt, int key);
 void		height_ctr(t_mrt *mrt, int key);
+void		bump_option(t_mrt *mrt, int key);
 
 //info display
 void		display_strings(t_mrt *mrt);
+t_rgb		ft_get_obj_color(t_mrt *mrt, int type, int index);
+char		*ft_get_color_str(t_rgb color);
+
+//save
+void		save_scene(t_mrt *mrt);
+
+//bump map
+void		set_bump_maps(t_mrt *mrt);
 
 #endif

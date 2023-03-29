@@ -3,85 +3,99 @@
 /*                                                        :::      ::::::::   */
 /*   fill_objects.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:37:20 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/17 02:05:57 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/24 21:32:12 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_sphere	ft_fill_sphere(t_table *table, char *line[7])
+t_sphere ft_fill_sphere(t_table *table, char **line)
 {
-	t_sphere	sphere;
+	t_sphere sphere;
 
 	if (ft_arg_count(line) != 4)
-		ft_error("Wrong number of arguments for sphere", \
-		SPHERE_INSTRUCTIONS, NULL);
+		ft_error("Wrong number of arguments for sphere",
+				 SPHERE_INSTRUCTIONS, NULL);
 	sphere.center = ft_fill_pos(line[1], 0);
 	sphere.dir = fill_coord(0, 0, 1);
 	sphere.radius = ft_fill_size(line[2], 0) / 2;
 	sphere.color = ft_fill_rgb(line[3]);
-	sphere.color1 = get_opposite_color(sphere.color); //to set in parsing
 	sphere.base = get_obj_base(sphere.dir);
 	sphere.base.bs_orig = sphere.center;
-	sphere.chess_ctrl = 0;
-	sphere.option = ft_fill_options(table);
+	sphere.option = ft_fill_options(table, sphere.color);
 	return (sphere);
 }
 
-t_plane	ft_fill_plane(t_table *table, char *line[7])
+t_plane ft_fill_plane(t_table *table, char **line)
 {
-	t_plane	plane;
+	t_plane plane;
 
-	(void)table;
 	if (ft_arg_count(line) != 4)
-		ft_error("Wrong number of arguments for plane", \
-		PLANE_INSTRUCTIONS, NULL);
+		ft_error("Wrong number of arguments for plane",
+				 PLANE_INSTRUCTIONS, NULL);
 	plane.pos = ft_fill_pos(line[1], 0);
 	plane.dir = normalize(ft_fill_pos(line[2], 1));
 	plane.color = ft_fill_rgb(line[3]);
-	plane.color1 = get_opposite_color(plane.color); //to set in parsin
 	plane.base = get_obj_base(plane.dir);
 	plane.base.bs_orig = plane.pos;
-	plane.chess_ctrl = 0;
-	plane.option = ft_fill_options(table);
+	plane.option = ft_fill_options(table, plane.color);
 	return (plane);
 }
 
-t_cylinder	ft_fill_cylinder(t_table *table, char *line[7])
+t_cylinder ft_fill_cylinder(t_table *table, char **line)
 {
-	t_cylinder	cylinder;
+	t_cylinder cylinder;
 
-	(void)table;
 	if (ft_arg_count(line) != 6)
-		ft_error("Wrong number of arguments for cylinder", \
-		CYLINDER_INSTRUCTIONS, NULL);
+		ft_error("Wrong number of arguments for cylinder",
+				 CYLINDER_INSTRUCTIONS, NULL);
 	cylinder.pos = ft_fill_pos(line[1], 0);
 	cylinder.dir = normalize(ft_fill_pos(line[2], 1));
 	cylinder.radius = ft_fill_size(line[3], 0) / 2;
 	cylinder.height = ft_fill_size(line[4], 0);
 	cylinder.color = ft_fill_rgb(line[5]);
-	cylinder.color1 = get_opposite_color(cylinder.color); //to set in parsing
 	cylinder.base = get_obj_base(cylinder.dir);
 	cylinder.base.bs_orig = cylinder.pos;
-	cylinder.top = vec_sum(cylinder.pos, \
-	scal_vec(cylinder.height / 2, cylinder.dir));
-	cylinder.bottom = vec_sum(cylinder.pos, \
-	scal_vec(-cylinder.height / 2, cylinder.dir));
-	cylinder.chess_ctrl = 0;
-	cylinder.option = ft_fill_options(table);
+	cylinder.top = vec_sum(cylinder.pos,
+						   scal_vec(cylinder.height / 2, cylinder.dir));
+	cylinder.bottom = vec_sum(cylinder.pos,
+							  scal_vec(-cylinder.height / 2, cylinder.dir));
+	cylinder.option = ft_fill_options(table, cylinder.color);
 	return (cylinder);
 }
 
-t_cam	ft_fill_cam(t_table *table, char *line[7])
+t_cone ft_fill_cone(t_table *table, char **line)
 {
-	t_cam	cam;
+	t_cone cone;
+
+	if (ft_arg_count(line) != 6)
+		ft_error("Wrong number of arguments for cone",
+				 CONE_INSTRUCTIONS, NULL);
+	cone.pos = ft_fill_pos(line[1], 0);
+	cone.dir = normalize(ft_fill_pos(line[2], 1));
+	cone.angle = ft_fill_size(line[3], 1);
+	cone.height = ft_fill_size(line[4], 0);
+	cone.color = ft_fill_rgb(line[5]);
+	cone.base = get_obj_base(cone.dir);
+	cone.base.bs_orig = cone.pos;
+	cone.top = vec_sum(cone.pos,
+					   scal_vec(cone.height / 2, cone.dir));
+	cone.bottom = vec_sum(cone.pos,
+						  scal_vec(-cone.height / 2, cone.dir));
+	cone.option = ft_fill_options(table, cone.color);
+	return (cone);
+}
+
+t_cam ft_fill_cam(t_table *table, char **line)
+{
+	t_cam cam;
 
 	if (ft_arg_count(line) != 4)
-		ft_error("Wrong number of arguments for camera", \
-		CAMERA_INSTRUCTIONS, NULL);
+		ft_error("Wrong number of arguments for camera",
+				 CAMERA_INSTRUCTIONS, NULL);
 	cam.pos = ft_fill_pos(line[1], 0);
 	cam.dir = normalize(ft_fill_pos(line[2], 1));
 	cam.fov = ft_fill_size(line[3], 1);
@@ -90,15 +104,15 @@ t_cam	ft_fill_cam(t_table *table, char *line[7])
 	return (cam);
 }
 
-t_light	ft_fill_light(t_table *table, char *line[7], int amb)
+t_light ft_fill_light(t_table *table, char **line, int amb)
 {
-	t_light		light;
-	int			i;
+	t_light light;
+	int i;
 
 	i = 1;
 	if (ft_arg_count(line) != (4 - amb))
-		ft_error("Wrong number of arguments for light", \
-		LIGHT_INSTRUCTIONS, NULL);
+		ft_error("Wrong number of arguments for light",
+				 LIGHT_INSTRUCTIONS, NULL);
 	if (!amb)
 		light.pos = ft_fill_pos(line[i++], 0);
 	light.ratio = ft_fill_ratio(line[i++]);

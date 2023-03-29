@@ -50,3 +50,19 @@ void	height_ctr(t_mrt *mrt, int key)
 		mrt->cylinder[mrt->curr_obj.index].height -= 0.3;
 	}
 }
+
+void	bump_option(t_mrt *mrt, int key)
+{
+	if (key == B && mrt->curr_obj.type == PLANE
+		&& mrt->plane[mrt->curr_obj.index].option.bump_map.path)
+		mrt->plane[mrt->curr_obj.index].option.b_mp_ctrl
+			= (mrt->plane[mrt->curr_obj.index].option.b_mp_ctrl + 1) % 2;
+	if (key == B && mrt->curr_obj.type == SPHERE
+		&& mrt->sphere[mrt->curr_obj.index].option.bump_map.path)
+		mrt->sphere[mrt->curr_obj.index].option.b_mp_ctrl
+			= (mrt->sphere[mrt->curr_obj.index].option.b_mp_ctrl + 1) % 2;
+	if (key == B && mrt->curr_obj.type == CYLINDER
+		&& mrt->cylinder[mrt->curr_obj.index].option.bump_map.path)
+		mrt->cylinder[mrt->curr_obj.index].option.b_mp_ctrl
+			= (mrt->cylinder[mrt->curr_obj.index].option.b_mp_ctrl + 1) % 2;
+}

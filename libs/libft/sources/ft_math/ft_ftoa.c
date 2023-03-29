@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 02:42:22 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/02/15 18:12:05 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/27 21:50:06 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	*case_cero(char *entera)
 	char	*temp;
 
 	temp = ft_strjoin("-", entera);
-	free(entera);
+	ft_free(entera);
 	return (temp);
 }
 
@@ -36,8 +36,8 @@ static double	decimal_move(double d, int n)
 
 static void	free_strings(char *s1, char *s2)
 {
-	free(s1);
-	free(s2);
+	ft_free(s1);
+	ft_free(s2);
 }
 
 static char	*separator(char *entera)
@@ -45,7 +45,7 @@ static char	*separator(char *entera)
 	char	*temp;
 
 	temp = ft_strjoin(entera, ".");
-	free (entera);
+	ft_free(entera);
 	return (temp);
 }
 

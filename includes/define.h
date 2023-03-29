@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:01:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/23 05:33:58 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/27 22:03:31 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,8 @@
 # define M 109
 # define C 99
 # define H 104
-
-
-// # define COMMENT 123
+# define Z 122
+# define B 98
 
 //error messages
 # define TOO_MANY_CAPITALS "Too many capital letters in the scene"
@@ -98,6 +97,10 @@ color: (r,g,b)] \
 # define PLANE_INSTRUCTIONS "\
 \n(pl)ane: [name: 'pl', pos: (x,y,z), dir: (a,b,c), color: (r,g,b)] \
 \ne.g. pl 0,0,0 0,1,0 255,0,0"
+# define CONE_INSTRUCTIONS "\
+\n(co)ne: [name: 'co', pos: (x,y,z), dir: (a,b,c), diameter, height, \
+color: (r,g,b)] \
+\ne.g. co 0,0,0 0,1,0 3 8 255,0,0"
 # define LIGHT_INSTRUCTIONS "\
 \n(L)ight: [name: 'L', pos: (x,y,z), brightness: [0.0,1.0], color: (r,g,b)] \
 \ne.g. l 0,0,0 0.5 255,0,0"
@@ -129,18 +132,16 @@ commas, at least one value should be non-zero \
 \ne.g. 0,1,-0.5"
 # define OBJECT_INSTRUCTIONS "\
 \nValid objects include: \
-\n(C)amera, (L)ight, (A)mbient light, (sp)here, (pl)ane and (cy)linder \
+\n(C)amera, (L)ight, (A)mbient light, (sp)here, (pl)ane, (cy)linder and (co)ne \
 \nValid options include: \
-\n(mir)ror: [0.0-1.0], (check)ered: (r,g,b) (r,g,b), \
-(trans)parency: [0.0-1.0], (spec)ular: [0.0-1.0]"
+\n(mir)ror, (check)ered, (spec)ular, (bump)map"
 # define OPTIONS_BEFORE_OBJECTS "At least one object must be defined before \
 any options."
 # define OPTION_INSTRUCTIONS "\
 \nValid options include: \
-\n(mir)ror: [0.0-1.0], (check)ered: (r,g,b), \
-(spec)ular: intensity exponent"
+\n(mir)ror, (check)ered, (spec)ular"
 # define CHECK_INSTRUCTIONS "\
-\n(check)ered: (r,g,b) \
+\n(check)ered: color:(r,g,b), density:[1-1000]\
 \ne.g. check 255,0,0"
 # define SPECULAR_INSTRUCTIONS "\
 \n(spec)ular: intensity - [0.0-1.0], exponent - [1-1000] \
@@ -148,6 +149,9 @@ any options."
 # define MIRROR_INSTRUCTIONS "\
 \n(mir)ror: [0.0-1.0] \
 \ne.g. mir 0.5"
+# define BUMP_INSTRUCTIONS "\
+\n(bump)map: [path to bmp file] \
+\ne.g. bump ./textures/texture.bmp"
 # define INVALID_FILE "Invalid file"
 # define FILE_INSTRUCTIONS "\
 \nPlease provide an existing file path, with the correct \
