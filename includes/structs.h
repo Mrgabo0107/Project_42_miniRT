@@ -100,6 +100,7 @@ typedef struct s_bump
 	int			sizel;
 	int			endian;
 	char		*addr;
+	double		res_plan;
 }				t_bump;
 
 typedef struct s_option
@@ -108,6 +109,7 @@ typedef struct s_option
 	t_rgb		check_color;
 	int			chess_ctrl;
 	double		specular[2];
+	int			b_mp_ctrl;
 	t_bump		bump_map;
 }				t_option;
 

@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-int	ft_init_mlx(t_mrt *mrt)
+int ft_init_mlx(t_mrt *mrt)
 {
 	mrt->mlx = mlx_init();
 	if (!mrt->mlx)
@@ -22,8 +22,8 @@ int	ft_init_mlx(t_mrt *mrt)
 		return (mlx_destroy_display(mrt->mlx), free(mrt->mlx), 1);
 	mrt->img = mlx_new_image(mrt->mlx, IX, IY);
 	if (!mrt->img)
-		return (mlx_destroy_window(mrt->mlx, mrt->win), \
-		mlx_destroy_display(mrt->mlx), free(mrt->mlx), 1);
+		return (mlx_destroy_window(mrt->mlx, mrt->win),
+				mlx_destroy_display(mrt->mlx), free(mrt->mlx), 1);
 	mrt->addr = mlx_get_data_addr(mrt->img, &mrt->bpp, &mrt->sizel, &mrt->endi);
 	if (!mrt->addr)
 		return (end_mrt(mrt), 1);
@@ -31,9 +31,9 @@ int	ft_init_mlx(t_mrt *mrt)
 	return (0);
 }
 
-int	valid_rt_file(char *file, int fd)
+int valid_rt_file(char *file, int fd)
 {
-	int	size;
+	int size;
 
 	if (!file || !*file)
 		return (0);
@@ -47,7 +47,7 @@ int	valid_rt_file(char *file, int fd)
 	return (1);
 }
 
-void	ft_set_mrt(t_mrt *mrt, char *file)
+void ft_set_mrt(t_mrt *mrt, char *file)
 {
 	t_curr_ob	c_obj;
 	int			i;
@@ -73,7 +73,7 @@ void	ft_set_mrt(t_mrt *mrt, char *file)
 		mrt->obj_count[i++] = 0;
 }
 
-void	ft_reinit(t_mrt *mrt)
+void ft_reinit(t_mrt *mrt)
 {
 	int	i;
 
@@ -92,7 +92,7 @@ void	ft_reinit(t_mrt *mrt)
 	set_bump_maps(mrt);
 }
 
-int	init_minirt(t_mrt *mrt, char *file)
+int init_minirt(t_mrt *mrt, char *file)
 {
 	ft_set_mrt(mrt, file);
 	ft_parse(mrt);

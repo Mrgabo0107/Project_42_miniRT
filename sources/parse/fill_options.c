@@ -44,6 +44,7 @@ void	ft_fill_bumpmap(char **line, t_option *option)
 		ft_error("Wrong number of arguments for bumpmap", \
 		BUMP_INSTRUCTIONS, NULL);
 	option->bump_map.path = ft_fill_xpm(line[1]);
+	option->b_mp_ctrl = 1;
 }
 
 t_option	ft_fill_options(t_table *table, t_rgb color)
@@ -51,8 +52,8 @@ t_option	ft_fill_options(t_table *table, t_rgb color)
 	t_option	option;
 
 	option = \
-	(t_option){0, get_opposite_color(color), 0, {0.3, 16}, \
-	(t_bump){NULL, 0, 0, NULL, NULL, 0, 0, 0, NULL}};
+	(t_option){0, get_opposite_color(color), 0, {0.3, 16}, 0, \
+	(t_bump){NULL, 0, 0, NULL, NULL, 0, 0, 0, NULL, 0.01}};
 	while (table && table->next && eval_obj(table->next->line[0]) == OPTION)
 	{
 		if (eval_option(table->next->line[0]) == CHECK)

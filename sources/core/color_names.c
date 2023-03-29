@@ -49,6 +49,7 @@ char	*ft_get_color_str(t_rgb color)
 	double	diff;
 	char	*str;
 
+	str = NULL;
 	diff = 255 * 3;
 	fd = open("rgb.txt", O_RDONLY, 0644);
 	line = get_next_line(fd);

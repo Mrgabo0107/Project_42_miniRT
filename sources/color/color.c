@@ -44,9 +44,9 @@ t_rgb	get_radiance(t_mrt *mrt, t_inter *ctr, t_light light)
 	linter = check_shaddow(mrt, ctr, normalize(to_light), vect_norm(to_light));
 	if ((linter.dist < 0 || linter.dist > vect_norm(to_light)))
 	{
-		if (ctr->option.mirror < 1)
+		if (ctr->option.mirror < 1.0)
 			diffuse = get_diffuse(ctr, to_light, light);
-		if (ctr->option.specular > 0)
+		if (ctr->option.specular[0] > 0)
 			specular = get_specular(ctr, mrt->cam.pos, to_light, light);
 	}
 	diffuse = mult_color(diffuse, 1 - ctr->option.mirror);

@@ -75,6 +75,7 @@
 # define C 99
 # define H 104
 # define Z 122
+# define B 98
 
 //error messages
 # define TOO_MANY_CAPITALS "Too many capital letters in the scene"

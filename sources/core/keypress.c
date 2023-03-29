@@ -12,51 +12,51 @@
 
 #include "minirt.h"
 
-void	ft_move_cam(t_mrt *mrt, int key)
+void ft_move_cam(t_mrt *mrt, int key)
 {
 	if (key == W)
-		mrt->cam.pos = vec_sum(mrt->cam.pos, \
-		scal_vec(0.5, mrt->cam.screen_base.n3));
+		mrt->cam.pos = vec_sum(mrt->cam.pos,
+							   scal_vec(0.5, mrt->cam.screen_base.n3));
 	if (key == S)
-		mrt->cam.pos = vec_sum(mrt->cam.pos, \
-		scal_vec(-0.5, mrt->cam.screen_base.n3));
+		mrt->cam.pos = vec_sum(mrt->cam.pos,
+							   scal_vec(-0.5, mrt->cam.screen_base.n3));
 	if (key == A)
-		mrt->cam.pos = vec_sum(mrt->cam.pos, \
-		scal_vec(-0.5, mrt->cam.screen_base.n1));
+		mrt->cam.pos = vec_sum(mrt->cam.pos,
+							   scal_vec(-0.5, mrt->cam.screen_base.n1));
 	if (key == D)
-		mrt->cam.pos = vec_sum(mrt->cam.pos, \
-		scal_vec(0.5, mrt->cam.screen_base.n1));
+		mrt->cam.pos = vec_sum(mrt->cam.pos,
+							   scal_vec(0.5, mrt->cam.screen_base.n1));
 	if (key == Q)
-		mrt->cam.pos = vec_sum(mrt->cam.pos, \
-		scal_vec(0.5, mrt->cam.screen_base.n2));
+		mrt->cam.pos = vec_sum(mrt->cam.pos,
+							   scal_vec(0.5, mrt->cam.screen_base.n2));
 	if (key == E)
-		mrt->cam.pos = vec_sum(mrt->cam.pos, \
-		scal_vec(-0.5, mrt->cam.screen_base.n2));
+		mrt->cam.pos = vec_sum(mrt->cam.pos,
+							   scal_vec(-0.5, mrt->cam.screen_base.n2));
 }
 
-void	ft_change_cam_dir(t_mrt *mrt, int key)
+void ft_change_cam_dir(t_mrt *mrt, int key)
 {
 	if (key == UP)
-		mrt->cam.dir = vec_sum(mrt->cam.dir, \
-		scal_vec(-0.2, mrt->cam.screen_base.n2));
+		mrt->cam.dir = vec_sum(mrt->cam.dir,
+							   scal_vec(-0.2, mrt->cam.screen_base.n2));
 	if (key == DOWN)
-		mrt->cam.dir = vec_sum(mrt->cam.dir, \
-		scal_vec(0.2, mrt->cam.screen_base.n2));
+		mrt->cam.dir = vec_sum(mrt->cam.dir,
+							   scal_vec(0.2, mrt->cam.screen_base.n2));
 	if (key == LEFT)
-		mrt->cam.dir = vec_sum(mrt->cam.dir, \
-		scal_vec(-0.2, mrt->cam.screen_base.n1));
+		mrt->cam.dir = vec_sum(mrt->cam.dir,
+							   scal_vec(-0.2, mrt->cam.screen_base.n1));
 	if (key == RIGHT)
-		mrt->cam.dir = vec_sum(mrt->cam.dir, \
-		scal_vec(0.2, mrt->cam.screen_base.n1));
+		mrt->cam.dir = vec_sum(mrt->cam.dir,
+							   scal_vec(0.2, mrt->cam.screen_base.n1));
 }
 
-void	define_cam_as_curr_obj(t_mrt *mrt)
+void define_cam_as_curr_obj(t_mrt *mrt)
 {
 	mrt->curr_obj.index = 0;
 	mrt->curr_obj.type = CAMERA;
 }
 
-void	chess_ctr(t_mrt *mrt, int key)
+void chess_ctr(t_mrt *mrt, int key)
 {
 	if (mrt->curr_obj.type == PLANE && mrt->curr_obj.chg_opt == CHECKERBOARD)
 	{
@@ -70,6 +70,7 @@ void	chess_ctr(t_mrt *mrt, int key)
 	{
 		if (key == PLUS)
 			mrt->sphere[mrt->curr_obj.index].option.chess_ctrl++;
+
 		if (key == MINUS \
 		&& mrt->sphere[mrt->curr_obj.index].option.chess_ctrl > 0)
 			mrt->sphere[mrt->curr_obj.index].option.chess_ctrl--;
@@ -84,7 +85,7 @@ void	chess_ctr(t_mrt *mrt, int key)
 	}
 }
 
-int	key_press(int key, t_mrt *mrt)
+int key_press(int key, t_mrt *mrt)
 {
 	if (key == Z)
 		return (save_scene(mrt), 0);
@@ -98,6 +99,7 @@ int	key_press(int key, t_mrt *mrt)
 		chess_ctr(mrt, key);
 		radius_ctr(mrt, key);
 		height_ctr(mrt, key);
+		bump_option(mrt, key);
 	}
 	if (key == ENTER)
 		ft_reinit(mrt);

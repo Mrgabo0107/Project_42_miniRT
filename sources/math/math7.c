@@ -36,6 +36,7 @@ double	integer_part(double n)
 	double	decimal_part;
 
 	decimal_part = modf(n, &integer_part);
+	(void)decimal_part;
 	return (integer_part);
 }
 
@@ -43,6 +44,7 @@ double	get_azimuth(t_vec orig)
 {
 	double	ret;
 
+	ret = 0.0;
 	if (orig.z > 0)
 		ret = atan(sqrt(int_pow(orig.x, 2) + int_pow(orig.y, 2)) / orig.z);
 	if (orig.z == 0)

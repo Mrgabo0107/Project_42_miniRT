@@ -56,6 +56,7 @@ t_base	second_rotation(t_vec dir, t_base ret)
 			- (ret.n1.y * sin_an), (ret.n1.y * ret.n1.z * (1 - cos_an))
 			+ (ret.n1.x * sin_an), cos_an + (int_pow(ret.n1.z, 2)
 				* (1 - cos_an)));
+	retu.bs_orig = fill_coord(0 ,0, 0);
 	retu.n1 = mtrx_by_vec(chng_base, ret.n1);
 	retu.n2 = mtrx_by_vec(chng_base, ret.n2);
 	retu.n3 = mtrx_by_vec(chng_base, ret.n3);

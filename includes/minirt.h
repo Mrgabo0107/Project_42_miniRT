@@ -196,6 +196,7 @@ void		render_scene(t_mrt *mrt);
 void		chg_options(t_mrt *mrt, int key);
 void		radius_ctr(t_mrt *mrt, int key);
 void		height_ctr(t_mrt *mrt, int key);
+void		bump_option(t_mrt *mrt, int key);
 
 //info display
 void		display_strings(t_mrt *mrt);
