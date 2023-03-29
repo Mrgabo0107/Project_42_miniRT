@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:01:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/29 17:37:33 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:39:29 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@
 # define Z 122
 # define B 98
 # define X 120
+# define L 108
 
 //error messages
 # define TOO_MANY_CAPITALS "Too many capital letters in the scene"

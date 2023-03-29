@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress_obj1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 03:43:09 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/16 04:29:42 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:36:33 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,34 @@ void	move_cyl(t_mrt *mrt, int key)
 				mrt->cam.screen_base.n2);
 }
 
+void	move_light(t_mrt *mrt, int key)
+{
+	if (key == OBJBEHIND)
+		mrt->light[mrt->curr_obj.index].pos
+			= vec_sum(mrt->light[mrt->curr_obj.index].pos,
+				mrt->cam.screen_base.n3);
+	if (key == OBJFRONT)
+		mrt->light[mrt->curr_obj.index].pos
+			= vec_rest(mrt->light[mrt->curr_obj.index].pos,
+				mrt->cam.screen_base.n3);
+	if (key == OBJLEFT)
+		mrt->light[mrt->curr_obj.index].pos
+			= vec_rest(mrt->light[mrt->curr_obj.index].pos,
+				mrt->cam.screen_base.n1);
+	if (key == OBJRIGHT)
+		mrt->light[mrt->curr_obj.index].pos
+			= vec_sum(mrt->light[mrt->curr_obj.index].pos,
+				mrt->cam.screen_base.n1);
+	if (key == OBJDOWN)
+		mrt->light[mrt->curr_obj.index].pos
+			= vec_sum(mrt->light[mrt->curr_obj.index].pos,
+				mrt->cam.screen_base.n2);
+	if (key == OBJUP)
+		mrt->light[mrt->curr_obj.index].pos
+			= vec_rest(mrt->light[mrt->curr_obj.index].pos,
+				mrt->cam.screen_base.n2);
+}
+
 void	move_obj(t_mrt *mrt, int key)
 {
 	if (mrt->curr_obj.type == PLANE)
@@ -104,4 +132,6 @@ void	move_obj(t_mrt *mrt, int key)
 		move_sphere(mrt, key);
 	if (mrt->curr_obj.type == CYLINDER)
 		move_cyl(mrt, key);
+	if (mrt->curr_obj.type == LIGHT)
+		move_light(mrt, key);
 }

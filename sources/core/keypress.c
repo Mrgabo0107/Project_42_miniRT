@@ -6,13 +6,13 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/29 17:37:19 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:45:05 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void ft_move_cam(t_mrt *mrt, int key)
+void	ft_move_cam(t_mrt *mrt, int key)
 {
 	if (key == W)
 		mrt->cam.pos = vec_sum(mrt->cam.pos,
@@ -34,7 +34,7 @@ void ft_move_cam(t_mrt *mrt, int key)
 							   scal_vec(-0.5, mrt->cam.screen_base.n2));
 }
 
-void ft_change_cam_dir(t_mrt *mrt, int key)
+void	ft_change_cam_dir(t_mrt *mrt, int key)
 {
 	if (key == UP)
 		mrt->cam.dir = vec_sum(mrt->cam.dir,
@@ -50,13 +50,13 @@ void ft_change_cam_dir(t_mrt *mrt, int key)
 							   scal_vec(0.2, mrt->cam.screen_base.n1));
 }
 
-void define_cam_as_curr_obj(t_mrt *mrt)
+void	define_curr_obj(t_mrt *mrt, int type, int index)
 {
-	mrt->curr_obj.index = 0;
-	mrt->curr_obj.type = CAMERA;
+	mrt->curr_obj.index = index;
+	mrt->curr_obj.type = type;
 }
 
-void chess_ctr(t_mrt *mrt, int key)
+void	chess_ctr(t_mrt *mrt, int key)
 {
 	if (mrt->curr_obj.type == PLANE && mrt->curr_obj.chg_opt == CHECKERBOARD)
 	{
@@ -85,6 +85,17 @@ void chess_ctr(t_mrt *mrt, int key)
 	}
 }
 
+void	light_ctr(t_mrt *mrt, int key)
+{
+	if (key == PLUS && mrt->light[mrt->curr_obj.index].ratio < 1.0)
+		mrt->light[mrt->curr_obj.index].ratio += 0.1;
+	if (key == MINUS && mrt->light[mrt->curr_obj.index].ratio > 0.0)
+		mrt->light[mrt->curr_obj.index].ratio -= 0.1;
+	if (key == L)
+		define_curr_obj(mrt, LIGHT, \
+		(mrt->curr_obj.index + 1) % mrt->obj_count[LIGHT]);
+}
+
 int	key_press(int key, t_mrt *mrt)
 {
 	if (key == Z)
@@ -106,7 +117,11 @@ int	key_press(int key, t_mrt *mrt)
 	if (key == ENTER)
 		ft_reinit(mrt);
 	if (key == DEL)
-		define_cam_as_curr_obj(mrt);
+		define_curr_obj(mrt, CAMERA, 0);
+	if (mrt->curr_obj.type == LIGHT)
+		light_ctr(mrt, key);
+	else if (key == L)
+		define_curr_obj(mrt, LIGHT, 0);
 	ft_move_cam(mrt, key);
 	ft_change_cam_dir(mrt, key);
 	normalize(mrt->cam.dir);
