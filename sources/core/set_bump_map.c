@@ -75,6 +75,7 @@ void	set_bump_sphere(t_mrt *mrt)
 		if (mrt->sphere[i].option.bump_map.path)
 		{
 			bump_map = &mrt->sphere[i].option.bump_map;
+
 			bump_map->img = mlx_xpm_file_to_image(mrt->mlx, \
 			bump_map->path, &bump_map->width, &bump_map->height);
 			bump_map->addr = mlx_get_data_addr(bump_map->img, \

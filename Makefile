@@ -13,6 +13,7 @@
 ### Compilation ###
 
 CC      = cc
+
 # FLAGS  = #-Wall -Werror -Wextra -g3 #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
 FLAGS  = -Wall -Werror -Wextra -Ofast -flto
 # FLAGS  = -Ofast -flto

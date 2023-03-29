@@ -62,21 +62,25 @@ void chess_ctr(t_mrt *mrt, int key)
 	{
 		if (key == PLUS)
 			mrt->plane[mrt->curr_obj.index].option.chess_ctrl++;
-		if (key == MINUS && mrt->plane[mrt->curr_obj.index].option.chess_ctrl > 0)
+		if (key == MINUS \
+		&& mrt->plane[mrt->curr_obj.index].option.chess_ctrl > 0)
 			mrt->plane[mrt->curr_obj.index].option.chess_ctrl--;
 	}
 	if (mrt->curr_obj.type == SPHERE && mrt->curr_obj.chg_opt == CHECKERBOARD)
 	{
 		if (key == PLUS)
 			mrt->sphere[mrt->curr_obj.index].option.chess_ctrl++;
-		if (key == MINUS && mrt->sphere[mrt->curr_obj.index].option.chess_ctrl > 0)
+
+		if (key == MINUS \
+		&& mrt->sphere[mrt->curr_obj.index].option.chess_ctrl > 0)
 			mrt->sphere[mrt->curr_obj.index].option.chess_ctrl--;
 	}
 	if (mrt->curr_obj.type == CYLINDER && mrt->curr_obj.chg_opt == CHECKERBOARD)
 	{
 		if (key == PLUS)
 			mrt->cylinder[mrt->curr_obj.index].option.chess_ctrl++;
-		if (key == MINUS && mrt->cylinder[mrt->curr_obj.index].option.chess_ctrl > 0)
+		if (key == MINUS \
+		&& mrt->cylinder[mrt->curr_obj.index].option.chess_ctrl > 0)
 			mrt->cylinder[mrt->curr_obj.index].option.chess_ctrl--;
 	}
 }

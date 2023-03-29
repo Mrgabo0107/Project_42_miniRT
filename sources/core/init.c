@@ -49,8 +49,8 @@ int valid_rt_file(char *file, int fd)
 
 void ft_set_mrt(t_mrt *mrt, char *file)
 {
-	t_curr_ob c_obj;
-	int i;
+	t_curr_ob	c_obj;
+	int			i;
 
 	i = 0;
 	mrt->mlx = NULL;
@@ -75,7 +75,7 @@ void ft_set_mrt(t_mrt *mrt, char *file)
 
 void ft_reinit(t_mrt *mrt)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	ft_free(mrt->sphere);

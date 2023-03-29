@@ -14,11 +14,8 @@
 
 void	ft_write_to_file(char *line, int fd)
 {
-	int	i;
-
-	i = write(fd, line, ft_strlen(line));
-	i = write(fd, "\n", 1);
-	(void)i;
+	write(fd, line, ft_strlen(line));
+	write(fd, "\n", 1);
 }
 
 char	*ft_write_pos(t_vec pos)
