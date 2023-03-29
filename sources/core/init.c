@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/29 14:28:04 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:36:24 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	ft_init_mlx(t_mrt *mrt)
 	mrt->mlx = mlx_init();
 	if (!mrt->mlx)
 		return (1);
-	mrt->win = mlx_new_window(mrt->mlx, WX, WY, "MiniRT");
+	mrt->win = mlx_new_window(mrt->mlx, mrt->ix, mrt->iy, "MiniRT");
 	if (!mrt->win)
 		return (mlx_destroy_display(mrt->mlx), free(mrt->mlx), 1);
-	mrt->img = mlx_new_image(mrt->mlx, IX, IY);
+	mrt->img = mlx_new_image(mrt->mlx, mrt->ix, mrt->iy);
 	if (!mrt->img)
 		return (mlx_destroy_window(mrt->mlx, mrt->win), \
 		mlx_destroy_display(mrt->mlx), free(mrt->mlx), 1);
@@ -47,7 +47,7 @@ int	valid_rt_file(char *file, int fd)
 	return (1);
 }
 
-void	ft_set_mrt(t_mrt *mrt, char *file)
+void	ft_set_mrt(t_mrt *mrt, char *file, int ix, int iy)
 {
 	t_curr_ob	c_obj;
 	int			i;
@@ -69,6 +69,9 @@ void	ft_set_mrt(t_mrt *mrt, char *file)
 	mrt->bounce = 0;
 	mrt->num_objs = 8;
 	mrt->obj_count = ft_malloc(mrt->num_objs * sizeof(int));
+	mrt->save = 0;
+	mrt->ix = ix;
+	mrt->iy = iy;
 	while (i < mrt->num_objs)
 		mrt->obj_count[i++] = 0;
 }
@@ -92,9 +95,12 @@ void	ft_reinit(t_mrt *mrt)
 	set_bump_maps(mrt);
 }
 
-int	init_minirt(t_mrt *mrt, char *file)
+int	init_minirt(t_mrt *mrt, char **av, int ac)
 {
-	ft_set_mrt(mrt, file);
+	if (ac == 5)
+		ft_set_mrt(mrt, av[1], ft_atoi(av[3]), ft_atoi(av[4]));
+	else
+		ft_set_mrt(mrt, av[1], IX, IY);
 	ft_parse(mrt);
 	if (ft_init_mlx(mrt))
 		return (printf("Problem initializing minilibx\n"), 1);

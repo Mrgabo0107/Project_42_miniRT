@@ -12,14 +12,14 @@
 
 #include "minirt.h"
 
-void	set_all_cam_values(t_cam *cam)
+void	set_all_cam_values(t_cam *cam, int ix)
 {
 	double	aux_norm;
 	double	sqr_sum1;
 	double	sqr_sum2;
 
 	cam->s_half_screen = tan(rad_and_deg(cam->fov / 2, 1));
-	cam->step = cam->s_half_screen / WX;
+	cam->step = cam->s_half_screen / ix;
 	cam->screen_base.bs_orig = vec_sum(cam->pos, cam->dir);
 	if (v_abs(cam->dir.x) < 0.00001 && v_abs(cam->dir.y) < 0.0001)
 	{
@@ -40,14 +40,14 @@ void	set_all_cam_values(t_cam *cam)
 	cam->screen_base.n3 = fill_coord(cam->dir.x, cam->dir.y, cam->dir.z);
 }
 
-t_vec	screen_pxl_by_indx(t_cam *cam, int i, int j)
+t_vec	screen_pxl_by_indx(t_mrt *mrt, t_cam *cam, int i, int j)
 {
 	t_vec	res;
 	double	scal_i;
 	double	scal_j;
 
 	scal_i = -cam->s_half_screen + (((2 * i) - 1) * cam->step);
-	scal_j = ((-(double)WY / (double)WX) * cam->s_half_screen)
+	scal_j = ((-(double)mrt->iy / (double)mrt->ix) * cam->s_half_screen)
 		+ (((2 * j) - 1) * cam->step);
 	res = vec_sum(cam->screen_base.bs_orig,
 			vec_sum(scal_vec(scal_i, cam->screen_base.n1),

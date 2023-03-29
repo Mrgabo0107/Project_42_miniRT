@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 19:53:14 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/29 14:59:52 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:02:03 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	mouse_press(int button, int x, int y, t_mrt *mrt)
 
 	if (button == 1)
 	{
-		curr_dir = normalize(vec_rest(screen_pxl_by_indx(&mrt->cam, \
+		curr_dir = normalize(vec_rest(screen_pxl_by_indx(mrt, &mrt->cam, \
 		x, y), mrt->cam.pos));
 		inter = check_intersections(mrt, mrt->cam.pos, curr_dir);
 		if (inter.dist != -1)

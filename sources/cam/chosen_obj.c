@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 22:50:27 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/26 18:23:23 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:01:51 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ t_rgb	chosen_obj(t_mrt *mrt, int x, int y, t_rgb color)
 	t_vec	curr_dir;
 
 	ret = color;
-	curr_dir = normalize(vec_rest(screen_pxl_by_indx(&mrt->cam, x, y),
+	curr_dir = normalize(vec_rest(screen_pxl_by_indx(mrt, &mrt->cam, x, y),
 				mrt->cam.pos));
 	if (mrt->curr_obj.type == PLANE)
 		ret = check_plane_grid(mrt, curr_dir, color);

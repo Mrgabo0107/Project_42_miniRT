@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/28 20:57:31 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:42:59 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,6 +244,9 @@ typedef struct s_mrt
 	int				*obj_count;
 	int				num_objs;
 	int				bounce;
+	int				save;
+	int				ix;
+	int				iy;
 	t_light			amblight;
 	t_cam			cam;
 	t_light			*light;
