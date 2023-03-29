@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/28 23:54:58 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:07:32 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,18 @@ void	pixel_calcul(t_mrt *mrt)
 {
 	int		i;
 	int		j;
-
+	int		fd;
+	
+	
 	i = 0;
 	while (i < IX)
 	{
 		j = 0;
 		while (j < IY - 1)
 		{
+			if (mrt->save)
+				ft_save_image(mrt, i, j, \
+				get_pixel_color(mrt, i + 1, j + 1));
 			my_mlx_pixel_put(mrt, i, j, \
 			get_pixel_color(mrt, i + 1, j + 1));
 			j++;
@@ -80,6 +85,8 @@ void	my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color)
 {
 	char	*dst;
 
+	if (x < BORDER)
+		color = diminish_color(color, 0.3);
 	dst = mrt->addr + (y * mrt->sizel + x * (mrt->bpp / 8));
 	*(unsigned int *)dst = color;
 }

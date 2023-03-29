@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/28 21:05:09 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:05:41 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ t_rgb		add_color(t_rgb color1, t_rgb color2);
 t_inter		check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len);
 t_rgb		get_radiance(t_mrt *mrt, t_inter *ctr, t_light light);
 t_rgb		get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color);
+int			diminish_color(int color, double percent);
 
 //hooks_management
 int			key_press(int key, t_mrt *mrt);

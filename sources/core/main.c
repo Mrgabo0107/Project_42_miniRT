@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/03/28 23:55:06 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:25:47 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int	ft_controls(t_mrt *mrt)
 
 void	render_scene(t_mrt *mrt)
 {
-	display_strings(mrt);
 	set_all_cam_values(&mrt->cam);
 	pixel_calcul(mrt);
-	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, \
-	((WX - IX) / 2) + BORDER, (WY - IY) / 2);
+	mlx_clear_window(mrt->mlx, mrt->win);
+	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
+	display_strings(mrt);
 }
 
 int	main(int ac, char **av)
