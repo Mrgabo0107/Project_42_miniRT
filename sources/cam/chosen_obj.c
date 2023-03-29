@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 22:50:27 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/25 23:19:19 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:21:07 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ t_rgb	check_plane_grid(t_mrt *mrt, t_vec	curr_dir, t_rgb color)
 				mrt->plane[mrt->curr_obj.index].base.n3);
 		inter = mtrx_by_vec(chg_b,
 				vec_sum(new_cam, scal_vec(c, curr_dir)));
-		if (v_abs(decimal_part(inter.x)) * c / 2 < 0.007 * c
-			|| v_abs(decimal_part(inter.y)) * c / 2 < 0.007 * c)
+		if (v_abs(decimal_part(inter.x)) * c / 2 < 0.002 * c * c
+			|| v_abs(decimal_part(inter.y)) * c / 2 < 0.002 * c * c)
 			ret = get_opposite_color(ret);
 	}
 	return (ret);

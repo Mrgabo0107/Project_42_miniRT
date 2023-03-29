@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:07:15 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/07 22:59:36 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:31:03 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 t_vec	get_normal_plane(t_mrt *mrt, t_inter inter)
 {
+	t_vec	ret;
+
+	ret = mrt->plane[inter.index].dir;
 	if (dot_prod(vec_rest(mrt->cam.pos, mrt->plane[inter.index].pos),
 			mrt->plane[inter.index].dir) < 0.0)
-		return (scal_vec(-1, mrt->plane[inter.index].dir));
-	return (mrt->plane[inter.index].dir);
+		ret = scal_vec(-1, ret);
+	return (ret);
 }
 
 double	distance_to_plane(t_vec start_point, t_vec plane_pos,
