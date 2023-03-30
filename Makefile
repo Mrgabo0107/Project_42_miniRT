@@ -6,7 +6,7 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/29 23:59:03 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/03/30 02:50:54 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,10 +84,12 @@ COLOR		=	color.c \
 PLANE_DIR	=	plane/
 PLANE		=	plane.c \
 				plane_color.c \
+				plane_bump.c \
 				
 SPHERE_DIR	=	sphere/
 SPHERE		=	sphere.c \
 				sphere_color.c \
+				sphere_bump.c \
 
 CYLIN_DIR	=	cylinder/
 CYLIN		=	cylinder.c \

@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/29 23:14:55 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/30 02:52:10 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,12 +139,14 @@ void		check_planes(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 double		distance_to_plane(t_vec start_point,
 				t_vec plane_pos, t_vec plane_dir, t_vec ray);
 t_rgb		get_plane_color(t_mrt *mrt, int index, t_vec intrsc);
+t_vec		plane_bumped(t_mrt *mrt, t_inter inter, t_vec without);
 
 //sphere
 t_vec		get_normal_sphere(t_mrt *mrt, t_inter inter);
 void		check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 t_discr		get_sph_dscr(t_vec ncam, t_vec dir, double square_rad);
 t_rgb		get_sphere_color(t_mrt *mrt, int index, t_vec intrsc);
+t_vec		sphere_bumped(t_mrt *mrt, t_inter inter, t_vec without);
 
 //cylinder
 t_vec		get_normal_cylinder(t_mrt *mrt, t_inter inter);
