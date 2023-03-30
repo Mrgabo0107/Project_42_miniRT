@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/29 17:42:59 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/30 21:39:33 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef enum e_obj
 	SPHERE,
 	CYLINDER,
 	CONE,
+	TRIANGLE,
 	OPTION
 }			t_obj;
 
@@ -198,6 +199,17 @@ typedef struct s_cone
 	t_option	option;
 }				t_cone;
 
+typedef struct s_triangle
+{
+	t_vec		p1;
+	t_vec		p2;
+	t_vec		p3;
+	t_vec		dir;
+	t_vec		norm;
+	t_rgb		color;
+	t_base		base;
+	t_option	option;
+}				t_triangle;
 typedef struct s_light
 {
 	t_vec	pos;
@@ -254,6 +266,7 @@ typedef struct s_mrt
 	t_plane			*plane;
 	t_cylinder		*cylinder;
 	t_cone			*cone;
+	t_triangle		*triangle;
 	t_curr_ob		curr_obj;
 }					t_mrt;
 

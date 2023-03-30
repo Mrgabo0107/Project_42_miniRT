@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 21:04:14 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/29 15:40:33 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:06:36 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	set_bump_sphere(t_mrt *mrt)
 		if (mrt->sphere[i].option.bump_map.path)
 		{
 			bump_map = &mrt->sphere[i].option.bump_map;
-
 			bump_map->img = mlx_xpm_file_to_image(mrt->mlx, \
 			bump_map->path, &bump_map->width, &bump_map->height);
 			bump_map->addr = mlx_get_data_addr(bump_map->img, \

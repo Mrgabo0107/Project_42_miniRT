@@ -22,6 +22,7 @@ t_inter	check_intersections(t_mrt *mrt, t_vec point, t_vec dir)
 	check_planes(mrt, &ret, point, dir);
 	check_spheres(mrt, &ret, point, dir);
 	check_cylinders(mrt, &ret, point, dir);
+	check_triangles(mrt, &ret, point, dir);
 	return (ret);
 }
 
@@ -36,6 +37,8 @@ t_vec	get_normal_at_point(t_mrt *mrt, t_inter inter)
 		ret = get_normal_sphere(mrt, inter);
 	else if (inter.type == CYLINDER)
 		ret = get_normal_cylinder(mrt, inter);
+	else if (inter.type == TRIANGLE)
+		ret = get_normal_triangle(mrt, inter);
 	return (ret);
 }
 

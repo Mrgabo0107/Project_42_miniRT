@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:55:19 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/24 17:52:24 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/31 00:14:16 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_rgb	show_light_sources(t_mrt *mrt, t_rgb color, t_vec dir)
 	t_vec	cam_to_light;
 	t_inter	linter;
 	t_inter	ctr;
+	t_discr	dscr;
 
 	i = -1;
 	ctr.inter_coor = mrt->cam.pos;
@@ -75,9 +76,9 @@ t_rgb	show_light_sources(t_mrt *mrt, t_rgb color, t_vec dir)
 		vect_norm(cam_to_light));
 		if ((linter.dist < 0 || linter.dist > vect_norm(cam_to_light)))
 		{
-			if (((t_discr)(get_sph_dscr(vec_rest(mrt->cam.pos, \
-			mrt->light[i].pos), \
-			dir, int_pow(0.2, 2)))).dscr >= 0.0)
+			dscr = get_sph_dscr(vec_rest(mrt->cam.pos, \
+			mrt->light[i].pos), dir, int_pow(0.2, 2));
+			if (dscr.dscr >= 0 && solve_quad(&dscr) > 0)
 				color = mrt->light[i].color;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/03/29 23:48:10 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/30 23:50:56 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	write_to_ppm(t_mrt *mrt)
 {
 	int		i;
+	int		j;
 	int		fd;
 	char	*line;
 
@@ -25,13 +26,21 @@ void	write_to_ppm(t_mrt *mrt)
 	line = ft_strjoin(line, "\n255\n");
 	write(fd, line, ft_strlen(line));
 	ft_free(line);
-	i = 0;
+	// i = mrt->ix * mrt->iy * (mrt->bpp / 8) - 2;
+	// while (i >= 0)
+	// {
+	// 	write(fd, mrt->addr + i, 1);
+	// 	if (i % (mrt->bpp / 8) == 0)
+	// 		i--;
+	// 	i--;
+	// }
+	i = 3;
 	while (i < mrt->ix * mrt->iy * (mrt->bpp / 8))
 	{
-		write(fd, mrt->addr + i, 1);
-		i++;
-		if ((i + 1) % 4 == 0)
-			i++;
+		j = 4;
+		while (--j > 0)
+			write(fd, mrt->addr + i + j, 1);
+		i += (mrt->bpp / 8);
 	}
 	close(fd);
 }
@@ -58,7 +67,8 @@ void	render_scene(t_mrt *mrt)
 	pixel_calcul(mrt);
 	if (mrt->save)
 		write_to_ppm(mrt);
-	mlx_clear_window(mrt->mlx, mrt->win);
+	if (!mrt->save)
+		mlx_clear_window(mrt->mlx, mrt->win);
 	if (!mrt->save)
 		mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
 	if (!mrt->save)
@@ -69,19 +79,19 @@ int	main(int ac, char **av)
 {
 	t_mrt	mrt;
 
+	mrt.save = 0;
 	if (ac != 2 && ac != 5)
 		return (printf("Usage: ./miniRT <scene.rt>\n"), 1);
-	if (init_minirt(&mrt, av, ac))
-		return (1);
 	if (ac == 5)
 	{
+		mrt.save = 1;
 		if (ft_strcmp_1(av[2], "--save"))
 			return (printf("Usage: ./miniRT <scene.rt> --save\n"), 1);
-		mrt.ix = ft_atoi(av[3]);
-		mrt.iy = ft_atoi(av[4]);
-		mrt.save = 1;
-		return (render_scene(&mrt), 0);
 	}
+	if (init_minirt(&mrt, av, ac))
+		return (1);
+	if (mrt.save)
+		return (render_scene(&mrt), 0);
 	render_scene(&mrt);
 	ft_controls(&mrt);
 	mlx_loop(mrt.mlx);

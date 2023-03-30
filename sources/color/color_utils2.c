@@ -42,7 +42,6 @@ t_rgb	add_color(t_rgb color1, t_rgb color2)
 	return (ret);
 }
 
-
 int	diminish_color(int color, double percent)
 {
 	t_rgb	rgb;

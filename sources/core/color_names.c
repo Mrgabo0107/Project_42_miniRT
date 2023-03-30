@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 18:13:47 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/26 20:30:53 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/30 18:04:17 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ char	*ft_get_color_str(t_rgb color)
 		ft_free(line);
 		line = get_next_line(fd);
 	}
-	close(fd);
-	return (str);
+	return (close(fd), str);
 }
 
 t_rgb	ft_get_obj_color(t_mrt *mrt, int type, int index)
@@ -85,5 +84,7 @@ t_rgb	ft_get_obj_color(t_mrt *mrt, int type, int index)
 		color = mrt->plane[index].color;
 	if (type == CYLINDER)
 		color = mrt->cylinder[index].color;
+	if (type == LIGHT)
+		color = mrt->light[index].color;
 	return (color);
 }

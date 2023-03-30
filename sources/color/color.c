@@ -28,6 +28,9 @@ t_inter	check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len)
 	if (ret.dist != -1 && ret.dist < len)
 		return (ret);
 	check_cylinders(mrt, &ret, point, dir);
+	if (ret.dist != -1 && ret.dist < len)
+		return (ret);
+	check_triangles(mrt, &ret, point, dir);
 	return (ret);
 }
 
@@ -60,6 +63,8 @@ t_rgb	get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color)
 	t_rgb	reflection;
 
 	i = -1;
+	if (ctr->dist == -1)
+		return (ft_make_rgb(0, 0, 0));
 	reflection = ft_make_rgb(0, 0, 0);
 	while (++i < mrt->obj_count[LIGHT])
 		color = add_color(color, \

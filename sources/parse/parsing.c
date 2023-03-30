@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/28 18:07:26 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/30 21:59:06 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	*ft_count_objs(t_table *table, int *count)
 			count[CYLINDER]++;
 		else if (eval_obj(table->line[0]) == CONE)
 			count[CONE]++;
+		else if (eval_obj(table->line[0]) == TRIANGLE)
+			count[TRIANGLE]++;
 		else if (eval_obj(table->line[0]) == -1)
 			ft_error(INVALID_OBJECT, table->line[0], OBJECT_INSTRUCTIONS);
 		table = table->next;
@@ -70,6 +72,7 @@ void	ft_fill_objs(t_mrt *mrt, t_table *table, int *count)
 	mrt->plane = ft_malloc(sizeof(t_plane) * count[PLANE]);
 	mrt->cylinder = ft_malloc(sizeof(t_cylinder) * count[CYLINDER]);
 	mrt->cone = ft_malloc(sizeof(t_cone) * count[CONE]);
+	mrt->triangle = ft_malloc(sizeof(t_triangle) * count[TRIANGLE]);
 	while (table)
 	{
 		type = eval_obj(table->line[0]);
@@ -86,6 +89,9 @@ void	ft_fill_objs(t_mrt *mrt, t_table *table, int *count)
 			ft_fill_cylinder(table, table->line);
 		else if (eval_obj(table->line[0]) == CONE)
 			mrt->cone[--count[CONE]] = ft_fill_cone(table, table->line);
+		else if (eval_obj(table->line[0]) == TRIANGLE)
+			mrt->triangle[--count[TRIANGLE]] \
+			= ft_fill_triangle(table, table->line);
 		table = table->next;
 	}
 }

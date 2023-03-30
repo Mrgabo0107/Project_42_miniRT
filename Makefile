@@ -52,6 +52,10 @@ PARSE		=	parsing.c \
 				cell_filling.c \
 				cell_filling_utils.c \
 				save_scene.c \
+				save_utils.c \
+				write_objects.c \
+				eval_objects.c \
+				fill_capitals.c \
 
 UTIL_DIR	=	utils/
 UTILS		=	tools.c \
@@ -84,6 +88,7 @@ COLOR		=	color.c \
 PLANE_DIR	=	plane/
 PLANE		=	plane.c \
 				plane_color.c \
+        triangle.c \
 				plane_bump.c \
 				
 SPHERE_DIR	=	sphere/
