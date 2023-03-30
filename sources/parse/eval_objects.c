@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 22:59:39 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/29 22:59:46 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/30 21:54:22 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int	eval_obj(char *line)
 		return (CYLINDER);
 	if (ft_strcmp_1(line, "co") == 0)
 		return (CONE);
+	if (ft_strcmp_1(line, "tr") == 0)
+		return (TRIANGLE);
 	if (ft_strcmp_1(line, "L") == 0)
 		return (LIGHT);
 	if (ft_strcmp_1(line, "A") == 0)

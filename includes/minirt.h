@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/29 23:00:26 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/30 22:44:10 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ t_sphere	ft_fill_sphere(t_table *table, char **line);
 t_plane		ft_fill_plane(t_table *table, char **line);
 t_cylinder	ft_fill_cylinder(t_table *table, char **line);
 t_cone		ft_fill_cone(t_table *table, char **line);
+t_triangle	ft_fill_triangle(t_table *table, char **line);
 
 //utils
 char		*get_next_line(int fd);
@@ -141,6 +142,11 @@ void		check_planes(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 double		distance_to_plane(t_vec start_point,
 				t_vec plane_pos, t_vec plane_dir, t_vec ray);
 t_rgb		get_plane_color(t_mrt *mrt, int index, t_vec intrsc);
+
+//triangle
+t_vec		get_normal_triangle(t_mrt *mrt, t_inter inter);
+double		distance_to_triangle(t_vec start_point, t_triangle tri, t_vec ray);
+void		check_triangles(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 
 //sphere
 t_vec		get_normal_sphere(t_mrt *mrt, t_inter inter);
@@ -212,6 +218,7 @@ void		write_to_ppm(t_mrt *mrt);
 void		ft_write_planes(t_plane *plane, int count, int fd);
 void		ft_write_spheres(t_sphere *sphere, int count, int fd);
 void		ft_write_cylinders(t_cylinder *cylinder, int count, int fd);
+void		ft_write_triangles(t_triangle *triangle, int count, int fd);
 void		ft_write_to_file(char *line, int fd);
 char		*ft_write_pos(t_vec pos);
 t_vec		ft_unnormalize(t_vec vec);

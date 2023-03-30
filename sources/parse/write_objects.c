@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 22:54:42 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/29 22:58:12 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/30 22:43:32 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,29 @@ void	ft_write_cylinders(t_cylinder *cylinder, int count, int fd)
 		line = ft_strjoin(line, ft_write_rgb(cylinder[i].color));
 		ft_write_to_file(line, fd);
 		ft_write_options(cylinder[i].option, fd);
+		ft_free(line);
+		ft_write_to_file("", fd);
+		i++;
+	}
+}
+
+void	ft_write_triangles(t_triangle *triangle, int count, int fd)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	while (i < count)
+	{
+		line = ft_strjoin("tr\t\t", ft_write_pos(triangle[i].p1));
+		line = ft_strjoin(line, "\t\t");
+		line = ft_strjoin(line, ft_write_pos(triangle[i].p2));
+		line = ft_strjoin(line, "\t\t");
+		line = ft_strjoin(line, ft_write_pos(triangle[i].p3));
+		line = ft_strjoin(line, "\t\t");
+		line = ft_strjoin(line, ft_write_rgb(triangle[i].color));
+		ft_write_to_file(line, fd);
+		ft_write_options(triangle[i].option, fd);
 		ft_free(line);
 		ft_write_to_file("", fd);
 		i++;

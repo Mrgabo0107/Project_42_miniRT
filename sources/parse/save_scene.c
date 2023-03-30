@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 21:18:20 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/29 22:58:05 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/30 22:43:52 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ void	save_scene(t_mrt *mrt)
 	ft_write_planes(mrt->plane, mrt->obj_count[PLANE], fd);
 	ft_write_spheres(mrt->sphere, mrt->obj_count[SPHERE], fd);
 	ft_write_cylinders(mrt->cylinder, mrt->obj_count[CYLINDER], fd);
+	ft_write_triangles(mrt->triangle, mrt->obj_count[TRIANGLE], fd);
 	close(fd);
 }

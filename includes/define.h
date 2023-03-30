@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:01:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/29 23:39:29 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/30 21:52:42 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,10 @@ color: (r,g,b)] \
 \n(co)ne: [name: 'co', pos: (x,y,z), dir: (a,b,c), diameter, height, \
 color: (r,g,b)] \
 \ne.g. co 0,0,0 0,1,0 3 8 255,0,0"
+# define TRIANGLE_INSTRUCTIONS "\
+\n(tr)iangle: [name: 'tr', pos1: (x,y,z), pos2: (a,b,c), pos3: (d,e,f), \
+color: (r,g,b)] \
+\ne.g. tr 0,0,0 0,1,0 0,0,1 255,0,0"
 # define LIGHT_INSTRUCTIONS "\
 \n(L)ight: [name: 'L', pos: (x,y,z), brightness: [0.0,1.0], color: (r,g,b)] \
 \ne.g. l 0,0,0 0.5 255,0,0"

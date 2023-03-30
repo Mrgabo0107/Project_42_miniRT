@@ -6,7 +6,7 @@
 #    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/29 23:02:08 by yridgway         ###   ########.fr        #
+#    Updated: 2023/03/30 22:09:39 by yridgway         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 CC      = cc
 
-# FLAGS  = #-Wall -Werror -Wextra -g3 #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
+# FLAGS  = -Wall -Werror -Wextra -g3 #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
 # FLAGS  = -Wall -Werror -Wextra -Ofast -flto
 FLAGS  = -Ofast -flto
 ### Executable ###
@@ -87,6 +87,7 @@ COLOR		=	color.c \
 PLANE_DIR	=	plane/
 PLANE		=	plane.c \
 				plane_color.c \
+				triangle.c \
 				
 SPHERE_DIR	=	sphere/
 SPHERE		=	sphere.c \

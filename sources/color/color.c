@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/29 21:41:55 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/30 22:08:19 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ t_inter	check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len)
 	if (ret.dist != -1 && ret.dist < len)
 		return (ret);
 	check_cylinders(mrt, &ret, point, dir);
+	if (ret.dist != -1 && ret.dist < len)
+		return (ret);
+	check_triangles(mrt, &ret, point, dir);
 	return (ret);
 }
 

@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/03/29 23:39:14 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/30 21:55:40 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	write_to_ppm(t_mrt *mrt)
 {
-	size_t	i;
-	int		j;
+	int		i;
 	int		fd;
 	char	*line;
 

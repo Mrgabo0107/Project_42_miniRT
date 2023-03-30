@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/29 22:27:55 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/30 21:56:18 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,13 @@ void	ft_set_mrt(t_mrt *mrt, char *file, int ix, int iy)
 	mrt->cylinder = NULL;
 	mrt->cone = NULL;
 	mrt->light = NULL;
+	mrt->triangle = NULL;
 	mrt->scene_path = file;
 	c_obj.index = 0;
 	c_obj.type = CAMERA;
 	mrt->curr_obj = c_obj;
 	mrt->bounce = 0;
-	mrt->num_objs = 8;
+	mrt->num_objs = 9;
 	mrt->obj_count = ft_malloc(mrt->num_objs * sizeof(int));
 	mrt->ix = ix;
 	mrt->iy = iy;
@@ -99,6 +100,7 @@ void	ft_reinit(t_mrt *mrt)
 
 int	init_minirt(t_mrt *mrt, char **av, int ac)
 {
+	(void)ac;
 	if (mrt->save)
 		ft_set_mrt(mrt, av[1], ft_atoi(av[3]), ft_atoi(av[4]));
 	else
