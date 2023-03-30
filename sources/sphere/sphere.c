@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:31:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/23 04:05:29 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/30 03:09:37 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_vec	get_normal_sphere(t_mrt *mrt, t_inter inter)
 				mrt->sphere[inter.index].center));
 	if (inter.is_in_obj)
 		ret = scal_vec(-1, ret);
+	if (mrt->sphere[inter.index].option.b_mp_ctrl == 1)
+		ret = sphere_bumped(mrt, inter, ret);
 	return (ret);
 }
 

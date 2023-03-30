@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_options.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 22:12:17 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/28 17:51:32 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/30 02:44:13 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_option	ft_fill_options(t_table *table, t_rgb color)
 
 	option = \
 	(t_option){0, get_opposite_color(color), 0, {0.3, 16}, 0, \
-	(t_bump){NULL, 0, 0, NULL, NULL, 0, 0, 0, NULL, 0.01}};
+	(t_bump){NULL, 0, 0, NULL, NULL, 0, 0, 0, NULL, 0.008}};
 	while (table && table->next && eval_obj(table->next->line[0]) == OPTION)
 	{
 		if (eval_option(table->next->line[0]) == CHECK)
