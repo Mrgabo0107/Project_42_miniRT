@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/03/30 21:55:40 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/30 23:50:56 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	write_to_ppm(t_mrt *mrt)
 {
 	int		i;
+	int		j;
 	int		fd;
 	char	*line;
 
@@ -25,13 +26,21 @@ void	write_to_ppm(t_mrt *mrt)
 	line = ft_strjoin(line, "\n255\n");
 	write(fd, line, ft_strlen(line));
 	ft_free(line);
-	i = 0;
+	// i = mrt->ix * mrt->iy * (mrt->bpp / 8) - 2;
+	// while (i >= 0)
+	// {
+	// 	write(fd, mrt->addr + i, 1);
+	// 	if (i % (mrt->bpp / 8) == 0)
+	// 		i--;
+	// 	i--;
+	// }
+	i = 3;
 	while (i < mrt->ix * mrt->iy * (mrt->bpp / 8))
 	{
-		write(fd, mrt->addr + i, 1);
-		if (i % (mrt->bpp / 8) == 0)
-			i++;
-		i++;
+		j = 4;
+		while (--j > 0)
+			write(fd, mrt->addr + i + j, 1);
+		i += (mrt->bpp / 8);
 	}
 	close(fd);
 }
