@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
+#    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/03/30 22:09:39 by yridgway         ###   ########.fr        #
+#    Updated: 2023/03/30 02:50:54 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@
 
 CC      = cc
 
-# FLAGS  = -Wall -Werror -Wextra -g3 #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
-# FLAGS  = -Wall -Werror -Wextra -Ofast -flto
-FLAGS  = -Ofast -flto
+# FLAGS  = #-Wall -Werror -Wextra -g3 #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
+FLAGS  = -Wall -Werror -Wextra -Ofast -flto
+# FLAGS  = -Ofast -flto
 ### Executable ###
 #-Ofast -flto 
 NAME   = minirt
@@ -42,6 +42,7 @@ CORE		=	main.c \
 				info_display.c \
 				color_names.c \
 				set_bump_map.c \
+				bump_map_utils.c \
 
 PARSE_DIR	=	parse/
 PARSE		=	parsing.c \
@@ -87,11 +88,13 @@ COLOR		=	color.c \
 PLANE_DIR	=	plane/
 PLANE		=	plane.c \
 				plane_color.c \
-				triangle.c \
+        triangle.c \
+				plane_bump.c \
 				
 SPHERE_DIR	=	sphere/
 SPHERE		=	sphere.c \
 				sphere_color.c \
+				sphere_bump.c \
 
 CYLIN_DIR	=	cylinder/
 CYLIN		=	cylinder.c \

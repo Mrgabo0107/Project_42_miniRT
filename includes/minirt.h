@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/30 22:44:10 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/30 02:52:10 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ void		check_planes(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 double		distance_to_plane(t_vec start_point,
 				t_vec plane_pos, t_vec plane_dir, t_vec ray);
 t_rgb		get_plane_color(t_mrt *mrt, int index, t_vec intrsc);
+t_vec		plane_bumped(t_mrt *mrt, t_inter inter, t_vec without);
 
 //triangle
 t_vec		get_normal_triangle(t_mrt *mrt, t_inter inter);
@@ -153,6 +154,7 @@ t_vec		get_normal_sphere(t_mrt *mrt, t_inter inter);
 void		check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 t_discr		get_sph_dscr(t_vec ncam, t_vec dir, double square_rad);
 t_rgb		get_sphere_color(t_mrt *mrt, int index, t_vec intrsc);
+t_vec		sphere_bumped(t_mrt *mrt, t_inter inter, t_vec without);
 
 //cylinder
 t_vec		get_normal_cylinder(t_mrt *mrt, t_inter inter);
@@ -195,6 +197,7 @@ t_inter		check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len);
 t_rgb		get_radiance(t_mrt *mrt, t_inter *ctr, t_light light);
 t_rgb		get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color);
 int			diminish_color(int color, double percent);
+t_rgb		convert_to_rgb(int color);
 
 //hooks_management
 int			key_press(int key, t_mrt *mrt);
@@ -227,5 +230,6 @@ char		*ft_write_rgb(t_rgb color);
 
 //bump map
 void		set_bump_maps(t_mrt *mrt);
+t_vec		bump_nrml_by_coor(t_option *opt, int x, int y, double height);
 
 #endif

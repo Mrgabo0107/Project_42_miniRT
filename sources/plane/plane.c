@@ -12,11 +12,6 @@
 
 #include "minirt.h"
 
-// t_vec	bump_maped(t_mrt *mrt, t_inter inter)
-// {
-
-// }
-
 t_vec	get_normal_plane(t_mrt *mrt, t_inter inter)
 {
 	t_vec	ret;
@@ -26,7 +21,7 @@ t_vec	get_normal_plane(t_mrt *mrt, t_inter inter)
 			mrt->plane[inter.index].dir) < 0.0)
 		ret = scal_vec(-1, ret);
 	// if (mrt->plane[inter.index].option.b_mp_ctrl == 1)
-	// 	return (bump_maped(mrt, inter));
+		// ret = plane_bumped(mrt, inter, ret);
 	return (ret);
 }
 
