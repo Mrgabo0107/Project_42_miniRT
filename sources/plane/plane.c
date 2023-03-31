@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:07:15 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/30 22:09:07 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/31 03:27:52 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_vec	get_normal_plane(t_mrt *mrt, t_inter inter)
 	if (dot_prod(vec_rest(mrt->cam.pos, mrt->plane[inter.index].pos),
 			mrt->plane[inter.index].dir) < 0.0)
 		ret = scal_vec(-1, ret);
-	// if (mrt->plane[inter.index].option.b_mp_ctrl == 1)
-		// ret = plane_bumped(mrt, inter, ret);
+	if (mrt->plane[inter.index].option.b_mp_ctrl == 1)
+		ret = plane_bumped(mrt, inter, ret);
 	return (ret);
 }
 
