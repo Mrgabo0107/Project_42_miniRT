@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/31 16:38:45 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:56:17 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,12 @@ t_mrt	*ft_copy_mrt(t_mrt *mrt, int num)
 	while (i < num)
 	{
 		dat[i].addr = mrt->addr;
+		dat[i].bpp = mrt->bpp;
+		dat[i].endi = mrt->endi;
+		dat[i].sizel = mrt->sizel;
+		dat[i].mlx = mrt->mlx;
+		dat[i].win = mrt->win;
+		dat[i].img = mrt->img;
 		dat[i].mutex = mrt->mutex;
 		dat[i].scene_path = ft_strdup(mrt->scene_path);
 		dat[i].obj_count = \
@@ -134,15 +140,15 @@ t_mrt	*ft_copy_mrt(t_mrt *mrt, int num)
 		dat[i].iy = mrt->iy;
 		dat[i].amblight = mrt->amblight;
 		dat[i].cam = mrt->cam;
-		dat[i].light = ft_memcpy(mrt->light, mrt->num_objs * sizeof(t_light));
+		dat[i].light = ft_memcpy(mrt->light, mrt->obj_count[LIGHT] * sizeof(t_light));
 		dat[i].sphere = \
-		ft_memcpy(mrt->sphere, mrt->num_objs * sizeof(t_sphere));
-		dat[i].plane = ft_memcpy(mrt->plane, mrt->num_objs * sizeof(t_plane));
+		ft_memcpy(mrt->sphere, mrt->obj_count[SPHERE] * sizeof(t_sphere));
+		dat[i].plane = ft_memcpy(mrt->plane, mrt->obj_count[PLANE] * sizeof(t_plane));
 		dat[i].cylinder = \
-		ft_memcpy(mrt->cylinder, mrt->num_objs * sizeof(t_cylinder));
-		dat[i].cone = ft_memcpy(mrt->cone, mrt->num_objs * sizeof(t_cone));
+		ft_memcpy(mrt->cylinder, mrt->obj_count[CYLINDER] * sizeof(t_cylinder));
+		dat[i].cone = ft_memcpy(mrt->cone, mrt->obj_count[CONE] * sizeof(t_cone));
 		dat[i].triangle = \
-		ft_memcpy(mrt->triangle, mrt->num_objs * sizeof(t_triangle));
+		ft_memcpy(mrt->triangle, mrt->obj_count[TRIANGLE] * sizeof(t_triangle));
 		dat[i].curr_obj = mrt->curr_obj;
 		i++;
 	}
@@ -159,6 +165,7 @@ void	*ft_paint(void *data)
 	
 	mrt = (t_mrt *)data;
 	i = 0;
+	// printf("mrt->i = %d\n", mrt->i);
 	while (i < mrt->ix)
 	{
 		j = 0;
@@ -177,6 +184,9 @@ void	*ft_paint(void *data)
 		}
 		i++;
 	}
+	pthread_mutex_lock(&mrt->mutex);
+	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
+	pthread_mutex_unlock(&mrt->mutex);
 	return (NULL);
 }
 
@@ -191,6 +201,7 @@ void	pixel_calcul(t_mrt *mrt)
 	i = 0;
 	dat = ft_copy_mrt(mrt, THREADS);
 	// printf("datplanecheck = %d\n", dat[2].plane[0].option.chess_ctrl);
+	// printf("counttri = %d\n", dat[2].obj_count[TRIANGLE]);
 	while (i < THREADS)
 	{
 		dat[i].i = i;
@@ -201,22 +212,10 @@ void	pixel_calcul(t_mrt *mrt)
 	i = 0;
 	while (i < THREADS)
 	{
+		// printf("mrt->i = %d\n", i);
 		pthread_join(mrt->threads[i], NULL);
 		i++;
 	}
-	// while (i < mrt->ix)
-	// {
-	// 	j = 0;
-	// 	while (j < mrt->iy - 1)
-	// 	{
-	// 		dir = normalize(vec_rest(screen_pxl_by_indx(mrt, \
-	// 		&mrt->cam, i, j), mrt->cam.pos));
-	// 		color = get_pixel_color(mrt, i + 1, j + 1, dir);
-	// 		my_mlx_pixel_put(mrt, i, j, color);
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
 }
 
 void	my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color)

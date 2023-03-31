@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 22:03:43 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/31 16:07:23 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:42:46 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	check_triangles(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 			i++;
 		else
 		{
-			// printf("hello?\n");
 			c = distance_to_triangle(point, mrt->triangle[i], dir);
 			if (c > 0 && (ctrl->dist == -1 || c < ctrl->dist))
 			{
