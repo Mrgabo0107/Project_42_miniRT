@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/31 07:19:26 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/31 15:01:57 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <errno.h>
 # include <string.h>
 # include <time.h>
+# include <pthread.h>
 
 //init
 int			init_minirt(t_mrt *mrt, char **av, int ac);
@@ -174,14 +175,14 @@ void		set_all_cam_values(t_cam *cam, int ix);
 t_vec		screen_pxl_by_indx(t_mrt *mrt, t_cam *cam, int i, int j);
 void		my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color);
 void		pixel_calcul(t_mrt *mrt);
-int			get_pixel_color(t_mrt *mrt, int x, int y);
+int			get_pixel_color(t_mrt *mrt, int x, int y, t_vec dir);
 double		distance_to_cap(t_vec start_pos, t_cylinder cylinder, t_vec ray);
 t_inter		fill_ctrl(t_mrt *mrt, int type, int index, double dist);
 t_rgb		chosen_obj(t_mrt *mrt, int x, int y, t_rgb color);
 t_vec		get_normal_at_point(t_mrt *mrt, t_inter inter);
 
 //color
-t_rgb		get_color(t_mrt *mrt, t_inter *ctr, t_vec dir);
+// t_rgb		get_color(t_mrt *mrt, t_inter *ctr, t_vec dir);
 t_rgb		ft_make_rgb(int r, int g, int b);
 t_rgb		ft_make_rgb_ratio(t_rgb color);
 t_rgb		normalize_color(t_rgb color);
