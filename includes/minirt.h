@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/30 02:52:10 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/31 07:19:26 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ t_base		general_rotation(t_base base, int ctrl, double rad);
 double		integer_part(double n);
 t_vec		get_spheric_coord(t_vec orig);
 t_vec		get_cyl_coor(t_vec orig);
+int			i_min_v(int a, int b);
 
 //plane
 t_vec		get_normal_plane(t_mrt *mrt, t_inter inter);
@@ -164,6 +165,8 @@ t_rgb		print_cyl_color(t_mrt *mrt, int index);
 t_cyl_ctrl	get_dist_to_cyl(t_cylinder cyl, t_vec new_cam, t_vec new_dirc);
 t_discr		get_cyl_disc(t_cylinder cyl, t_vec new_cam, t_vec new_dirc);
 t_rgb		get_cyl_color(t_mrt *mrt, int index, t_vec intrsc, t_cyl_ctrl ctr);
+t_vec		cyl_normal_from_map(t_mrt *mrt, t_inter i, \
+			t_vec c_cr, t_vec cyl_cr);
 
 //camera
 t_inter		check_intersections(t_mrt *mrt, t_vec point, t_vec dir);
@@ -231,5 +234,6 @@ char		*ft_write_rgb(t_rgb color);
 //bump map
 void		set_bump_maps(t_mrt *mrt);
 t_vec		bump_nrml_by_coor(t_option *opt, int x, int y, double height);
+t_vec		get_bump_nrml(t_vec new_n, t_base tang_base, t_mtrx chg);
 
 #endif

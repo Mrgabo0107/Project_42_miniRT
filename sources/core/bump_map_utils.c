@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 20:49:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/30 03:08:19 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/31 07:19:10 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,14 @@ t_vec	bump_nrml_by_coor(t_option *opt, int x, int y, double h)
 	}
 	return (ret);
 }
+
+t_vec	get_bump_nrml(t_vec new_n, t_base tang_base, t_mtrx chg)
+{
+	t_vec	ret;
+
+	ret = vec_sum(vec_sum(scal_vec(new_n.x, tang_base.n1), \
+	scal_vec(new_n.y, tang_base.n2)), scal_vec(new_n.z, tang_base.n3));
+	ret = mtrx_by_vec(chg, ret);
+	return (ret);
+}
+
