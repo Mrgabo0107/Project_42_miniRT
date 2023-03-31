@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:01:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/31 17:03:29 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:12:04 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define WY 400
 # define IX 800
 # define IY 400
-# define THREADS 4
+# define THREADS 20
 // # define WX 1500
 // # define WY 755
 // # define IX 1250

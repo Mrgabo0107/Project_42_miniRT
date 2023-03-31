@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/31 16:56:17 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:49:01 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ t_mrt	*ft_copy_mrt(t_mrt *mrt, int num)
 	dat = ft_malloc(sizeof(t_mrt) * num);
 	while (i < num)
 	{
+		dat[i].save = mrt->save;
 		dat[i].addr = mrt->addr;
 		dat[i].bpp = mrt->bpp;
 		dat[i].endi = mrt->endi;
@@ -165,7 +166,6 @@ void	*ft_paint(void *data)
 	
 	mrt = (t_mrt *)data;
 	i = 0;
-	// printf("mrt->i = %d\n", mrt->i);
 	while (i < mrt->ix)
 	{
 		j = 0;
@@ -184,24 +184,17 @@ void	*ft_paint(void *data)
 		}
 		i++;
 	}
-	pthread_mutex_lock(&mrt->mutex);
-	mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
-	pthread_mutex_unlock(&mrt->mutex);
+	// printf("core %d done\n", mrt->i);
 	return (NULL);
 }
 
 void	pixel_calcul(t_mrt *mrt)
 {
 	int		i;
-	// int		j;
-	// int		color;
-	// t_vec	dir;
 	t_mrt	*dat;
 
 	i = 0;
 	dat = ft_copy_mrt(mrt, THREADS);
-	// printf("datplanecheck = %d\n", dat[2].plane[0].option.chess_ctrl);
-	// printf("counttri = %d\n", dat[2].obj_count[TRIANGLE]);
 	while (i < THREADS)
 	{
 		dat[i].i = i;
@@ -212,7 +205,6 @@ void	pixel_calcul(t_mrt *mrt)
 	i = 0;
 	while (i < THREADS)
 	{
-		// printf("mrt->i = %d\n", i);
 		pthread_join(mrt->threads[i], NULL);
 		i++;
 	}
@@ -222,8 +214,14 @@ void	my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color)
 {
 	char	*dst;
 
-	if (!mrt->save && x < BORDER)
+	if (x < BORDER)
 		color = diminish_color(color, 0.3);
 	dst = mrt->addr + (y * mrt->sizel + x * (mrt->bpp / 8));
 	*(unsigned int *)dst = color;
 }
+
+// i = y * mrt->sizel + x * (mrt->bpp / 8);
+
+// y = (i - x * (mrt->bpp / 8)) / (mrt->sizel);
+
+// x = (i - y * (mrt->sizel)) / (mrt->bpp / 8);

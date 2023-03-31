@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/31 16:31:56 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:31:17 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,6 +271,7 @@ typedef struct s_mrt
 	pthread_t		*threads;
 	pthread_mutex_t	mutex;
 	int				i;
+	int				first;
 }					t_mrt;
 
 typedef struct s_tri
