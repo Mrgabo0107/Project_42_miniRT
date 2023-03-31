@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/03/31 19:39:14 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/31 20:29:08 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ void	write_to_ppm(t_mrt *mrt)
 
 	write(1, "writing to file... ", 19);
 	fp = fopen("bump.ppm", "wb");
-	fprintf(fp, "P6\n%d %d\n255\n", mrt->ix, mrt->iy);
+	fprintf(fp, "P6\n%d %d\n255\n", mrt->ix - BORDER, mrt->iy);
 	i = 3;
 	while (i < mrt->ix * mrt->iy * (mrt->bpp / 8))
 	{
-		// if (i * (mrt->bpp / 8) / (i) < BORDER)
-		// {
-		// 	i += (mrt->bpp / 8);
-		// 	continue ;
-		// }
+		if (i % (mrt->sizel) < BORDER * (mrt->bpp / 8))
+		{
+			i += (mrt->bpp / 8);
+			continue ;
+		}
 		color[0] = mrt->addr[i + 3];
 		color[1] = mrt->addr[i + 2];
 		color[2] = mrt->addr[i + 1];
