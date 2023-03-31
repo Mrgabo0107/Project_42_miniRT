@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 02:50:57 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/30 04:30:56 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/03/31 02:59:15 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ t_vec	normal_from_map(t_mrt *mrt, t_inter inter, t_vec sph_coor)
 {
 	int		bump_coor[2];
 	t_vec	ret;
+	double	pol_res;
+	double	as_res;
 
-	bump_coor[0] = (int)integer_part((sph_coor.y * \
-	mrt->sphere[inter.index].option.bump_map.width) / (2 * PI));
-	bump_coor[1] = (int)integer_part(((sph_coor.z + (PI / 2)) * \
-	mrt->sphere[inter.index].option.bump_map.height) / PI);
+	pol_res = PI / mrt->sphere[inter.index].option.bump_map.height;
+	as_res = (2 * PI) / (mrt->sphere[inter.index].option.bump_map.width - 1);
+	bump_coor[0] = (int)integer_part(sph_coor.y / pol_res);
+	bump_coor[1] = (int)integer_part(sph_coor.z / as_res);
 	ret = bump_nrml_by_coor(&mrt->sphere[inter.index].option, \
-	bump_coor[0], bump_coor[1], 0.4);
+	bump_coor[0], bump_coor[1], 4);
 	return (ret);
 }
 
@@ -31,7 +33,7 @@ t_base	get_tang_base(t_vec	sph_coor, t_vec z)
 	t_base	ret;
 
 	ret.bs_orig = fill_coord(0, 0, 0);
-	ret.n1 = fill_coord(asin(sph_coor.y + PI), acos(sph_coor.y + PI), 0);
+	ret.n1 = fill_coord(sin(sph_coor.y), cos(sph_coor.y), 0);
 	ret.n3 = z;
 	ret.n2 = normalize(cross_prod(ret.n3, ret.n1));
 	return (ret);
