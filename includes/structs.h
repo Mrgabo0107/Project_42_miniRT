@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/31 15:01:37 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/30 21:39:33 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,9 +268,6 @@ typedef struct s_mrt
 	t_cone			*cone;
 	t_triangle		*triangle;
 	t_curr_ob		curr_obj;
-	pthread_t		*threads;
-	pthread_mutex_t	mutex;
-	int				x;
 }					t_mrt;
 
 // typedef struct s_square

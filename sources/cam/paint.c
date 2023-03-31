@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paint.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/31 15:17:51 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/29 23:48:55 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,75 +42,41 @@ t_vec	get_normal_at_point(t_mrt *mrt, t_inter inter)
 	return (ret);
 }
 
-int	get_pixel_color(t_mrt *mrt, int x, int y, t_vec dir)
+int	get_pixel_color(t_mrt *mrt, int x, int y)
 {
 	t_inter	inter;
 	t_rgb	color;
+	t_vec	dir;
 
-	color = ft_make_rgb(0, 0, 0);
+	dir = normalize(vec_rest(screen_pxl_by_indx(mrt, &mrt->cam, x, y),
+				mrt->cam.pos));
 	inter = check_intersections(mrt, mrt->cam.pos, dir);
 	if (inter.dist != -1)
-	{
 		inter.norm = get_normal_at_point(mrt, inter);
-		color = get_object_color(mrt, &inter, dir, color);
-		color = chosen_obj(mrt, x, y, color);
-	}
+	color = get_color(mrt, &inter, dir);
+	color = chosen_obj(mrt, x, y, color);
 	mrt->bounce = 0;
 	color = normalize_color(color);
-	color = show_light_sources(mrt, color, dir);
 	return ((int)color.r << 16 | (int)color.g << 8 | (int)color.b);
-}
-
-void	*ft_paint(void *data)
-{
-	t_mrt	*mrt;
-	t_mrt	*dat;
-	int		y;
-	t_vec	dir;
-	int		color;
-
-	dat = (t_mrt *)data;
-	pthread_mutex_lock(&dat->mutex);
-	mrt = ft_memcpy(dat, sizeof(t_mrt));
-	// printf("chess = %d\n", mrt->plane[0].option.chess_ctrl);
-	// printf("mrt->x = %d\n", mrt->x);
-	pthread_mutex_unlock(&dat->mutex);
-	y = 0;
-	while (y < mrt->iy - 1)
-	{
-		dir = normalize(vec_rest(screen_pxl_by_indx(mrt, \
-		&mrt->cam, mrt->x + 1, y + 1), mrt->cam.pos));
-		color = get_pixel_color(mrt, mrt->x + 1, y + 1, dir);
-		pthread_mutex_lock(&dat->mutex);
-		my_mlx_pixel_put(dat, mrt->x, y, color);
-		pthread_mutex_unlock(&dat->mutex);
-		y++;
-	}
-	return (NULL);
 }
 
 void	pixel_calcul(t_mrt *mrt)
 {
 	int		i;
-	// int		j;
-	// int		color;
-	// t_vec	dir;
+	int		j;
+	int		color;
 
 	i = 0;
 	while (i < mrt->ix)
 	{
-		mrt->x = i;
-		// printf("mrt->x = %d\n", mrt->x);
-		// printf("chess = %d\n", mrt->plane[0].option.chess_ctrl);
-		pthread_create(&mrt->threads[i], NULL, \
-		(void *)ft_paint, (void *)mrt);
-		i++;
-	}
-	i = 0;
-	while (i < mrt->ix)
-	{
-		pthread_join(mrt->threads[i], NULL);
-		i++;
+		j = 0;
+		while (j < mrt->iy - 1)
+		{
+			color = get_pixel_color(mrt, i + 1, j + 1);
+			my_mlx_pixel_put(mrt, i, j, color);
+			j++;
+		}
+	i++;
 	}
 }
 
