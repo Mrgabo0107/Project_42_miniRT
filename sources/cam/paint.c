@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paint.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/01 13:50:53 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/01 19:56:03 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,20 @@ int	get_pixel_color(t_mrt *mrt, int x, int y, t_vec dir)
 	return ((int)color.r << 16 | (int)color.g << 8 | (int)color.b);
 }
 
+void	ft_copy_objects(t_mrt *mrt, t_mrt *dat)
+{
+	dat->light = ft_memcpy(mrt->light, mrt->obj_count[LIGHT] * sizeof(t_light));
+	dat->sphere = \
+	ft_memcpy(mrt->sphere, mrt->obj_count[SPHERE] * sizeof(t_sphere));
+	dat->plane = ft_memcpy(mrt->plane, mrt->obj_count[PLANE] * sizeof(t_plane));
+	dat->cylinder = \
+	ft_memcpy(mrt->cylinder, mrt->obj_count[CYLINDER] * sizeof(t_cylinder));
+	dat->cone = ft_memcpy(mrt->cone, mrt->obj_count[CONE] * sizeof(t_cone));
+	dat->triangle = \
+	ft_memcpy(mrt->triangle, mrt->obj_count[TRIANGLE] * sizeof(t_triangle));
+	dat->curr_obj = mrt->curr_obj;
+}
+
 t_mrt	*ft_copy_mrt(t_mrt *mrt, int num)
 {
 	int		i;
@@ -75,9 +89,6 @@ t_mrt	*ft_copy_mrt(t_mrt *mrt, int num)
 		dat[i].bpp = mrt->bpp;
 		dat[i].endi = mrt->endi;
 		dat[i].sizel = mrt->sizel;
-		dat[i].mlx = mrt->mlx;
-		dat[i].win = mrt->win;
-		dat[i].img = mrt->img;
 		dat[i].mutex = mrt->mutex;
 		dat[i].scene_path = ft_strdup(mrt->scene_path);
 		dat[i].obj_count = \
@@ -88,16 +99,7 @@ t_mrt	*ft_copy_mrt(t_mrt *mrt, int num)
 		dat[i].iy = mrt->iy;
 		dat[i].amblight = mrt->amblight;
 		dat[i].cam = mrt->cam;
-		dat[i].light = ft_memcpy(mrt->light, mrt->obj_count[LIGHT] * sizeof(t_light));
-		dat[i].sphere = \
-		ft_memcpy(mrt->sphere, mrt->obj_count[SPHERE] * sizeof(t_sphere));
-		dat[i].plane = ft_memcpy(mrt->plane, mrt->obj_count[PLANE] * sizeof(t_plane));
-		dat[i].cylinder = \
-		ft_memcpy(mrt->cylinder, mrt->obj_count[CYLINDER] * sizeof(t_cylinder));
-		dat[i].cone = ft_memcpy(mrt->cone, mrt->obj_count[CONE] * sizeof(t_cone));
-		dat[i].triangle = \
-		ft_memcpy(mrt->triangle, mrt->obj_count[TRIANGLE] * sizeof(t_triangle));
-		dat[i].curr_obj = mrt->curr_obj;
+		ft_copy_objects(mrt, &dat[i]);
 		i++;
 	}
 	return (dat);
@@ -161,7 +163,7 @@ void	my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < BORDER)
+	if (!mrt->save && x < BORDER)
 		color = diminish_color(color, 0.3);
 	dst = mrt->addr + (y * mrt->sizel + x * (mrt->bpp / 8));
 	*(unsigned int *)dst = color;

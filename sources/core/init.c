@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/31 15:06:36 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/01 18:51:37 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,22 @@ int	ft_init_mlx(t_mrt *mrt)
 {
 	mrt->mlx = mlx_init();
 	if (!mrt->mlx)
-		return (1);
+		return (ft_error("Problem initializing minilibx", NULL, NULL), 1);
 	if (!mrt->save)
 	{
 		mrt->win = mlx_new_window(mrt->mlx, mrt->ix, mrt->iy, "MiniRT");
 		if (!mrt->win)
-			return (mlx_destroy_display(mrt->mlx), free(mrt->mlx), 1);
+			return (mlx_destroy_display(mrt->mlx), free(mrt->mlx), \
+			ft_error("Problem initializing minilibx", NULL, NULL), 1);
 	}
 	mrt->img = mlx_new_image(mrt->mlx, mrt->ix, mrt->iy);
 	if (!mrt->img)
 		return (mlx_destroy_window(mrt->mlx, mrt->win), \
-		mlx_destroy_display(mrt->mlx), free(mrt->mlx), 1);
+		mlx_destroy_display(mrt->mlx), free(mrt->mlx), \
+		ft_error("Problem initializing minilibx", NULL, NULL), 1);
 	mrt->addr = mlx_get_data_addr(mrt->img, &mrt->bpp, &mrt->sizel, &mrt->endi);
 	if (!mrt->addr)
-		return (end_mrt(mrt), 1);
+		return (ft_error("Problem initializing minilibx", NULL, NULL), 1);
 	ft_memory(mrt, SAVE_MLX);
 	return (0);
 }
@@ -75,7 +77,7 @@ void	ft_set_mrt(t_mrt *mrt, char *file, int ix, int iy)
 	mrt->obj_count = ft_malloc(mrt->num_objs * sizeof(int));
 	mrt->ix = ix;
 	mrt->iy = iy;
-	mrt->threads = ft_malloc(sizeof(pthread_t) * ix);
+	mrt->threads = ft_malloc(sizeof(pthread_t) * THREADS);
 	pthread_mutex_init(&mrt->mutex, NULL);
 	while (i < mrt->num_objs)
 		mrt->obj_count[i++] = 0;
