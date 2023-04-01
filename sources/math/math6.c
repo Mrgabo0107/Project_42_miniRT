@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math6.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 20:54:16 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/30 01:22:41 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/01 20:27:39 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_base	second_rotation(t_vec dir, t_base ret)
 			- (ret.n1.y * sin_an), (ret.n1.y * ret.n1.z * (1 - cos_an))
 			+ (ret.n1.x * sin_an), cos_an + (int_pow(ret.n1.z, 2)
 				* (1 - cos_an)));
-	retu.bs_orig = fill_coord(0 ,0, 0);
+	retu.bs_orig = fill_coord(0, 0, 0);
 	retu.n1 = mtrx_by_vec(chng_base, ret.n1);
 	retu.n2 = mtrx_by_vec(chng_base, ret.n2);
 	retu.n3 = mtrx_by_vec(chng_base, ret.n3);

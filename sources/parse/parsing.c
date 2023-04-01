@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/31 18:26:03 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/01 20:28:59 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	*ft_count_objs(t_table *table, int *count)
 			ft_error(INVALID_OBJECT, table->line[0], OBJECT_INSTRUCTIONS);
 		table = table->next;
 	}
-	// printf("LIGHT: %d\n", count[LIGHT]);
 	return (ft_check_capitals(count[AMBIENT], count[CAMERA],
 			count[LIGHT]), count);
 }
@@ -63,16 +62,21 @@ void	ft_fill_capitals(t_mrt *mrt, t_table *table, char **line, int type)
 		mrt->cam = ft_fill_cam(table, line);
 }
 
-void	ft_fill_objs(t_mrt *mrt, t_table *table, int *count)
+void	ft_allocate_objs(t_mrt *mrt, int *count)
 {
-	int	type;
-
 	mrt->light = ft_malloc(sizeof(t_light) * count[LIGHT]);
 	mrt->sphere = ft_malloc(sizeof(t_sphere) * count[SPHERE]);
 	mrt->plane = ft_malloc(sizeof(t_plane) * count[PLANE]);
 	mrt->cylinder = ft_malloc(sizeof(t_cylinder) * count[CYLINDER]);
 	mrt->cone = ft_malloc(sizeof(t_cone) * count[CONE]);
 	mrt->triangle = ft_malloc(sizeof(t_triangle) * count[TRIANGLE]);
+}
+
+void	ft_fill_objs(t_mrt *mrt, t_table *table, int *count)
+{
+	int	type;
+
+	ft_allocate_objs(mrt, count);
 	while (table)
 	{
 		type = eval_obj(table->line[0]);

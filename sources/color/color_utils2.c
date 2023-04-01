@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   color_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 03:33:43 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/29 22:00:47 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/01 20:14:00 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+int	diminish_color(int color, double percent)
+{
+	t_rgb	rgb;
+
+	rgb.r = (color >> 16) & 0xFF;
+	rgb.g = (color >> 8) & 0xFF;
+	rgb.b = color & 0xFF;
+	rgb = mult_color(rgb, percent);
+	return ((int)rgb.r << 16 | (int)rgb.g << 8 | (int)rgb.b);
+}
 
 t_rgb	get_opposite_color(t_rgb color)
 {
@@ -40,17 +51,6 @@ t_rgb	add_color(t_rgb color1, t_rgb color2)
 	ret.g = color1.g + color2.g;
 	ret.b = color1.b + color2.b;
 	return (ret);
-}
-
-int	diminish_color(int color, double percent)
-{
-	t_rgb	rgb;
-
-	rgb.r = (color >> 16) & 0xFF;
-	rgb.g = (color >> 8) & 0xFF;
-	rgb.b = color & 0xFF;
-	rgb = mult_color(rgb, percent);
-	return ((int)rgb.r << 16 | (int)rgb.g << 8 | (int)rgb.b);
 }
 
 t_rgb	convert_to_rgb(int color)

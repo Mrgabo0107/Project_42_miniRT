@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   triangle.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 22:03:43 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/01 13:52:35 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/01 20:35:21 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,32 +26,27 @@ t_vec	get_normal_triangle(t_mrt *mrt, t_inter inter)
 double	distance_to_triangle(t_vec start_point, t_triangle tri, t_vec ray)
 {
 	t_vec	tr_to_point;
-	double	den;
-	t_vec	e0;
-	t_vec	e1;
-	t_vec	e2;
-	t_vec	c0;
-	t_vec	c1;
-	t_vec	c2;
+	double	t[2];
+	t_vec	e[3];
+	t_vec	c[3];
 	t_vec	p;
-	double	c;
 
-	e0 = vec_rest(tri.p2, tri.p1);
-	e1 = vec_rest(tri.p3, tri.p2);
-	e2 = vec_rest(tri.p1, tri.p3);
-	den = dot_prod(tri.dir, ray);
-	if (v_abs(den) > 0.001)
+	e[0] = vec_rest(tri.p2, tri.p1);
+	e[1] = vec_rest(tri.p3, tri.p2);
+	e[2] = vec_rest(tri.p1, tri.p3);
+	t[0] = dot_prod(tri.dir, ray);
+	if (v_abs(t[0]) > 0.001)
 	{
 		tr_to_point = vec_rest(tri.p1, start_point);
-		c = dot_prod(tri.dir, tr_to_point) / den;
-		p = vec_sum(start_point, scal_vec(c, ray));
-		c0 = vec_rest(p, tri.p1);
-		c1 = vec_rest(p, tri.p2);
-		c2 = vec_rest(p, tri.p3);
-		if (dot_prod(tri.dir, cross_prod(e0, c0)) > 0 && \
-		dot_prod(tri.dir, cross_prod(e1, c1)) > 0 && \
-		dot_prod(tri.dir, cross_prod(e2, c2)) > 0)
-			return (c);
+		t[1] = dot_prod(tri.dir, tr_to_point) / t[0];
+		p = vec_sum(start_point, scal_vec(t[1], ray));
+		c[0] = vec_rest(p, tri.p1);
+		c[1] = vec_rest(p, tri.p2);
+		c[2] = vec_rest(p, tri.p3);
+		if (dot_prod(tri.dir, cross_prod(e[0], c[0])) > 0 && \
+		dot_prod(tri.dir, cross_prod(e[1], c[1])) > 0 && \
+		dot_prod(tri.dir, cross_prod(e[2], c[2])) > 0)
+			return (t[1]);
 	}
 	return (-1);
 }

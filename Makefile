@@ -6,7 +6,7 @@
 #    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/04/01 18:39:59 by yridgway         ###   ########.fr        #
+#    Updated: 2023/04/01 21:13:29 by yridgway         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@
 
 CC      = cc
 
-FLAGS  = -Wall -Werror -Wextra -pthread -g3 #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
+# FLAGS  = -Wall -Werror -Wextra -pthread -g3 #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
 # FLAGS  = -Wall -Werror -Wextra -Ofast -flto -pthread
-# FLAGS  = -Ofast -flto -pthread
+FLAGS  = -Ofast -flto -pthread
 ### Executable ###
 #-Ofast -flto 
 NAME   = minirt
@@ -85,6 +85,7 @@ COLOR		=	color.c \
 				color_utils.c \
 				color_utils2.c \
 				radiance.c \
+				intersections.c \
 
 PLANE_DIR	=	plane/
 PLANE		=	plane.c \

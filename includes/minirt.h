@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/31 15:01:57 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/01 20:15:37 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ void		set_all_cam_values(t_cam *cam, int ix);
 t_vec		screen_pxl_by_indx(t_mrt *mrt, t_cam *cam, int i, int j);
 void		my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color);
 void		pixel_calcul(t_mrt *mrt);
-int			get_pixel_color(t_mrt *mrt, int x, int y, t_vec dir);
+int			get_pixel_color(t_mrt *mrt, int x, int y);
 double		distance_to_cap(t_vec start_pos, t_cylinder cylinder, t_vec ray);
 t_inter		fill_ctrl(t_mrt *mrt, int type, int index, double dist);
 t_rgb		chosen_obj(t_mrt *mrt, int x, int y, t_rgb color);
@@ -188,7 +188,7 @@ t_rgb		ft_make_rgb_ratio(t_rgb color);
 t_rgb		normalize_color(t_rgb color);
 t_rgb		show_light_sources(t_mrt *mrt, t_rgb color, t_vec dir);
 t_rgb		get_opposite_color(t_rgb color);
-double		get_angle_between(t_vec v1, t_vec v2);
+// double		get_angle_between(t_vec v1, t_vec v2);
 t_rgb		get_ambient(t_rgb ctr, t_light amb, double mirror);
 t_rgb		get_reflection(t_mrt *mrt, t_inter *ctr, t_vec dir);
 t_rgb		get_diffuse(t_inter *ctr, t_vec to_light, \

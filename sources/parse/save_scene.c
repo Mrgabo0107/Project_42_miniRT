@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 21:18:20 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/30 22:43:52 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/01 20:30:50 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_write_amblight(t_light amblight, int fd)
 	line = ft_strjoin(line, ft_write_rgb(amblight.color));
 	ft_write_to_file(line, fd);
 	ft_free(line);
-	// ft_write_to_file("\n", fd);
 }
 
 void	ft_write_camera(t_cam cam, int fd)
@@ -35,7 +34,6 @@ void	ft_write_camera(t_cam cam, int fd)
 	line = ft_strjoin(line, ft_itoa(cam.fov));
 	ft_write_to_file(line, fd);
 	ft_free(line);
-	// ft_write_to_file("\n", fd);
 }
 
 void	ft_write_lights(t_light *light, int count, int fd)

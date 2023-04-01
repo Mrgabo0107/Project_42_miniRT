@@ -6,60 +6,11 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/01 19:56:03 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/01 21:12:52 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-t_inter	check_intersections(t_mrt *mrt, t_vec point, t_vec dir)
-{
-	t_inter	ret;
-
-	ret.type = UNDEFINED;
-	ret.index = 0;
-	ret.dist = -1;
-	check_planes(mrt, &ret, point, dir);
-	check_spheres(mrt, &ret, point, dir);
-	check_cylinders(mrt, &ret, point, dir);
-	check_triangles(mrt, &ret, point, dir);
-	return (ret);
-}
-
-t_vec	get_normal_at_point(t_mrt *mrt, t_inter inter)
-{
-	t_vec	ret;
-
-	ret = fill_coord(0, 0, 0);
-	if (inter.type == PLANE)
-		ret = get_normal_plane(mrt, inter);
-	else if (inter.type == SPHERE)
-		ret = get_normal_sphere(mrt, inter);
-	else if (inter.type == CYLINDER)
-		ret = get_normal_cylinder(mrt, inter);
-	else if (inter.type == TRIANGLE)
-		ret = get_normal_triangle(mrt, inter);
-	return (ret);
-}
-
-int	get_pixel_color(t_mrt *mrt, int x, int y, t_vec dir)
-{
-	t_inter	inter;
-	t_rgb	color;
-
-	color = ft_make_rgb(0, 0, 0);
-	inter = check_intersections(mrt, mrt->cam.pos, dir);
-	if (inter.dist != -1)
-	{
-		inter.norm = get_normal_at_point(mrt, inter);
-		color = get_object_color(mrt, &inter, dir, color);
-		color = chosen_obj(mrt, x, y, color);
-	}
-	mrt->bounce = 0;
-	color = normalize_color(color);
-	color = show_light_sources(mrt, color, dir);
-	return ((int)color.r << 16 | (int)color.g << 8 | (int)color.b);
-}
 
 void	ft_copy_objects(t_mrt *mrt, t_mrt *dat)
 {
@@ -80,9 +31,9 @@ t_mrt	*ft_copy_mrt(t_mrt *mrt, int num)
 	int		i;
 	t_mrt	*dat;
 
-	i = 0;
+	i = -1;
 	dat = ft_malloc(sizeof(t_mrt) * num);
-	while (i < num)
+	while (++i < num)
 	{
 		dat[i].save = mrt->save;
 		dat[i].addr = mrt->addr;
@@ -90,6 +41,7 @@ t_mrt	*ft_copy_mrt(t_mrt *mrt, int num)
 		dat[i].endi = mrt->endi;
 		dat[i].sizel = mrt->sizel;
 		dat[i].mutex = mrt->mutex;
+		dat[i].first = mrt->first;
 		dat[i].scene_path = ft_strdup(mrt->scene_path);
 		dat[i].obj_count = \
 		ft_memcpy(mrt->obj_count, mrt->num_objs * sizeof(int));
@@ -99,10 +51,36 @@ t_mrt	*ft_copy_mrt(t_mrt *mrt, int num)
 		dat[i].iy = mrt->iy;
 		dat[i].amblight = mrt->amblight;
 		dat[i].cam = mrt->cam;
+		dat[i].percent = &mrt->i;
 		ft_copy_objects(mrt, &dat[i]);
-		i++;
 	}
 	return (dat);
+}
+
+void	my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color)
+{
+	char	*dst;
+
+	if (!mrt->save && x < BORDER)
+		color = diminish_color(color, 0.3);
+	dst = mrt->addr + (y * mrt->sizel + x * (mrt->bpp / 8));
+	*(unsigned int *)dst = color;
+}
+
+void	ft_percentage_bar(t_mrt *mrt)
+{
+	double	percent;
+	int		i;
+
+	i = -1;
+	if (mrt->first)
+	{
+		pthread_mutex_lock(&mrt->mutex);
+		percent = (double)*mrt->percent / (mrt->ix * THREADS) * 100;
+		printf("\r[%.0f%%]", percent);
+		(*mrt->percent)++;
+		pthread_mutex_unlock(&mrt->mutex);
+	}
 }
 
 void	*ft_paint(void *data)
@@ -110,21 +88,19 @@ void	*ft_paint(void *data)
 	t_mrt	*mrt;
 	int		i;
 	int		j;
-	t_vec	dir;
 	int		color;
-	
+
 	mrt = (t_mrt *)data;
 	i = 0;
 	while (i < mrt->ix)
 	{
 		j = 0;
+		ft_percentage_bar(mrt);
 		while (j < mrt->iy - 1)
 		{
 			if (j % THREADS == mrt->i)
 			{
-				dir = normalize(vec_rest(screen_pxl_by_indx(mrt, \
-				&mrt->cam, i + 1, j + 1), mrt->cam.pos));
-				color = get_pixel_color(mrt, i + 1, j + 1, dir);
+				color = get_pixel_color(mrt, i + 1, j + 1);
 				pthread_mutex_lock(&mrt->mutex);
 				my_mlx_pixel_put(mrt, i, j, color);
 				pthread_mutex_unlock(&mrt->mutex);
@@ -133,7 +109,6 @@ void	*ft_paint(void *data)
 		}
 		i++;
 	}
-	// printf("core %d done\n", mrt->i);
 	return (NULL);
 }
 
@@ -143,6 +118,7 @@ void	pixel_calcul(t_mrt *mrt)
 	t_mrt	*dat;
 
 	i = 0;
+	mrt->i = 0;
 	dat = ft_copy_mrt(mrt, THREADS);
 	while (i < THREADS)
 	{
@@ -157,20 +133,7 @@ void	pixel_calcul(t_mrt *mrt)
 		pthread_join(mrt->threads[i], NULL);
 		i++;
 	}
+	if (mrt->first)
+		printf("\r[100%%]\n");
+	ft_free(dat);
 }
-
-void	my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color)
-{
-	char	*dst;
-
-	if (!mrt->save && x < BORDER)
-		color = diminish_color(color, 0.3);
-	dst = mrt->addr + (y * mrt->sizel + x * (mrt->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
-// i = y * mrt->sizel + x * (mrt->bpp / 8);
-
-// y = (i - x * (mrt->bpp / 8)) / (mrt->sizel);
-
-// x = (i - y * (mrt->sizel)) / (mrt->bpp / 8);
