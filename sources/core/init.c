@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/30 21:56:18 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/31 15:06:36 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	ft_set_mrt(t_mrt *mrt, char *file, int ix, int iy)
 	mrt->obj_count = ft_malloc(mrt->num_objs * sizeof(int));
 	mrt->ix = ix;
 	mrt->iy = iy;
+	mrt->threads = ft_malloc(sizeof(pthread_t) * ix);
+	pthread_mutex_init(&mrt->mutex, NULL);
 	while (i < mrt->num_objs)
 		mrt->obj_count[i++] = 0;
 }

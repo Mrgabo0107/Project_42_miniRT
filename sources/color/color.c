@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
 /*   Updated: 2023/03/31 19:49:19 by yridgway         ###   ########.fr       */
@@ -76,13 +76,12 @@ t_rgb	get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color)
 	return (add_color(color, get_ambient(ctr->color, mrt->amblight, 1)));
 }
 
-t_rgb	get_color(t_mrt *mrt, t_inter *ctr, t_vec dir)
-{
-	t_rgb	color;
+// t_rgb	get_color(t_mrt *mrt, t_inter *ctr, t_vec dir)
+// {
+// 	t_rgb	color;
 
-	color = ft_make_rgb(0, 0, 0);
-	if (ctr->dist != -1)
-		color = get_object_color(mrt, ctr, dir, color);
-	color = show_light_sources(mrt, color, dir);
-	return (color);
-}
+// 	color = ft_make_rgb(0, 0, 0);
+// 	if (ctr->dist != -1)
+// 		color = get_object_color(mrt, ctr, dir, color);
+// 	return (color);
+// }
