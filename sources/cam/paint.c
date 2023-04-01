@@ -42,21 +42,22 @@ t_vec	get_normal_at_point(t_mrt *mrt, t_inter inter)
 	return (ret);
 }
 
-int	get_pixel_color(t_mrt *mrt, int x, int y)
+int	get_pixel_color(t_mrt *mrt, int x, int y, t_vec dir)
 {
 	t_inter	inter;
 	t_rgb	color;
-	t_vec	dir;
 
-	dir = normalize(vec_rest(screen_pxl_by_indx(mrt, &mrt->cam, x, y),
-				mrt->cam.pos));
+	color = ft_make_rgb(0, 0, 0);
 	inter = check_intersections(mrt, mrt->cam.pos, dir);
 	if (inter.dist != -1)
+	{
 		inter.norm = get_normal_at_point(mrt, inter);
-	color = get_color(mrt, &inter, dir);
-	color = chosen_obj(mrt, x, y, color);
+		color = get_object_color(mrt, &inter, dir, color);
+		color = chosen_obj(mrt, x, y, color);
+	}
 	mrt->bounce = 0;
 	color = normalize_color(color);
+	color = show_light_sources(mrt, color, dir);
 	return ((int)color.r << 16 | (int)color.g << 8 | (int)color.b);
 }
 
@@ -138,6 +139,7 @@ void	pixel_calcul(t_mrt *mrt)
 {
 	int		i;
 	t_mrt	*dat;
+
 	i = 0;
 	dat = ft_copy_mrt(mrt, THREADS);
 	while (i < THREADS)
