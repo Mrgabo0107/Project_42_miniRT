@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:37:20 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/30 22:02:31 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/31 16:43:52 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ t_triangle	ft_fill_triangle(t_table *table, char **line)
 	triangle.p2 = ft_fill_pos(line[2], 0);
 	triangle.p3 = ft_fill_pos(line[3], 0);
 	triangle.color = ft_fill_rgb(line[4]);
-	triangle.base = get_obj_base(triangle.dir);
 	triangle.dir = cross_prod(vec_rest(triangle.p2, triangle.p1), \
 	vec_rest(triangle.p3, triangle.p1));
+	triangle.base = get_obj_base(triangle.dir);
 	triangle.base.bs_orig = triangle.p1;
 	triangle.option = ft_fill_options(table, triangle.color);
 	return (triangle);

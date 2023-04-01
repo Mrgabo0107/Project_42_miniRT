@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/03/30 23:50:56 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/03/31 20:29:08 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,29 @@
 
 void	write_to_ppm(t_mrt *mrt)
 {
-	int		i;
-	int		j;
-	int		fd;
-	char	*line;
+	int				i;
+	unsigned char	color[3];
+	FILE			*fp;
 
-	fd = open("bump.ppm", O_CREAT | O_RDWR, 0777);
-	line = ft_strdup("P6\n");
-	line = ft_strjoin(line, ft_strjoin(ft_itoa(mrt->ix), \
-	ft_strjoin(" ", ft_itoa(mrt->iy))));
-	line = ft_strjoin(line, "\n255\n");
-	write(fd, line, ft_strlen(line));
-	ft_free(line);
-	// i = mrt->ix * mrt->iy * (mrt->bpp / 8) - 2;
-	// while (i >= 0)
-	// {
-	// 	write(fd, mrt->addr + i, 1);
-	// 	if (i % (mrt->bpp / 8) == 0)
-	// 		i--;
-	// 	i--;
-	// }
+	write(1, "writing to file... ", 19);
+	fp = fopen("bump.ppm", "wb");
+	fprintf(fp, "P6\n%d %d\n255\n", mrt->ix - BORDER, mrt->iy);
 	i = 3;
 	while (i < mrt->ix * mrt->iy * (mrt->bpp / 8))
 	{
-		j = 4;
-		while (--j > 0)
-			write(fd, mrt->addr + i + j, 1);
+		if (i % (mrt->sizel) < BORDER * (mrt->bpp / 8))
+		{
+			i += (mrt->bpp / 8);
+			continue ;
+		}
+		color[0] = mrt->addr[i + 3];
+		color[1] = mrt->addr[i + 2];
+		color[2] = mrt->addr[i + 1];
+		fwrite(color, 1, 3, fp);
 		i += (mrt->bpp / 8);
 	}
-	close(fd);
+	fclose(fp);
+	write(1, "done\n", 5);
 }
 
 int	end_mrt(t_mrt *mrt)
@@ -64,15 +58,21 @@ int	ft_controls(t_mrt *mrt)
 void	render_scene(t_mrt *mrt)
 {
 	set_all_cam_values(&mrt->cam, mrt->ix);
+	if (mrt->first)
+		write(1, "calculating pixel values... ", 28);
 	pixel_calcul(mrt);
+	if (mrt->first)
+		write(1, "done\n", 5);
 	if (mrt->save)
 		write_to_ppm(mrt);
 	if (!mrt->save)
+	{
 		mlx_clear_window(mrt->mlx, mrt->win);
-	if (!mrt->save)
 		mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
-	if (!mrt->save)
 		display_strings(mrt);
+	}
+	if (mrt->first)
+		mrt->first = 0;
 }
 
 int	main(int ac, char **av)
@@ -88,8 +88,11 @@ int	main(int ac, char **av)
 		if (ft_strcmp_1(av[2], "--save"))
 			return (printf("Usage: ./miniRT <scene.rt> --save\n"), 1);
 	}
+	write(1, "initializing minirt... ", 23);
 	if (init_minirt(&mrt, av, ac))
 		return (1);
+	write(1, "done\n", 5);
+	mrt.first = 1;
 	if (mrt.save)
 		return (render_scene(&mrt), 0);
 	render_scene(&mrt);
