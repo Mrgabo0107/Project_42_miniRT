@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/03/31 20:29:08 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/01 22:19:09 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ void	write_to_ppm(t_mrt *mrt)
 
 	write(1, "writing to file... ", 19);
 	fp = fopen("bump.ppm", "wb");
-	fprintf(fp, "P6\n%d %d\n255\n", mrt->ix - BORDER, mrt->iy);
+	fprintf(fp, "P6\n%d %d\n255\n", mrt->ix, mrt->iy);
 	i = 3;
 	while (i < mrt->ix * mrt->iy * (mrt->bpp / 8))
 	{
-		if (i % (mrt->sizel) < BORDER * (mrt->bpp / 8))
-		{
-			i += (mrt->bpp / 8);
-			continue ;
-		}
+		// if (i % (mrt->sizel) < BORDER * (mrt->bpp / 8))
+		// {
+		// 	i += (mrt->bpp / 8);
+		// 	continue ;
+		// }
 		color[0] = mrt->addr[i + 3];
 		color[1] = mrt->addr[i + 2];
 		color[2] = mrt->addr[i + 1];
@@ -59,10 +59,8 @@ void	render_scene(t_mrt *mrt)
 {
 	set_all_cam_values(&mrt->cam, mrt->ix);
 	if (mrt->first)
-		write(1, "calculating pixel values... ", 28);
+		write(1, "calculating pixel values...\n", 29);
 	pixel_calcul(mrt);
-	if (mrt->first)
-		write(1, "done\n", 5);
 	if (mrt->save)
 		write_to_ppm(mrt);
 	if (!mrt->save)
@@ -93,8 +91,9 @@ int	main(int ac, char **av)
 		return (1);
 	write(1, "done\n", 5);
 	mrt.first = 1;
+	// mlx_put_image_to_window(mrt.mlx, mrt.win, mrt.img, 0, 0);
 	if (mrt.save)
-		return (render_scene(&mrt), 0);
+		return (render_scene(&mrt), ft_quit(EXIT_OK), 0);
 	render_scene(&mrt);
 	ft_controls(&mrt);
 	mlx_loop(mrt.mlx);

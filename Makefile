@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+         #
+#    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/04/01 13:55:07 by yoel             ###   ########.fr        #
+#    Updated: 2023/04/01 22:57:49 by yridgway         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@
 
 CC      = cc
 
-# FLAGS  = -Wall -Werror -Wextra -pthread -g3 #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
+FLAGS  = -Wall -Werror -Wextra -pthread -g3 #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
 # FLAGS  = -Wall -Werror -Wextra -Ofast -flto -pthread
-FLAGS  = -Ofast -flto -pthread
+# FLAGS  = -Ofast -flto -pthread
 ### Executable ###
 #-Ofast -flto 
 NAME   = minirt
@@ -35,9 +35,10 @@ CORE_DIR	=	core/
 CORE		=	main.c \
 				init.c \
 				keypress.c \
-				keypress_obj1.c \
-				keypress_obj2.c \
-				keypress_obj3.c \
+				key_cam.c \
+				key_move_obj.c \
+				key_rot_obj.c \
+				key_options.c \
 				mousepress.c \
 				info_display.c \
 				color_names.c \
@@ -78,6 +79,7 @@ MAT			=	math1.c \
 CAM_DIR		=	cam/
 CAM			=	cam.c \
 				paint.c \
+				paint_utils.c \
 				chosen_obj.c \
 				
 COLOR_DIR	=	color/
@@ -85,6 +87,7 @@ COLOR		=	color.c \
 				color_utils.c \
 				color_utils2.c \
 				radiance.c \
+				intersections.c \
 
 PLANE_DIR	=	plane/
 PLANE		=	plane.c \

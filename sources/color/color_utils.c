@@ -6,21 +6,21 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 18:55:19 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/31 00:14:16 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/01 20:15:26 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-double	get_angle_between(t_vec v1, t_vec v2)
-{
-	double	angle;
+// double	get_angle_between(t_vec v1, t_vec v2)
+// {
+// 	double	angle;
 
-	if (vect_norm(v1) == 0 || vect_norm(v2) == 0)
-		return (0);
-	angle = acos(dot_prod(v1, v2) / (vect_norm(v1) * vect_norm(v2)));
-	return (angle);
-}
+// 	if (vect_norm(v1) == 0 || vect_norm(v2) == 0)
+// 		return (0);
+// 	angle = acos(dot_prod(v1, v2) / (vect_norm(v1) * vect_norm(v2)));
+// 	return (angle);
+// }
 
 t_rgb	ft_make_rgb_ratio(t_rgb color)
 {

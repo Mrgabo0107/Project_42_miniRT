@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:01:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/31 18:12:04 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/01 20:29:57 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@
 // # define WY 5
 // # define IX 10
 // # define IY 5
-# define WX 800
-# define WY 400
-# define IX 800
-# define IY 400
-# define THREADS 20
+// # define WX 800
+// # define WY 400
 // # define WX 1500
 // # define WY 755
 // # define IX 1250
 // # define IY 750
-# define BORDER 150
 // # define WX 2000
 // # define WY 1000
 // # define IX 2000
 // # define IY 1000
+# define IX 800
+# define IY 400
+# define THREADS 20
+# define BORDER 150
 # define EXIT_ERROR -777
 # define ADD_TO_MEM -666
 # define EXIT_OK -555

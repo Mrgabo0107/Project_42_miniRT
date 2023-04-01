@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/31 15:01:57 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/01 22:56:51 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void		ft_error(char *msg, char *extra, char *extra2);
 t_option	ft_fill_options(t_table *table, t_rgb color);
 int			eval_option(char *line);
 int			*int_arrcpy(int *arr, int size);
+void		ft_allocate_objs(t_mrt *mrt, int *count);
 
 //eval objects
 int			ft_strcmp_1(char *s1, char *s2);
@@ -175,11 +176,13 @@ void		set_all_cam_values(t_cam *cam, int ix);
 t_vec		screen_pxl_by_indx(t_mrt *mrt, t_cam *cam, int i, int j);
 void		my_mlx_pixel_put(t_mrt *mrt, int x, int y, int color);
 void		pixel_calcul(t_mrt *mrt);
-int			get_pixel_color(t_mrt *mrt, int x, int y, t_vec dir);
+int			get_pixel_color(t_mrt *mrt, int x, int y);
 double		distance_to_cap(t_vec start_pos, t_cylinder cylinder, t_vec ray);
 t_inter		fill_ctrl(t_mrt *mrt, int type, int index, double dist);
 t_rgb		chosen_obj(t_mrt *mrt, int x, int y, t_rgb color);
 t_vec		get_normal_at_point(t_mrt *mrt, t_inter inter);
+t_mrt		*ft_copy_mrt(t_mrt *mrt, int num);
+void		ft_percentage_bar(t_mrt *mrt);
 
 //color
 // t_rgb		get_color(t_mrt *mrt, t_inter *ctr, t_vec dir);
@@ -188,7 +191,7 @@ t_rgb		ft_make_rgb_ratio(t_rgb color);
 t_rgb		normalize_color(t_rgb color);
 t_rgb		show_light_sources(t_mrt *mrt, t_rgb color, t_vec dir);
 t_rgb		get_opposite_color(t_rgb color);
-double		get_angle_between(t_vec v1, t_vec v2);
+// double		get_angle_between(t_vec v1, t_vec v2);
 t_rgb		get_ambient(t_rgb ctr, t_light amb, double mirror);
 t_rgb		get_reflection(t_mrt *mrt, t_inter *ctr, t_vec dir);
 t_rgb		get_diffuse(t_inter *ctr, t_vec to_light, \
@@ -213,6 +216,8 @@ void		chg_options(t_mrt *mrt, int key);
 void		radius_ctr(t_mrt *mrt, int key);
 void		height_ctr(t_mrt *mrt, int key);
 void		bump_option(t_mrt *mrt, int key);
+void		chess_ctr(t_mrt *mrt, int key);
+void		cam_ctr(t_mrt *mrt, int key);
 
 //info display
 void		display_strings(t_mrt *mrt);

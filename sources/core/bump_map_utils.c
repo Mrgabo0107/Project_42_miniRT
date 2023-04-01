@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bump_map_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 20:49:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/31 07:19:10 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/01 20:19:42 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,3 @@ t_vec	get_bump_nrml(t_vec new_n, t_base tang_base, t_mtrx chg)
 	ret = mtrx_by_vec(chg, ret);
 	return (ret);
 }
-

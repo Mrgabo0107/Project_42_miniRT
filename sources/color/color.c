@@ -6,31 +6,25 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/31 19:49:19 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/01 20:17:39 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_inter	check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len)
+t_vec	get_normal_at_point(t_mrt *mrt, t_inter inter)
 {
-	t_inter	ret;
-	t_vec	point;
+	t_vec	ret;
 
-	point = vec_sum(ctr->inter_coor, scal_vec(0.0000001, ctr->norm));
-	ret.type = UNDEFINED;
-	ret.index = 0;
-	ret.dist = -1;
-	check_planes(mrt, &ret, point, dir);
-	if (ret.dist != -1 && ret.dist < len)
-		return (ret);
-	check_spheres(mrt, &ret, point, dir);
-	if (ret.dist != -1 && ret.dist < len)
-		return (ret);
-	check_cylinders(mrt, &ret, point, dir);
-	if (ret.dist != -1 && ret.dist < len)
-		return (ret);
-	check_triangles(mrt, &ret, point, dir);
+	ret = fill_coord(0, 0, 0);
+	if (inter.type == PLANE)
+		ret = get_normal_plane(mrt, inter);
+	else if (inter.type == SPHERE)
+		ret = get_normal_sphere(mrt, inter);
+	else if (inter.type == CYLINDER)
+		ret = get_normal_cylinder(mrt, inter);
+	else if (inter.type == TRIANGLE)
+		ret = get_normal_triangle(mrt, inter);
 	return (ret);
 }
 
@@ -76,12 +70,24 @@ t_rgb	get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color)
 	return (add_color(color, get_ambient(ctr->color, mrt->amblight, 1)));
 }
 
-// t_rgb	get_color(t_mrt *mrt, t_inter *ctr, t_vec dir)
-// {
-// 	t_rgb	color;
+int	get_pixel_color(t_mrt *mrt, int x, int y)
+{
+	t_inter	inter;
+	t_rgb	color;
+	t_vec	dir;
 
-// 	color = ft_make_rgb(0, 0, 0);
-// 	if (ctr->dist != -1)
-// 		color = get_object_color(mrt, ctr, dir, color);
-// 	return (color);
-// }
+	dir = normalize(vec_rest(screen_pxl_by_indx(mrt, \
+	&mrt->cam, x + 1, y + 1), mrt->cam.pos));
+	color = ft_make_rgb(0, 0, 0);
+	inter = check_intersections(mrt, mrt->cam.pos, dir);
+	if (inter.dist != -1)
+	{
+		inter.norm = get_normal_at_point(mrt, inter);
+		color = get_object_color(mrt, &inter, dir, color);
+		color = chosen_obj(mrt, x, y, color);
+	}
+	mrt->bounce = 0;
+	color = normalize_color(color);
+	color = show_light_sources(mrt, color, dir);
+	return ((int)color.r << 16 | (int)color.g << 8 | (int)color.b);
+}
