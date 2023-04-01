@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   triangle.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 22:03:43 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/31 16:42:46 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/01 13:52:35 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,53 +82,3 @@ void	check_triangles(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 		}
 	}
 }
-
-// void	*tri_thread(void *tri)
-// {
-// 	t_tri			*dat;
-// 	t_triangle		triangle;
-// 	t_vec			inter_coor;
-// 	double			c;
-
-// 	dat = (t_tri *)tri;
-// 	triangle = dat->triangle;
-// 	c = distance_to_triangle(dat->point, triangle, dat->dir);
-// 	if (c > 0 && (dat->ctrl.dist == -1 || c < dat->ctrl.dist))
-// 	{
-// 		inter_coor = vec_sum(dat->point, scal_vec(c, dat->dir));
-// 		dat->ctrl = (t_inter){TRIANGLE, dat->i, c, inter_coor, \
-// 		fill_coord(0, 0, 0), triangle.color, \
-// 		triangle.option, 0, 0};
-// 	}
-// 	return (NULL);
-// }
-
-// void	check_triangles(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
-// {
-// 	int		i;
-// 	int		j;
-// 	t_tri	dat;
-
-// 	i = 0;
-// 	j = 0;
-// 	while (i < mrt->obj_count[TRIANGLE])
-// 	{
-// 		if (v_abs(dot_prod(mrt->triangle[i].dir, \
-// 		vec_rest(dir, point))) < 0.0001)
-// 			i++;
-// 		else
-// 		{
-// 			dat = (t_tri){mrt->triangle[i], *ctrl, point, dir, i};
-// 			pthread_create(&mrt->threads[i], NULL, tri_thread, (void *)&dat);
-// 			i++;
-// 			j++;
-// 		}
-// 	}
-// 	i = 0;
-// 	while (i < j)
-// 	{
-// 		pthread_join(mrt->threads[i], NULL);
-// 		i++;
-// 	}
-// }
-

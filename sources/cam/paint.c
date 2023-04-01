@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paint.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/31 18:49:01 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/01 13:50:53 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,59 +60,6 @@ int	get_pixel_color(t_mrt *mrt, int x, int y, t_vec dir)
 	color = show_light_sources(mrt, color, dir);
 	return ((int)color.r << 16 | (int)color.g << 8 | (int)color.b);
 }
-
-// void	*ft_paint(void *data)
-// {
-// 	t_mrt	*mrt;
-// 	t_mrt	*dat;
-// 	int		y;
-// 	t_vec	dir;
-// 	int		color;
-
-// 	dat = (t_mrt *)data;
-// 	pthread_mutex_lock(&dat->mutex);
-// 	mrt = ft_memcpy(dat, sizeof(t_mrt));
-// 	// printf("chess = %d\n", mrt->plane[0].option.chess_ctrl);
-// 	// printf("mrt->x = %d\n", mrt->x);
-// 	pthread_mutex_unlock(&dat->mutex);
-// 	y = 0;
-// 	while (y < mrt->iy - 1)
-// 	{
-// 		dir = normalize(vec_rest(screen_pxl_by_indx(mrt, \
-// 		&mrt->cam, mrt->x + 1, y + 1), mrt->cam.pos));
-// 		color = get_pixel_color(mrt, mrt->x + 1, y + 1, dir);
-// 		pthread_mutex_lock(&dat->mutex);
-// 		my_mlx_pixel_put(dat, mrt->x, y, color);
-// 		pthread_mutex_unlock(&dat->mutex);
-// 		y++;
-// 	}
-// 	return (NULL);
-// }
-
-// void	pixel_calcul(t_mrt *mrt)
-// {
-// 	int		i;
-// 	// int		j;
-// 	// int		color;
-// 	// t_vec	dir;
-
-// 	i = 0;
-// 	while (i < mrt->ix)
-// 	{
-// 		mrt->x = i;
-// 		// printf("mrt->x = %d\n", mrt->x);
-// 		// printf("chess = %d\n", mrt->plane[0].option.chess_ctrl);
-// 		pthread_create(&mrt->threads[i], NULL, \
-// 		(void *)ft_paint, (void *)mrt);
-// 		i++;
-// 	}
-// 	i = 0;
-// 	while (i < mrt->ix)
-// 	{
-// 		pthread_join(mrt->threads[i], NULL);
-// 		i++;
-// 	}
-// }
 
 t_mrt	*ft_copy_mrt(t_mrt *mrt, int num)
 {
