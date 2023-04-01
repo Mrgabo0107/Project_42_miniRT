@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/04/01 20:37:31 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/01 22:19:09 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,8 @@ void	render_scene(t_mrt *mrt)
 {
 	set_all_cam_values(&mrt->cam, mrt->ix);
 	if (mrt->first)
-		write(1, "calculating pixel values...\n", 28);
+		write(1, "calculating pixel values...\n", 29);
 	pixel_calcul(mrt);
-	// if (mrt->first)
-	// 	write(1, "done\n", 5);
 	if (mrt->save)
 		write_to_ppm(mrt);
 	if (!mrt->save)
@@ -93,6 +91,7 @@ int	main(int ac, char **av)
 		return (1);
 	write(1, "done\n", 5);
 	mrt.first = 1;
+	// mlx_put_image_to_window(mrt.mlx, mrt.win, mrt.img, 0, 0);
 	if (mrt.save)
 		return (render_scene(&mrt), ft_quit(EXIT_OK), 0);
 	render_scene(&mrt);

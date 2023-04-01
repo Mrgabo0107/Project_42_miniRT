@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/01 20:15:37 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/01 22:56:51 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void		ft_error(char *msg, char *extra, char *extra2);
 t_option	ft_fill_options(t_table *table, t_rgb color);
 int			eval_option(char *line);
 int			*int_arrcpy(int *arr, int size);
+void		ft_allocate_objs(t_mrt *mrt, int *count);
 
 //eval objects
 int			ft_strcmp_1(char *s1, char *s2);
@@ -180,6 +181,8 @@ double		distance_to_cap(t_vec start_pos, t_cylinder cylinder, t_vec ray);
 t_inter		fill_ctrl(t_mrt *mrt, int type, int index, double dist);
 t_rgb		chosen_obj(t_mrt *mrt, int x, int y, t_rgb color);
 t_vec		get_normal_at_point(t_mrt *mrt, t_inter inter);
+t_mrt		*ft_copy_mrt(t_mrt *mrt, int num);
+void		ft_percentage_bar(t_mrt *mrt);
 
 //color
 // t_rgb		get_color(t_mrt *mrt, t_inter *ctr, t_vec dir);
@@ -213,6 +216,8 @@ void		chg_options(t_mrt *mrt, int key);
 void		radius_ctr(t_mrt *mrt, int key);
 void		height_ctr(t_mrt *mrt, int key);
 void		bump_option(t_mrt *mrt, int key);
+void		chess_ctr(t_mrt *mrt, int key);
+void		cam_ctr(t_mrt *mrt, int key);
 
 //info display
 void		display_strings(t_mrt *mrt);

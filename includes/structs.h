@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/01 20:49:10 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/01 22:39:57 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,6 +270,7 @@ typedef struct s_mrt
 	t_curr_ob		curr_obj;
 	pthread_t		*threads;
 	pthread_mutex_t	mutex;
+	pthread_mutex_t	*mutexs;
 	int				i;
 	int				first;
 	int				*percent;

@@ -6,11 +6,21 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:02:11 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/29 22:59:30 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/01 22:43:20 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+void	ft_allocate_objs(t_mrt *mrt, int *count)
+{
+	mrt->light = ft_malloc(sizeof(t_light) * count[LIGHT]);
+	mrt->sphere = ft_malloc(sizeof(t_sphere) * count[SPHERE]);
+	mrt->plane = ft_malloc(sizeof(t_plane) * count[PLANE]);
+	mrt->cylinder = ft_malloc(sizeof(t_cylinder) * count[CYLINDER]);
+	mrt->cone = ft_malloc(sizeof(t_cone) * count[CONE]);
+	mrt->triangle = ft_malloc(sizeof(t_triangle) * count[TRIANGLE]);
+}
 
 int	ft_arg_count(char **line)
 {

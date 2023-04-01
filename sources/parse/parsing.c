@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/01 20:28:59 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/01 22:43:14 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,6 @@ void	ft_fill_capitals(t_mrt *mrt, t_table *table, char **line, int type)
 		mrt->amblight = ft_fill_light(table, line, 1);
 	else if (type == CAMERA)
 		mrt->cam = ft_fill_cam(table, line);
-}
-
-void	ft_allocate_objs(t_mrt *mrt, int *count)
-{
-	mrt->light = ft_malloc(sizeof(t_light) * count[LIGHT]);
-	mrt->sphere = ft_malloc(sizeof(t_sphere) * count[SPHERE]);
-	mrt->plane = ft_malloc(sizeof(t_plane) * count[PLANE]);
-	mrt->cylinder = ft_malloc(sizeof(t_cylinder) * count[CYLINDER]);
-	mrt->cone = ft_malloc(sizeof(t_cone) * count[CONE]);
-	mrt->triangle = ft_malloc(sizeof(t_triangle) * count[TRIANGLE]);
 }
 
 void	ft_fill_objs(t_mrt *mrt, t_table *table, int *count)
