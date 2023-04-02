@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/01 22:56:51 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/02 19:38:45 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,13 @@ t_triangle	ft_fill_triangle(t_table *table, char **line);
 
 //utils
 char		*get_next_line(int fd);
+char		*ft_strjoin_free(char	*s1, char *s2);
 
 //list
 t_table		*ft_tablenew(char **line, int num_objs);
 t_table		*ft_tableadd_back(t_table *table, t_table *new);
 t_table		*ft_tableadd_new(t_table *table, char **line, int num_objs);
+int			mem_size(t_mem *mem);
 
 //memory
 void		*ft_malloc(long long int size);
@@ -97,6 +99,7 @@ void		ft_close(int fd);
 void		ft_close_fd(int *fd);
 void		ft_save_mlx(void *ptr, void **mlx, void **win, void **img);
 void		ft_free_mlx(void **mlx, void **win, void **img);
+void		ft_get_mem_size(void);
 
 //free
 void		ft_free_array(char **array);
@@ -183,6 +186,7 @@ t_rgb		chosen_obj(t_mrt *mrt, int x, int y, t_rgb color);
 t_vec		get_normal_at_point(t_mrt *mrt, t_inter inter);
 t_mrt		*ft_copy_mrt(t_mrt *mrt, int num);
 void		ft_percentage_bar(t_mrt *mrt);
+void		ft_free_mrt(t_mrt *mrt, int num);
 
 //color
 // t_rgb		get_color(t_mrt *mrt, t_inter *ctr, t_vec dir);
@@ -226,7 +230,7 @@ char		*ft_get_color_str(t_rgb color);
 
 //save
 void		save_scene(t_mrt *mrt);
-void		write_to_ppm(t_mrt *mrt);
+void		write_to_ppm(t_mrt *mrt, int crop);
 void		ft_write_planes(t_plane *plane, int count, int fd);
 void		ft_write_spheres(t_sphere *sphere, int count, int fd);
 void		ft_write_cylinders(t_cylinder *cylinder, int count, int fd);

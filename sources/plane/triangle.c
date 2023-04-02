@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   triangle.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 22:03:43 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/01 20:35:21 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/02 17:44:59 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_vec	get_normal_triangle(t_mrt *mrt, t_inter inter)
 
 	ret = mrt->triangle[inter.index].dir;
 	// if (dot_prod(vec_rest(mrt->cam.pos, mrt->plane[inter.index].pos),
-	// 		mrt->triangle[inter.index].dir) < 0.0)
+	// 		mrt->triangle[inter.index].dir) < -0.1)
 	// 	ret = scal_vec(-1, ret);
 	return (ret);
 }

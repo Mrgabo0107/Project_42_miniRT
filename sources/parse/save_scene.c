@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 21:18:20 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/01 20:30:50 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/02 19:54:58 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	ft_write_amblight(t_light amblight, int fd)
 {
 	char	*line;
 
-	line = ft_strjoin("A\t\t", ft_ftoa(amblight.ratio));
-	line = ft_strjoin(line, "\t\t");
-	line = ft_strjoin(line, ft_write_rgb(amblight.color));
+	line = ft_strjoin_free(("A\t\t"), ft_ftoa(amblight.ratio));
+	line = ft_strjoin_free(line, ("\t\t"));
+	line = ft_strjoin_free(line, ft_write_rgb(amblight.color));
 	ft_write_to_file(line, fd);
 	ft_free(line);
 }
@@ -27,11 +27,11 @@ void	ft_write_camera(t_cam cam, int fd)
 {
 	char	*line;
 
-	line = ft_strjoin("C\t\t", ft_write_pos(cam.pos));
-	line = ft_strjoin(line, "\t\t");
-	line = ft_strjoin(line, ft_write_dir(cam.dir));
-	line = ft_strjoin(line, "\t\t");
-	line = ft_strjoin(line, ft_itoa(cam.fov));
+	line = ft_strjoin_free(("C\t\t"), ft_write_pos(cam.pos));
+	line = ft_strjoin_free(line, ("\t\t"));
+	line = ft_strjoin_free(line, ft_write_dir(cam.dir));
+	line = ft_strjoin_free(line, ("\t\t"));
+	line = ft_strjoin_free(line, ft_itoa(cam.fov));
 	ft_write_to_file(line, fd);
 	ft_free(line);
 }
@@ -45,11 +45,12 @@ void	ft_write_lights(t_light *light, int count, int fd)
 	ft_write_to_file("", fd);
 	while (i < count)
 	{
-		line = ft_strjoin("L\t\t", ft_write_pos(light[i].pos));
-		line = ft_strjoin(line, "\t\t");
-		line = ft_strjoin(line, ft_ftoa(light[i].ratio));
-		line = ft_strjoin(line, "\t\t");
-		line = ft_strjoin(line, ft_write_rgb(light[i].color));
+		ft_write_to_file(ft_strjoin_free(("#"), ft_itoa(i + 1)), fd);
+		line = ft_strjoin_free(("L\t\t"), ft_write_pos(light[i].pos));
+		line = ft_strjoin_free(line, ("\t\t"));
+		line = ft_strjoin_free(line, ft_ftoa(light[i].ratio));
+		line = ft_strjoin_free(line, ("\t\t"));
+		line = ft_strjoin_free(line, ft_write_rgb(light[i].color));
 		ft_write_to_file(line, fd);
 		ft_free(line);
 		i++;
