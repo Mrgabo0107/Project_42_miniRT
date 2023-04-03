@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:22:52 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/13 21:22:33 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/03 22:10:21 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+char	*ft_strjoin_free(char	*s1, char *s2)
+{
+	char	*str;
+
+	str = ft_strjoin(s1, s2);
+	ft_free(s1);
+	ft_free(s2);
+	return (str);
+}
 
 char	*ft_chardup(char c)
 {

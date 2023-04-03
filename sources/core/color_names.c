@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_names.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 18:13:47 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/30 18:04:17 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/02 19:54:58 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ char	*white_grey_black(t_rgb color)
 
 	tmp = color.r + color.g + color.b;
 	if (tmp > 150 && tmp < 678)
-		return (ft_strdup("grey"));
+		return (("grey"));
 	if (tmp > 678)
-		return (ft_strdup("white"));
-	return (ft_strdup("black"));
+		return (("white"));
+	return (("black"));
 }
 
 char	*ft_get_color_str(t_rgb color)
@@ -63,7 +63,7 @@ char	*ft_get_color_str(t_rgb color)
 		{
 			diff = v_abs(color.r - ft_atof(line)) + v_abs(color.g - \
 			ft_atof(line + 4)) + v_abs(color.b - ft_atof(line + 8));
-			str = ft_strdup(line + 13);
+			str = (line + 13);
 		}
 		ft_free(line);
 		line = get_next_line(fd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:01:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/04/01 20:29:57 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/02 19:09:06 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define FREE_ONE -444
 # define SAVE_MLX -333
 # define SAVE_FD -222
+# define MEM_SIZE -111
 # define PI 3.1415926536
 # define BUFFER_SIZE 10000
 

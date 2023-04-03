@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 01:36:18 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/05 21:36:17 by ana              ###   ########.fr       */
+/*   Updated: 2023/04/03 22:02:47 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,17 @@ void	ft_free_one(t_mem *mem, void *thing)
 		prev = mem;
 		mem = mem->next;
 	}
+}
+
+int	mem_size(t_mem *mem)
+{
+	int	i;
+
+	i = 0;
+	while (mem)
+	{
+		i++;
+		mem = mem->next;
+	}
+	return (i);
 }

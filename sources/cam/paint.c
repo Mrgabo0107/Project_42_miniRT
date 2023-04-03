@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paint.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/01 22:43:57 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/02 19:13:48 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,5 @@ void	pixel_calcul(t_mrt *mrt)
 	}
 	if (mrt->first)
 		printf("\r[100%%]\n");
-	ft_free(dat);
+	ft_free_mrt(dat, THREADS);
 }

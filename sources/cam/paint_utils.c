@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paint_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 21:16:00 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/01 22:41:23 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/03 22:09:28 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 void	ft_percentage_bar(t_mrt *mrt)
 {
 	double	percent;
-	int		i;
 
-	i = -1;
 	if (mrt->first)
 	{
 		pthread_mutex_lock(mrt->mutexs);
@@ -40,7 +38,7 @@ void	ft_copy_mem(t_mrt *mrt, t_mrt *dat)
 	dat->triangle = \
 	ft_memcpy(mrt->triangle, mrt->obj_count[TRIANGLE] * sizeof(t_triangle));
 	dat->curr_obj = mrt->curr_obj;
-	dat->scene_path = ft_strdup(mrt->scene_path);
+	dat->scene_path = (mrt->scene_path);
 	dat->obj_count = \
 	ft_memcpy(mrt->obj_count, mrt->num_objs * sizeof(int));
 }
@@ -71,4 +69,23 @@ t_mrt	*ft_copy_mrt(t_mrt *mrt, int num)
 		ft_copy_mem(mrt, &dat[i]);
 	}
 	return (dat);
+}
+
+void	ft_free_mrt(t_mrt *mrt, int num)
+{
+	int	i;
+
+	i = -1;
+	while (++i < num)
+	{
+		ft_free(mrt[i].light);
+		ft_free(mrt[i].sphere);
+		ft_free(mrt[i].plane);
+		ft_free(mrt[i].cylinder);
+		ft_free(mrt[i].cone);
+		ft_free(mrt[i].triangle);
+		ft_free(mrt[i].obj_count);
+		ft_free(mrt[i].scene_path);
+	}
+	ft_free(mrt);
 }

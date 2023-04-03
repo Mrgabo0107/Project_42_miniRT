@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:34:04 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/05 21:19:12 by ana              ###   ########.fr       */
+/*   Updated: 2023/04/03 19:01:40 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	*ft_liberate(t_mem *mem, int type)
 t_mem	*mem_addback(t_mem **mem, t_mem *new)
 {
 	t_mem	*tmp;
+	int		i = 0;
+	FILE	*fp;
 
 	tmp = *mem;
 	if (!new)
@@ -41,7 +43,14 @@ t_mem	*mem_addback(t_mem **mem, t_mem *new)
 	if (!tmp)
 		return (mem = &new, *mem);
 	while (tmp && tmp->next)
+	{
+		i++;
 		tmp = tmp->next;
+	}
+	fp = fopen("mem", "a");
+	// fprintf(fp, "ptr[%d]: %p\n", i, new->ptr);
+	fprintf(fp, "%p\n", new->ptr);
+	fclose(fp);
 	tmp->next = new;
 	return (*mem);
 }
@@ -58,7 +67,9 @@ t_mem	*mem_new(size_t size, void *thing)
 	if (thing)
 		new->ptr = thing;
 	else
+	{
 		new->ptr = malloc(size);
+	}
 	if (!new->ptr)
 	{
 		ft_putstr_fd(err, 2);
@@ -87,6 +98,8 @@ void	*ft_memory(void *ptr, long long int size)
 	static void		*mlx[3];
 	static int		fd;
 
+	if (size == MEM_SIZE)
+		return (printf("mem size: %d\n", mem_size(mem)), NULL);
 	if (ptr && size == ADD_TO_MEM)
 		return (mem = mem_addback(&mem, mem_new(0, ptr)));
 	if (ptr && size == FREE_ONE)

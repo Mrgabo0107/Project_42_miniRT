@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:02:11 by ionorb            #+#    #+#             */
-/*   Updated: 2023/04/01 22:43:20 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/03 22:10:17 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_table	*ft_fill_table(int fd, int num_objs)
 	t_table	*table;
 
 	table = NULL;
-	line = ft_strdup("#");
+	line = ("#");
 	while (line)
 	{
 		if (line && line[0] && line[0] != '\n' && line[0] != '#')

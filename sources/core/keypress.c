@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/01 22:56:33 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/02 18:48:13 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	key_press(int key, t_mrt *mrt)
 	if (key == Z)
 		return (save_scene(mrt), 0);
 	if (key == X)
-		return (write_to_ppm(mrt), 0);
+		return (write_to_ppm(mrt, BORDER), 0);
 	if (key == ESC)
 		end_mrt(mrt);
 	if (key == ENTER)

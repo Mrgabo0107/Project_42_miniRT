@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info_display.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 22:23:17 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/29 23:48:40 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/02 19:59:12 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ char	*ft_get_index_str(int type, int index)
 	char	*str;
 
 	if (type == CAMERA)
-		return (ft_strdup(""));
-	str = ft_strjoin(ft_strdup(" "), ft_itoa(index + 1));
+		return ((""));
+	str = ft_strjoin_free((" "), ft_itoa(index + 1));
 	return (str);
 }
 
@@ -27,19 +27,22 @@ char	*ft_get_object_str(int type, int index)
 	char	*str;
 	char	*idx;
 
-	str = ft_strdup("UNKNOWN");
+	str = ("UNKNOWN");
 	idx = ft_get_index_str(type, index);
 	if (type == SPHERE)
-		str = ft_strdup("SPHERE");
+		str = ("SPHERE");
 	if (type == PLANE)
-		str = ft_strdup("PLANE");
+		str = ("PLANE");
 	if (type == CYLINDER)
-		str = ft_strdup("CYLINDER");
+		str = ("CYLINDER");
 	if (type == CAMERA)
-		str = ft_strdup("CAMERA");
+		str = ("CAMERA");
 	if (type == LIGHT)
-		str = ft_strdup("LIGHT");
-	return (ft_strjoin(ft_strjoin("OBJECT: ", str), idx));
+		str = ("LIGHT");
+	if (type == TRIANGLE)
+		str = ("TRIANGLE");
+	return (ft_strjoin_free(ft_strjoin_free(("OBJECT: "), \
+	str), idx));
 }
 
 void	display_strings(t_mrt *mrt)
@@ -48,7 +51,7 @@ void	display_strings(t_mrt *mrt)
 	char	*color;
 
 	object = ft_get_object_str(mrt->curr_obj.type, mrt->curr_obj.index);
-	color = ft_strjoin("color: ", ft_get_color_str(ft_get_obj_color(mrt, \
+	color = ft_strjoin_free("color: ", ft_get_color_str(ft_get_obj_color(mrt, \
 	mrt->curr_obj.type, mrt->curr_obj.index)));
 	mlx_string_put(mrt->mlx, mrt->win, 10, 20, 0xFFFFFF, \
 	"--------MiniRT--------");
@@ -64,4 +67,6 @@ void	display_strings(t_mrt *mrt)
 	"----------------------");
 	mlx_string_put(mrt->mlx, mrt->win, 10, 210, 0xFFFFFF, object);
 	mlx_string_put(mrt->mlx, mrt->win, 10, 230, 0xFFFFFF, color);
+	ft_free(object);
+	ft_free(color);
 }
