@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/04/02 20:15:51 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/03 22:11:22 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_controls(t_mrt *mrt)
 
 void	render_scene(t_mrt *mrt)
 {
-	ft_get_mem_size();
+	// ft_get_mem_size();
 	set_all_cam_values(&mrt->cam, mrt->ix);
 	if (mrt->first)
 		write(1, "calculating pixel values...\n", 29);
@@ -72,7 +72,7 @@ void	render_scene(t_mrt *mrt)
 	{
 		mlx_clear_window(mrt->mlx, mrt->win);
 		mlx_put_image_to_window(mrt->mlx, mrt->win, mrt->img, 0, 0);
-		// display_strings(mrt);
+		display_strings(mrt);
 	}
 	if (mrt->first)
 		mrt->first = 0;

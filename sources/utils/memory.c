@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:34:04 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/02 20:19:45 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/03 19:01:40 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_mem	*mem_addback(t_mem **mem, t_mem *new)
 {
 	t_mem	*tmp;
 	int		i = 0;
+	FILE	*fp;
 
 	tmp = *mem;
 	if (!new)
@@ -46,7 +47,10 @@ t_mem	*mem_addback(t_mem **mem, t_mem *new)
 		i++;
 		tmp = tmp->next;
 	}
-	printf("ptr[%d]: %p\n", i, new->ptr);
+	fp = fopen("mem", "a");
+	// fprintf(fp, "ptr[%d]: %p\n", i, new->ptr);
+	fprintf(fp, "%p\n", new->ptr);
+	fclose(fp);
 	tmp->next = new;
 	return (*mem);
 }

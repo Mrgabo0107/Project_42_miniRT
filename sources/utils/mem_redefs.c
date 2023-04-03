@@ -6,7 +6,7 @@
 /*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:34:02 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/02 20:27:02 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/03 21:39:38 by yoel             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,13 @@ void	*ft_malloc(long long int size)
 
 void	ft_free(void *ptr)
 {
-	printf("freeing %p\n", ptr);
+	FILE			*fp;
+
+	fp = fopen("freeing", "a");
+	// fprintf(fp, "freeing %p\n", ptr);
+	fprintf(fp, "%p\n", ptr);
 	ft_memory(ptr, FREE_ONE);
+	fclose(fp);
 }
 
 void	ft_quit(int status)
