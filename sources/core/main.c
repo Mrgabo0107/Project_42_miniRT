@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/04/04 23:20:40 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/05 01:20:40 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ int	main(int ac, char **av)
 		return (1);
 	write(1, "done\n", 5);
 	mrt.first = 1;
-	// mlx_put_image_to_window(mrt.mlx, mrt.win, mrt.img, 0, 0);
 	if (mrt.save)
 		return (render_scene(&mrt), ft_quit(EXIT_OK), 0);
 	render_scene(&mrt);

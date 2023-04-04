@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 22:53:47 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/02 19:54:58 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/05 01:19:15 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ char	*ft_write_dir(t_vec dir)
 {
 	char	*line;
 
-	// dir = normalize(dir);
 	dir = ft_unnormalize(dir);
 	line = ft_strjoin_free(ft_ftoa(dir.x), (","));
 	line = ft_strjoin_free(line, ft_ftoa(dir.y));
