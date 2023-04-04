@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 05:07:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/31 07:24:39 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/04 05:13:29 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_vec	cyl_bumped(t_mrt *mrt, t_inter inter, t_vec without)
 	t_vec	ret;
 	t_base	tang_base;
 
+	ret = without;
 	chg = fill_mtrx(mrt->cylinder[inter.index].base.n1,
 			mrt->cylinder[inter.index].base.n2,
 			mrt->cylinder[inter.index].base.n3);
@@ -64,8 +65,8 @@ t_vec	get_normal_cylinder(t_mrt *mrt, t_inter inter)
 						mrt->cylinder[inter.index].dir)));
 	if (inter.is_in_obj)
 		ret = scal_vec(-1, ret);
-	// if (mrt->cylinder[inter.index].option.b_mp_ctrl == 1)
-	// 	ret = cyl_bumped(mrt, inter, ret);
+	if (mrt->cylinder[inter.index].option.b_mp_ctrl == 1)
+		ret = cyl_bumped(mrt, inter, ret);
 	return (ret);
 }
 

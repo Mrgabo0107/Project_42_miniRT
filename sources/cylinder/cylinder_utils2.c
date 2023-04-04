@@ -5,29 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/31 04:00:47 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/31 07:03:13 by gamoreno         ###   ########.fr       */
+/*   Created: 2023/04/04 03:58:18 by gamoreno          #+#    #+#             */
+/*   Updated: 2023/04/04 05:56:48 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_vec	cyl_cap_nrml_fr_map(t_mrt *mrt, t_inter inter, t_vec c_cr, double *r_c)
+t_vec	cyl_cap_nrml_fr_map(t_mrt *mrt, t_inter inter, t_vec c_cr, \
+t_cyl_b_m_val values)
 {
 	int		bump_coor[2];
-	int		i_diam;
 	t_vec	ret;
 
 	ret = fill_coord(0, 0, 1);
-	i_diam = i_min_v(mrt->cylinder[inter.index].option.bump_map.height,
-			mrt->cylinder[inter.index].option.bump_map.width);
-	*r_c = (2 * mrt->cylinder[inter.index].radius) / (i_diam - 2);
-	if (i_diam > 6)
+	if (values.i_diam > 6)
 	{
-		bump_coor[0] = (mrt->cylinder[inter.index].option.bump_map.width / 2) \
-		+ (int)integer_part(c_cr.x / *r_c);
-		bump_coor[1] = (mrt->cylinder[inter.index].option.bump_map.height / 2) \
-		+ (int)integer_part(c_cr.y / *r_c);
+		bump_coor[0] = (mrt->cylinder[inter.index].option.bump_map.height / 2) \
+		+ (int)integer_part(c_cr.x / values.res_cap);
+		bump_coor[1] = (mrt->cylinder[inter.index].option.bump_map.width / 2) \
+		+ ((int)integer_part(c_cr.y / values.res_cap));
 		ret = bump_nrml_by_coor(&mrt->cylinder[inter.index].option, \
 		bump_coor[0], bump_coor[1], 0.4);
 	}
@@ -79,18 +76,20 @@ double	get_body_resol(t_mrt *mrt, t_inter inter, double r_c)
 	return (ret);
 }
 
-t_vec	cyl_body_nrml_fr_map(t_mrt *mrt, t_inter inter, t_vec cyl_c, double r_c)
+t_vec	cyl_body_nrml_fr_map(t_mrt *mrt, t_inter inter, t_vec cyl_c, \
+t_cyl_b_m_val values)
 {
 	int		bump_coor[2];
 	double	res_circ;
 	double	res_h;
 	t_vec	ret;
 
-	res_circ = get_angular_resol(mrt, inter, r_c);
-	res_h = get_body_resol(mrt, inter, r_c);
-	bump_coor[0] = (int)integer_part(cyl_c.y / res_circ) % \
+	ret = fill_coord(0, 0, 1);
+	res_circ = get_angular_resol(mrt, inter, values.res_cap);
+	res_h = get_body_resol(mrt, inter, values.res_cap);
+	bump_coor[1] = (int)integer_part(cyl_c.y / res_circ) % \
 	mrt->cylinder[inter.index].option.bump_map.width - 1;
-	bump_coor[1] = (mrt->cylinder[inter.index].option.bump_map.height - 1) \
+	bump_coor[0] = (mrt->cylinder[inter.index].option.bump_map.height - 1) \
 	- (int)integer_part((cyl_c.z + ((mrt->cylinder[inter.index].height) / 2)) \
 	/ res_h) % (mrt->cylinder[inter.index].option.bump_map.height - 1);
 	ret = bump_nrml_by_coor(&mrt->cylinder[inter.index].option, \
@@ -100,13 +99,16 @@ t_vec	cyl_body_nrml_fr_map(t_mrt *mrt, t_inter inter, t_vec cyl_c, double r_c)
 
 t_vec	cyl_normal_from_map(t_mrt *mrt, t_inter inter, t_vec c_cr, t_vec cyl_cr)
 {
-	t_vec	ret;
-	double	res_cap;
+	t_vec			ret;
+	t_cyl_b_m_val	values;
 
+	values.i_diam = i_min_v(mrt->cylinder[inter.index].option.bump_map.height,
+			mrt->cylinder[inter.index].option.bump_map.width);
+	values.res_cap = (2 * mrt->cylinder[inter.index].radius) / (values.i_diam);
 	ret = fill_coord(0, 0, 1);
 	if (inter.cyl_ctrl == 1 || inter.cyl_ctrl == 2)
-		ret = cyl_cap_nrml_fr_map(mrt, inter, c_cr, &res_cap);
+		ret = cyl_cap_nrml_fr_map(mrt, inter, c_cr, values);
 	if (inter.cyl_ctrl == 3)
-		ret = cyl_body_nrml_fr_map(mrt, inter, cyl_cr, res_cap);
+		ret = cyl_body_nrml_fr_map(mrt, inter, cyl_cr, values);
 	return (ret);
 }
