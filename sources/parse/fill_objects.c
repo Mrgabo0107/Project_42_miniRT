@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_objects.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:37:20 by ionorb            #+#    #+#             */
-/*   Updated: 2023/03/04 01:37:18 by ana              ###   ########.fr       */
+/*   Updated: 2023/04/04 19:20:46 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ t_plane	ft_fill_plane(char *line[7])
 	plane.pos = ft_fill_pos(line[1], 0);
 	plane.dir = normalize(ft_fill_pos(line[2], 1));
 	plane.color = ft_fill_rgb(line[3]);
+	plane.base = get_obj_base(plane.dir);
+	plane.base.bs_orig = plane.pos;
 	return (plane);
 }
 
@@ -50,7 +52,8 @@ t_cylinder	ft_fill_cylinder(char *line[7])
 	cylinder.radius = ft_fill_size(line[3], 0) / 2;
 	cylinder.height = ft_fill_size(line[4], 0);
 	cylinder.color = ft_fill_rgb(line[5]);
-	cylinder.base = get_cyl_base(cylinder.dir);
+	cylinder.base = get_obj_base(cylinder.dir);
+	cylinder.base.bs_orig = cylinder.pos;
 	cylinder.top = vec_sum(cylinder.pos, \
 	scal_vec(cylinder.height / 2, cylinder.dir));
 	cylinder.bottom = vec_sum(cylinder.pos, \

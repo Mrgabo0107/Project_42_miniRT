@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/25 23:19:43 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/04 19:23:19 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	get_pixel_color(t_mrt *mrt, int x, int y)
 	t_inter	inter;
 	t_rgb	color;
 	t_vec	dir;
-	double	angle;
 
 	dir = normalize(vec_rest(screen_pxl_by_indx(&mrt->cam, x, y),
 				mrt->cam.pos));

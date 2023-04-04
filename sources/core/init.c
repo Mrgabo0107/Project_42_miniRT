@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana <ana@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/05 20:40:25 by ana              ###   ########.fr       */
+/*   Updated: 2023/04/04 19:26:34 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ft_set_mrt(t_mrt *mrt, char *file)
 	mrt->plane = NULL;
 	mrt->cylinder = NULL;
 	mrt->scene_path = file;
+	define_curr_obj(mrt, CAMERA, 0);
 }
 
 void	ft_reinit(t_mrt *mrt)
