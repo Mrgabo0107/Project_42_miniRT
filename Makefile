@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+         #
+#    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/04/02 19:48:09 by yoel             ###   ########.fr        #
+#    Updated: 2023/04/04 05:50:39 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@
 
 CC      = cc
 
-FLAGS  = -Wall -Werror -Wextra -pthread -g3 #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
-# FLAGS  = -Wall -Werror -Wextra -Ofast -flto -pthread
+# FLAGS  = -Wall -Werror -Wextra -pthread -g3 #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
+FLAGS  = -Wall -Werror -Wextra -Ofast -flto -pthread
 # FLAGS  = -Ofast -flto -pthread
 ### Executable ###
 #-Ofast -flto 
