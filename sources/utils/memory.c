@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:34:04 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/04 20:44:47 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/04 23:18:20 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	*ft_liberate(t_mem *mem, int type)
 		prev = mem;
 		mem = mem->next;
 		free(prev);
+		// printf("freed");
 	}
 	if (type == EXIT_ERROR)
 		exit(1);
@@ -40,6 +41,8 @@ t_mem	*mem_addback(t_mem **mem, t_mem *new)
 		return (ft_memory(NULL, EXIT_ERROR), NULL);
 	if (!tmp)
 		return (mem = &new, *mem);
+	while (tmp && tmp->next)
+		tmp = tmp->next;
 	tmp->next = new;
 	return (*mem);
 }
@@ -56,9 +59,7 @@ t_mem	*mem_new(size_t size, void *thing)
 	if (thing)
 		new->ptr = thing;
 	else
-	{
 		new->ptr = malloc(size);
-	}
 	if (!new->ptr)
 	{
 		ft_putstr_fd(err, 2);

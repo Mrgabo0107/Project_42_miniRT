@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 21:16:00 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/04 21:19:54 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/05 00:33:25 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,69 @@ int	**ft_copy_double_array(int height, int width, int **array)
 	return (new_array);
 }
 
+void	ft_free_double_array(int **array, int height)
+{
+	int	i;
+
+	i = 0;
+	if (!array || !height)
+		return ;
+	while (i < height)
+	{
+		ft_free(array[i]);
+		i++;
+	}
+	ft_free(array);
+}
+
+void	ft_copy_bump_maps(t_mrt *mrt, t_mrt *dat)
+{
+	int	i;
+
+	i = -1;
+	while (++i < mrt->obj_count[SPHERE])
+		dat->sphere[i].option.bump_map.array = \
+		ft_copy_double_array(mrt->sphere[i].option.bump_map.height, \
+		mrt->sphere[i].option.bump_map.width, \
+		mrt->sphere[i].option.bump_map.array);
+	i = -1;
+	while (++i < mrt->obj_count[PLANE])
+		dat->plane[i].option.bump_map.array = \
+		ft_copy_double_array(mrt->plane[i].option.bump_map.height, \
+		mrt->plane[i].option.bump_map.width, \
+		mrt->plane[i].option.bump_map.array);
+	i = -1;
+	while (++i < mrt->obj_count[CYLINDER])
+		dat->cylinder[i].option.bump_map.array = \
+		ft_copy_double_array(mrt->cylinder[i].option.bump_map.height, \
+		mrt->cylinder[i].option.bump_map.width, \
+		mrt->cylinder[i].option.bump_map.array);
+}
+
+void	ft_free_bump_maps(t_mrt *mrt)
+{
+	int	i;
+
+	i = -1;
+	while (++i < mrt->obj_count[SPHERE])
+		ft_free_double_array(mrt->sphere[i].option.bump_map.array, \
+		mrt->sphere[i].option.bump_map.height);
+	while (++i < mrt->obj_count[PLANE])
+		ft_free_double_array(mrt->plane[i].option.bump_map.array, \
+		mrt->plane[i].option.bump_map.height);
+	while (++i < mrt->obj_count[CYLINDER])
+		ft_free_double_array(mrt->cylinder[i].option.bump_map.array, \
+		mrt->cylinder[i].option.bump_map.height);
+}
+
 void	ft_copy_mem(t_mrt *mrt, t_mrt *dat)
 {
 	dat->light = ft_memcpy(mrt->light, mrt->obj_count[LIGHT] * sizeof(t_light));
 	dat->sphere = \
 	ft_memcpy(mrt->sphere, mrt->obj_count[SPHERE] * sizeof(t_sphere));
-	if (mrt->sphere)
-		dat->sphere->option.bump_map.array = \
-		ft_copy_double_array(mrt->sphere->option.bump_map.height, \
-		mrt->sphere->option.bump_map.width, mrt->sphere->option.bump_map.array);
-
 	dat->plane = ft_memcpy(mrt->plane, mrt->obj_count[PLANE] * sizeof(t_plane));
-	if (mrt->plane)
-		dat->plane->option.bump_map.array = \
-		ft_copy_double_array(mrt->plane->option.bump_map.height, \
-		mrt->plane->option.bump_map.width, mrt->plane->option.bump_map.array);
-
 	dat->cylinder = \
 	ft_memcpy(mrt->cylinder, mrt->obj_count[CYLINDER] * sizeof(t_cylinder));
-	if (mrt->cylinder)
-		dat->cylinder->option.bump_map.array = \
-		ft_copy_double_array(mrt->cylinder->option.bump_map.height, \
-		mrt->cylinder->option.bump_map.width, \
-		mrt->cylinder->option.bump_map.array);
 	dat->cone = ft_memcpy(mrt->cone, mrt->obj_count[CONE] * sizeof(t_cone));
 	dat->triangle = \
 	ft_memcpy(mrt->triangle, mrt->obj_count[TRIANGLE] * sizeof(t_triangle));
@@ -73,6 +113,7 @@ void	ft_copy_mem(t_mrt *mrt, t_mrt *dat)
 	dat->scene_path = (mrt->scene_path);
 	dat->obj_count = \
 	ft_memcpy(mrt->obj_count, mrt->num_objs * sizeof(int));
+	// ft_copy_bump_maps(mrt, dat);
 }
 
 t_mrt	*ft_copy_mrt(t_mrt *mrt, int num)
@@ -110,6 +151,7 @@ void	ft_free_mrt(t_mrt *mrt, int num)
 	i = -1;
 	while (++i < num)
 	{
+		// ft_free_bump_maps(&mrt[i]);
 		ft_free(mrt[i].light);
 		ft_free(mrt[i].sphere);
 		ft_free(mrt[i].plane);

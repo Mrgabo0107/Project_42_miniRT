@@ -6,7 +6,7 @@
 #    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/04/04 21:39:57 by yridgway         ###   ########.fr        #
+#    Updated: 2023/04/05 00:56:32 by yridgway         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@
 
 CC      = cc
 
-# FLAGS  = -Wall -Werror -Wextra -pthread -g3 #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
+FLAGS  = -Wall -Werror -Wextra -pthread -g3 #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
 # FLAGS  = -Wall -Werror -Wextra -Ofast -flto -pthread
-FLAGS  = -Ofast -flto -pthread
+# FLAGS  = -Ofast -flto -pthread
 ### Executable ###
 #-Ofast -flto 
 NAME   = minirt
@@ -92,7 +92,7 @@ COLOR		=	color.c \
 PLANE_DIR	=	plane/
 PLANE		=	plane.c \
 				plane_color.c \
-        triangle.c \
+				triangle.c \
 				plane_bump.c \
 				
 SPHERE_DIR	=	sphere/
