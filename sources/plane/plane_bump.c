@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane_bump.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 01:59:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/30 03:50:45 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/04 21:38:01 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_vec	pl_bmp_2(t_mrt *mrt, t_inter inter, t_vec new_inter)
 
 	bump_coor[0] = mrt->plane[inter.index].option.bump_map.height \
 	- ((int)integer_part(v_abs(new_inter.x / \
-	mrt->plane[inter.index].option.bump_map.res_plan - 1)) \
+	mrt->plane[inter.index].option.bump_map.res_plan)) \
 	% mrt->plane[inter.index].option.bump_map.height);
 	bump_coor[1] = (int)integer_part(new_inter.y / \
 	mrt->plane[inter.index].option.bump_map.res_plan) % \
@@ -55,7 +55,7 @@ t_vec	pl_bmp_3(t_mrt *mrt, t_inter inter, t_vec new_inter)
 	% (mrt->plane[inter.index].option.bump_map.height - 1);
 	bump_coor[1] = mrt->plane[inter.index].option.bump_map.width - \
 	((int)integer_part(v_abs(new_inter.y / \
-	mrt->plane[inter.index].option.bump_map.res_plan - 1)) % \
+	mrt->plane[inter.index].option.bump_map.res_plan)) % \
 	mrt->plane[inter.index].option.bump_map.width);
 	ret = bump_nrml_by_coor(&mrt->plane[inter.index].option, \
 	bump_coor[0], bump_coor[1], 0.4);
@@ -69,11 +69,11 @@ t_vec	pl_bmp_4(t_mrt *mrt, t_inter inter, t_vec new_inter)
 
 	bump_coor[0] = mrt->plane[inter.index].option.bump_map.height \
 	- ((int)integer_part(v_abs(new_inter.x / \
-	mrt->plane[inter.index].option.bump_map.res_plan - 1)) \
+	mrt->plane[inter.index].option.bump_map.res_plan)) \
 	% mrt->plane[inter.index].option.bump_map.height);
 	bump_coor[1] = mrt->plane[inter.index].option.bump_map.width - \
 	((int)integer_part(v_abs(new_inter.y / \
-	mrt->plane[inter.index].option.bump_map.res_plan - 1)) % \
+	mrt->plane[inter.index].option.bump_map.res_plan)) % \
 	mrt->plane[inter.index].option.bump_map.width);
 	ret = bump_nrml_by_coor(&mrt->plane[inter.index].option, \
 	bump_coor[0], bump_coor[1], 0.4);

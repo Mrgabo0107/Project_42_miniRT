@@ -7,7 +7,7 @@ sp	-3,0,0						3			    50,100,0
 mir 1
 
 sp	0,0,0						3				0,100,0
-bump textures/stained_nml.xpm
+bump textures/brick_bump.xpm
 
 sp	3,0,0						3			    100,200,0
 

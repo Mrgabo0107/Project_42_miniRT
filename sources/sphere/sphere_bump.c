@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere_bump.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 02:50:57 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/31 07:19:01 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/04 20:03:31 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,7 @@ t_vec	sphere_bumped(t_mrt *mrt, t_inter inter, t_vec without)
 	new_normal = sph_normal_from_map(mrt, inter, new_inter);
 	tang_base = sph_get_tang_base(new_inter, mtrx_by_vec(chg, without));
 	ret = get_bump_nrml(new_normal, tang_base, mtrx_trsp(chg));
+	if (dot_prod(ret, without) < 0)
+		ret = normalize(scal_vec(-1, ret));
 	return (ret);
 }

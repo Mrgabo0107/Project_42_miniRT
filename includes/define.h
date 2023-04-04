@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:01:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/04/02 19:09:06 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/04 19:11:39 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,9 @@ color: (r,g,b)] \
 \n(pl)ane: [name: 'pl', pos: (x,y,z), dir: (a,b,c), color: (r,g,b)] \
 \ne.g. pl 0,0,0 0,1,0 255,0,0"
 # define CONE_INSTRUCTIONS "\
-\n(co)ne: [name: 'co', pos: (x,y,z), dir: (a,b,c), diameter, height, \
+\n(co)ne: [name: 'co', pos: (x,y,z), dir: (a,b,c), angle, height, \
 color: (r,g,b)] \
-\ne.g. co 0,0,0 0,1,0 3 8 255,0,0"
+\ne.g. co 0,0,0 0,1,0 30 8 255,0,0"
 # define TRIANGLE_INSTRUCTIONS "\
 \n(tr)iangle: [name: 'tr', pos1: (x,y,z), pos2: (a,b,c), pos3: (d,e,f), \
 color: (r,g,b)] \

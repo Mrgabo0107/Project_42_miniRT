@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:02:11 by ionorb            #+#    #+#             */
-/*   Updated: 2023/04/03 22:10:17 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/04 20:43:02 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 void	ft_allocate_objs(t_mrt *mrt, int *count)
 {
 	mrt->light = ft_malloc(sizeof(t_light) * count[LIGHT]);
-	mrt->sphere = ft_malloc(sizeof(t_sphere) * count[SPHERE]);
-	mrt->plane = ft_malloc(sizeof(t_plane) * count[PLANE]);
-	mrt->cylinder = ft_malloc(sizeof(t_cylinder) * count[CYLINDER]);
+	if (count[SPHERE])
+		mrt->sphere = ft_malloc(sizeof(t_sphere) * count[SPHERE]);
+	if (count[PLANE])
+		mrt->plane = ft_malloc(sizeof(t_plane) * count[PLANE]);
+	if (count[CYLINDER])
+		mrt->cylinder = ft_malloc(sizeof(t_cylinder) * count[CYLINDER]);
 	mrt->cone = ft_malloc(sizeof(t_cone) * count[CONE]);
 	mrt->triangle = ft_malloc(sizeof(t_triangle) * count[TRIANGLE]);
 }
