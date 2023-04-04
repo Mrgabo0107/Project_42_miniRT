@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 05:07:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/04 05:13:29 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/04 19:54:27 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ t_vec	cyl_bumped(t_mrt *mrt, t_inter inter, t_vec without)
 	new_normal = cyl_normal_from_map(mrt, inter, new_inter[0], new_inter[1]);
 	tang_base = cyl_get_tang_base(mrt, inter, mtrx_by_vec(chg, without));
 	ret = get_bump_nrml(new_normal, tang_base, mtrx_trsp(chg));
+	if (dot_prod(ret, without) < 0)
+		ret = normalize(scal_vec(-1, ret));
 	return (ret);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 01:36:18 by ionorb            #+#    #+#             */
-/*   Updated: 2023/04/03 22:02:47 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/04 20:45:19 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	ft_free_one(t_mem *mem, void *thing)
 	t_mem	*prev;
 	t_mem	*after;
 
+	if (!mem || !thing)
+		return ;
 	prev = mem;
 	if (mem)
 		mem = mem->next;

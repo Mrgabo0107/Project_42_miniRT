@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 15:34:04 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/04 17:32:35 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/04 20:44:47 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	*ft_memory(void *ptr, long long int size)
 		return (printf("mem size: %d\n", mem_size(mem)), NULL);
 	if (ptr && size == ADD_TO_MEM)
 		return (mem = mem_addback(&mem, mem_new(0, ptr)));
-	if (ptr && size == FREE_ONE)
+	if (size == FREE_ONE)
 		return (ft_free_one(mem, ptr), NULL);
 	if (size == EXIT_ERROR || size == EXIT_OK)
 		return (ft_close_fd(&fd), ft_free_mlx(&mlx[0], &mlx[1], &mlx[2]),
