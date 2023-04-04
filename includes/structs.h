@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/01 22:39:57 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/04 03:52:12 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,12 @@ typedef struct s_bump
 	char		*addr;
 	double		res_plan;
 }				t_bump;
+
+typedef struct s_cyl_b_m_val
+{
+	double	res_cap;
+	int		i_diam;
+}			t_cyl_b_m_val;
 
 typedef struct s_option
 {
