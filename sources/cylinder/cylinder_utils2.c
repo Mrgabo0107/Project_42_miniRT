@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 03:58:18 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/05 00:39:10 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/05 01:11:36 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ t_cyl_b_m_val values)
 		+ (int)integer_part(c_cr.x / values.res_cap);
 		bump_coor[1] = (mrt->cylinder[inter.index].option.bump_map.width / 2) \
 		+ ((int)integer_part(c_cr.y / values.res_cap));
+		pthread_mutex_lock(mrt->mutexs);
 		ret = bump_nrml_by_coor(&mrt->cylinder[inter.index].option, \
 		bump_coor[0], bump_coor[1], 0.4);
+		pthread_mutex_unlock(mrt->mutexs);
 	}
 	return (ret);
 }
@@ -92,8 +94,10 @@ t_cyl_b_m_val values)
 	bump_coor[0] = (mrt->cylinder[inter.index].option.bump_map.height - 1) \
 	- (int)integer_part((cyl_c.z + ((mrt->cylinder[inter.index].height) / 2)) \
 	/ res_h) % (mrt->cylinder[inter.index].option.bump_map.height - 1);
+	pthread_mutex_lock(mrt->mutexs);
 	ret = bump_nrml_by_coor(&mrt->cylinder[inter.index].option, \
 	bump_coor[0], bump_coor[1], 0.4);
+	pthread_mutex_unlock(mrt->mutexs);
 	return (ret);
 }
 
