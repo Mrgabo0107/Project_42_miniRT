@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mem_redefs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:34:02 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/03 21:39:38 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/04 17:32:44 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,7 @@ void	*ft_malloc(long long int size)
 
 void	ft_free(void *ptr)
 {
-	FILE			*fp;
-
-	fp = fopen("freeing", "a");
-	// fprintf(fp, "freeing %p\n", ptr);
-	fprintf(fp, "%p\n", ptr);
 	ft_memory(ptr, FREE_ONE);
-	fclose(fp);
 }
 
 void	ft_quit(int status)
