@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/05 08:24:36 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/05 04:14:24 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int			init_minirt(t_mrt *mrt, char **av, int ac);
 int			ft_init_mlx(t_mrt *mrt);
 void		ft_reinit(t_mrt *mrt);
 int			valid_rt_file(char *file, int fd);
+void		ft_set_mrt(t_mrt *mrt, char *file, int ix, int iy);
 
 //end
 int			end_mrt(t_mrt *mrt);
@@ -91,7 +92,7 @@ int			mem_size(t_mem *mem);
 void		*ft_malloc(long long int size);
 void		*ft_memory(void *ptr, long long int size);
 void		ft_free(void *ptr);
-void		ft_free_one(t_mem *mem, void *thing);
+int			ft_free_one(t_mem *mem, void *thing);
 void		ft_quit(int status);
 void		clean_memory(void);
 void		ft_add_to_mem(void *thing);
@@ -236,6 +237,7 @@ void		height_ctr(t_mrt *mrt, int key);
 void		bump_option(t_mrt *mrt, int key);
 void		chess_ctr(t_mrt *mrt, int key);
 void		cam_ctr(t_mrt *mrt, int key);
+t_curr_ob	define_curr_obj(int type, int index);
 
 //info display
 void		display_strings(t_mrt *mrt);
@@ -244,7 +246,7 @@ char		*ft_get_color_str(t_rgb color);
 
 //save
 void		save_scene(t_mrt *mrt);
-void		write_to_ppm(t_mrt *mrt, int crop);
+void		write_to_ppm(t_mrt *mrt);
 void		ft_write_planes(t_plane *plane, int count, int fd);
 void		ft_write_spheres(t_sphere *sphere, int count, int fd);
 void		ft_write_cylinders(t_cylinder *cylinder, int count, int fd);

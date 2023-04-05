@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paint.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:24:35 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/05 03:28:16 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/05 04:36:51 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,15 @@ void	pixel_calcul(t_mrt *mrt)
 		dat[i].i = i;
 		pthread_create(&mrt->threads[i], NULL, \
 		(void *)ft_paint, (void *)&dat[i]);
+		// {
+		// 	printf("Error\nThread creation failed\n");
+		// 	break ;
+		// }
 		i++;
 	}
-	i = 0;
-	while (i < THREADS)
-	{
+	i = -1;
+	while (++i < THREADS)
 		pthread_join(mrt->threads[i], NULL);
-		i++;
-	}
 	if (mrt->first)
 		printf("\r[100%%]\n");
 	ft_free_mrt(dat, THREADS);

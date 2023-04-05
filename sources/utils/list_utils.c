@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:13:35 by ionorb            #+#    #+#             */
-/*   Updated: 2023/04/02 20:21:22 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/05 05:20:36 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ t_table	*ft_tablenew(char **line, int num_objs)
 
 	i = 0;
 	new = (t_table *)ft_malloc(sizeof(t_table));
-	new->line = (char **)ft_malloc(sizeof(char *) * num_objs);
-	while (line && line[i] && i < 7)
+	new->line = (char **)ft_malloc(sizeof(char *) * (num_objs + 1));
+	while (line && line[i])
 	{
-		new->line[i] = line[i];
+		new->line[i] = ft_strdup(line[i]);
 		i++;
 	}
-	while (i < 7)
-		new->line[i++] = NULL;
+	new->line[i] = NULL;
 	new->next = NULL;
+	ft_free_array(line);
 	return (new);
 }
 

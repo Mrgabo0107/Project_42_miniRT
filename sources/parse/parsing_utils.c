@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:02:11 by ionorb            #+#    #+#             */
-/*   Updated: 2023/04/04 20:43:02 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/05 05:24:07 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 void	ft_allocate_objs(t_mrt *mrt, int *count)
 {
-	mrt->light = ft_malloc(sizeof(t_light) * count[LIGHT]);
+	if (count[LIGHT])
+		mrt->light = ft_malloc(sizeof(t_light) * count[LIGHT]);
 	if (count[SPHERE])
 		mrt->sphere = ft_malloc(sizeof(t_sphere) * count[SPHERE]);
 	if (count[PLANE])
 		mrt->plane = ft_malloc(sizeof(t_plane) * count[PLANE]);
 	if (count[CYLINDER])
 		mrt->cylinder = ft_malloc(sizeof(t_cylinder) * count[CYLINDER]);
-	mrt->cone = ft_malloc(sizeof(t_cone) * count[CONE]);
-	mrt->triangle = ft_malloc(sizeof(t_triangle) * count[TRIANGLE]);
+	if (count[CONE])
+		mrt->cone = ft_malloc(sizeof(t_cone) * count[CONE]);
+	if (count[TRIANGLE])
+		mrt->triangle = ft_malloc(sizeof(t_triangle) * count[TRIANGLE]);
 }
 
 int	ft_arg_count(char **line)
@@ -46,8 +49,7 @@ t_table	*ft_fill_table(int fd, int num_objs)
 	{
 		if (line && line[0] && line[0] != '\n' && line[0] != '#')
 			table = ft_tableadd_new(table, ft_split_ws(line), num_objs);
-		else
-			ft_free(line);
+		ft_free(line);
 		line = get_next_line(fd);
 	}
 	return (table);

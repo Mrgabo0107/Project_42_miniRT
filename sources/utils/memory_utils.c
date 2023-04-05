@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 01:36:18 by ionorb            #+#    #+#             */
-/*   Updated: 2023/04/04 20:45:19 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/05 03:30:48 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,20 @@ void	ft_free_mlx(void **mlx, void **win, void **img)
 	}
 }
 
-void	ft_free_one(t_mem *mem, void *thing)
+int	ft_free_one(t_mem *mem, void *thing)
 {
 	t_mem	*prev;
 	t_mem	*after;
 
 	if (!mem || !thing)
-		return ;
+		return (0);
 	prev = mem;
 	if (mem)
 		mem = mem->next;
 	while (mem && mem->next)
 	{
 		after = mem->next;
-		if (mem->ptr == thing)
+		if (mem->ptr == thing || !mem->ptr)
 		{
 			free(mem->ptr);
 			free(mem);
@@ -58,6 +58,9 @@ void	ft_free_one(t_mem *mem, void *thing)
 		prev = mem;
 		mem = mem->next;
 	}
+	if (mem && mem->ptr == thing)
+		return (free(mem->ptr), free(mem), prev->next = NULL, 0);
+	return (0);
 }
 
 int	mem_size(t_mem *mem)

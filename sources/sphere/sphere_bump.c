@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 02:50:57 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/04 20:03:31 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/05 01:12:35 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ t_vec	sph_normal_from_map(t_mrt *mrt, t_inter inter, t_vec sph_coor)
 	as_res = (2 * PI) / (mrt->sphere[inter.index].option.bump_map.width - 1);
 	bump_coor[0] = (int)integer_part(sph_coor.y / pol_res);
 	bump_coor[1] = (int)integer_part(sph_coor.z / as_res);
+	pthread_mutex_lock(mrt->mutexs);
 	ret = bump_nrml_by_coor(&mrt->sphere[inter.index].option, \
 	bump_coor[0], bump_coor[1], 0.4);
+	pthread_mutex_unlock(mrt->mutexs);
 	return (ret);
 }
 

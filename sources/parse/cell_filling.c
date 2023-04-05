@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cell_filling.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:52:58 by ionorb            #+#    #+#             */
-/*   Updated: 2023/04/02 19:54:58 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/05 05:49:26 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_fill_xpm(char *cell)
 	if (fd < 0)
 		ft_error("Invalid xpm file", cell, NULL);
 	close(fd);
-	return ((cell));
+	return (ft_strdup(cell));
 }
 
 double	ft_fill_size(char *cell, int fov)

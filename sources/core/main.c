@@ -3,36 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/04/03 22:11:22 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/05 05:50:48 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	write_to_ppm(t_mrt *mrt, int crop)
+void	write_to_ppm(t_mrt *mrt)
 {
 	int				i;
 	unsigned char	color[3];
 	FILE			*fp;
-	int				sizex;
 
-	sizex = mrt->ix - crop;
-	if (sizex < 0)
-		sizex = mrt->ix;
 	write(1, "writing to file... ", 19);
 	fp = fopen("bump.ppm", "wb");
-	fprintf(fp, "P6\n%d %d\n255\n", sizex, mrt->iy);
+	fprintf(fp, "P6\n%d %d\n255\n", mrt->ix, mrt->iy);
 	i = 3;
 	while (i < mrt->ix * mrt->iy * (mrt->bpp / 8))
 	{
-		if (i % (mrt->sizel) < crop * (mrt->bpp / 8))
-		{
-			i += (mrt->bpp / 8);
-			continue ;
-		}
 		color[0] = mrt->addr[i + 3];
 		color[1] = mrt->addr[i + 2];
 		color[2] = mrt->addr[i + 1];
@@ -48,6 +39,14 @@ int	end_mrt(t_mrt *mrt)
 	(void)mrt;
 	printf("%s\n", CLEAN_EXIT);
 	ft_quit(EXIT_OK);
+	// mlx_destroy_image(mrt->mlx, mrt->img);
+	// mlx_destroy_window(mrt->mlx, mrt->win);
+	// mlx_destroy_display(mrt->mlx);
+	// free(mrt->mlx);
+	// ft_free(mrt->threads);
+	// ft_free(mrt->obj_count);
+	// ft_free_mrt(mrt, 1);
+	// exit(0);
 	return (0);
 }
 
@@ -67,7 +66,7 @@ void	render_scene(t_mrt *mrt)
 		write(1, "calculating pixel values...\n", 29);
 	pixel_calcul(mrt);
 	if (mrt->save)
-		write_to_ppm(mrt, 0);
+		write_to_ppm(mrt);
 	if (!mrt->save)
 	{
 		mlx_clear_window(mrt->mlx, mrt->win);
@@ -96,7 +95,6 @@ int	main(int ac, char **av)
 		return (1);
 	write(1, "done\n", 5);
 	mrt.first = 1;
-	// mlx_put_image_to_window(mrt.mlx, mrt.win, mrt.img, 0, 0);
 	if (mrt.save)
 		return (render_scene(&mrt), ft_quit(EXIT_OK), 0);
 	render_scene(&mrt);

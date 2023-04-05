@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 01:59:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/04 21:38:01 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/05 01:12:26 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,23 @@ t_vec	pl_bmp_1(t_mrt *mrt, t_inter inter, t_vec new_inter)
 {
 	int		bump_coor[2];
 	t_vec	ret;
+	int		height;
+	int		width;
 
+	height = mrt->plane[inter.index].option.bump_map.height;
+	width = mrt->plane[inter.index].option.bump_map.width;
 	bump_coor[0] = (int)integer_part(new_inter.x / \
-	mrt->plane[inter.index].option.bump_map.res_plan) \
-	% (mrt->plane[inter.index].option.bump_map.height - 1);
+	mrt->plane[inter.index].option.bump_map.res_plan) % (height - 1);
 	bump_coor[1] = (int)integer_part(new_inter.y / \
-	mrt->plane[inter.index].option.bump_map.res_plan) % \
-	(mrt->plane[inter.index].option.bump_map.width - 1);
+	mrt->plane[inter.index].option.bump_map.res_plan) % (width - 1);
+	if (bump_coor[0] > height - 1)
+		bump_coor[0] = height - 1;
+	if (bump_coor[1] > width - 1)
+		bump_coor[1] = width - 1;
+	pthread_mutex_lock(mrt->mutexs);
 	ret = bump_nrml_by_coor(&mrt->plane[inter.index].option, \
 	bump_coor[0], bump_coor[1], 0.4);
+	pthread_mutex_unlock(mrt->mutexs);
 	return (ret);
 }
 
@@ -32,16 +40,24 @@ t_vec	pl_bmp_2(t_mrt *mrt, t_inter inter, t_vec new_inter)
 {
 	int		bump_coor[2];
 	t_vec	ret;
+	int		height;
+	int		width;
 
-	bump_coor[0] = mrt->plane[inter.index].option.bump_map.height \
+	height = mrt->plane[inter.index].option.bump_map.height;
+	width = mrt->plane[inter.index].option.bump_map.width;
+	bump_coor[0] = height \
 	- ((int)integer_part(v_abs(new_inter.x / \
-	mrt->plane[inter.index].option.bump_map.res_plan)) \
-	% mrt->plane[inter.index].option.bump_map.height);
+	mrt->plane[inter.index].option.bump_map.res_plan)) % (height - 1));
 	bump_coor[1] = (int)integer_part(new_inter.y / \
-	mrt->plane[inter.index].option.bump_map.res_plan) % \
-	(mrt->plane[inter.index].option.bump_map.width - 1);
+	mrt->plane[inter.index].option.bump_map.res_plan) % (width - 1);
+	if (bump_coor[0] > height - 1)
+		bump_coor[0] = height - 1;
+	if (bump_coor[1] > width - 1)
+		bump_coor[1] = width - 1;
+	pthread_mutex_lock(mrt->mutexs);
 	ret = bump_nrml_by_coor(&mrt->plane[inter.index].option, \
 	bump_coor[0], bump_coor[1], 0.4);
+	pthread_mutex_unlock(mrt->mutexs);
 	return (ret);
 }
 
@@ -49,16 +65,23 @@ t_vec	pl_bmp_3(t_mrt *mrt, t_inter inter, t_vec new_inter)
 {
 	int		bump_coor[2];
 	t_vec	ret;
+	int		height;
+	int		width;
 
+	height = mrt->plane[inter.index].option.bump_map.height;
+	width = mrt->plane[inter.index].option.bump_map.width;
 	bump_coor[0] = (int)integer_part(new_inter.x / \
-	mrt->plane[inter.index].option.bump_map.res_plan) \
-	% (mrt->plane[inter.index].option.bump_map.height - 1);
-	bump_coor[1] = mrt->plane[inter.index].option.bump_map.width - \
-	((int)integer_part(v_abs(new_inter.y / \
-	mrt->plane[inter.index].option.bump_map.res_plan)) % \
-	mrt->plane[inter.index].option.bump_map.width);
+	mrt->plane[inter.index].option.bump_map.res_plan) % (height - 1);
+	bump_coor[1] = width - ((int)integer_part(v_abs(new_inter.y / \
+	mrt->plane[inter.index].option.bump_map.res_plan)) % (width - 1));
+	if (bump_coor[0] > height - 1)
+		bump_coor[0] = height - 1;
+	if (bump_coor[1] > width - 1)
+		bump_coor[1] = width - 1;
+	pthread_mutex_lock(mrt->mutexs);
 	ret = bump_nrml_by_coor(&mrt->plane[inter.index].option, \
 	bump_coor[0], bump_coor[1], 0.4);
+	pthread_mutex_unlock(mrt->mutexs);
 	return (ret);
 }
 
@@ -66,17 +89,23 @@ t_vec	pl_bmp_4(t_mrt *mrt, t_inter inter, t_vec new_inter)
 {
 	int		bump_coor[2];
 	t_vec	ret;
+	int		width;
+	int		height;
 
-	bump_coor[0] = mrt->plane[inter.index].option.bump_map.height \
-	- ((int)integer_part(v_abs(new_inter.x / \
-	mrt->plane[inter.index].option.bump_map.res_plan)) \
-	% mrt->plane[inter.index].option.bump_map.height);
-	bump_coor[1] = mrt->plane[inter.index].option.bump_map.width - \
-	((int)integer_part(v_abs(new_inter.y / \
-	mrt->plane[inter.index].option.bump_map.res_plan)) % \
-	mrt->plane[inter.index].option.bump_map.width);
+	width = mrt->plane[inter.index].option.bump_map.width;
+	height = mrt->plane[inter.index].option.bump_map.height;
+	bump_coor[0] = height - ((int)integer_part(v_abs(new_inter.x / \
+	mrt->plane[inter.index].option.bump_map.res_plan)) % (height - 1));
+	bump_coor[1] = width - ((int)integer_part(v_abs(new_inter.y / \
+	mrt->plane[inter.index].option.bump_map.res_plan)) % (width - 1));
+	if (bump_coor[0] > height - 1)
+		bump_coor[0] = height - 1;
+	if (bump_coor[1] > width - 1)
+		bump_coor[1] = width - 1;
+	pthread_mutex_lock(mrt->mutexs);
 	ret = bump_nrml_by_coor(&mrt->plane[inter.index].option, \
 	bump_coor[0], bump_coor[1], 0.4);
+	pthread_mutex_unlock(mrt->mutexs);
 	return (ret);
 }
 
