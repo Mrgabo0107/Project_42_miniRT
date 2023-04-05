@@ -6,16 +6,16 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 06:50:08 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/04 22:55:48 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/05 08:34:29 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_cyl_chess	get_body_color(t_mrt *mrt, int i, t_vec coor, t_rgb color)
+t_c_chess	get_body_color(t_mrt *mrt, int i, t_vec coor, t_rgb color)
 {
 	double		aux_dist;
-	t_cyl_chess	ret;
+	t_c_chess	ret;
 
 	ret.color = color;
 	aux_dist = integer_part((mrt->cylinder[i].height
@@ -44,7 +44,7 @@ t_rgb	get_cyl_color(t_mrt *mrt, int index, t_vec intrsc, t_cuad_ctr ctr)
 	t_mtrx		chg;
 	t_vec		new_inter;
 	t_rgb		ret;
-	t_cyl_chess	ctrl;
+	t_c_chess	ctrl;
 
 	ret = mrt->cylinder[index].color;
 	if (mrt->cylinder[index].option.chess_ctrl > 0)

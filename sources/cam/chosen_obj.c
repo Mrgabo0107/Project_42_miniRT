@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 22:50:27 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/05 06:45:55 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/05 07:06:45 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,6 @@ t_rgb	check_cylinder_contour(t_mrt *mrt, t_vec curr_dir, t_rgb color)
 				&& contour_cyl(mrt, new_cam, new_dir, ctr.c)))
 			return (get_opposite_color(color));
 	}
-	return (color);
-}
-
-t_rgb	check_cone_contour(t_mrt *mrt, t_vec curr_dir, t_rgb color)
-{
-	(void)mrt;
-	(void)curr_dir;
 	return (color);
 }
 

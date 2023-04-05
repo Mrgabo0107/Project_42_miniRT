@@ -110,8 +110,9 @@ void	check_cones(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 		if (ctr.c > 0 && (ctrl->dist == -1 || ctr.c < ctrl->dist))
 		{
 			*ctrl = (t_inter){CONE, i, ctr.c, vec_sum(point, \
-			scal_vec(ctr.c, dir)), fill_coord(0, 0, 0), mrt->cone[i].color, \
-			mrt->cone[i].option, ctr.cap_ctrl, cam_in_cone(mrt, i, new[0], tang)};
+			scal_vec(ctr.c, dir)), fill_coord(0, 0, 0), \
+			get_cone_color(mrt, i, new, ctr), mrt->cone[i].option, \
+			ctr.cap_ctrl, cam_in_cone(mrt, i, new[0], tang)};
 		}
 		i++;
 	}

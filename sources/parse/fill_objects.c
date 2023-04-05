@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:37:20 by ionorb            #+#    #+#             */
-/*   Updated: 2023/04/04 22:14:53 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/05 08:11:17 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_cone	ft_fill_cone(t_table *table, char **line)
 	cone.top = vec_sum(cone.pos, \
 	scal_vec(cone.height, cone.dir));
 	cone.height = ft_fill_size(line[4], 0);
-	cone.angle = ft_fill_size(line[3], 1);
+	cone.angle = rad_and_deg(ft_fill_size(line[3], 1), 1);
 	cone.color = ft_fill_rgb(line[5]);
 	cone.base = get_obj_base(cone.dir);
 	cone.base.bs_orig = cone.pos;

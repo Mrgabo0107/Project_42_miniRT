@@ -74,3 +74,31 @@ int	cam_in_cone(t_mrt *mrt, int indx, t_vec n_c, double tan)
 	}
 	return (0);
 }
+
+t_rgb	check_cone_contour(t_mrt *mrt, t_vec curr_dir, t_rgb color)
+{
+	t_cuad_ctr		ctr;
+	t_vec			new[2];
+	t_mtrx			chg_base;
+	double			tang;
+
+	tang = tan(mrt->cone[mrt->curr_obj.index].angle / 2);
+	new[0] = vec_rest(mrt->cam.pos, mrt->cone[mrt->curr_obj.index].pos);
+	chg_base = fill_mtrx(mrt->cone[mrt->curr_obj.index].base.n1,
+			mrt->cone[mrt->curr_obj.index].base.n2,
+			mrt->cone[mrt->curr_obj.index].base.n3);
+	new[0] = mtrx_by_vec(chg_base, new[0]);
+	new[1] = mtrx_by_vec(chg_base, curr_dir);
+	ctr = get_dist_to_cone(mrt->cone[mrt->curr_obj.index], new[0], \
+	new[1], tang);
+	if (ctr.c > 0)
+	{
+		if ((ctr.cap_ctrl == 1 && v_abs(int_pow(new[0].x + \
+		(ctr.c * new[1].x), 2) + int_pow(new[0].y + (ctr.c * \
+		new[1].y), 2) - int_pow(mrt->cone[mrt->curr_obj.index].height * \
+		tang, 2)) < 0.009 * ctr.c * mrt->cone[mrt->curr_obj.index].height * \
+		tang) || (ctr.cap_ctrl == 2 && contour_cone(mrt, new, ctr.c, tang)))
+			return (get_opposite_color(color));
+	}
+	return (color);
+}
