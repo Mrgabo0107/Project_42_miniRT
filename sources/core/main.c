@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/04/05 04:14:11 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/05 05:50:48 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ int	end_mrt(t_mrt *mrt)
 	(void)mrt;
 	printf("%s\n", CLEAN_EXIT);
 	ft_quit(EXIT_OK);
+	// mlx_destroy_image(mrt->mlx, mrt->img);
+	// mlx_destroy_window(mrt->mlx, mrt->win);
+	// mlx_destroy_display(mrt->mlx);
+	// free(mrt->mlx);
+	// ft_free(mrt->threads);
+	// ft_free(mrt->obj_count);
+	// ft_free_mrt(mrt, 1);
+	// exit(0);
 	return (0);
 }
 
