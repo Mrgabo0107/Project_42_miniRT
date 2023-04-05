@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 22:11:17 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/05 02:30:08 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/05 04:01:24gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_vec *f_n, double tan)
 	discr = get_cone_disc(f_n, tan);
 	if (discr.dscr >= 0.0)
 	{
-		curr = solve_quad(&discr);
+		curr = solve_cone_quad(&discr, f_n);
 		if (curr > 0 && (ret.c == -1 || curr < ret.c))
 		{
 			h_ctrl = vec_sum(f_n[0], scal_vec(curr, f_n[1]));
@@ -86,8 +86,6 @@ t_cuad_ctr	get_dist_to_cone(t_cone cone, t_vec n_c, t_vec n_d, double tang)
 	fuck_normntte[0] = n_c;
 	fuck_normntte[1] = n_d;
 	ret = check_cone_body(&ret, cone, fuck_normntte, curr_tan[1]);
-	if (ret.c < 0 && ret.c != -1)
-		printf("hello\n");
 	return (ret);
 }
 
@@ -95,7 +93,7 @@ void	check_cones(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 {
 	int				i;
 	t_cuad_ctr		ctr;
-	t_vec			new[3];
+	t_vec			new[2];
 	double			tang;
 	t_mtrx			chg_base;
 
@@ -111,10 +109,9 @@ void	check_cones(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 		ctr = get_dist_to_cone(mrt->cone[i], new[0], new[1], tang);
 		if (ctr.c > 0 && (ctrl->dist == -1 || ctr.c < ctrl->dist))
 		{
-			new[2] = vec_sum(new[0], scal_vec(ctr.c, new[1]));
 			*ctrl = (t_inter){CONE, i, ctr.c, vec_sum(point, \
 			scal_vec(ctr.c, dir)), fill_coord(0, 0, 0), mrt->cone[i].color, \
-			mrt->cone[i].option, ctr.cap_ctrl, cam_in_cone(mrt, i, new, tang)};
+			mrt->cone[i].option, ctr.cap_ctrl, cam_in_cone(mrt, i, new[0], tang)};
 		}
 		i++;
 	}

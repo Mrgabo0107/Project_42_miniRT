@@ -6,7 +6,7 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/04/05 01:38:25 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/04/05 04:56:31 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ CORE		=	main.c \
 				keypress.c \
 				key_cam.c \
 				key_move_obj.c \
+				key_move_obj2.c \
 				key_rot_obj.c \
 				key_options.c \
 				mousepress.c \

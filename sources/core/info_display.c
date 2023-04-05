@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info_display.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 22:23:17 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/02 19:59:12 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/05 04:55:07 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ char	*ft_get_object_str(int type, int index)
 		str = ("CAMERA");
 	if (type == LIGHT)
 		str = ("LIGHT");
+	if (type == CONE)
+		str = ("CONE");
 	if (type == TRIANGLE)
 		str = ("TRIANGLE");
 	return (ft_strjoin_free(ft_strjoin_free(("OBJECT: "), \

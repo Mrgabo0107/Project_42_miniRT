@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 22:50:27 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/04 22:55:47 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/05 06:45:55 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,13 @@ t_rgb	check_cylinder_contour(t_mrt *mrt, t_vec curr_dir, t_rgb color)
 	return (color);
 }
 
+t_rgb	check_cone_contour(t_mrt *mrt, t_vec curr_dir, t_rgb color)
+{
+	(void)mrt;
+	(void)curr_dir;
+	return (color);
+}
+
 t_rgb	chosen_obj(t_mrt *mrt, int x, int y, t_rgb color)
 {
 	t_rgb	ret;
@@ -112,5 +119,7 @@ t_rgb	chosen_obj(t_mrt *mrt, int x, int y, t_rgb color)
 		ret = check_sphere_contour(mrt, curr_dir, color);
 	if (mrt->curr_obj.type == CYLINDER)
 		ret = check_cylinder_contour(mrt, curr_dir, color);
+	if (mrt->curr_obj.type == CONE)
+		ret = check_cone_contour(mrt, curr_dir, color);
 	return (ret);
 }

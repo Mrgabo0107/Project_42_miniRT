@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keypress_obj1.c                                    :+:      :+:    :+:   */
+/*   key_move_obj.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 03:43:09 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/29 23:36:33 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/05 05:01:10 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,8 @@ void	move_obj(t_mrt *mrt, int key)
 		move_sphere(mrt, key);
 	if (mrt->curr_obj.type == CYLINDER)
 		move_cyl(mrt, key);
+	if (mrt->curr_obj.type == CONE)
+		move_cone(mrt, key);
 	if (mrt->curr_obj.type == LIGHT)
 		move_light(mrt, key);
 }
