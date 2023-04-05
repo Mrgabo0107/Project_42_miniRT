@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 21:16:00 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/05 01:16:33 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/05 04:09:44 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,22 @@ void	ft_percentage_bar(t_mrt *mrt)
 void	ft_copy_mem(t_mrt *mrt, t_mrt *dat)
 {
 	dat->light = ft_memcpy(mrt->light, mrt->obj_count[LIGHT] * sizeof(t_light));
-	dat->sphere = \
-	ft_memcpy(mrt->sphere, mrt->obj_count[SPHERE] * sizeof(t_sphere));
-	dat->plane = ft_memcpy(mrt->plane, mrt->obj_count[PLANE] * sizeof(t_plane));
-	dat->cylinder = \
-	ft_memcpy(mrt->cylinder, mrt->obj_count[CYLINDER] * sizeof(t_cylinder));
-	dat->cone = ft_memcpy(mrt->cone, mrt->obj_count[CONE] * sizeof(t_cone));
-	dat->triangle = \
-	ft_memcpy(mrt->triangle, mrt->obj_count[TRIANGLE] * sizeof(t_triangle));
+	if (mrt->sphere)
+		dat->sphere = \
+		ft_memcpy(mrt->sphere, mrt->obj_count[SPHERE] * sizeof(t_sphere));
+	if (mrt->plane)
+		dat->plane = \
+		ft_memcpy(mrt->plane, mrt->obj_count[PLANE] * sizeof(t_plane));
+	if (mrt->cylinder)
+		dat->cylinder = \
+		ft_memcpy(mrt->cylinder, mrt->obj_count[CYLINDER] * sizeof(t_cylinder));
+	if (mrt->cone)
+		dat->cone = ft_memcpy(mrt->cone, mrt->obj_count[CONE] * sizeof(t_cone));
+	if (mrt->triangle)
+		dat->triangle = \
+		ft_memcpy(mrt->triangle, mrt->obj_count[TRIANGLE] * sizeof(t_triangle));
 	dat->curr_obj = mrt->curr_obj;
-	dat->scene_path = (mrt->scene_path);
+	dat->scene_path = mrt->scene_path;
 	dat->obj_count = \
 	ft_memcpy(mrt->obj_count, mrt->num_objs * sizeof(int));
 }
@@ -52,6 +58,7 @@ t_mrt	*ft_copy_mrt(t_mrt *mrt, int num)
 	dat = ft_malloc(sizeof(t_mrt) * num);
 	while (++i < num)
 	{
+		ft_set_mrt(&dat[i], "unset", 0, 0);
 		dat[i].save = mrt->save;
 		dat[i].addr = mrt->addr;
 		dat[i].bpp = mrt->bpp;

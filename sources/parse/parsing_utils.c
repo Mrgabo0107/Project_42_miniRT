@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:02:11 by ionorb            #+#    #+#             */
-/*   Updated: 2023/04/04 20:43:02 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/05 04:10:25 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ t_table	*ft_fill_table(int fd, int num_objs)
 	{
 		if (line && line[0] && line[0] != '\n' && line[0] != '#')
 			table = ft_tableadd_new(table, ft_split_ws(line), num_objs);
-		else
-			ft_free(line);
+		ft_free(line);
 		line = get_next_line(fd);
 	}
 	return (table);

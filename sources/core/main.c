@@ -6,33 +6,24 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/04/05 01:20:40 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/05 04:14:11 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	write_to_ppm(t_mrt *mrt, int crop)
+void	write_to_ppm(t_mrt *mrt)
 {
 	int				i;
 	unsigned char	color[3];
 	FILE			*fp;
-	int				sizex;
 
-	sizex = mrt->ix - crop;
-	if (sizex < 0)
-		sizex = mrt->ix;
 	write(1, "writing to file... ", 19);
 	fp = fopen("bump.ppm", "wb");
-	fprintf(fp, "P6\n%d %d\n255\n", sizex, mrt->iy);
+	fprintf(fp, "P6\n%d %d\n255\n", mrt->ix, mrt->iy);
 	i = 3;
 	while (i < mrt->ix * mrt->iy * (mrt->bpp / 8))
 	{
-		if (i % (mrt->sizel) < crop * (mrt->bpp / 8))
-		{
-			i += (mrt->bpp / 8);
-			continue ;
-		}
 		color[0] = mrt->addr[i + 3];
 		color[1] = mrt->addr[i + 2];
 		color[2] = mrt->addr[i + 1];
@@ -61,13 +52,13 @@ int	ft_controls(t_mrt *mrt)
 
 void	render_scene(t_mrt *mrt)
 {
-	ft_get_mem_size();
+	// ft_get_mem_size();
 	set_all_cam_values(&mrt->cam, mrt->ix);
 	if (mrt->first)
 		write(1, "calculating pixel values...\n", 29);
 	pixel_calcul(mrt);
 	if (mrt->save)
-		write_to_ppm(mrt, 0);
+		write_to_ppm(mrt);
 	if (!mrt->save)
 	{
 		mlx_clear_window(mrt->mlx, mrt->win);

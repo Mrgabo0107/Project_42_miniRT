@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/03 22:09:53 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/05 03:46:46 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ int	valid_rt_file(char *file, int fd)
 
 void	ft_set_mrt(t_mrt *mrt, char *file, int ix, int iy)
 {
-	t_curr_ob	c_obj;
-
 	mrt->mlx = NULL;
 	mrt->win = NULL;
 	mrt->img = NULL;
@@ -67,16 +65,17 @@ void	ft_set_mrt(t_mrt *mrt, char *file, int ix, int iy)
 	mrt->light = NULL;
 	mrt->triangle = NULL;
 	mrt->scene_path = file;
-	c_obj.index = 0;
-	c_obj.type = CAMERA;
-	mrt->curr_obj = c_obj;
+	mrt->curr_obj = define_curr_obj(CAMERA, 0);
 	mrt->bounce = 0;
 	mrt->num_objs = 9;
-	mrt->obj_count = ft_calloc(mrt->num_objs, sizeof(int));
 	mrt->ix = ix;
 	mrt->iy = iy;
-	mrt->threads = ft_malloc(sizeof(pthread_t) * THREADS);
-	pthread_mutex_init(&mrt->mutex, NULL);
+	if (ix > 0)
+	{
+		mrt->obj_count = ft_calloc(mrt->num_objs, sizeof(int));
+		mrt->threads = ft_malloc(sizeof(pthread_t) * THREADS);
+		pthread_mutex_init(&mrt->mutex, NULL);
+	}
 }
 
 void	ft_reinit(t_mrt *mrt)

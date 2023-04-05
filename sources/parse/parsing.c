@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/01 22:43:14 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/05 03:08:40 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	ft_fill_objs(t_mrt *mrt, t_table *table, int *count)
 			= ft_fill_triangle(table, table->line);
 		table = table->next;
 	}
+	ft_free(count);
 }
 
 int	ft_parse(t_mrt *mrt)

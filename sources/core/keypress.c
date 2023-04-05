@@ -3,19 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/02 18:48:13 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/05 04:14:05 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	define_curr_obj(t_mrt *mrt, int type, int index)
+t_curr_ob	define_curr_obj(int type, int index)
 {
-	mrt->curr_obj.index = index;
-	mrt->curr_obj.type = type;
+	t_curr_ob	curr_obj;
+
+	curr_obj.index = index;
+	curr_obj.type = type;
+	return (curr_obj);
 }
 
 void	light_ctr(t_mrt *mrt, int key)
@@ -28,7 +31,7 @@ void	light_ctr(t_mrt *mrt, int key)
 			mrt->light[mrt->curr_obj.index].ratio -= 0.1;
 	}
 	if (key == L)
-		define_curr_obj(mrt, LIGHT, \
+		mrt->curr_obj = define_curr_obj(LIGHT, \
 		(mrt->curr_obj.index + 1) % mrt->obj_count[LIGHT]);
 }
 
@@ -51,13 +54,13 @@ int	key_press(int key, t_mrt *mrt)
 	if (key == Z)
 		return (save_scene(mrt), 0);
 	if (key == X)
-		return (write_to_ppm(mrt, BORDER), 0);
+		return (write_to_ppm(mrt), 0);
 	if (key == ESC)
 		end_mrt(mrt);
 	if (key == ENTER)
 		ft_reinit(mrt);
 	if (key == DEL)
-		define_curr_obj(mrt, CAMERA, 0);
+		mrt->curr_obj = define_curr_obj(CAMERA, 0);
 	cam_ctr(mrt, key);
 	object_ctr(mrt, key);
 	light_ctr(mrt, key);

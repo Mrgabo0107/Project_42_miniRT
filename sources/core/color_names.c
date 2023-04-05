@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_names.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 18:13:47 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/02 19:54:58 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/05 04:07:58 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*ft_get_color_str(t_rgb color)
 	fd = open("rgb.txt", O_RDONLY, 0644);
 	line = get_next_line(fd);
 	if (color.r == color.g && color.g == color.b)
-		return (white_grey_black(color));
+		return (ft_free(line), white_grey_black(color));
 	color = get_ratio_rgb(color);
 	while (line)
 	{
