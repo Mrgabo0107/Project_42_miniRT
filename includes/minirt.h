@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/05 06:56:22 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/05 08:24:36 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,12 @@ int			cam_in_cone(t_mrt *mrt, int indx, t_vec n_c, double tan);
 t_vec		get_normal_cone(t_mrt *mrt, t_inter inter);
 void		move_cone(t_mrt *mrt, int key);
 double		solve_cone_quad(t_discr *info, t_vec *f_n);
+t_rgb		check_cone_contour(t_mrt *mrt, t_vec curr_dir, t_rgb color);
+t_cuad_ctr	get_dist_to_cone(t_cone cone, t_vec n_c, t_vec n_d, double tang);
+int			contour_cone(t_mrt *mrt, t_vec *new, double c, double tang);
+t_discr		get_cone_disc(t_vec *f_n, double tan);
+void		fov_ctr(t_mrt *mrt, int key);
+t_rgb		get_cone_color(t_mrt *mrt, int i, t_vec *new, t_cuad_ctr ctr);
 
 
 //camera

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/02 18:48:13 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/05 08:03:11 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	object_ctr(t_mrt *mrt, int key)
 		chess_ctr(mrt, key);
 		radius_ctr(mrt, key);
 		height_ctr(mrt, key);
+		fov_ctr(mrt, key);
 		bump_option(mrt, key);
 	}
 }

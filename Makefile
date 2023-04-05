@@ -6,7 +6,7 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/04/05 04:56:31 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/04/05 08:20:34 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,6 +110,8 @@ CYLIN		=	cylinder.c \
 CONE_DIR	=	cone/
 CONE		=	cone.c \
 				cone_utils.c \
+				cone_utils2.c \
+				cone_color.c \
 
 # LIBFT_DIR	=	libft/
 # LIBFT		=	libft.a
