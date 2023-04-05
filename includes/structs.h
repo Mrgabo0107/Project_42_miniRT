@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/04 03:52:12 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/04 22:59:09 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ typedef struct s_inter
 	t_vec		norm;
 	t_rgb		color;
 	t_option	option;
-	int			cyl_ctrl;
+	int			cuad_ctr;
 	int			is_in_obj;
 }				t_inter;
 
@@ -141,11 +141,11 @@ typedef struct s_discr
 	double	dscr;
 }			t_discr;
 
-typedef struct s_cyl_ctrl
+typedef struct s_cuad_ctr
 {
 	double	c;
 	int		cap_ctrl;
-}			t_cyl_ctrl;
+}			t_cuad_ctr;
 
 typedef struct s_cyl_chess
 {
@@ -196,8 +196,6 @@ typedef struct s_cone
 	t_vec		pos;
 	t_vec		dir;
 	t_vec		top;
-	t_vec		bottom;
-	double		radius;
 	double		height;
 	double		angle;
 	t_rgb		color;

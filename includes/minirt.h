@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/04 20:58:54 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/05 06:56:22 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@
 # include <string.h>
 # include <time.h>
 # include <pthread.h>
-
-void		ft_putnbr_fd(int n, int fd);
 
 //init
 int			init_minirt(t_mrt *mrt, char **av, int ac);
@@ -169,11 +167,19 @@ t_vec		get_normal_cylinder(t_mrt *mrt, t_inter inter);
 void		check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
 int			cam_in_cyl(t_mrt *mrt, int indx, t_vec new_cam);
 t_rgb		print_cyl_color(t_mrt *mrt, int index);
-t_cyl_ctrl	get_dist_to_cyl(t_cylinder cyl, t_vec new_cam, t_vec new_dirc);
+t_cuad_ctr	get_dist_to_cyl(t_cylinder cyl, t_vec new_cam, t_vec new_dirc);
 t_discr		get_cyl_disc(t_cylinder cyl, t_vec new_cam, t_vec new_dirc);
-t_rgb		get_cyl_color(t_mrt *mrt, int index, t_vec intrsc, t_cyl_ctrl ctr);
+t_rgb		get_cyl_color(t_mrt *mrt, int index, t_vec intrsc, t_cuad_ctr ctr);
 t_vec		cyl_normal_from_map(t_mrt *mrt, t_inter i, \
 			t_vec c_cr, t_vec cyl_cr);
+
+//cone
+void		check_cones(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
+int			cam_in_cone(t_mrt *mrt, int indx, t_vec n_c, double tan);
+t_vec		get_normal_cone(t_mrt *mrt, t_inter inter);
+void		move_cone(t_mrt *mrt, int key);
+double		solve_cone_quad(t_discr *info, t_vec *f_n);
+
 
 //camera
 t_inter		check_intersections(t_mrt *mrt, t_vec point, t_vec dir);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_color.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 06:50:08 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/01 20:27:30 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/04 22:55:48 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_cyl_chess	get_body_color(t_mrt *mrt, int i, t_vec coor, t_rgb color)
 	return (ret);
 }
 
-t_rgb	get_cyl_color(t_mrt *mrt, int index, t_vec intrsc, t_cyl_ctrl ctr)
+t_rgb	get_cyl_color(t_mrt *mrt, int index, t_vec intrsc, t_cuad_ctr ctr)
 {
 	t_mtrx		chg;
 	t_vec		new_inter;

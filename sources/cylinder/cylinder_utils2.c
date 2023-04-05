@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 03:58:18 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/04 05:56:48 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/04 22:59:17 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,9 @@ t_vec	cyl_normal_from_map(t_mrt *mrt, t_inter inter, t_vec c_cr, t_vec cyl_cr)
 			mrt->cylinder[inter.index].option.bump_map.width);
 	values.res_cap = (2 * mrt->cylinder[inter.index].radius) / (values.i_diam);
 	ret = fill_coord(0, 0, 1);
-	if (inter.cyl_ctrl == 1 || inter.cyl_ctrl == 2)
+	if (inter.cuad_ctr == 1 || inter.cuad_ctr == 2)
 		ret = cyl_cap_nrml_fr_map(mrt, inter, c_cr, values);
-	if (inter.cyl_ctrl == 3)
+	if (inter.cuad_ctr == 3)
 		ret = cyl_body_nrml_fr_map(mrt, inter, cyl_cr, values);
 	return (ret);
 }

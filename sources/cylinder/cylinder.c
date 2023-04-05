@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/23 06:51:02 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/04 23:19:02gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	is_in_cap(double curr, t_cylinder cyl, t_vec new_cam, t_vec new_dirc)
 	return (0);
 }
 
-t_cyl_ctrl	check_cyl_body(t_cyl_ctrl *curr, t_cylinder cyl, t_vec nc, t_vec nd)
+t_cuad_ctr	check_cyl_body(t_cuad_ctr *curr, t_cylinder cyl, t_vec nc, t_vec nd)
 {
-	t_cyl_ctrl	ret;
+	t_cuad_ctr	ret;
 	t_discr		discr;
 	double		curre;
 
@@ -55,10 +55,10 @@ t_cyl_ctrl	check_cyl_body(t_cyl_ctrl *curr, t_cylinder cyl, t_vec nc, t_vec nd)
 	return (ret);
 }
 
-t_cyl_ctrl	get_dist_to_cyl(t_cylinder cyl, t_vec new_cam, t_vec new_dirc)
+t_cuad_ctr	get_dist_to_cyl(t_cylinder cyl, t_vec new_cam, t_vec new_dirc)
 {
 	double		curr;
-	t_cyl_ctrl	ret;
+	t_cuad_ctr	ret;
 
 	ret.c = -1;
 	ret.cap_ctrl = 0;
@@ -86,7 +86,7 @@ t_cyl_ctrl	get_dist_to_cyl(t_cylinder cyl, t_vec new_cam, t_vec new_dirc)
 void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 {
 	int				i;
-	t_cyl_ctrl		ctr;
+	t_cuad_ctr		ctr;
 	t_vec			new_cam;
 	t_vec			new_dirc;
 	t_mtrx			chg_base;

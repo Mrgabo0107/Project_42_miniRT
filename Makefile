@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+         #
+#    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/04/04 21:39:57 by yridgway         ###   ########.fr        #
+#    Updated: 2023/04/05 04:56:31 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@
 CC      = cc
 
 # FLAGS  = -Wall -Werror -Wextra -pthread -g3 #-pg -A -Iincludes #-Ofast -flto #-march=native -mtune=native -fno-plt -fno-stack-protector -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-unwind-tables -fno-ident -fno-st
-# FLAGS  = -Wall -Werror -Wextra -Ofast -flto -pthread
-FLAGS  = -Ofast -flto -pthread
+FLAGS  = -Wall -Werror -Wextra -Ofast -flto -pthread
+# FLAGS  = -Ofast -flto -pthread
 ### Executable ###
 #-Ofast -flto 
 NAME   = minirt
@@ -37,6 +37,7 @@ CORE		=	main.c \
 				keypress.c \
 				key_cam.c \
 				key_move_obj.c \
+				key_move_obj2.c \
 				key_rot_obj.c \
 				key_options.c \
 				mousepress.c \
@@ -92,7 +93,7 @@ COLOR		=	color.c \
 PLANE_DIR	=	plane/
 PLANE		=	plane.c \
 				plane_color.c \
-        triangle.c \
+				triangle.c \
 				plane_bump.c \
 				
 SPHERE_DIR	=	sphere/
@@ -106,6 +107,10 @@ CYLIN		=	cylinder.c \
 				cylinder_utils2.c \
 				cylinder_color.c \
 
+CONE_DIR	=	cone/
+CONE		=	cone.c \
+				cone_utils.c \
+
 # LIBFT_DIR	=	libft/
 # LIBFT		=	libft.a
 
@@ -118,6 +123,7 @@ OBJ_DIRS	+=	$(addprefix	$(OBJ_PATH),$(COLOR_DIR))
 OBJ_DIRS	+=	$(addprefix	$(OBJ_PATH),$(PLANE_DIR))
 OBJ_DIRS	+=	$(addprefix	$(OBJ_PATH),$(SPHERE_DIR))
 OBJ_DIRS	+=	$(addprefix	$(OBJ_PATH),$(CYLIN_DIR))
+OBJ_DIRS	+=	$(addprefix	$(OBJ_PATH),$(CONE_DIR))
 
 SOURCES		+=	$(addprefix	$(CORE_DIR),$(CORE))
 SOURCES		+=	$(addprefix	$(PARSE_DIR),$(PARSE))
@@ -128,6 +134,7 @@ SOURCES		+=	$(addprefix	$(COLOR_DIR),$(COLOR))
 SOURCES		+=	$(addprefix	$(PLANE_DIR),$(PLANE))
 SOURCES		+=	$(addprefix	$(SPHERE_DIR),$(SPHERE))
 SOURCES		+=	$(addprefix	$(CYLIN_DIR),$(CYLIN))
+SOURCES		+=	$(addprefix	$(CONE_DIR),$(CONE))
 
 ### Objects ###
 
