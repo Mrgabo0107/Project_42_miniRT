@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chosen_obj.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 22:50:27 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/29 18:01:51 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/04 22:55:47 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	contour_cyl(t_mrt *mrt, t_vec new_cam, t_vec new_dir, double c)
 
 t_rgb	check_cylinder_contour(t_mrt *mrt, t_vec curr_dir, t_rgb color)
 {
-	t_cyl_ctrl		ctr;
+	t_cuad_ctr		ctr;
 	t_vec			new_cam;
 	t_vec			new_dir;
 	t_mtrx			chg_base;

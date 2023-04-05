@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   radiance.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 01:29:54 by yoel              #+#    #+#             */
-/*   Updated: 2023/04/04 19:47:04 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/05 02:07:47 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_rgb	get_diffuse(t_inter *ctr, t_vec to_light, t_light light)
 	angle = dot_prod(normalize(ctr->norm), normalize(to_light));
 	if (angle < 0)
 		angle = 0;
+	// printf("angle %f\n", angle);
 	ratio = ft_make_rgb_ratio(ctr->color);
 	color.r = light.color.r * light.ratio * ratio.r * angle;
 	color.g = light.color.g * light.ratio * ratio.g * angle;

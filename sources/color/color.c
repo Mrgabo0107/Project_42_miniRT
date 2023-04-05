@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/01 20:17:39 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/05 02:24:44 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_vec	get_normal_at_point(t_mrt *mrt, t_inter inter)
 		ret = get_normal_cylinder(mrt, inter);
 	else if (inter.type == TRIANGLE)
 		ret = get_normal_triangle(mrt, inter);
+	else if (inter.type == CONE)
+		ret = get_normal_cone(mrt, inter);
 	return (ret);
 }
 
