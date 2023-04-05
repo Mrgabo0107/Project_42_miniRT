@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 20:17:11 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/01 20:31:01 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/05 01:59:53 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_inter	check_intersections(t_mrt *mrt, t_vec point, t_vec dir)
 	check_spheres(mrt, &ret, point, dir);
 	check_cylinders(mrt, &ret, point, dir);
 	check_triangles(mrt, &ret, point, dir);
+	check_cones(mrt, &ret, point, dir);
 	return (ret);
 }
 
@@ -42,6 +43,9 @@ t_inter	check_shaddow(t_mrt *mrt, t_inter *ctr, t_vec dir, double len)
 	if (ret.dist != -1 && ret.dist < len)
 		return (ret);
 	check_cylinders(mrt, &ret, point, dir);
+	if (ret.dist != -1 && ret.dist < len)
+		return (ret);
+	check_cones(mrt, &ret, point, dir);
 	if (ret.dist != -1 && ret.dist < len)
 		return (ret);
 	check_triangles(mrt, &ret, point, dir);

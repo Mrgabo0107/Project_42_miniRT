@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 05:07:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/04 19:54:27 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/04 22:59:15 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_base	cyl_get_tang_base(t_mrt *mrt, t_inter inter, t_vec orig)
 	t_base	ret;
 
 	ret = mrt->cylinder[inter.index].base;
-	if (inter.cyl_ctrl == 3)
+	if (inter.cuad_ctr == 3)
 	{
 		ret.n3 = orig;
 		ret.n2 = mrt->cylinder[inter.index].base.n3;
@@ -54,11 +54,11 @@ t_vec	get_normal_cylinder(t_mrt *mrt, t_inter inter)
 	t_vec	ret;
 
 	ret = fill_coord(0, 0, 0);
-	if (inter.cyl_ctrl == 1)
+	if (inter.cuad_ctr == 1)
 		ret = mrt->cylinder[inter.index].dir;
-	else if (inter.cyl_ctrl == 2)
+	else if (inter.cuad_ctr == 2)
 		ret = scal_vec(-1, mrt->cylinder[inter.index].dir);
-	else if (inter.cyl_ctrl == 3)
+	else if (inter.cuad_ctr == 3)
 		ret = vec_rest(inter.inter_coor,
 				vec_sum(mrt->cylinder[inter.index].pos,
 					scal_vec(dot_prod(vec_rest(inter.inter_coor,

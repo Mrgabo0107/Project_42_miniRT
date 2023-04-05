@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keypress_obj3.c                                    :+:      :+:    :+:   */
+/*   key_options.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 06:46:51 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/01 22:54:06 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/05 09:10:46 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	chg_options(t_mrt *mrt, int key)
 		mrt->curr_obj.chg_opt = HEIGHT;
 	if (key == R && mrt->curr_obj.type != PLANE)
 		mrt->curr_obj.chg_opt = RADIUS;
+	if (key == F && mrt->curr_obj.type == CONE)
+		mrt->curr_obj.chg_opt = FOV;
 }
 
 void	radius_ctr(t_mrt *mrt, int key)
@@ -48,6 +50,11 @@ void	height_ctr(t_mrt *mrt, int key)
 		if (key == MINUS && mrt->curr_obj.type == CYLINDER
 			&& mrt->cylinder[mrt->curr_obj.index].height > 0.3)
 		mrt->cylinder[mrt->curr_obj.index].height -= 0.3;
+		if (key == PLUS && mrt->curr_obj.type == CONE)
+			mrt->cone[mrt->curr_obj.index].height += 0.3;
+		if (key == MINUS && mrt->curr_obj.type == CONE
+			&& mrt->cone[mrt->curr_obj.index].height > 0.3)
+		mrt->cone[mrt->curr_obj.index].height -= 0.3;
 	}
 }
 
@@ -92,5 +99,13 @@ void	chess_ctr(t_mrt *mrt, int key)
 		if (key == MINUS \
 		&& mrt->cylinder[mrt->curr_obj.index].option.chess_ctrl > 0)
 			mrt->cylinder[mrt->curr_obj.index].option.chess_ctrl--;
+	}
+	if (mrt->curr_obj.type == CONE && mrt->curr_obj.chg_opt == CHECKERBOARD)
+	{
+		if (key == PLUS)
+			mrt->cone[mrt->curr_obj.index].option.chess_ctrl++;
+		if (key == MINUS \
+		&& mrt->cone[mrt->curr_obj.index].option.chess_ctrl > 0)
+			mrt->cone[mrt->curr_obj.index].option.chess_ctrl--;
 	}
 }

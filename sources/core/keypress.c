@@ -45,6 +45,7 @@ void	object_ctr(t_mrt *mrt, int key)
 		chess_ctr(mrt, key);
 		radius_ctr(mrt, key);
 		height_ctr(mrt, key);
+		fov_ctr(mrt, key);
 		bump_option(mrt, key);
 	}
 }

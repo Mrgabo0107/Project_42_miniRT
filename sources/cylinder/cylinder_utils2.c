@@ -110,9 +110,9 @@ t_vec	cyl_normal_from_map(t_mrt *mrt, t_inter inter, t_vec c_cr, t_vec cyl_cr)
 			mrt->cylinder[inter.index].option.bump_map.width);
 	values.res_cap = (2 * mrt->cylinder[inter.index].radius) / (values.i_diam);
 	ret = fill_coord(0, 0, 1);
-	if (inter.cyl_ctrl == 1 || inter.cyl_ctrl == 2)
+	if (inter.cuad_ctr == 1 || inter.cuad_ctr == 2)
 		ret = cyl_cap_nrml_fr_map(mrt, inter, c_cr, values);
-	if (inter.cyl_ctrl == 3)
+	if (inter.cuad_ctr == 3)
 		ret = cyl_body_nrml_fr_map(mrt, inter, cyl_cr, values);
 	return (ret);
 }
