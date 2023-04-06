@@ -76,9 +76,9 @@ t_cone	ft_fill_cone(t_table *table, char **line)
 		CONE_INSTRUCTIONS, NULL);
 	cone.pos = ft_fill_pos(line[1], 0);
 	cone.dir = normalize(ft_fill_pos(line[2], 1));
+	cone.height = ft_fill_size(line[4], 0);
 	cone.top = vec_sum(cone.pos, \
 	scal_vec(cone.height, cone.dir));
-	cone.height = ft_fill_size(line[4], 0);
 	cone.angle = rad_and_deg(ft_fill_size(line[3], 1), 1);
 	cone.color = ft_fill_rgb(line[5]);
 	cone.base = get_obj_base(cone.dir);
