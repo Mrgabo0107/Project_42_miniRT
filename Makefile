@@ -6,7 +6,7 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/04/07 11:50:12 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/04/07 17:39:56 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,6 +95,7 @@ PLANE		=	plane.c \
 				plane_color.c \
 				triangle.c \
 				plane_bump.c \
+				plane_texture.c \
 				
 SPHERE_DIR	=	sphere/
 SPHERE		=	sphere.c \
