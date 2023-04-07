@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/04 23:19:02gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 14:59:33 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,81 @@ t_cuad_ctr	get_dist_to_cyl(t_cylinder cyl, t_vec new_cam, t_vec new_dirc)
 	return (ret);
 }
 
+t_rgb	cyl_cap_color_fr_map(t_mrt *mrt, t_inter inter, t_vec c_cr, \
+t_c_bump_val values)
+{
+	int		bump_coor[2];
+	t_rgb	color;
+
+	if (values.i_diam > 6)
+	{
+		bump_coor[0] = (mrt->cylinder[inter.index].option.bump_map.height / 2) \
+		+ (int)integer_part(c_cr.x / values.res_cap);
+		bump_coor[1] = (mrt->cylinder[inter.index].option.bump_map.width / 2) \
+		+ ((int)integer_part(c_cr.y / values.res_cap));
+	}
+	pthread_mutex_lock(mrt->mutexs);
+	color = convert_to_rgb(mrt->cylinder[inter.index].option.bump_map.array \
+	[bump_coor[0]][bump_coor[1]]);
+	pthread_mutex_unlock(mrt->mutexs);
+	return (color);
+}
+
+t_rgb	cyl_body_color_fr_map(t_mrt *mrt, t_inter inter, t_vec cyl_c, \
+t_c_bump_val values)
+{
+	int		bump_coor[2];
+	double	res_circ;
+	double	res_h;
+	t_rgb	color;
+
+	res_circ = get_angular_resol(mrt, inter, values.res_cap);
+	res_h = get_body_resol(mrt, inter, values.res_cap);
+	bump_coor[1] = (int)integer_part(cyl_c.y / res_circ) % \
+	mrt->cylinder[inter.index].option.bump_map.width - 1;
+	bump_coor[0] = (mrt->cylinder[inter.index].option.bump_map.height - 1) \
+	- (int)integer_part((cyl_c.z + ((mrt->cylinder[inter.index].height) / 2)) \
+	/ res_h) % (mrt->cylinder[inter.index].option.bump_map.height - 1);
+	pthread_mutex_lock(mrt->mutexs);
+	color = convert_to_rgb(mrt->cylinder[inter.index].option.bump_map.array \
+	[bump_coor[0]][bump_coor[1]]);
+	pthread_mutex_unlock(mrt->mutexs);
+	return (color);
+}
+
+t_rgb	cyl_texture_from_map(t_mrt *mrt, t_inter inter,
+		t_vec c_cr, t_vec cyl_cr)
+{
+	t_rgb			color;
+	t_c_bump_val	values;
+
+	color = inter.color;
+	values.i_diam = i_min_v(mrt->cylinder[inter.index].option.bump_map.height,
+			mrt->cylinder[inter.index].option.bump_map.width);
+	values.res_cap = (2 * mrt->cylinder[inter.index].radius) / (values.i_diam);
+	if (inter.cuad_ctr == 1 || inter.cuad_ctr == 2)
+		color = cyl_cap_color_fr_map(mrt, inter, c_cr, values);
+	if (inter.cuad_ctr == 3)
+		color = cyl_body_color_fr_map(mrt, inter, cyl_cr, values);
+	return (color);
+}
+
+t_rgb	get_cyl_texture(t_mrt *mrt, t_inter inter)
+{
+	t_mtrx	chg;
+	t_vec	new_inter[2];
+	t_rgb	color;
+
+	chg = fill_mtrx(mrt->cylinder[inter.index].base.n1,
+			mrt->cylinder[inter.index].base.n2,
+			mrt->cylinder[inter.index].base.n3);
+	new_inter[0] = vec_rest(inter.inter_coor, mrt->cylinder[inter.index].pos);
+	new_inter[0] = mtrx_by_vec(chg, new_inter[0]);
+	new_inter[1] = get_cyl_coor(new_inter[0]);
+	color = cyl_texture_from_map(mrt, inter, new_inter[0], new_inter[1]);
+	return (color);
+}
+
 void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 {
 	int				i;
@@ -91,8 +166,8 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 	t_vec			new_dirc;
 	t_mtrx			chg_base;
 
-	i = 0;
-	while (i < mrt->obj_count[CYLINDER])
+	i = -1;
+	while (++i < mrt->obj_count[CYLINDER])
 	{
 		new_cam = vec_rest(point, mrt->cylinder[i].pos);
 		chg_base = fill_mtrx(mrt->cylinder[i].base.n1,
@@ -107,7 +182,7 @@ void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 			scal_vec(ctr.c, dir)), fill_coord(0, 0, 0), \
 			get_cyl_color(mrt, i, vec_sum(point, scal_vec(ctr.c, dir)), ctr), \
 			mrt->cylinder[i].option, ctr.cap_ctrl, cam_in_cyl(mrt, i, new_cam)};
+			ctrl->color = get_cyl_texture(mrt, *ctrl);
 		}
-		i++;
 	}
 }
