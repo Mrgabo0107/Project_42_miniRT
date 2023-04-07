@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 06:46:51 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/07 15:04:55 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:13:57 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,26 @@ void	bump_option(t_mrt *mrt, int key)
 		&& mrt-> cone[mrt->curr_obj.index].option.bump_map.path)
 		mrt-> cone[mrt->curr_obj.index].option.b_mp_ctrl
 			= (mrt-> cone[mrt->curr_obj.index].option.b_mp_ctrl + 1) % 2;
+}
+
+void	texture_option(t_mrt *mrt, int key)
+{
+	if (key == T && mrt->curr_obj.type == PLANE
+		&& mrt->plane[mrt->curr_obj.index].option.texture.path)
+		mrt->plane[mrt->curr_obj.index].option.texture_ctrl
+			= (mrt->plane[mrt->curr_obj.index].option.texture_ctrl + 1) % 2;
+	if (key == T && mrt->curr_obj.type == SPHERE
+		&& mrt->sphere[mrt->curr_obj.index].option.texture.path)
+		mrt->sphere[mrt->curr_obj.index].option.texture_ctrl
+			= (mrt->sphere[mrt->curr_obj.index].option.texture_ctrl + 1) % 2;
+	if (key == T && mrt->curr_obj.type == CYLINDER
+		&& mrt-> cylinder[mrt->curr_obj.index].option.texture.path)
+		mrt-> cylinder[mrt->curr_obj.index].option.texture_ctrl
+			= (mrt-> cylinder[mrt->curr_obj.index].option.texture_ctrl + 1) % 2;
+	if (key == T && mrt->curr_obj.type == CONE
+		&& mrt-> cone[mrt->curr_obj.index].option.texture.path)
+		mrt-> cone[mrt->curr_obj.index].option.texture_ctrl
+			= (mrt-> cone[mrt->curr_obj.index].option.texture_ctrl + 1) % 2;
 }
 
 void	chess_ctr(t_mrt *mrt, int key)

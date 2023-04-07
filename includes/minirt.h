@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/07 17:06:11 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:14:32 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,7 @@ void		bump_option(t_mrt *mrt, int key);
 void		chess_ctr(t_mrt *mrt, int key);
 void		cam_ctr(t_mrt *mrt, int key);
 t_curr_ob	define_curr_obj(int type, int index);
+void		texture_option(t_mrt *mrt, int key);
 
 //info display
 void		display_strings(t_mrt *mrt);
