@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:01:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/04/05 07:55:25 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:44:22 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,12 +144,12 @@ commas, at least one value should be non-zero \
 \nValid objects include: \
 \n(C)amera, (L)ight, (A)mbient light, (sp)here, (pl)ane, (cy)linder and (co)ne \
 \nValid options include: \
-\n(mir)ror, (check)ered, (spec)ular, (bump)map"
+\n(mir)ror, (check)ered, (spec)ular, (bump)map, (tex)ture"
 # define OPTIONS_BEFORE_OBJECTS "At least one object must be defined before \
 any options."
 # define OPTION_INSTRUCTIONS "\
 \nValid options include: \
-\n(mir)ror, (check)ered, (spec)ular"
+\n(mir)ror, (check)ered, (spec)ular, (bump)map, (tex)ture"
 # define CHECK_INSTRUCTIONS "\
 \n(check)ered: color:(r,g,b), density:[1-1000]\
 \ne.g. check 255,0,0"
@@ -160,8 +160,11 @@ any options."
 \n(mir)ror: [0.0-1.0] \
 \ne.g. mir 0.5"
 # define BUMP_INSTRUCTIONS "\
-\n(bump)map: [path to bmp file] \
-\ne.g. bump ./textures/texture.bmp"
+\n(bump)map: [path to .xpm file] \
+\ne.g. bump ./textures/texture.xpm"
+# define TEXTURE_INSTRUCTIONS "\
+\n(tex)ure: [path to .xpm file] \
+\ne.g. tex ./textures/texture.xpm"
 # define INVALID_FILE "Invalid file"
 # define FILE_INSTRUCTIONS "\
 \nPlease provide an existing file path, with the correct \

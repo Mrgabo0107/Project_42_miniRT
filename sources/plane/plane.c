@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:07:15 by yridgway          #+#    #+#             */
-/*   Updated: 2023/03/31 03:27:52 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:07:31 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	check_planes(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 				*ctrl = (t_inter){PLANE, i, c, inter_coor, \
 				fill_coord(0, 0, 0), get_plane_color(mrt, i, inter_coor), \
 				mrt->plane[i].option, 0, 0};
+				ctrl->color = get_plane_texture(mrt, *ctrl);
 			}
 			i++;
 		}

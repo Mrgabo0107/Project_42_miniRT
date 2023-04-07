@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/05 04:14:05 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:14:41 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	object_ctr(t_mrt *mrt, int key)
 		height_ctr(mrt, key);
 		fov_ctr(mrt, key);
 		bump_option(mrt, key);
+		texture_option(mrt, key);
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/07 11:49:31 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:23:18 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ typedef enum e_opt
 	TRANSPARENT,
 	SPECULAR,
 	CHECK,
-	BUMPMAP
+	BUMPMAP,
+	TEXTURE
 }			t_opt;
 
 typedef enum e_chg
@@ -118,7 +119,9 @@ typedef struct s_option
 	int			chess_ctrl;
 	double		specular[2];
 	int			b_mp_ctrl;
+	int			texture_ctrl;
 	t_bump		bump_map;
+	t_bump		texture;
 }				t_option;
 
 typedef struct s_inter

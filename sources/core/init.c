@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/07 13:10:32 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:03:19 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	ft_set_mrt(t_mrt *mrt, char *file, int ix, int iy)
 		pthread_mutex_destroy(&mrt->mutex);
 		ft_error("Failed to initialize mutex", NULL, NULL);
 	}
+	mrt->mutexs = &mrt->mutex;
 }
 
 void	ft_reinit(t_mrt *mrt)

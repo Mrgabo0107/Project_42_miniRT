@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/07 13:44:27 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:14:32 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ double		distance_to_plane(t_vec start_point,
 				t_vec plane_pos, t_vec plane_dir, t_vec ray);
 t_rgb		get_plane_color(t_mrt *mrt, int index, t_vec intrsc);
 t_vec		plane_bumped(t_mrt *mrt, t_inter inter, t_vec without);
+t_rgb		get_plane_texture(t_mrt *mrt, t_inter inter);
 
 //triangle
 t_vec		get_normal_triangle(t_mrt *mrt, t_inter inter);
@@ -174,6 +175,9 @@ t_discr		get_cyl_disc(t_cylinder cyl, t_vec new_cam, t_vec new_dirc);
 t_rgb		get_cyl_color(t_mrt *mrt, int index, t_vec intrsc, t_cuad_ctr ctr);
 t_vec		cyl_normal_from_map(t_mrt *mrt, t_inter i, \
 			t_vec c_cr, t_vec cyl_cr);
+double		get_angular_resol(t_mrt *mrt, t_inter inter, double r_c, int width);
+double		get_body_resol(t_mrt *mrt, t_inter inter, double r_c, int height);
+t_rgb		get_cyl_texture(t_mrt *mrt, t_inter inter);
 
 //cone
 void		check_cones(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
@@ -189,7 +193,7 @@ void		fov_ctr(t_mrt *mrt, int key);
 t_rgb		get_cone_color(t_mrt *mrt, int i, t_vec *new, t_cuad_ctr ctr);
 t_vec		cone_nml_frm_map(t_mrt *mrt, t_inter itr, t_vec c_cr, t_vec cyl_cr);
 t_vec		cone_bumped(t_mrt *mrt, t_inter inter, t_vec without);
-
+t_rgb		get_cone_texture(t_mrt *mrt, t_inter inter);
 
 //camera
 t_inter		check_intersections(t_mrt *mrt, t_vec point, t_vec dir);
@@ -241,6 +245,7 @@ void		bump_option(t_mrt *mrt, int key);
 void		chess_ctr(t_mrt *mrt, int key);
 void		cam_ctr(t_mrt *mrt, int key);
 t_curr_ob	define_curr_obj(int type, int index);
+void		texture_option(t_mrt *mrt, int key);
 
 //info display
 void		display_strings(t_mrt *mrt);
