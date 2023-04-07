@@ -97,8 +97,8 @@ void	check_cones(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 	double			tang;
 	t_mtrx			chg_base;
 
-	i = 0;
-	while (i < mrt->obj_count[CONE])
+	i = -1;
+	while (++i < mrt->obj_count[CONE])
 	{
 		tang = tan(mrt->cone[i].angle / 2);
 		new[0] = vec_rest(point, mrt->cone[i].pos);
@@ -113,8 +113,8 @@ void	check_cones(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 			scal_vec(ctr.c, dir)), fill_coord(0, 0, 0), \
 			get_cone_color(mrt, i, new, ctr), mrt->cone[i].option, \
 			ctr.cap_ctrl, cam_in_cone(mrt, i, new[0], tang)};
+			ctrl->color = get_cone_texture(mrt, *ctrl);
 		}
-		i++;
 	}
 }
 

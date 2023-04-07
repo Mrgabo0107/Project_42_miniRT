@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/07 16:42:03 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:06:11 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,7 @@ void		fov_ctr(t_mrt *mrt, int key);
 t_rgb		get_cone_color(t_mrt *mrt, int i, t_vec *new, t_cuad_ctr ctr);
 t_vec		cone_nml_frm_map(t_mrt *mrt, t_inter itr, t_vec c_cr, t_vec cyl_cr);
 t_vec		cone_bumped(t_mrt *mrt, t_inter inter, t_vec without);
-
+t_rgb		get_cone_texture(t_mrt *mrt, t_inter inter);
 
 //camera
 t_inter		check_intersections(t_mrt *mrt, t_vec point, t_vec dir);

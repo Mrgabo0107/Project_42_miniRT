@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 07:27:52 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/07 16:48:34 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:03:36 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ t_c_bump_val values)
 	return (ret);
 }
 
-double	get_cone_ang_resol(t_mrt *mrt, t_inter inter, double r_c, t_vec cyl_c)
+static double	get_cone_ang_resol(t_mrt *mrt, t_inter inter, \
+double r_c, t_vec cyl_c)
 {
 	double	arc;
 	int		i_res_c;
@@ -56,7 +57,7 @@ double	get_cone_ang_resol(t_mrt *mrt, t_inter inter, double r_c, t_vec cyl_c)
 	return (ret);
 }
 
-double	get_cone_bdy_res(t_mrt *mrt, t_inter inter, double r_c)
+static double	get_cone_bdy_res(t_mrt *mrt, t_inter inter, double r_c)
 {
 	int		i_res_h;
 	int		n_img;
