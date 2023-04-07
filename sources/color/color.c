@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/07 13:32:48 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 13:44:35 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ t_vec	get_normal_at_point(t_mrt *mrt, t_inter inter)
 	return (ret);
 }
 
-t_rgb	get_object_color(t_mrt *mrt, t_inter inter)
-{
-}
+// t_rgb	get_object_color(t_mrt *mrt, t_inter inter)
+// {
+// }
 
 t_rgb	get_radiance(t_mrt *mrt, t_inter *ctr, t_light light)
 {
