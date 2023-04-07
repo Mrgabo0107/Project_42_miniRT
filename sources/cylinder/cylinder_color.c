@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_color.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 06:50:08 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/07 10:31:56 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 13:54:59 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,7 @@ t_rgb	get_cyl_color(t_mrt *mrt, int index, t_vec intrsc, t_cuad_ctr ctr)
 			== (ctrl.even_ctrl + ctr.cap_ctrl) % 2)
 			ret = mrt->cylinder[index].option.check_color;
 	}
+	// if (mrt->cylinder[index].option.texture_ctrl > 0)
+	// 	ret = get_cyl_texture(mrt, index, intrsc, ctr);
 	return (ret);
 }

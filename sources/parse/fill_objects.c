@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_objects.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:37:20 by ionorb            #+#    #+#             */
-/*   Updated: 2023/04/07 13:24:44 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 13:37:34 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ t_cone	ft_fill_cone(t_mrt *mrt, t_table *table, char **line)
 		CONE_INSTRUCTIONS, NULL);
 	cone.pos = ft_fill_pos(line[1], 0);
 	cone.dir = normalize(ft_fill_pos(line[2], 1));
+	cone.height = ft_fill_size(line[4], 0);
 	cone.height = ft_fill_size(line[4], 0);
 	cone.top = vec_sum(cone.pos, \
 	scal_vec(cone.height, cone.dir));
