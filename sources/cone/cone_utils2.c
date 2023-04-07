@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 07:27:52 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/07 12:17:22 by gamoreno         ###   ########.fr       */
+/*   Created: 2023/04/07 18:24:18 by gamoreno          #+#    #+#             */
+/*   Updated: 2023/04/07 18:30:23 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	contour_cone(t_mrt *mrt, t_vec *new, double c, double tang)
 	radius = mrt->cone[mrt->curr_obj.index].height * tang;
 	discr = get_cone_disc(new, tang);
 	if ((v_abs(discr.dscr) < 0.0008 * c * radius && !cam_in_cone(mrt, \
-	mrt->curr_obj.index, new[0], tang)) || v_abs((new[0].z + (c * new[1].z))\
+	mrt->curr_obj.index, new[0], tang)) || v_abs((new[0].z + (c * new[1].z)) \
 	- mrt->cone[mrt->curr_obj.index].height) < 0.05)
 		return (1);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/07 13:18:54 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:56:12 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,31 +62,31 @@ void	ft_fill_capitals(t_mrt *mrt, t_table *table, char **line, int type)
 		mrt->cam = ft_fill_cam(table, line);
 }
 
-void	ft_fill_objs(t_mrt *mrt, t_table *table, int *count)
+void	ft_fill_objs(t_mrt *mrt, t_table *t, int *count)
 {
 	int	type;
 
 	ft_allocate_objs(mrt, count);
-	while (table)
+	while (t)
 	{
-		type = eval_obj(table->line[0]);
+		type = eval_obj(t->line[0]);
 		if (type == AMBIENT || type == CAMERA)
-			ft_fill_capitals(mrt, table, table->line, type);
-		else if (eval_obj(table->line[0]) == LIGHT)
-			mrt->light[--count[LIGHT]] = ft_fill_light(table, table->line, 0);
-		else if (eval_obj(table->line[0]) == SPHERE)
-			mrt->sphere[--count[SPHERE]] = ft_fill_sphere(mrt, table, table->line);
-		else if (eval_obj(table->line[0]) == PLANE)
-			mrt->plane[--count[PLANE]] = ft_fill_plane(mrt, table, table->line);
-		else if (eval_obj(table->line[0]) == CYLINDER)
+			ft_fill_capitals(mrt, t, t->line, type);
+		else if (eval_obj(t->line[0]) == LIGHT)
+			mrt->light[--count[LIGHT]] = ft_fill_light(t, t->line, 0);
+		else if (eval_obj(t->line[0]) == SPHERE)
+			mrt->sphere[--count[SPHERE]] = ft_fill_sphere(mrt, t, t->line);
+		else if (eval_obj(t->line[0]) == PLANE)
+			mrt->plane[--count[PLANE]] = ft_fill_plane(mrt, t, t->line);
+		else if (eval_obj(t->line[0]) == CYLINDER)
 			mrt->cylinder[--count[CYLINDER]] = \
-			ft_fill_cylinder(mrt, table, table->line);
-		else if (eval_obj(table->line[0]) == CONE)
-			mrt->cone[--count[CONE]] = ft_fill_cone(mrt, table, table->line);
-		else if (eval_obj(table->line[0]) == TRIANGLE)
+			ft_fill_cylinder(mrt, t, t->line);
+		else if (eval_obj(t->line[0]) == CONE)
+			mrt->cone[--count[CONE]] = ft_fill_cone(mrt, t, t->line);
+		else if (eval_obj(t->line[0]) == TRIANGLE)
 			mrt->triangle[--count[TRIANGLE]] \
-			= ft_fill_triangle(mrt, table, table->line);
-		table = table->next;
+			= ft_fill_triangle(mrt, t, t->line);
+		t = t->next;
 	}
 	ft_free(count);
 }
