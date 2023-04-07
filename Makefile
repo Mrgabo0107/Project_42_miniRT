@@ -6,7 +6,7 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/04/05 05:50:58 by yridgway         ###   ########.fr        #
+#    Updated: 2023/04/07 11:50:12 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,6 +111,7 @@ CONE_DIR	=	cone/
 CONE		=	cone.c \
 				cone_utils.c \
 				cone_utils2.c \
+				cone_utils3.c \
 				cone_color.c \
 
 # LIBFT_DIR	=	libft/

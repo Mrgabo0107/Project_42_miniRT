@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/05 04:14:24 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 13:33:07 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int			ft_init_mlx(t_mrt *mrt);
 void		ft_reinit(t_mrt *mrt);
 int			valid_rt_file(char *file, int fd);
 void		ft_set_mrt(t_mrt *mrt, char *file, int ix, int iy);
+void		bump_to_array(t_bump *bump_map);
 
 //end
 int			end_mrt(t_mrt *mrt);
@@ -47,7 +48,7 @@ int			eval_obj(char *line);
 t_table		*ft_fill_table(int fd, int num_objs);
 int			ft_arg_count(char **line);
 void		ft_error(char *msg, char *extra, char *extra2);
-t_option	ft_fill_options(t_table *table, t_rgb color);
+t_option	ft_fill_options(t_mrt *mrt, t_table *table, t_rgb color);
 int			eval_option(char *line);
 int			*int_arrcpy(int *arr, int size);
 void		ft_allocate_objs(t_mrt *mrt, int *count);
@@ -72,11 +73,11 @@ int			out_of_range(double num, double min, double max);
 //fill objects
 t_cam		ft_fill_cam(t_table *table, char **line);
 t_light		ft_fill_light(t_table *table, char **line, int amb);
-t_sphere	ft_fill_sphere(t_table *table, char **line);
-t_plane		ft_fill_plane(t_table *table, char **line);
-t_cylinder	ft_fill_cylinder(t_table *table, char **line);
-t_cone		ft_fill_cone(t_table *table, char **line);
-t_triangle	ft_fill_triangle(t_table *table, char **line);
+t_sphere	ft_fill_sphere(t_mrt *mrt, t_table *table, char **line);
+t_plane		ft_fill_plane(t_mrt *mrt, t_table *table, char **line);
+t_cylinder	ft_fill_cylinder(t_mrt *mrt, t_table *table, char **line);
+t_cone		ft_fill_cone(t_mrt *mrt, t_table *table, char **line);
+t_triangle	ft_fill_triangle(t_mrt *mrt, t_table *table, char **line);
 
 //utils
 char		*get_next_line(int fd);
@@ -186,6 +187,8 @@ int			contour_cone(t_mrt *mrt, t_vec *new, double c, double tang);
 t_discr		get_cone_disc(t_vec *f_n, double tan);
 void		fov_ctr(t_mrt *mrt, int key);
 t_rgb		get_cone_color(t_mrt *mrt, int i, t_vec *new, t_cuad_ctr ctr);
+t_vec		cone_nml_frm_map(t_mrt *mrt, t_inter itr, t_vec c_cr, t_vec cyl_cr);
+t_vec		cone_bumped(t_mrt *mrt, t_inter inter, t_vec without);
 
 
 //camera

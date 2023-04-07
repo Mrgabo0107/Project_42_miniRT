@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 22:12:17 by yoel              #+#    #+#             */
-/*   Updated: 2023/03/30 02:44:13 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 13:20:16 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,24 @@ void	ft_fill_mirror(char **line, t_option *option)
 	option->mirror = ft_fill_ratio(line[1]);
 }
 
-void	ft_fill_bumpmap(char **line, t_option *option)
+void	ft_fill_bumpmap(t_mrt *mrt, char **line, t_option *option)
 {
 	if (ft_arg_count(line) != 2)
 		ft_error("Wrong number of arguments for bumpmap", \
 		BUMP_INSTRUCTIONS, NULL);
 	option->bump_map.path = ft_fill_xpm(line[1]);
 	option->b_mp_ctrl = 1;
+	option->bump_map.img = mlx_xpm_file_to_image(mrt->mlx, \
+	option->bump_map.path, &option->bump_map.width, &option->bump_map.height);
+	option->bump_map.addr = mlx_get_data_addr(option->bump_map.img, \
+	&option->bump_map.bpp, &option->bump_map.sizel, &option->bump_map.endian);
+	bump_to_array(&option->bump_map);
+	mlx_destroy_image(mrt->mlx, option->bump_map.img);
+	option->bump_map.addr = NULL;
+	option->bump_map.img = NULL;
 }
 
-t_option	ft_fill_options(t_table *table, t_rgb color)
+t_option	ft_fill_options(t_mrt *mrt, t_table *table, t_rgb color)
 {
 	t_option	option;
 
@@ -63,7 +71,7 @@ t_option	ft_fill_options(t_table *table, t_rgb color)
 		if (eval_option(table->next->line[0]) == MIRROR)
 			ft_fill_mirror(table->next->line, &option);
 		if (eval_option(table->next->line[0]) == BUMPMAP)
-			ft_fill_bumpmap(table->next->line, &option);
+			ft_fill_bumpmap(mrt, table->next->line, &option);
 		table = table->next;
 	}
 	return (option);
