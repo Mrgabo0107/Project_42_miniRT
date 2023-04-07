@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 21:20:31 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/05 05:14:55 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 13:18:54 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,17 +75,17 @@ void	ft_fill_objs(t_mrt *mrt, t_table *table, int *count)
 		else if (eval_obj(table->line[0]) == LIGHT)
 			mrt->light[--count[LIGHT]] = ft_fill_light(table, table->line, 0);
 		else if (eval_obj(table->line[0]) == SPHERE)
-			mrt->sphere[--count[SPHERE]] = ft_fill_sphere(table, table->line);
+			mrt->sphere[--count[SPHERE]] = ft_fill_sphere(mrt, table, table->line);
 		else if (eval_obj(table->line[0]) == PLANE)
-			mrt->plane[--count[PLANE]] = ft_fill_plane(table, table->line);
+			mrt->plane[--count[PLANE]] = ft_fill_plane(mrt, table, table->line);
 		else if (eval_obj(table->line[0]) == CYLINDER)
 			mrt->cylinder[--count[CYLINDER]] = \
-			ft_fill_cylinder(table, table->line);
+			ft_fill_cylinder(mrt, table, table->line);
 		else if (eval_obj(table->line[0]) == CONE)
-			mrt->cone[--count[CONE]] = ft_fill_cone(table, table->line);
+			mrt->cone[--count[CONE]] = ft_fill_cone(mrt, table, table->line);
 		else if (eval_obj(table->line[0]) == TRIANGLE)
 			mrt->triangle[--count[TRIANGLE]] \
-			= ft_fill_triangle(table, table->line);
+			= ft_fill_triangle(mrt, table, table->line);
 		table = table->next;
 	}
 	ft_free(count);

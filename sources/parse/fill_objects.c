@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   fill_objects.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 20:37:20 by ionorb            #+#    #+#             */
-/*   Updated: 2023/04/05 18:51:45 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/07 13:37:34 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_sphere	ft_fill_sphere(t_table *table, char **line)
+t_sphere	ft_fill_sphere(t_mrt *mrt, t_table *table, char **line)
 {
 	t_sphere	sphere;
 
@@ -25,11 +25,11 @@ t_sphere	ft_fill_sphere(t_table *table, char **line)
 	sphere.color = ft_fill_rgb(line[3]);
 	sphere.base = get_obj_base(sphere.dir);
 	sphere.base.bs_orig = sphere.center;
-	sphere.option = ft_fill_options(table, sphere.color);
+	sphere.option = ft_fill_options(mrt, table, sphere.color);
 	return (sphere);
 }
 
-t_plane	ft_fill_plane(t_table *table, char **line)
+t_plane	ft_fill_plane(t_mrt *mrt, t_table *table, char **line)
 {
 	t_plane	plane;
 
@@ -41,11 +41,11 @@ t_plane	ft_fill_plane(t_table *table, char **line)
 	plane.color = ft_fill_rgb(line[3]);
 	plane.base = get_obj_base(plane.dir);
 	plane.base.bs_orig = plane.pos;
-	plane.option = ft_fill_options(table, plane.color);
+	plane.option = ft_fill_options(mrt, table, plane.color);
 	return (plane);
 }
 
-t_cylinder	ft_fill_cylinder(t_table *table, char **line)
+t_cylinder	ft_fill_cylinder(t_mrt *mrt, t_table *table, char **line)
 {
 	t_cylinder	cylinder;
 
@@ -63,11 +63,11 @@ t_cylinder	ft_fill_cylinder(t_table *table, char **line)
 	scal_vec(cylinder.height / 2, cylinder.dir));
 	cylinder.bottom = vec_sum(cylinder.pos, \
 	scal_vec(-cylinder.height / 2, cylinder.dir));
-	cylinder.option = ft_fill_options(table, cylinder.color);
+	cylinder.option = ft_fill_options(mrt, table, cylinder.color);
 	return (cylinder);
 }
 
-t_cone	ft_fill_cone(t_table *table, char **line)
+t_cone	ft_fill_cone(t_mrt *mrt, t_table *table, char **line)
 {
 	t_cone	cone;
 
@@ -77,17 +77,18 @@ t_cone	ft_fill_cone(t_table *table, char **line)
 	cone.pos = ft_fill_pos(line[1], 0);
 	cone.dir = normalize(ft_fill_pos(line[2], 1));
 	cone.height = ft_fill_size(line[4], 0);
+	cone.height = ft_fill_size(line[4], 0);
 	cone.top = vec_sum(cone.pos, \
 	scal_vec(cone.height, cone.dir));
 	cone.angle = rad_and_deg(ft_fill_size(line[3], 1), 1);
 	cone.color = ft_fill_rgb(line[5]);
 	cone.base = get_obj_base(cone.dir);
 	cone.base.bs_orig = cone.pos;
-	cone.option = ft_fill_options(table, cone.color);
+	cone.option = ft_fill_options(mrt, table, cone.color);
 	return (cone);
 }
 
-t_triangle	ft_fill_triangle(t_table *table, char **line)
+t_triangle	ft_fill_triangle(t_mrt *mrt, t_table *table, char **line)
 {
 	t_triangle	triangle;
 
@@ -102,6 +103,6 @@ t_triangle	ft_fill_triangle(t_table *table, char **line)
 	vec_rest(triangle.p3, triangle.p1));
 	triangle.base = get_obj_base(triangle.dir);
 	triangle.base.bs_orig = triangle.p1;
-	triangle.option = ft_fill_options(table, triangle.color);
+	triangle.option = ft_fill_options(mrt, table, triangle.color);
 	return (triangle);
 }

@@ -42,6 +42,8 @@ t_vec	get_normal_cone(t_mrt *mrt, t_inter inter)
 		ret = normal_cyl_body(mrt, inter);
 	if (inter.is_in_obj)
 		ret = scal_vec(-1, ret);
+	if (mrt->cone[inter.index].option.b_mp_ctrl == 1)
+		ret = cone_bumped(mrt, inter, ret);
 	return (ret);
 }
 

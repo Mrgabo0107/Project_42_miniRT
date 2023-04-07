@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_bump_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 21:04:14 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/03 22:09:49 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/07 13:10:44 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,5 @@ void	set_bump_maps(t_mrt *mrt)
 	set_bump_plane(mrt);
 	set_bump_sphere(mrt);
 	set_bump_cylinder(mrt);
+	// set_bump
 }
