@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/04 22:11:17 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/05 04:01:24gamoreno         ###   ########.fr       */
+/*   Created: 2023/04/07 18:24:41 by gamoreno          #+#    #+#             */
+/*   Updated: 2023/04/07 18:24:54 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,3 @@ void	check_cones(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 		}
 	}
 }
-

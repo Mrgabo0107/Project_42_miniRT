@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/07 15:03:19 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 18:18:54 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,36 +49,6 @@ int	valid_rt_file(char *file, int fd)
 	return (1);
 }
 
-void	ft_set_mrt(t_mrt *mrt, char *file, int ix, int iy)
-{
-	mrt->mlx = NULL;
-	mrt->win = NULL;
-	mrt->img = NULL;
-	mrt->addr = NULL;
-	mrt->sphere = NULL;
-	mrt->plane = NULL;
-	mrt->cylinder = NULL;
-	mrt->cone = NULL;
-	mrt->light = NULL;
-	mrt->triangle = NULL;
-	mrt->scene_path = file;
-	mrt->curr_obj = define_curr_obj(CAMERA, 0);
-	mrt->bounce = 0;
-	mrt->num_objs = 9;
-	mrt->ix = ix;
-	mrt->iy = iy;
-	if (ix <= 0)
-		return ;
-	mrt->obj_count = ft_calloc(mrt->num_objs, sizeof(int));
-	mrt->threads = ft_malloc(sizeof(pthread_t) * THREADS);
-	if (pthread_mutex_init(&mrt->mutex, NULL))
-	{
-		pthread_mutex_destroy(&mrt->mutex);
-		ft_error("Failed to initialize mutex", NULL, NULL);
-	}
-	mrt->mutexs = &mrt->mutex;
-}
-
 void	ft_reinit(t_mrt *mrt)
 {
 	int	i;
@@ -100,7 +70,6 @@ void	ft_reinit(t_mrt *mrt)
 		mrt->obj_count[i++] = 0;
 	mrt->curr_obj = define_curr_obj(CAMERA, 0);
 	ft_parse(mrt);
-	set_bump_maps(mrt);
 }
 
 int	init_minirt(t_mrt *mrt, char **av, int ac)
@@ -115,7 +84,6 @@ int	init_minirt(t_mrt *mrt, char **av, int ac)
 	if (!mrt->mlx)
 		return (ft_error("Problem initializing minilibx", NULL, NULL), 0);
 	ft_parse(mrt);
-	set_bump_maps(mrt);
 	if (ft_init_mlx(mrt))
 		return (printf("Problem initializing minilibx\n"), 1);
 	return (0);

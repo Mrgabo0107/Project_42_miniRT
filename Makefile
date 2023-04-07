@@ -6,7 +6,7 @@
 #    By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/19 18:59:58 by gamoreno          #+#    #+#              #
-#    Updated: 2023/04/07 17:39:56 by gamoreno         ###   ########.fr        #
+#    Updated: 2023/04/07 18:08:50 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,12 +34,14 @@ INCLUDES = -I $(HEADER) -I $(MLX) -I $(LIBFT)/includes
 CORE_DIR	=	core/
 CORE		=	main.c \
 				init.c \
+				init2.c \
 				keypress.c \
 				key_cam.c \
 				key_move_obj.c \
 				key_move_obj2.c \
 				key_rot_obj.c \
 				key_options.c \
+				key_options2.c \
 				mousepress.c \
 				info_display.c \
 				color_names.c \
@@ -50,6 +52,7 @@ PARSE_DIR	=	parse/
 PARSE		=	parsing.c \
 				fill_objects.c \
 				fill_options.c \
+				fill_options2.c \
 				parsing_utils.c \
 				cell_filling.c \
 				cell_filling_utils.c \

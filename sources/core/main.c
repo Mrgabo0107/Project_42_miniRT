@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/04/05 05:50:48 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 18:23:35 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,6 @@ int	end_mrt(t_mrt *mrt)
 	(void)mrt;
 	printf("%s\n", CLEAN_EXIT);
 	ft_quit(EXIT_OK);
-	// mlx_destroy_image(mrt->mlx, mrt->img);
-	// mlx_destroy_window(mrt->mlx, mrt->win);
-	// mlx_destroy_display(mrt->mlx);
-	// free(mrt->mlx);
-	// ft_free(mrt->threads);
-	// ft_free(mrt->obj_count);
-	// ft_free_mrt(mrt, 1);
-	// exit(0);
 	return (0);
 }
 
@@ -60,7 +52,6 @@ int	ft_controls(t_mrt *mrt)
 
 void	render_scene(t_mrt *mrt)
 {
-	// ft_get_mem_size();
 	set_all_cam_values(&mrt->cam, mrt->ix);
 	if (mrt->first)
 		write(1, "calculating pixel values...\n", 29);

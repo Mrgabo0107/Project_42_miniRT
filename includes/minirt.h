@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/07 17:14:32 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 18:19:41 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void		ft_reinit(t_mrt *mrt);
 int			valid_rt_file(char *file, int fd);
 void		ft_set_mrt(t_mrt *mrt, char *file, int ix, int iy);
 void		bump_to_array(t_bump *bump_map);
+void		ft_set_mrt(t_mrt *mrt, char *file, int ix, int iy);
 
 //end
 int			end_mrt(t_mrt *mrt);
@@ -78,6 +79,7 @@ t_plane		ft_fill_plane(t_mrt *mrt, t_table *table, char **line);
 t_cylinder	ft_fill_cylinder(t_mrt *mrt, t_table *table, char **line);
 t_cone		ft_fill_cone(t_mrt *mrt, t_table *table, char **line);
 t_triangle	ft_fill_triangle(t_mrt *mrt, t_table *table, char **line);
+void		ft_fill_texture(t_mrt *mrt, char **line, t_option *option);
 
 //utils
 char		*get_next_line(int fd);
@@ -266,7 +268,6 @@ char		*ft_write_dir(t_vec dir);
 char		*ft_write_rgb(t_rgb color);
 
 //bump map
-void		set_bump_maps(t_mrt *mrt);
 t_vec		bump_nrml_by_coor(t_option *opt, int x, int y, double height);
 t_vec		get_bump_nrml(t_vec new_n, t_base tang_base, t_mtrx chg);
 
