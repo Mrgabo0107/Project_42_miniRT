@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:31:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/03/31 00:59:02 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:15:33 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,30 @@ t_discr	get_sph_dscr(t_vec ncam, t_vec dir, double square_rad)
 	return (ret);
 }
 
+t_rgb	get_sphere_texture(t_mrt *mrt, t_inter inter)
+{
+	t_mtrx	chg;
+	t_vec	new_inter;
+	int		bump_coor[2];
+	double	pol_res;
+	double	as_res;
+
+	if (!mrt->sphere[inter.index].option.texture_ctrl)
+		return (inter.color);
+	chg = fill_mtrx(mrt->sphere[inter.index].base.n1,
+			mrt->sphere[inter.index].base.n2,
+			mrt->sphere[inter.index].base.n3);
+	new_inter = vec_rest(inter.inter_coor, mrt->sphere[inter.index].center);
+	new_inter = mtrx_by_vec(chg, new_inter);
+	new_inter = get_spheric_coord(new_inter);
+	pol_res = PI / mrt->sphere[inter.index].option.texture.height;
+	as_res = (2 * PI) / (mrt->sphere[inter.index].option.texture.width - 1);
+	bump_coor[0] = (int)integer_part(new_inter.y / pol_res);
+	bump_coor[1] = (int)integer_part(new_inter.z / as_res);
+	return (convert_to_rgb(mrt->sphere[inter.index].option.texture.array \
+	[bump_coor[0]][bump_coor[1]]));
+}
+
 void	check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 {
 	int		i;
@@ -50,8 +74,8 @@ void	check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 	t_discr	discr;
 	t_vec	new_cam;
 
-	i = 0;
-	while (i < mrt->obj_count[SPHERE])
+	i = -1;
+	while (++i < mrt->obj_count[SPHERE])
 	{
 		new_cam = vec_rest(point, mrt->sphere[i].center);
 		discr = get_sph_dscr(new_cam, dir, int_pow(mrt->sphere[i].radius, 2));
@@ -59,13 +83,15 @@ void	check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)
 		{
 			c = solve_quad(&discr);
 			if (c > 0 && (ctrl->dist == -1 || c < ctrl->dist))
+			{
 				*ctrl = (t_inter){SPHERE, i, c, vec_sum(point, \
 				scal_vec(c, dir)), fill_coord(0, 0, 0), \
 				get_sphere_color(mrt, i, \
 				vec_sum(point, scal_vec(c, dir))), \
 				mrt->sphere[i].option, 0, \
 				cam_in_sph(mrt, i, new_cam)};
+				ctrl->color = get_sphere_texture(mrt, *ctrl);
+			}
 		}
-		i++;
 	}
 }

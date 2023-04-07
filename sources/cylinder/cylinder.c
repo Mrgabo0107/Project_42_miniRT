@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 03:17:28 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/07 15:42:36 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:06:57 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,86 +81,6 @@ t_cuad_ctr	get_dist_to_cyl(t_cylinder cyl, t_vec new_cam, t_vec new_dirc)
 	}
 	ret = check_cyl_body(&ret, cyl, new_cam, new_dirc);
 	return (ret);
-}
-
-t_rgb	cyl_cap_color_fr_map(t_mrt *mrt, t_inter inter, t_vec c_cr, \
-t_c_bump_val values)
-{
-	int		bump_coor[2];
-	t_rgb	color;
-
-	if (values.i_diam > 6)
-	{
-		bump_coor[0] = (mrt->cylinder[inter.index].option.texture.height / 2) \
-		+ (int)integer_part(c_cr.x / values.res_cap);
-		bump_coor[1] = (mrt->cylinder[inter.index].option.texture.width / 2) \
-		+ ((int)integer_part(c_cr.y / values.res_cap));
-	}
-	pthread_mutex_lock(mrt->mutexs);
-	color = convert_to_rgb(mrt->cylinder[inter.index].option.texture.array \
-	[bump_coor[0]][bump_coor[1]]);
-	pthread_mutex_unlock(mrt->mutexs);
-	return (color);
-}
-
-t_rgb	cyl_body_color_fr_map(t_mrt *mrt, t_inter inter, t_vec cyl_c, \
-t_c_bump_val values)
-{
-	int		bump_coor[2];
-	double	res_circ;
-	double	res_h;
-	t_rgb	color;
-
-	res_circ = get_angular_resol(mrt, inter, values.res_cap, \
-	mrt->cylinder[inter.index].option.texture.width);
-	res_h = get_body_resol(mrt, inter, values.res_cap, \
-	mrt->cylinder[inter.index].option.texture.height);
-	bump_coor[1] = (int)integer_part(cyl_c.y / res_circ) % \
-	mrt->cylinder[inter.index].option.texture.width - 1;
-	bump_coor[0] = (mrt->cylinder[inter.index].option.texture.height - 1) \
-	- (int)integer_part((cyl_c.z + ((mrt->cylinder[inter.index].height) / 2)) \
-	/ res_h) % (mrt->cylinder[inter.index].option.texture.height - 1);
-	pthread_mutex_lock(mrt->mutexs);
-	color = convert_to_rgb(mrt->cylinder[inter.index].option.texture.array \
-	[bump_coor[0]][bump_coor[1]]);
-	pthread_mutex_unlock(mrt->mutexs);
-	// printf("bump_coor[0] = %d, bump_coor[1] = %d\n", bump_coor[0], bump_coor[1]);
-	return (color);
-}
-
-t_rgb	cyl_texture_from_map(t_mrt *mrt, t_inter inter,
-		t_vec c_cr, t_vec cyl_cr)
-{
-	t_rgb			color;
-	t_c_bump_val	values;
-
-	color = inter.color;
-	values.i_diam = i_min_v(mrt->cylinder[inter.index].option.texture.height,
-			mrt->cylinder[inter.index].option.texture.width);
-	values.res_cap = (2 * mrt->cylinder[inter.index].radius) / (values.i_diam);
-	if (inter.cuad_ctr == 1 || inter.cuad_ctr == 2)
-		color = cyl_cap_color_fr_map(mrt, inter, c_cr, values);
-	if (inter.cuad_ctr == 3)
-		color = cyl_body_color_fr_map(mrt, inter, cyl_cr, values);
-	return (color);
-}
-
-t_rgb	get_cyl_texture(t_mrt *mrt, t_inter inter)
-{
-	t_mtrx	chg;
-	t_vec	new_inter[2];
-	t_rgb	color;
-
-	if (!mrt->cylinder[inter.index].option.texture_ctrl)
-		return (inter.color);
-	chg = fill_mtrx(mrt->cylinder[inter.index].base.n1,
-			mrt->cylinder[inter.index].base.n2,
-			mrt->cylinder[inter.index].base.n3);
-	new_inter[0] = vec_rest(inter.inter_coor, mrt->cylinder[inter.index].pos);
-	new_inter[0] = mtrx_by_vec(chg, new_inter[0]);
-	new_inter[1] = get_cyl_coor(new_inter[0]);
-	color = cyl_texture_from_map(mrt, inter, new_inter[0], new_inter[1]);
-	return (color);
 }
 
 void	check_cylinders(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)

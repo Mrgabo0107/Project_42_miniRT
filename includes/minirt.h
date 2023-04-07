@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/07 15:42:16 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:07:26 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,7 @@ t_vec		cyl_normal_from_map(t_mrt *mrt, t_inter i, \
 			t_vec c_cr, t_vec cyl_cr);
 double		get_angular_resol(t_mrt *mrt, t_inter inter, double r_c, int width);
 double		get_body_resol(t_mrt *mrt, t_inter inter, double r_c, int height);
+t_rgb		get_cyl_texture(t_mrt *mrt, t_inter inter);
 
 //cone
 void		check_cones(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir);
