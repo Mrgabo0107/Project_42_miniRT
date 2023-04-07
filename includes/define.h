@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:01:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/04/05 07:55:25 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:21:21 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,8 +160,11 @@ any options."
 \n(mir)ror: [0.0-1.0] \
 \ne.g. mir 0.5"
 # define BUMP_INSTRUCTIONS "\
-\n(bump)map: [path to bmp file] \
-\ne.g. bump ./textures/texture.bmp"
+\n(bump)map: [path to .xpm file] \
+\ne.g. bump ./textures/texture.xpm"
+# define TEXTURE_INSTRUCTIONS "\
+\n(tex)ure: [path to .xpm file] \
+\ne.g. tex ./textures/texture.xpm"
 # define INVALID_FILE "Invalid file"
 # define FILE_INSTRUCTIONS "\
 \nPlease provide an existing file path, with the correct \

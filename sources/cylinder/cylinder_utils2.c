@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 03:58:18 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/07 14:18:07 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:41:29 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_c_bump_val values)
 	return (ret);
 }
 
-double	get_angular_resol(t_mrt *mrt, t_inter inter, double r_c)
+double	get_angular_resol(t_mrt *mrt, t_inter inter, double r_c, int width)
 {
 	double	arc;
 	int		i_res_c;
@@ -43,9 +43,9 @@ double	get_angular_resol(t_mrt *mrt, t_inter inter, double r_c)
 	ret = r_c;
 	arc = r_c / mrt->cylinder[inter.index].radius;
 	i_res_c = (int)((2 * PI) / arc);
-	n_img = i_res_c / (mrt->cylinder[inter.index].option.bump_map.width - 1);
+	n_img = i_res_c / (width - 1);
 	if (n_img <= 0)
-		ret = (2 * PI) / (mrt->cylinder[inter.index].option.bump_map.width - 1);
+		ret = (2 * PI) / (width - 1);
 	else
 	{
 		if (decimal_part((2 * PI) / n_img) <= 0.5)
@@ -56,7 +56,7 @@ double	get_angular_resol(t_mrt *mrt, t_inter inter, double r_c)
 	return (ret);
 }
 
-double	get_body_resol(t_mrt *mrt, t_inter inter, double r_c)
+double	get_body_resol(t_mrt *mrt, t_inter inter, double r_c, int height)
 {
 	int		i_res_h;
 	int		n_img;
@@ -64,10 +64,10 @@ double	get_body_resol(t_mrt *mrt, t_inter inter, double r_c)
 
 	ret = r_c;
 	i_res_h = (int)integer_part(mrt->cylinder[inter.index].height / r_c);
-	n_img = i_res_h / (mrt->cylinder[inter.index].option.bump_map.height - 1);
+	n_img = i_res_h / (height - 1);
 	if (n_img <= 0)
 		ret = mrt->cylinder[inter.index].height / \
-		(mrt->cylinder[inter.index].option.bump_map.height - 1);
+		(height - 1);
 	else
 	{
 		if (decimal_part(mrt->cylinder[inter.index].height / n_img) <= 0.5)
@@ -87,8 +87,10 @@ t_c_bump_val values)
 	t_vec	ret;
 
 	ret = fill_coord(0, 0, 1);
-	res_circ = get_angular_resol(mrt, inter, values.res_cap);
-	res_h = get_body_resol(mrt, inter, values.res_cap);
+	res_circ = get_angular_resol(mrt, inter, values.res_cap, \
+	mrt->cylinder[inter.index].option.bump_map.width);
+	res_h = get_body_resol(mrt, inter, values.res_cap, \
+	mrt->cylinder[inter.index].option.bump_map.height);
 	bump_coor[1] = (int)integer_part(cyl_c.y / res_circ) % \
 	mrt->cylinder[inter.index].option.bump_map.width - 1;
 	bump_coor[0] = (mrt->cylinder[inter.index].option.bump_map.height - 1) \

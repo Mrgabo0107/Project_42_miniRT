@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_options.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 22:12:17 by yoel              #+#    #+#             */
-/*   Updated: 2023/04/07 13:20:16 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:30:14 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,30 @@ void	ft_fill_bumpmap(t_mrt *mrt, char **line, t_option *option)
 	option->bump_map.img = NULL;
 }
 
+void	ft_fill_texture(t_mrt *mrt, char **line, t_option *option)
+{
+	if (ft_arg_count(line) != 2)
+		ft_error("Wrong number of arguments for texture", \
+		TEXTURE_INSTRUCTIONS, NULL);
+	option->texture.path = ft_fill_xpm(line[1]);
+	option->texture_ctrl = 1;
+	option->texture.img = mlx_xpm_file_to_image(mrt->mlx, \
+	option->texture.path, &option->texture.width, &option->texture.height);
+	option->texture.addr = mlx_get_data_addr(option->texture.img, \
+	&option->texture.bpp, &option->texture.sizel, &option->texture.endian);
+	bump_to_array(&option->texture);
+	mlx_destroy_image(mrt->mlx, option->texture.img);
+	option->texture.addr = NULL;
+	option->texture.img = NULL;
+}
+
 t_option	ft_fill_options(t_mrt *mrt, t_table *table, t_rgb color)
 {
 	t_option	option;
 
 	option = \
-	(t_option){0, get_opposite_color(color), 0, {0.3, 16}, 0, \
+	(t_option){0, get_opposite_color(color), 0, {0.3, 16}, 0, 0, \
+	(t_bump){NULL, 0, 0, NULL, NULL, 0, 0, 0, NULL, 0.008}, \
 	(t_bump){NULL, 0, 0, NULL, NULL, 0, 0, 0, NULL, 0.008}};
 	while (table && table->next && eval_obj(table->next->line[0]) == OPTION)
 	{
@@ -72,6 +90,8 @@ t_option	ft_fill_options(t_mrt *mrt, t_table *table, t_rgb color)
 			ft_fill_mirror(table->next->line, &option);
 		if (eval_option(table->next->line[0]) == BUMPMAP)
 			ft_fill_bumpmap(mrt, table->next->line, &option);
+		if (eval_option(table->next->line[0]) == TEXTURE)
+			ft_fill_texture(mrt, table->next->line, &option);
 		table = table->next;
 	}
 	return (option);

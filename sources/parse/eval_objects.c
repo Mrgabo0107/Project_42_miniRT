@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 22:59:39 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/05 05:11:52 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:22:24 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	eval_option(char *line)
 		return (SPECULAR);
 	if (ft_strcmp_1(line, "bump") == 0)
 		return (BUMPMAP);
+	if (ft_strcmp_1(line, "tex") == 0)
+		return (TEXTURE);
 	return (-1);
 }
 
