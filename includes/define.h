@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:01:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/04/07 17:49:06 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 19:48:45 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,6 @@
 # define DEFINE_H
 # include "minirt.h"
 
-// # define WX 10
-// # define WY 5
-// # define IX 10
-// # define IY 5
-// # define WX 800
-// # define WY 400
-// # define WX 1500
-// # define WY 755
-// # define IX 1250
-// # define IY 750
-// # define WX 2000
-// # define WY 1000
-// # define IX 2000
-// # define IY 1000
 # define IX 800
 # define IY 400
 # define THREADS 20
@@ -81,6 +67,20 @@
 # define X 120
 # define L 108
 # define F 102
+
+# define COLORS "\
+1.0 0.0 0.0		red \
+\n1.0 0.5 0.0		orange \
+\n1.0 1.0 0.0		yellow \
+\n0.5 1.0 0.0		char green \
+\n0.0 1.0 0.0		green \
+\n0.0 1.0 0.5		spring green \
+\n0.0 1.0 1.0		cyan \
+\n0.0 0.5 1.0		azure \
+\n0.0 0.0 1.0		blue \
+\n0.5 0.0 1.0		violet \
+\n1.0 0.0 1.0		magenta \
+\n1.0 0.0 0.5		rose"
 
 //error messages
 # define TOO_MANY_CAPITALS "Too many capital letters in the scene"
