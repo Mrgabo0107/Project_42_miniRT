@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/07 16:07:26 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:42:03 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ double		distance_to_plane(t_vec start_point,
 				t_vec plane_pos, t_vec plane_dir, t_vec ray);
 t_rgb		get_plane_color(t_mrt *mrt, int index, t_vec intrsc);
 t_vec		plane_bumped(t_mrt *mrt, t_inter inter, t_vec without);
+t_rgb		get_plane_texture(t_mrt *mrt, t_inter inter);
 
 //triangle
 t_vec		get_normal_triangle(t_mrt *mrt, t_inter inter);

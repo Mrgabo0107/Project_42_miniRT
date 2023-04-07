@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone_utils3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 07:27:52 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/07 14:20:00 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:48:34 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,6 @@ t_c_bump_val values)
 	double	res_circ;
 	double	res_h;
 	t_vec	ret;
-
-	(void)mrt;
-	(void)inter;
-	(void)cyl_c;
-	(void)values;
 
 	ret = fill_coord(0, 0, 1);
 	res_circ = get_cone_ang_resol(mrt, inter, values.res_cap, cyl_c);

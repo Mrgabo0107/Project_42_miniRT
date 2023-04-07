@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 23:31:29 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/07 16:15:33 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:38:42 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ t_rgb	get_sphere_texture(t_mrt *mrt, t_inter inter)
 	t_mtrx	chg;
 	t_vec	new_inter;
 	int		bump_coor[2];
-	double	pol_res;
-	double	as_res;
+	double	res[2];
+	t_rgb	color;
 
 	if (!mrt->sphere[inter.index].option.texture_ctrl)
 		return (inter.color);
@@ -59,12 +59,15 @@ t_rgb	get_sphere_texture(t_mrt *mrt, t_inter inter)
 	new_inter = vec_rest(inter.inter_coor, mrt->sphere[inter.index].center);
 	new_inter = mtrx_by_vec(chg, new_inter);
 	new_inter = get_spheric_coord(new_inter);
-	pol_res = PI / mrt->sphere[inter.index].option.texture.height;
-	as_res = (2 * PI) / (mrt->sphere[inter.index].option.texture.width - 1);
-	bump_coor[0] = (int)integer_part(new_inter.y / pol_res);
-	bump_coor[1] = (int)integer_part(new_inter.z / as_res);
-	return (convert_to_rgb(mrt->sphere[inter.index].option.texture.array \
-	[bump_coor[0]][bump_coor[1]]));
+	res[0] = PI / mrt->sphere[inter.index].option.texture.height;
+	res[1] = (2 * PI) / (mrt->sphere[inter.index].option.texture.width - 1);
+	bump_coor[0] = (int)integer_part(new_inter.y / res[0]);
+	bump_coor[1] = (int)integer_part(new_inter.z / res[1]);
+	pthread_mutex_lock(mrt->mutexs);
+	color = convert_to_rgb(mrt->sphere[inter.index].option.texture.array \
+	[bump_coor[0]][bump_coor[1]]);
+	pthread_mutex_unlock(mrt->mutexs);
+	return (color);
 }
 
 void	check_spheres(t_mrt *mrt, t_inter *ctrl, t_vec point, t_vec dir)

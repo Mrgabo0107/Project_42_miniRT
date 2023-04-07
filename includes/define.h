@@ -6,7 +6,7 @@
 /*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:01:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/04/07 16:04:21 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:44:22 by yridgway         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,12 +144,12 @@ commas, at least one value should be non-zero \
 \nValid objects include: \
 \n(C)amera, (L)ight, (A)mbient light, (sp)here, (pl)ane, (cy)linder and (co)ne \
 \nValid options include: \
-\n(mir)ror, (check)ered, (spec)ular, (bump)map"
+\n(mir)ror, (check)ered, (spec)ular, (bump)map, (tex)ture"
 # define OPTIONS_BEFORE_OBJECTS "At least one object must be defined before \
 any options."
 # define OPTION_INSTRUCTIONS "\
 \nValid options include: \
-\n(mir)ror, (check)ered, (spec)ular"
+\n(mir)ror, (check)ered, (spec)ular, (bump)map, (tex)ture"
 # define CHECK_INSTRUCTIONS "\
 \n(check)ered: color:(r,g,b), density:[1-1000]\
 \ne.g. check 255,0,0"
