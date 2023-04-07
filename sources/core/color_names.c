@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_names.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 18:13:47 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/05 04:50:59 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 19:49:04 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,31 +44,30 @@ char	*white_grey_black(t_rgb color)
 
 char	*ft_get_color_str(t_rgb color)
 {
-	char	*line;
-	int		fd;
 	double	diff;
-	char	*str;
+	char	**str;
+	char	*ret;
+	int		i;
 
-	str = NULL;
+	i = 0;
+	ret = NULL;
 	diff = 255 * 3;
-	fd = open("rgb.txt", O_RDONLY, 0644);
-	line = get_next_line(fd);
+	str = ft_split(COLORS, '\n');
 	if (color.r == color.g && color.g == color.b)
-		return (close(fd), ft_free(line), white_grey_black(color));
+		return (white_grey_black(color));
 	color = get_ratio_rgb(color);
-	while (line)
+	while (str[i])
 	{
-		if (v_abs(color.r - ft_atof(line)) + v_abs(color.g - \
-		ft_atof(line + 4)) + v_abs(color.b - ft_atof(line + 8)) < diff)
+		if (v_abs(color.r - ft_atof(str[i])) + v_abs(color.g - \
+		ft_atof(str[i] + 4)) + v_abs(color.b - ft_atof(str[i] + 8)) < diff)
 		{
-			diff = v_abs(color.r - ft_atof(line)) + v_abs(color.g - \
-			ft_atof(line + 4)) + v_abs(color.b - ft_atof(line + 8));
-			str = ft_strdup(line + 13);
+			diff = v_abs(color.r - ft_atof(str[i])) + v_abs(color.g - \
+			ft_atof(str[i] + 4)) + v_abs(color.b - ft_atof(str[i] + 8));
+			ret = ft_strdup(str[i] + 13);
 		}
-		ft_free(line);
-		line = get_next_line(fd);
+		i++;
 	}
-	return (close(fd), str);
+	return (ret);
 }
 
 t_rgb	ft_get_obj_color(t_mrt *mrt, int type, int index)
