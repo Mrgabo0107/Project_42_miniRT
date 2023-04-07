@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 06:46:51 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/05 09:10:46 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 12:37:37 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,13 @@ void	bump_option(t_mrt *mrt, int key)
 		mrt->sphere[mrt->curr_obj.index].option.b_mp_ctrl
 			= (mrt->sphere[mrt->curr_obj.index].option.b_mp_ctrl + 1) % 2;
 	if (key == B && mrt->curr_obj.type == CYLINDER
-		&& mrt->cylinder[mrt->curr_obj.index].option.bump_map.path)
-		mrt->cylinder[mrt->curr_obj.index].option.b_mp_ctrl
-			= (mrt->cylinder[mrt->curr_obj.index].option.b_mp_ctrl + 1) % 2;
+		&& mrt-> cone[mrt->curr_obj.index].option.bump_map.path)
+		mrt-> cone[mrt->curr_obj.index].option.b_mp_ctrl
+			= (mrt-> cone[mrt->curr_obj.index].option.b_mp_ctrl + 1) % 2;
+	if (key == B && mrt->curr_obj.type == CONE
+		&& mrt-> cone[mrt->curr_obj.index].option.bump_map.path)
+		mrt-> cone[mrt->curr_obj.index].option.b_mp_ctrl
+			= (mrt-> cone[mrt->curr_obj.index].option.b_mp_ctrl + 1) % 2;
 }
 
 void	chess_ctr(t_mrt *mrt, int key)

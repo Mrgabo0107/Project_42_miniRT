@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 03:58:18 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/05 01:11:36 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 11:49:21 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 t_vec	cyl_cap_nrml_fr_map(t_mrt *mrt, t_inter inter, t_vec c_cr, \
-t_cyl_b_m_val values)
+t_c_bump_val values)
 {
 	int		bump_coor[2];
 	t_vec	ret;
@@ -79,7 +79,7 @@ double	get_body_resol(t_mrt *mrt, t_inter inter, double r_c)
 }
 
 t_vec	cyl_body_nrml_fr_map(t_mrt *mrt, t_inter inter, t_vec cyl_c, \
-t_cyl_b_m_val values)
+t_c_bump_val values)
 {
 	int		bump_coor[2];
 	double	res_circ;
@@ -104,7 +104,7 @@ t_cyl_b_m_val values)
 t_vec	cyl_normal_from_map(t_mrt *mrt, t_inter inter, t_vec c_cr, t_vec cyl_cr)
 {
 	t_vec			ret;
-	t_cyl_b_m_val	values;
+	t_c_bump_val	values;
 
 	values.i_diam = i_min_v(mrt->cylinder[inter.index].option.bump_map.height,
 			mrt->cylinder[inter.index].option.bump_map.width);

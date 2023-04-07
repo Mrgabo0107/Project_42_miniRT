@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 06:50:08 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/05 08:34:29 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 10:31:56 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_c_chess	get_body_color(t_mrt *mrt, int i, t_vec coor, t_rgb color)
 	t_c_chess	ret;
 
 	ret.color = color;
+	ret.even_ctrl = 0;
 	aux_dist = integer_part((mrt->cylinder[i].height
 				* int_pow(2, mrt->cylinder[i].option.chess_ctrl))
 			/ (PI * mrt->cylinder[i].radius));

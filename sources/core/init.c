@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/05 05:29:16 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/07 13:10:32 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int	ft_init_mlx(t_mrt *mrt)
 {
-	mrt->mlx = mlx_init();
-	if (!mrt->mlx)
-		return (ft_error("Problem initializing minilibx", NULL, NULL), 1);
 	if (!mrt->save)
 	{
 		mrt->win = mlx_new_window(mrt->mlx, mrt->ix, mrt->iy, "MiniRT");
@@ -112,9 +109,13 @@ int	init_minirt(t_mrt *mrt, char **av, int ac)
 		ft_set_mrt(mrt, av[1], ft_atoi(av[3]), ft_atoi(av[4]));
 	else
 		ft_set_mrt(mrt, av[1], IX, IY);
+	mrt->mlx = mlx_init();
+	ft_memory(mrt, SAVE_MLX);
+	if (!mrt->mlx)
+		return (ft_error("Problem initializing minilibx", NULL, NULL), 0);
 	ft_parse(mrt);
+	set_bump_maps(mrt);
 	if (ft_init_mlx(mrt))
 		return (printf("Problem initializing minilibx\n"), 1);
-	set_bump_maps(mrt);
 	return (0);
 }

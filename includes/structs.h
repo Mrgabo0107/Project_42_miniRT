@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:12:53 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/05 08:34:04 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 11:49:31 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,11 @@ typedef struct s_bump
 	double		res_plan;
 }				t_bump;
 
-typedef struct s_cyl_b_m_val
+typedef struct s_c_bump_val
 {
 	double	res_cap;
 	int		i_diam;
-}			t_cyl_b_m_val;
+}			t_c_bump_val;
 
 typedef struct s_option
 {

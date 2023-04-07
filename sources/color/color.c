@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 01:47:46 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/05 02:24:44 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/07 13:32:48 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ t_vec	get_normal_at_point(t_mrt *mrt, t_inter inter)
 	else if (inter.type == CONE)
 		ret = get_normal_cone(mrt, inter);
 	return (ret);
+}
+
+t_rgb	get_object_color(t_mrt *mrt, t_inter inter)
+{
 }
 
 t_rgb	get_radiance(t_mrt *mrt, t_inter *ctr, t_light light)
@@ -53,7 +57,7 @@ t_rgb	get_radiance(t_mrt *mrt, t_inter *ctr, t_light light)
 	return (add_color(diffuse, specular));
 }
 
-t_rgb	get_object_color(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color)
+t_rgb	apply_lighting(t_mrt *mrt, t_inter *ctr, t_vec dir, t_rgb color)
 {
 	int		i;
 	t_rgb	reflection;
@@ -85,7 +89,7 @@ int	get_pixel_color(t_mrt *mrt, int x, int y)
 	if (inter.dist != -1)
 	{
 		inter.norm = get_normal_at_point(mrt, inter);
-		color = get_object_color(mrt, &inter, dir, color);
+		color = apply_lighting(mrt, &inter, dir, color);
 		color = chosen_obj(mrt, x, y, color);
 	}
 	mrt->bounce = 0;
