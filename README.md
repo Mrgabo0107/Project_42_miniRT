@@ -13,6 +13,7 @@ This project is designed to run on Linux and compiles correctly with GCC v11.4.0
 To proceed, simply clone the repository, run the `make` command in the terminal, and then use:
 ```bash
 ./minirt <scenes>
+```
 
 You can use the default scenes located in the /scenes folder of the repository or any scenes that the user wishes to implement.
 
