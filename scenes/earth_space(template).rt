@@ -9,20 +9,20 @@ sp		8.0,4.0,23.0		1000.0		255,0,0
 mir 0.0
 spec 0.30000 16.0
 check 0,255,255 0.0
-tex textures/milky_way.xpm
+tex <equirectangular milky way texture>
 
 #2
 sp		6.80189,9.88204,21.60305		8.0		255,255,255
 mir 0.0
 spec 0.30000 16.0
 check 0,0,0 3.0
-tex textures/earth_tex_n1.xpm
-bump textures/earth_bmp.xpm
+tex <equirectangular earth texture>
+bump <equirectangular earth bump map >
 
 #3
 sp		-21.50178,6.59917,23.97834		3.79999		255,255,255
 mir 0.0
 spec 0.30000 16.0
 check 0,0,0 3.0
-tex textures/moon_tex.xpm
+tex <equirectangular moon texture>
 
