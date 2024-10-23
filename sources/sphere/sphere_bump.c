@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere_bump.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 02:50:57 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/07 16:17:00 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/08 12:59:53 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_vec	sph_normal_from_map(t_mrt *mrt, t_inter inter, t_vec sph_coor)
 	bump_coor[1] = (int)integer_part(sph_coor.z / as_res);
 	pthread_mutex_lock(mrt->mutexs);
 	ret = bump_nrml_by_coor(&mrt->sphere[inter.index].option, \
-	bump_coor[0], bump_coor[1], 3);
+	bump_coor[0], bump_coor[1], 0.05);
 	pthread_mutex_unlock(mrt->mutexs);
 	return (ret);
 }

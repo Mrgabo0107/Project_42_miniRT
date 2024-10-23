@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   write_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoel <yoel@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 22:54:42 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/02 19:54:58 by yoel             ###   ########.fr       */
+/*   Updated: 2023/04/08 13:31:36 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ void	ft_write_options(t_option option, int fd)
 	line = ft_strjoin_free(line, (" "));
 	line = ft_strjoin_free(line, ft_ftoa(option.chess_ctrl));
 	ft_write_to_file(line, fd);
+	if (option.texture_ctrl)
+		ft_write_to_file(ft_strjoin_free(("tex "), \
+		ft_strdup(option.texture.path)), fd);
+	if (option.b_mp_ctrl)
+		ft_write_to_file(ft_strjoin_free(("bump "), \
+		ft_strdup(option.bump_map.path)), fd);
 	ft_free(line);
 }
 

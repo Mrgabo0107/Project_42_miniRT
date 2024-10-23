@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 21:01:44 by yoel              #+#    #+#             */
-/*   Updated: 2023/04/07 19:48:45 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/08 13:22:03 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define DEFINE_H
 # include "minirt.h"
 
-# define IX 800
-# define IY 400
+# define IX 1300
+# define IY 700
 # define THREADS 20
 # define BORDER 150
 # define EXIT_ERROR -777

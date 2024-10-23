@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 20:51:49 by yridgway          #+#    #+#             */
-/*   Updated: 2023/04/07 18:14:49 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/08 12:18:49 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,26 @@ void	ft_set_mrt(t_mrt *mrt, char *file, int ix, int iy)
 		ft_error("Failed to initialize mutex", NULL, NULL);
 	}
 	mrt->mutexs = &mrt->mutex;
+}
+
+void	write_to_ppm(t_mrt *mrt)
+{
+	int				i;
+	unsigned char	color[3];
+	FILE			*fp;
+
+	write(1, "writing to file... ", 19);
+	fp = fopen("bump.ppm", "wb");
+	fprintf(fp, "P6\n%d %d\n255\n", mrt->ix, mrt->iy);
+	i = 3;
+	while (i < mrt->ix * mrt->iy * (mrt->bpp / 8))
+	{
+		color[0] = mrt->addr[i + 3];
+		color[1] = mrt->addr[i + 2];
+		color[2] = mrt->addr[i + 1];
+		fwrite(color, 1, 3, fp);
+		i += (mrt->bpp / 8);
+	}
+	fclose(fp);
+	write(1, "done\n", 5);
 }

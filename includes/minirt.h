@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:51:33 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/07 18:19:41 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/08 12:19:34 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int			valid_rt_file(char *file, int fd);
 void		ft_set_mrt(t_mrt *mrt, char *file, int ix, int iy);
 void		bump_to_array(t_bump *bump_map);
 void		ft_set_mrt(t_mrt *mrt, char *file, int ix, int iy);
+void		write_to_ppm(t_mrt *mrt);
 
 //end
 int			end_mrt(t_mrt *mrt);

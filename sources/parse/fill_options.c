@@ -6,7 +6,7 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 22:12:17 by yoel              #+#    #+#             */
-/*   Updated: 2023/04/07 17:52:07 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/08 12:45:07 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,12 @@ void	ft_fill_bumpmap(t_mrt *mrt, char **line, t_option *option)
 	option->b_mp_ctrl = 1;
 	option->bump_map.img = mlx_xpm_file_to_image(mrt->mlx, \
 	option->bump_map.path, &option->bump_map.width, &option->bump_map.height);
+	if (!option->bump_map.img)
+		ft_error("Unable to open file", line[1], NULL);
 	option->bump_map.addr = mlx_get_data_addr(option->bump_map.img, \
 	&option->bump_map.bpp, &option->bump_map.sizel, &option->bump_map.endian);
+	if (!option->bump_map.addr)
+		ft_error("Unable to open file", line[1], NULL);
 	bump_to_array(&option->bump_map);
 	mlx_destroy_image(mrt->mlx, option->bump_map.img);
 	option->bump_map.addr = NULL;

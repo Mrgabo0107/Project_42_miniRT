@@ -6,33 +6,11 @@
 /*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:18:58 by ana               #+#    #+#             */
-/*   Updated: 2023/04/07 18:23:35 by gamoreno         ###   ########.fr       */
+/*   Updated: 2023/04/08 12:26:20 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-void	write_to_ppm(t_mrt *mrt)
-{
-	int				i;
-	unsigned char	color[3];
-	FILE			*fp;
-
-	write(1, "writing to file... ", 19);
-	fp = fopen("bump.ppm", "wb");
-	fprintf(fp, "P6\n%d %d\n255\n", mrt->ix, mrt->iy);
-	i = 3;
-	while (i < mrt->ix * mrt->iy * (mrt->bpp / 8))
-	{
-		color[0] = mrt->addr[i + 3];
-		color[1] = mrt->addr[i + 2];
-		color[2] = mrt->addr[i + 1];
-		fwrite(color, 1, 3, fp);
-		i += (mrt->bpp / 8);
-	}
-	fclose(fp);
-	write(1, "done\n", 5);
-}
 
 int	end_mrt(t_mrt *mrt)
 {
@@ -68,6 +46,18 @@ void	render_scene(t_mrt *mrt)
 		mrt->first = 0;
 }
 
+int	ft_save_parsing(char **av)
+{
+	if (ft_strcmp_1(av[2], "--save"))
+		return (printf("Usage: ./miniRT <scene.rt> --save\n"), 1);
+	if (ft_atoi(av[3]) < 1 || ft_atoi(av[4]) < 1 || ft_strlen(av[3]) > 6 \
+	|| ft_strlen(av[4]) > 6 || ft_atoi(av[3]) > 10000 \
+	|| ft_atoi(av[4]) > 10000)
+		return (printf("Please enter a save resolution between 20 and 10000\n"), \
+		1);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_mrt	mrt;
@@ -78,8 +68,8 @@ int	main(int ac, char **av)
 	if (ac == 5)
 	{
 		mrt.save = 1;
-		if (ft_strcmp_1(av[2], "--save"))
-			return (printf("Usage: ./miniRT <scene.rt> --save\n"), 1);
+		if (ft_save_parsing(av))
+			return (1);
 	}
 	write(1, "initializing minirt... ", 23);
 	if (init_minirt(&mrt, av, ac))

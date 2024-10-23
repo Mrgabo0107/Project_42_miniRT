@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 21:25:02 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/07 17:14:41 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/08 12:52:40 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	light_ctr(t_mrt *mrt, int key)
 {
 	if (mrt->curr_obj.type == LIGHT)
 	{
-		if (key == PLUS && mrt->light[mrt->curr_obj.index].ratio < 1.0)
+		if (key == PLUS && mrt->light[mrt->curr_obj.index].ratio < 0.9)
 			mrt->light[mrt->curr_obj.index].ratio += 0.1;
-		if (key == MINUS && mrt->light[mrt->curr_obj.index].ratio > 0.0)
+		if (key == MINUS && mrt->light[mrt->curr_obj.index].ratio > 0.1)
 			mrt->light[mrt->curr_obj.index].ratio -= 0.1;
 	}
 	if (key == L)

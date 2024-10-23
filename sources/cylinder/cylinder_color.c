@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_color.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yridgway <yridgway@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gamoreno <gamoreno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 06:50:08 by gamoreno          #+#    #+#             */
-/*   Updated: 2023/04/07 16:06:46 by yridgway         ###   ########.fr       */
+/*   Updated: 2023/04/08 12:26:58 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,9 @@ t_c_chess	get_body_color(t_mrt *mrt, int i, t_vec coor, t_rgb color)
 		mrt->cylinder[i].option.chess_ctrl) * (coor.y / PI))) % 2 \
 		== 0 && (int)integer_part(v_abs(coor.z - mrt->cylinder[i].height) / \
 		aux_dist) % 2 == 0)))
-	{
 		ret.color = mrt->cylinder[i].option.check_color;
-		ret.even_ctrl = (int)integer_part(mrt->cylinder[i].height \
-		/ aux_dist) % 2;
-	}
+	ret.even_ctrl = (int)integer_part(mrt->cylinder[i].height \
+	/ (aux_dist * 2)) % 2;
 	return (ret);
 }
 
