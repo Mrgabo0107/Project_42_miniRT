@@ -1,4 +1,5 @@
 # **_MiniRT_**
+![Example scene 1](https://github.com/Mrgabo0107/Project_42_miniRT/blob/main/rendered/mirror_balls.ppm)
 
 This is a graphic project from the 42 school in Paris, done in pairs, aimed at modeling images following the raytracing protocol. These images must represent a scene from a defined angle and contain simple geometric objects, each with its own lighting system. The project is written in C and uses a simple graphics library called MiniLibX, developed by the school for educational purposes.
 
