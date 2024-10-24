@@ -5,5 +5,5 @@ C	0,0,0	-0.5,-0.5,0         100
 L	0,0,4					1			0,0,0
 
 sp 0,0,0  10   0,240,0
-tex textures/equirectangular1.xpm
+tex textures_and_bumpmap/equirectangular1.xpm
 

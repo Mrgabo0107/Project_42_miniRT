@@ -9,6 +9,6 @@ pl		0.0,0.0,0.0		1.0,0.0,0.0		180,45,12
 mir 0.0
 spec 0.30000 2
 check 75,210,243 0.0
-bump textures/brick_bump.xpm
-tex textures/pillars.xpm
+bump textures_and_bumpmap/brick_bump.xpm
+tex textures_and_bumpmap/pillars.xpm
 

@@ -9,5 +9,5 @@ sp		0.0,0.0,0.0		3.0		0,255,255
 mir 0.0
 spec 0.30000 16.0
 check 255,0,0 0.0
-bump textures/pillars.xpm
+bump textures_and_bumpmap/pillars.xpm
 

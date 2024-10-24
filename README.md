@@ -175,6 +175,7 @@ Press **L** to select a light. If multiple lights are present, press **L** until
 Specular light in ray tracing simulates the bright reflections produced when a surface reflects a light source directly towards the observer's eye. This is what creates the bright spots of light that make objects appear shiny or polished.
 
 _Key Parameters:_
+
 *Intensity (base):* This defines how strong the specular reflection is, controlling the brightness of reflections on the surface. A higher value makes the object appear brighter.
 
 *Exponent:* This controls the sharpness or size of the reflection. A high exponent results in small, sharp reflections, simulating a very polished surface, while a low exponent creates more diffuse reflections, simulating rough surfaces.
@@ -183,8 +184,8 @@ To apply specular light to an object, simply add the following line under the ob
 ```
 spec <intensity> <exponent>
 ```
-<intensity>: from 0 to 1
-<exponent>: from 1 to 1000
+- `<intensity>`: from 0 to 1
+- `<exponent>`: from 1 to 1000
 
 ### Checkered Surfaces (Not Available in Triangles)
 
@@ -194,8 +195,8 @@ To declare an object that appears checkered in the scene upon initializing the p
 ```
 check <RGB> <density>
 ```
-<RGB>: This defines the second color used in the checkerboard pattern and is mandatory to specify it if declared in the .rt file. However, if the surface is set to be checkerboard-patterned during program execution without specifying a color, the program will automatically calculate the inverse color by subtracting each RGB channel value from 255 (i.e., 255 - color value).
-<density>: It is the number of squares in a given area in the checkerboard pattern, and it is the property that is modified with + and - during execution.
+- `<RGB>`: This defines the second color used in the checkerboard pattern and is mandatory to specify it if declared in the .rt file. However, if the surface is set to be checkerboard-patterned during program execution without specifying a color, the program will automatically calculate the inverse color by subtracting each RGB channel value from 255 (i.e., 255 - color value).
+- `<density>`: It is the number of squares in a given area in the checkerboard pattern, and it is the property that is modified with + and - during execution.
 
 ### Mirror (Not Available in Triangles)
 
@@ -203,7 +204,7 @@ This option allows objects to exhibit mirror-like reflections. To give this prop
 ```
 mir <reflection index>
 ```
-<reflection index>: between 0 and 1, where 1 represents a perfect mirror and 0 means no reflection.
+- `<reflection index>`: between 0 and 1, where 1 represents a perfect mirror and 0 means no reflection.
 
 ### Bump Mapping (Not Available in Triangles)
 
@@ -229,3 +230,41 @@ tex <path to .xpm image>
 It is important to note that choosing a texture will override any existing color settings (such as checkered patterns or colors defined in the .rt file).
 
 If at any point you wish to stop projecting the texture onto an object, simply press **T**, and it will revert to its original color or color pattern. You can reactivate the texture by pressing **T** again.
+
+## Example of a fairly complete scene:
+```
+A		1.0		0,0,25
+C		12.0,0.0,0.0		-1.0,0.0,0.0		90
+L		15,0.0,3.0		0.70000		255,255,255
+
+pl		0.0,0.0,-7.0		0.0,0.0,1.0		0,255,255
+mir 0.0
+spec 0.30000 16.0
+check 255,0,0 1.0
+
+sp		0.0,-4.0,0.0		3.0		100,100,100
+spec 1.0 100.0
+check 155,155,155 0.0
+mir 0.0
+tex textures_and_bumpmap/emoji1.xpm
+
+cy		7,0.0,0.0		0.0,0.0,1.0		1.0		2.0		255,100,100
+mir 0.0
+check 0,155,155 0.0
+bump textures_and_bumpmap/brick_bump.xpm
+spec 0.30000 16.0
+
+tr		1.0,5.0,5.0		0.0,6.0,4.0		-1.0,8.0,3.0		255,0,0
+check 0,255,255 0.0
+spec 0.30000 16.0
+mir 0.0
+
+co		0.0,4.0,0.0		0.0,0.0,1.0		35.0		3.0		2,200,4
+mir 1.0
+spec 0.30000 16.0
+check 8,8,8 2.0
+```
+
+As you can see the order of declaration for spec, check, mir, tex, or bump in the lines following an object does not have a specified order and can be separated by several line breaks; the important thing is that they are on different lines.
+
+

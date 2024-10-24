@@ -27,7 +27,6 @@ void	ft_write_cones(t_cone *cone, int count, int fd)
 		line = ft_strjoin_free(line, ("\t\t"));
 		line = ft_strjoin_free(line, ft_ftoa(rad_and_deg(cone[i].angle, 0)));
 		line = ft_strjoin_free(line, ("\t\t"));
-		// printf("\ncone %f, %s\n", cone[i].height, ft_ftoa(cone[i].height));
 		line = ft_strjoin_free(line, ft_ftoa(cone[i].height));
 		line = ft_strjoin_free(line, ("\t\t"));
 		line = ft_strjoin_free(line, ft_write_rgb(cone[i].color));

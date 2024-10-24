@@ -49,28 +49,6 @@ static char	*separator(char *entera)
 	return (temp);
 }
 
-// char	*ft_ftoa(double n)
-// {
-// 	char	*res;
-// 	char	*entera;
-// 	char	*decimal;
-// 	double	p_entera;
-// 	double	p_decimal;
-
-// 	p_decimal = modf(n, &p_entera);
-// 	entera = ft_itoa(p_entera);
-// 	if (p_decimal < 0.0 && p_entera == 0.0)
-// 		entera = case_cero(entera);
-// 	if (p_decimal < 0.0)
-// 		p_decimal *= -1;
-// 	p_decimal = decimal_move(p_decimal, 5);
-// 	decimal = ft_itoa((int)(p_decimal));
-// 	entera = separator(entera);
-// 	res = ft_strjoin(entera, decimal);
-// 	free_strings(entera, decimal);
-// 	return (res);
-// }
-
 char	*ft_ftoa(double n)
 {
 	char	*res;
@@ -80,13 +58,12 @@ char	*ft_ftoa(double n)
 	double	p_decimal;
 
 	p_decimal = modf(n, &p_entera);
-	entera = ft_itoa((int)p_entera);
+	entera = ft_itoa(p_entera);
 	if (p_decimal < 0.0 && p_entera == 0.0)
 		entera = case_cero(entera);
 	if (p_decimal < 0.0)
 		p_decimal *= -1;
-	p_decimal = decimal_move(p_decimal, 6);
-	p_decimal = (p_decimal - (int)p_decimal >= 0.5) ? p_decimal + 1 : p_decimal;
+	p_decimal = decimal_move(p_decimal, 5);
 	decimal = ft_itoa((int)(p_decimal));
 	entera = separator(entera);
 	res = ft_strjoin(entera, decimal);

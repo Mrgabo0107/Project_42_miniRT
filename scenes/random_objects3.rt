@@ -1,0 +1,29 @@
+A	1 						0,0,25
+
+C	12,0,0		-1,0,0        90
+
+L	4,0,3		0.7			255,255,255
+
+
+pl    0,0,-7		0,0,1		0,255,255
+bump textures_and_bumpmap/brick_bump.xpm
+check 255,0,0 3
+
+cy 0,-4,0        0,0,1    1  2    255,100,100
+check 0,0,0 9
+spec 0.2 0.3
+mir 0.5
+
+cy 0,0,0        0,0,1    1  2    255,100,100
+bump textures_and_bumpmap/brick_bump.xpm
+tex textures_and_bumpmap/brick_bump.xpm
+
+sp 0,-4,0 3 100,100,100
+tex textures_and_bumpmap/emoji1.xpm
+spec 1 100
+
+co 0,4,0 0,0,1  35 3 2,200,4
+mir 1
+check 8,8,8 2
+
+tr 1,5,5 0,6,4 -1,8,3 255,0,0

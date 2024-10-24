@@ -9,7 +9,7 @@ sp		0.0,0.0,0.0		3.0		0,100,0
 mir 0.0
 spec 0.30000 16.0
 check 255,155,255 0.0
-bump textures/brick_bump.xpm
+bump textures_and_bumpmap/brick_bump.xpm
 
 #2
 sp		-3.0,0.0,0.0		3.0		50,100,0
