@@ -82,6 +82,9 @@ t_cone		ft_fill_cone(t_mrt *mrt, t_table *table, char **line);
 t_triangle	ft_fill_triangle(t_mrt *mrt, t_table *table, char **line);
 void		ft_fill_texture(t_mrt *mrt, char **line, t_option *option);
 
+//write scenes
+void		ft_write_options(t_option option, int fd);
+
 //utils
 char		*get_next_line(int fd);
 char		*ft_strjoin_free(char	*s1, char *s2);
@@ -262,6 +265,7 @@ void		ft_write_planes(t_plane *plane, int count, int fd);
 void		ft_write_spheres(t_sphere *sphere, int count, int fd);
 void		ft_write_cylinders(t_cylinder *cylinder, int count, int fd);
 void		ft_write_triangles(t_triangle *triangle, int count, int fd);
+void		ft_write_cones(t_cone *cone, int count, int fd);
 void		ft_write_to_file(char *line, int fd);
 char		*ft_write_pos(t_vec pos);
 t_vec		ft_unnormalize(t_vec vec);

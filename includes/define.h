@@ -135,6 +135,9 @@ seperated by commas \
 # define SIZE_INSTRUCTIONS "\
 \nSize must be a floating point integer between 0 and 1000 \
 \ne.g. 3.5"
+# define ANGLE_INSTRUCTIONS "\
+\nAngle must be a floating point than 0 and less than 180 \
+\ne.g. 30.2"
 # define NORMAL_INSTRUCTIONS "\
 \nNormal must be three floating point integers between -1 and 1 seperated by \
 commas, at least one value should be non-zero \
@@ -180,5 +183,6 @@ INT_MIN (2147483647)"
 # define RATIO_RANGE "Ratio must be between 0 and 1"
 # define POS_RANGE "Position must be between -1000 and 1000"
 # define SIZE_RANGE "Size must be between 0 and 1000"
+# define ANGLE_RANGE "This angle must be between 0 and 180"
 
 #endif

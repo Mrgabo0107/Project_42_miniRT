@@ -53,8 +53,8 @@ int	ft_save_parsing(char **av)
 	if (ft_atoi(av[3]) < 1 || ft_atoi(av[4]) < 1 || ft_strlen(av[3]) > 6 \
 	|| ft_strlen(av[4]) > 6 || ft_atoi(av[3]) > 10000 \
 	|| ft_atoi(av[4]) > 10000)
-		return (printf("Please enter a save resolution between 20 and 10000\n"), \
-		1);
+		return (printf("Please enter a save resolution between 20 and 10000\n") \
+		, 1);
 	return (0);
 }
 

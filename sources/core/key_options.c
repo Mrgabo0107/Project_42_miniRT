@@ -37,7 +37,7 @@ void	radius_ctr(t_mrt *mrt, int key)
 			mrt->sphere[mrt->curr_obj.index].radius -= 0.3;
 		if (key == MINUS && mrt->curr_obj.type == CYLINDER
 			&& mrt->cylinder[mrt->curr_obj.index].radius > 0.3)
-		mrt->cylinder[mrt->curr_obj.index].radius -= 0.3;
+			mrt->cylinder[mrt->curr_obj.index].radius -= 0.3;
 	}
 }
 
@@ -49,12 +49,12 @@ void	height_ctr(t_mrt *mrt, int key)
 			mrt->cylinder[mrt->curr_obj.index].height += 0.3;
 		if (key == MINUS && mrt->curr_obj.type == CYLINDER
 			&& mrt->cylinder[mrt->curr_obj.index].height > 0.3)
-		mrt->cylinder[mrt->curr_obj.index].height -= 0.3;
+			mrt->cylinder[mrt->curr_obj.index].height -= 0.3;
 		if (key == PLUS && mrt->curr_obj.type == CONE)
 			mrt->cone[mrt->curr_obj.index].height += 0.3;
 		if (key == MINUS && mrt->curr_obj.type == CONE
 			&& mrt->cone[mrt->curr_obj.index].height > 0.3)
-		mrt->cone[mrt->curr_obj.index].height -= 0.3;
+			mrt->cone[mrt->curr_obj.index].height -= 0.3;
 	}
 }
 

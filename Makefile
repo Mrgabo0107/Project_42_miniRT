@@ -59,6 +59,7 @@ PARSE		=	parsing.c \
 				save_scene.c \
 				save_utils.c \
 				write_objects.c \
+				write_objects2.c \
 				eval_objects.c \
 				fill_capitals.c \
 

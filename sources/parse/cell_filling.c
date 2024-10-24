@@ -27,14 +27,18 @@ double	ft_fill_size(char *cell, int fov)
 {
 	double	size;
 
-	if (fov && check_for_chars("0123456789", cell))
+	if (fov == 1 && check_for_chars("0123456789", cell))
 		ft_error("Invalid char in fov value", cell, FOV_INSTRUCTIONS);
+	else if (fov == 2 && check_for_chars("0123456789.", cell))
+		ft_error("Invalid char in cone angle", cell, ANGLE_INSTRUCTIONS);
 	else if (check_for_chars("0123456789.", cell))
 		ft_error("Invalid char in size value", cell, SIZE_INSTRUCTIONS);
 	check_valid_number(cell);
 	size = ft_atof(cell);
-	if (fov && (size < 0 || size > 180))
+	if (fov == 1 && (size < 0 || size > 180))
 		ft_error(FOV_RANGE, cell, FOV_INSTRUCTIONS);
+	else if (fov == 2 && (size < 0 || size >= 180))
+		ft_error(ANGLE_RANGE, cell, ANGLE_INSTRUCTIONS);
 	else if (size < 0 || size > 1000)
 		ft_error(SIZE_RANGE, cell, SIZE_INSTRUCTIONS);
 	return (size);

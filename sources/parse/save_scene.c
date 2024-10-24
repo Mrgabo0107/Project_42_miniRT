@@ -72,5 +72,6 @@ void	save_scene(t_mrt *mrt)
 	ft_write_spheres(mrt->sphere, mrt->obj_count[SPHERE], fd);
 	ft_write_cylinders(mrt->cylinder, mrt->obj_count[CYLINDER], fd);
 	ft_write_triangles(mrt->triangle, mrt->obj_count[TRIANGLE], fd);
+	ft_write_cones(mrt->cone, mrt->obj_count[CONE], fd);
 	close(fd);
 }
