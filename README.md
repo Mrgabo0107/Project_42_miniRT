@@ -1,5 +1,7 @@
 # **_MiniRT_**
-![Example scene 1](https://github.com/Mrgabo0107/Project_42_miniRT/blob/main/rendered/mirror_balls.ppm)
+ <img src="https://github.com/Mrgabo0107/Project_42_miniRT/blob/main/rendered/random_objects.jpg" alt="Exemple_scene_1" width="400">  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/blob/main/rendered/random_objects2.jpg" alt="Exemple_scene_2" width="400">  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/blob/main/rendered/emoji_hat.jpg" alt="Exemple_scene_3" width="400"> <img src="https://github.com/Mrgabo0107/Project_42_miniRT/blob/main/rendered/mirror_balls.jpg" alt="Exemple_scene_4" width="400"> <img src="https://github.com/Mrgabo0107/Project_42_miniRT/blob/main/rendered/earth_space.jpg" alt="Exemple_scene_4" width="800">
+ <img src="https://github.com/Mrgabo0107/Project_42_miniRT/blob/main/rendered/equirectangular_animation.gif" alt="Exemple_scene_4" width="800">
+
 
 This is a graphic project from the 42 school in Paris, done in pairs, aimed at modeling images following the raytracing protocol. These images must represent a scene from a defined angle and contain simple geometric objects, each with its own lighting system. The project is written in C and uses a simple graphics library called MiniLibX, developed by the school for educational purposes.
 
