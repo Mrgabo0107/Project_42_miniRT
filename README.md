@@ -1,6 +1,8 @@
 # **_MiniRT_**
- <img src="https://github.com/Mrgabo0107/Project_42_miniRT/blob/main/rendered/random_objects.jpg" alt="Exemple_scene_1" width="400">  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/blob/main/rendered/random_objects2.jpg" alt="Exemple_scene_2" width="400">  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/blob/main/rendered/emoji_hat.jpg" alt="Exemple_scene_3" width="400"> <img src="https://github.com/Mrgabo0107/Project_42_miniRT/blob/main/rendered/mirror_balls.jpg" alt="Exemple_scene_4" width="400"> <img src="https://github.com/Mrgabo0107/Project_42_miniRT/blob/main/rendered/earth_space.jpg" alt="Exemple_scene_4" width="800">
- <img src="https://github.com/Mrgabo0107/Project_42_miniRT/blob/main/rendered/equirectangular_animation.gif" alt="Exemple_scene_4" width="800">
+<img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/random_objects.jpg" alt="Exemple_scene_1" width="400"> <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/random_objects2.jpg" alt="Exemple_scene_2" width="400"> <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/emoji_hat.jpg" alt="Exemple_scene_3" width="400"> <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/mirror_balls.jpg" alt="Exemple_scene_4" width="400">
+<img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/earth_space.jpg" alt="Exemple_scene_4" width="800">  
+<img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/equirectangular_animation.gif" alt="Exemple_scene_4" width="800">
+
 
 
 This is a graphic project from the 42 school in Paris, done in pairs, aimed at modeling images following the raytracing protocol. These images must represent a scene from a defined angle and contain simple geometric objects, each with its own lighting system. The project is written in C and uses a simple graphics library called MiniLibX, developed by the school for educational purposes.
@@ -107,16 +109,21 @@ tr <first point> <second point> <third point> <R,G,B>
 ## Example of a Basic Scene:
 
 ```
-A 1 0,0,25
-C 12,0,0 -1,0,0 90
-L 4,0,3 0.7 255,255,255
+A 1  0,0,25
+C 12,0,0  -1,0,0 90
+L 5,0,4.2  0.7  255,255,255
 
-pl 0,0,0 0,0,1 0,255,255
-cy 0,0,0 0,0,1 1 2 255,100,100
-sp 0,-4,0 3 100,100,100
-co 0,4,0 0,0,1 35 3 2,200,4
-tr 1,5,5 0,6,4 -1,8,3 255,0,0
+pl 0,0,-3  0,0,1  0,255,255
+cy 0,0,0  0,0,1  1  2  255,100,100
+sp 0,-4,0  3  100,100,100
+co 0,4,0  0,0,1  35  3  2,200,4
+tr 1,5,5  -2,6,4  -1,8,3  255,0,0
 ```
+_The scene:_
+<div align="center">
+ <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/scene_simple.jpg" alt="Scene_simple" width="600">
+</div>
+
 The parser accepts spaces and tabs between object data. Lines can also be commented out using the `#` symbol, preventing them from being read and rendered.
 
 ## Controls
