@@ -1,0 +1,29 @@
+A		0.50000		255,255,255
+C		14.81576,2.79904,25.99961		-1.0,0.11573,-0.32449		93
+
+#1
+L		-3.49144,-11.33541,29.27447		0.70000		255,255,255
+
+
+#1
+sp		8.0,4.0,23.0		1000.0		255,0,0
+mir 0.0
+spec 0.30000 16.0
+check 0,255,255 0.0
+tex ./textures_and_bumpmap/milky_way.xpm
+
+#2
+sp		6.80189,9.88204,21.60304		8.0		255,255,255
+mir 0.0
+spec 0.30000 16.0
+check 0,0,0 3.0
+tex ./textures_and_bumpmap/earth_texture.xpm
+bump ./textures_and_bumpmap/earth_bump.xpm
+
+#3
+sp		-14.19835,-2.29947,22.44405		3.79999		255,255,255
+mir 0.0
+spec 0.30000 16.0
+check 0,0,0 3.0
+tex ./textures_and_bumpmap/moon_texture.xpm
+
