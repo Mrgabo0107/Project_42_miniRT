@@ -1,7 +1,9 @@
 # **_MiniRT_**
+<div align="center">
 <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/random_objects.jpg" alt="Exemple_scene_1" width="400"> <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/random_objects2.jpg" alt="Exemple_scene_2" width="400"> <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/emoji_hat.jpg" alt="Exemple_scene_3" width="400"> <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/mirror_balls.jpg" alt="Exemple_scene_4" width="400">
 <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/earth_space.jpg" alt="Exemple_scene_4" width="800">  
-<img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/equirectangular_animation.gif" alt="Exemple_scene_4" width="800">
+<img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/vertical_wolf.png" alt="Exemple_scene_4" width="700">
+</div>
 
 
 
@@ -39,6 +41,11 @@ A <intensity> <R,G,B>
 - `<intensity>`: A value between 0 and 1 that defines the light intensity.
 - `<R,G,B>`: RGB color values (red, green, blue) as integers ranging from 0 to 255.
 
+_Scene only with ambient light:_
+<div align="center">
+ <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/equirectangular_no_light.jpg" alt="only_ambient_light" width="400">
+</div>
+
 ### Light Source (L):
 ```
 L <position> <intensity> <R,G,B>
@@ -46,6 +53,16 @@ L <position> <intensity> <R,G,B>
 - `<position>`: The x, y, z coordinates of the light source.
 - `<intensity>`: A value between 0 and 1 defining light intensity.
 - `<R,G,B>`: RGB color values as integers ranging from 0 to 255.
+
+_Same scene with red, green, and white lights:_
+<div align="center">
+ <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/equirectangular_red.jpg" alt="Red_light" width="300"><img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/equirectangular_green_matrix.jpg" alt="Green_light" width="300"><img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/equirectangular_white.jpg" alt="White_light" width="300">
+</div>
+
+_Another scene with several colored lights:_
+<div align="center">
+ <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/light_and_sphere_colors.jpg" alt="Several_lights" width="400">
+</div>
 
 ### Camera (C):
 ```
@@ -154,6 +171,11 @@ To change the viewing direction, use the arrow keys:
 - **Left Arrow**: Rotate view left.
 - **Right Arrow**: Rotate view right.
 
+_Surfing through the scene with the camera controls:_
+<div align="center">
+ <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/surfing_through_the_scene.gif" alt="Camera_controls" width="600">
+</div>
+
 ### Object Controls:
 
 When selecting a plane, sphere, cylinder, or cone, you can modify their position and rotation relative to the camera axes using the following commands:
@@ -177,10 +199,20 @@ When selecting a plane, sphere, cylinder, or cone, you can modify their position
   - **M**: Rotate clockwise.
   - **N**: Rotate counterclockwise.
 
+_Movements and rotations of a selected sphere:_
+<div align="center">
+ <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/movements_rotations.gif" alt="Movements and rotations" width="600">
+</div>
+
 ### Lights:
 Press **L** to select a light. If multiple lights are present, press **L** until the desired light is selected. Use the same position controls as for other objects. Press **+** or **-** to adjust the light's intensity.
 
-### Specular Property (Not Available in Triangles)
+_Many nearby lights creating a penumbra effect:_
+<div align="center">
+  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/several_lights_penumbra.jpg" alt="Lights_penumbra" width="600">
+</div>
+
+### Specular Property
 
 Specular light in ray tracing simulates the bright reflections produced when a surface reflects a light source directly towards the observer's eye. This is what creates the bright spots of light that make objects appear shiny or polished.
 
@@ -197,6 +229,14 @@ spec <intensity> <exponent>
 - `<intensity>`: from 0 to 1
 - `<exponent>`: from 1 to 1000
 
+### Mirror
+
+This option allows objects to exhibit mirror-like reflections. To give this property to an object, simply add the following line under the object's declaration:
+```
+mir <reflection index>
+```
+- `<reflection index>`: between 0 and 1, where 1 represents a perfect mirror and 0 means no reflection.
+
 ### Checkered Surfaces (Not Available in Triangles)
 
 This option is the default configuration that can be modified on objects by pressing + or - to increase or decrease the number of squares on the surface. If another option is selected for modification, simply press the letter **C** to return to modifying this property.
@@ -207,14 +247,6 @@ check <RGB> <density>
 ```
 - `<RGB>`: This defines the second color used in the checkerboard pattern and is mandatory to specify it if declared in the .rt file. However, if the surface is set to be checkerboard-patterned during program execution without specifying a color, the program will automatically calculate the inverse color by subtracting each RGB channel value from 255 (i.e., 255 - color value).
 - `<density>`: It is the number of squares in a given area in the checkerboard pattern, and it is the property that is modified with + and - during execution.
-
-### Mirror (Not Available in Triangles)
-
-This option allows objects to exhibit mirror-like reflections. To give this property to an object, simply add the following line under the object's declaration:
-```
-mir <reflection index>
-```
-- `<reflection index>`: between 0 and 1, where 1 represents a perfect mirror and 0 means no reflection.
 
 ### Bump Mapping (Not Available in Triangles)
 
@@ -277,4 +309,4 @@ check 8,8,8 2.0
 
 As you can see the order of declaration for spec, check, mir, tex, or bump in the lines following an object does not have a specified order and can be separated by several line breaks; the important thing is that they are on different lines.
 
-
+**Note:** The GIFs in this README were made frame by frame by taking screenshots (pressing **X**); miniRT does not render video."
