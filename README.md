@@ -229,6 +229,14 @@ spec <intensity> <exponent>
 - `<intensity>`: from 0 to 1
 - `<exponent>`: from 1 to 1000
 
+_Cone without specular property followed by examples:_
+<div align="center">
+  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/spec_without.jpg" alt="Without_spacular" width="600">
+</div>
+<div align="center">
+  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/spec_min.jpg" alt="Specular_1" width="300"> <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/spec_diffuse_0,4_500.jpg" alt="Specular_2" width="300"> <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/spec_bright_soft_reflections_0,6_5.jpg" alt="Specular_3" width="300"> <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/spec_Polished_less_intense_0,7_50.jpg" alt="Specular_4" width="300"> <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/spec_defined_reflections_0.9_10.jpg" alt="Specular_5" width="300"> <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/spec_very_polished_metallic_1_20.jpg" alt="Specular_6" width="300">
+</div>
+
 ### Mirror
 
 This option allows objects to exhibit mirror-like reflections. To give this property to an object, simply add the following line under the object's declaration:
@@ -236,6 +244,26 @@ This option allows objects to exhibit mirror-like reflections. To give this prop
 mir <reflection index>
 ```
 - `<reflection index>`: between 0 and 1, where 1 represents a perfect mirror and 0 means no reflection.
+
+_Mirror made with triangles:_
+<div align="center">
+  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/mirror.jpg" alt="Normal_Mirror" width="600">
+</div>
+
+_Facing mirrors:_
+<div align="center">
+  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/infinte_mirror_effect.jpg" alt="Infinite_Mirror" width="600">
+</div>
+
+_Mirror Balls:_
+<div align="center">
+  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/mirror_balls_plane.jpg" alt="Mirror_balls" width="600">
+</div>
+
+_Spherical and plane perfect mirror:_
+<div align="center">
+  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/plane_and_spherical_mirrors.jpg" alt="Ball_and_plane_mirror" width="600">
+</div>
 
 ### Checkered Surfaces (Not Available in Triangles)
 
@@ -247,6 +275,10 @@ check <RGB> <density>
 ```
 - `<RGB>`: This defines the second color used in the checkerboard pattern and is mandatory to specify it if declared in the .rt file. However, if the surface is set to be checkerboard-patterned during program execution without specifying a color, the program will automatically calculate the inverse color by subtracting each RGB channel value from 255 (i.e., 255 - color value).
 - `<density>`: It is the number of squares in a given area in the checkerboard pattern, and it is the property that is modified with + and - during execution.
+
+_Checkered Objects:_
+
+
 
 ### Bump Mapping (Not Available in Triangles)
 
