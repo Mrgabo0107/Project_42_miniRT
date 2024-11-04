@@ -121,6 +121,11 @@ tr <first point> <second point> <third point> <R,G,B>
 - `<third point>`: The x, y, z coordinates of the third vertex.
 - `<R,G,B>`: RGB color values for the triangle.
 
+_Pawns imported from Blender (like the wolf at the top) using triangles:_
+<div align="center">
+ <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/pawn.jpg" alt="pawns" width="600">
+</div>
+
 **Note:** In this version, triangles will remain unmodifiable during execution.
 
 ## Example of a Basic Scene:
@@ -171,7 +176,7 @@ To change the viewing direction, use the arrow keys:
 - **Left Arrow**: Rotate view left.
 - **Right Arrow**: Rotate view right.
 
-_Surfing through the scene with the camera controls:_
+_Navigating the scene using the camera controls:_
 <div align="center">
  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/surfing_through_the_scene.gif" alt="Camera_controls" width="600">
 </div>
@@ -276,9 +281,15 @@ check <RGB> <density>
 - `<RGB>`: This defines the second color used in the checkerboard pattern and is mandatory to specify it if declared in the .rt file. However, if the surface is set to be checkerboard-patterned during program execution without specifying a color, the program will automatically calculate the inverse color by subtracting each RGB channel value from 255 (i.e., 255 - color value).
 - `<density>`: It is the number of squares in a given area in the checkerboard pattern, and it is the property that is modified with + and - during execution.
 
-_Checkered Objects:_
+_Checkered objects:_
+<div align="center">
+  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/All_check.jpg" alt="All_check" width="600">
+</div>
 
-
+_Checkered mirror objects:_
+<div align="center">
+  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/All_mirror_check.jpg" alt="All_check" width="600">
+</div>
 
 ### Bump Mapping (Not Available in Triangles)
 
@@ -294,8 +305,33 @@ This raytracer interprets any grayscale .xpm image to use as a bump map. Note th
 
 The implementation of a bump map is independent of color; it can even be used over textures or checkered patterns. If you wish to stop using the bump map at any point during execution, simply press **B** to deactivate it, and press **B** again to reactivate it.
 
+_Random texture interpreted as a bump map:_
+<div align="center">
+  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/bumping_texture_sphere.jpg" alt="Texture as a bumpmap" width="600">
+</div>
+
+_Brick wall:_
+<div align="center">
+  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/brick_wall.jpg" alt="Brick_wall" width="600">
+</div>
+
+_Bump-mapped sphere facing a perfect mirror sphere:_
+<div align="center">
+  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/sphere_texture_reflection.jpg" alt="Bumped_sphere_facing_mirror_sphere" width="600">
+</div>
+
+_Two different bump maps simulating the lunar surface:_
+<div align="center">
+  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/Bump_moon.gif" alt="Bumpmap1" width="500"> <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/Bump_moon2.gif" alt="Bumpmap2" width="500">
+</div>
+
 ### Textures (Not Available in Triangles)
 This raytracer allows you to project any .xpm image onto the objects in the scene, similar to bump mapping. The equirectangular projection used on spheres creates realistic environments, enhancing the visual quality. On flat surfaces, the texture will repeat indefinitely, while on other shapes, we implement projections that creatively deform the image, resulting in visually interesting effects.
+
+_Realistic scene achieved through equirectangular projection onto a sphere:_
+<div align="center">
+  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/equirectangular_animation.gif" alt="Realistic_scenario" width="700">
+</div>
 
 To project a texture onto the surface of an object, add the following line under the object's declaration:
 ```
@@ -304,6 +340,11 @@ tex <path to .xpm image>
 It is important to note that choosing a texture will override any existing color settings (such as checkered patterns or colors defined in the .rt file).
 
 If at any point you wish to stop projecting the texture onto an object, simply press **T**, and it will revert to its original color or color pattern. You can reactivate the texture by pressing **T** again.
+
+_Lunar texture on a sphere with and without a bump map:_
+<div align="center">
+  <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/moon_texture.gif" alt="Moon_texture" width="700"> <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/Moon_tex_bmp.gif" alt="Texture and bump map" width="900">
+</div>
 
 ## Example of a fairly complete scene:
 ```
@@ -338,6 +379,11 @@ mir 1.0
 spec 0.30000 16.0
 check 8,8,8 2.0
 ```
+
+_The scene (the emoji has been rotated):_
+<div align="center">
+ <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/Complex_scene.jpg" alt="complex_scene" width="800">
+</div>
 
 As you can see the order of declaration for spec, check, mir, tex, or bump in the lines following an object does not have a specified order and can be separated by several line breaks; the important thing is that they are on different lines.
 
