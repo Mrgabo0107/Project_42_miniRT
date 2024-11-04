@@ -1,15 +1,15 @@
 A 1  0,0,25
 C 5,0,0  -1,0,0 90
-L 5,0,4.2  0.7  200,210,210
+L 5.2,0,2  0.7  200,210,210
 
-# pl 0,0,-3  0,0,1  128,0,128
+pl 0,0,-3  0,0,1  128,0,128
 # check 153,50,204 1
-# cy 0,0,0  0,0,1  1  2  255,100,100
+cy 0,0,0  0,0,1  1  2  255,100,100
 sp 0,0,0  3  200,200,200
-bump textures_and_bumpmap/moon_float_small.xpm
-tex textures_and_bumpmap/moon_texture.xpm
-spec 0.0 0.2
+# bump textures_and_bumpmap/moon_bmp.xpm
+# tex textures_and_bumpmap/moon_texture.xpm
+# spec 0 20
 # check 200,0,0 3
-# co 0,4,0  0,0,1  35  3  2,200,4
+co 0,4,0  0,0,1  35  3  2,200,4
 # check 255,255,0 3
-# tr 1,5,5  -2,6,4  -1,8,3  255,0,0
+tr 1,5,5  -2,6,4  -1,8,3  255,0,0
