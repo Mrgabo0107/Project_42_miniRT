@@ -341,7 +341,7 @@ It is important to note that choosing a texture will override any existing color
 
 If at any point you wish to stop projecting the texture onto an object, simply press **T**, and it will revert to its original color or color pattern. You can reactivate the texture by pressing **T** again.
 
-_Lunar texture on a sphere with and without a bump map:_
+_Lunar texture on a sphere without and with a bump map:_
 <div align="center">
   <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/moon_texture.gif" alt="Moon_texture" width="700"> <img src="https://github.com/Mrgabo0107/Project_42_miniRT/raw/main/rendered/Moon_tex_bmp.gif" alt="Texture and bump map" width="900">
 </div>
