@@ -387,4 +387,4 @@ _The scene (the emoji has been rotated):_
 
 As you can see the order of declaration for spec, check, mir, tex, or bump in the lines following an object does not have a specified order and can be separated by several line breaks; the important thing is that they are on different lines.
 
-**Note:** The GIFs in this README were made frame by frame by taking screenshots (pressing **X**); miniRT does not render video."
+**Note:** The GIFs in this README were made frame by frame by taking screenshots (pressing **X**); miniRT does not render video.
